@@ -11,7 +11,8 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
 <style>
 /* Hallmark · macrostructure: 14 Narrative Workflow · Vitrine Certa / Landing Mãe
    objeto=vitrine que contém as 8 lojas · cor=espectro dos 8 nichos (luz viaja, type ancora)
@@ -219,8 +220,8 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;
 footer .brand{font-size:1.05rem}
 footer .logo{width:24px;height:24px}
 /* reveal */
-.reveal{clip-path:inset(0 0 100% 0);opacity:0;transition:clip-path .6s cubic-bezier(.22,1,.36,1),opacity .6s cubic-bezier(.22,1,.36,1)}
-.reveal.in{clip-path:inset(0 0 0 0);opacity:1}
+.reveal{clip-path:inset(-80px -80px 100% -80px);opacity:0;transition:clip-path .6s cubic-bezier(.22,1,.36,1),opacity .6s cubic-bezier(.22,1,.36,1)}
+.reveal.in{clip-path:inset(-80px -80px -80px -80px);opacity:1}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .reveal{transition:none;opacity:1;clip-path:none}
@@ -379,7 +380,7 @@ footer .logo{width:24px;height:24px}
     </div>
     <div class="frame-vitrine reveal">
       <div class="toldo"><i></i><i></i><i></i><span class="url" id="pv-url">pizzaria.vitrinecerta.site</span></div>
-      <iframe id="pvf" src="../site-dfy/pizzaria/premium/index.html" title="Exemplo de site ao vivo" loading="lazy"></iframe>
+      <iframe id="pvf" data-src="../site-dfy/pizzaria/premium/index.html" title="Exemplo de site ao vivo" loading="lazy"></iframe>
     </div>
     <p class="hint reveal">↑ um site de verdade rodando dentro desta página. Mexe nele.</p>
   </div>
@@ -711,6 +712,15 @@ var NICHOS=[
 // === exemplos ===
 (function(){
   var pv=document.getElementById('pv'),pvf=document.getElementById('pvf'),url=document.getElementById('pv-url');
+  if(!pvf) return;
+  // carrega o demo vivo só quando a seção se aproxima do viewport (economiza ~180KB no load inicial)
+  function ligar(){ if(!pvf.src) pvf.src=pvf.getAttribute('data-src'); }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ ligar(); io.disconnect(); } });
+    },{rootMargin:'600px 0px'});
+    io.observe(pvf);
+  } else { ligar(); }
   if(!pv) return;
   pv.addEventListener('change',function(){
     pvf.src=pv.value;
