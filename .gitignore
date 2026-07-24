@@ -24,3 +24,8 @@ _todo.md
 taste-library/_realurls.json
 taste-library/_preview.png
 taste-library/_preview_clinica.png
+taste-library/_col_*.txt
+taste-library/_real_*.txt
+taste-library/_real_*.json
+taste-library/_cap_*.log
+taste-library/_cap_*.out
