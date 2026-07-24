@@ -86,7 +86,7 @@
       ],
       "fonte": "Awwwards",
       "premiacao": "Honorable Mention",
-      "url": "https://www.awwwards.com/sites/kindred-pet-care",
+      "url": "https://kindredpetcare.com/",
       "tipo_pagina": "landing completa",
       "keywords": [
         "acolhedor",
@@ -100,7 +100,8 @@
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
-      ]
+      ],
+      "url_real": "https://kindredpetcare.com/"
     },
     {
       "id": "pet-rooof",
@@ -112,7 +113,7 @@
       ],
       "fonte": "Awwwards",
       "premiacao": "Honorable Mention",
-      "url": "https://www.awwwards.com/sites/rooof-pet-furniture",
+      "url": "https://www.shoprooof.com/",
       "tipo_pagina": "landing completa",
       "keywords": [
         "produto em destaque",
@@ -126,7 +127,8 @@
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
-      ]
+      ],
+      "url_real": "https://www.shoprooof.com/"
     },
     {
       "id": "padaria-wildwood",
@@ -164,7 +166,7 @@
       ],
       "fonte": "Awwwards",
       "premiacao": "Honorable Mention",
-      "url": "https://www.awwwards.com/sites/bernice-bakery",
+      "url": "https://bernicebakery.com/",
       "tipo_pagina": "landing completa",
       "keywords": [
         "editorial",
@@ -178,7 +180,8 @@
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
-      ]
+      ],
+      "url_real": "https://bernicebakery.com/"
     },
     {
       "id": "salao-don-barber",
@@ -190,7 +193,7 @@
       ],
       "fonte": "Awwwards",
       "premiacao": "Honorable Mention",
-      "url": "https://www.awwwards.com/sites/don-barber-groom",
+      "url": "https://don-barber.gr/en",
       "tipo_pagina": "landing completa",
       "keywords": [
         "masculino",
@@ -204,7 +207,8 @@
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
-      ]
+      ],
+      "url_real": "https://don-barber.gr/en"
     },
     {
       "id": "salao-marco-ambrosi",
@@ -216,7 +220,7 @@
       ],
       "fonte": "Awwwards",
       "premiacao": "Honorable Mention",
-      "url": "https://www.awwwards.com/sites/marco-ambrosi-salon",
+      "url": "https://www.marcoambrosi.salon/",
       "tipo_pagina": "landing completa",
       "keywords": [
         "beleza editorial",
@@ -230,7 +234,8 @@
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
-      ]
+      ],
+      "url_real": "https://www.marcoambrosi.salon/"
     },
     {
       "id": "clinica-halo-dental",
@@ -242,7 +247,7 @@
       ],
       "fonte": "Awwwards",
       "premiacao": "SOTD (Site of the Day)",
-      "url": "https://www.awwwards.com/sites/halo-dental",
+      "url": "https://halodental.com/",
       "tipo_pagina": "landing completa",
       "keywords": [
         "clean clínico",
@@ -256,7 +261,8 @@
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
-      ]
+      ],
+      "url_real": "https://halodental.com/"
     },
     {
       "id": "imobiliaria-awwwards-re",
@@ -320,7 +326,7 @@
       ],
       "fonte": "Awwwards",
       "premiacao": "Nominee",
-      "url": "https://www.awwwards.com/sites/hampy",
+      "url": "https://www.hampy.be/",
       "tipo_pagina": "landing completa",
       "keywords": [
         "fresco",
@@ -334,7 +340,8 @@
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
-      ]
+      ],
+      "url_real": "https://www.hampy.be/"
     },
     {
       "id": "pizzaria-pizza-hut",
@@ -346,7 +353,7 @@
       ],
       "fonte": "Awwwards",
       "premiacao": "Nominee",
-      "url": "https://www.awwwards.com/sites/pizza-hut-restaurants",
+      "url": "http://pizzahut.co.uk/restaurants",
       "tipo_pagina": "landing completa",
       "keywords": [
         "vermelho vibrante",
@@ -360,7 +367,8 @@
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
-      ]
+      ],
+      "url_real": "http://pizzahut.co.uk/restaurants"
     },
     {
       "id": "padaria-ceremony-coffee",
@@ -372,7 +380,7 @@
       ],
       "fonte": "Awwwards",
       "premiacao": "SOTD (Site of the Day)",
-      "url": "https://www.awwwards.com/sites/ceremony-coffee-roasters",
+      "url": "https://ceremonycoffee.com/",
       "tipo_pagina": "landing completa",
       "keywords": [
         "café artesanal",
@@ -386,7 +394,8 @@
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
-      ]
+      ],
+      "url_real": "https://ceremonycoffee.com/"
     },
     {
       "id": "pet-veterinary",
@@ -398,7 +407,7 @@
       ],
       "fonte": "Awwwards",
       "premiacao": "Nominee",
-      "url": "https://www.awwwards.com/sites/website-design-for-veterinary",
+      "url": "https://websyvet.com/",
       "tipo_pagina": "landing completa",
       "keywords": [
         "clínico amigável",
@@ -412,7 +421,8 @@
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
-      ]
+      ],
+      "url_real": "https://websyvet.com/"
     },
     {
       "id": "salao-salon-sona",
@@ -424,7 +434,7 @@
       ],
       "fonte": "Awwwards",
       "premiacao": "Honorable Mention",
-      "url": "https://www.awwwards.com/sites/salon-sona",
+      "url": "http://ss.art4web.co/",
       "tipo_pagina": "landing completa",
       "keywords": [
         "beleza acolhedora",
@@ -438,7 +448,8 @@
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
-      ]
+      ],
+      "url_real": "http://ss.art4web.co/"
     },
     {
       "id": "clinica-axel",
@@ -450,7 +461,7 @@
       ],
       "fonte": "Awwwards",
       "premiacao": "Honorable Mention",
-      "url": "https://www.awwwards.com/sites/axel-clinic",
+      "url": "https://axel.clinic/en/",
       "tipo_pagina": "landing completa",
       "keywords": [
         "estética médica",
@@ -464,7 +475,8 @@
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
-      ]
+      ],
+      "url_real": "https://axel.clinic/en/"
     },
     {
       "id": "imobiliaria-oh-architecture",
@@ -476,7 +488,7 @@
       ],
       "fonte": "Awwwards",
       "premiacao": "SOTD (Site of the Day)",
-      "url": "https://www.awwwards.com/sites/oh-architecture",
+      "url": "https://www.oharchitecture.com.au/",
       "tipo_pagina": "landing completa",
       "keywords": [
         "arquitetura",
@@ -490,7 +502,8 @@
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
-      ]
+      ],
+      "url_real": "https://www.oharchitecture.com.au/"
     }
   ]
 }
