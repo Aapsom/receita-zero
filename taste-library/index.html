@@ -37,7 +37,7 @@
     border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:16px}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
-    display:flex;flex-direction:column;transition:border-color .15s}
+    display:flex;flex-direction:column;transition:border-color .15s;position:relative}
   .card:hover{border-color:#b8a880;box-shadow:0 6px 22px rgba(120,100,60,.18)}
   .card img,.card object{width:100%;aspect-ratio:400/260;object-fit:cover;background:#E3D6BC;
     display:block;border:0;border-bottom:1px solid var(--line)}
@@ -60,6 +60,28 @@
   .empty{color:#6a6453;text-align:center;padding:60px;grid-column:1/-1;font-family:var(--mono)}
   .help{max-width:1200px;margin:26px auto 0;color:#6a6453;font-size:12.5px;border-top:1px solid var(--line);padding-top:16px;font-family:var(--mono)}
   .help code{background:#F2ECDD;padding:1px 6px;border-radius:5px;color:var(--acc)}
+  .favbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 auto 16px;max-width:1200px}
+  .favbar label{font-family:var(--mono);font-size:12.5px;color:#6a6453;display:flex;align-items:center;gap:6px;cursor:pointer}
+  .star{position:absolute;top:8px;right:8px;width:30px;height:30px;border:none;background:rgba(250,248,240,.7);
+    border-radius:50%;cursor:pointer;font-size:15px;line-height:30px;text-align:center;z-index:3;transition:.15s}
+  .star:hover{background:#fff;transform:scale(1.1)}
+  .star.on{background:var(--acc);color:#fff}
+  .sel{position:absolute;top:8px;left:8px;z-index:3;width:20px;height:20px;cursor:pointer;accent-color:var(--acc)}
+  .dock{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:#1A1A1A;color:#F4F1E8;
+    padding:10px 16px;border-radius:40px;display:none;align-items:center;gap:14px;box-shadow:0 8px 30px rgba(0,0,0,.3);z-index:20;font-family:var(--mono);font-size:13px}
+  .dock.show{display:flex}
+  .dock button{background:var(--acc);color:#fff;border:none;padding:7px 14px;border-radius:20px;cursor:pointer;font-family:var(--mono);font-size:12.5px}
+  .dock button.ghost{background:#333;color:#F4F1E8}
+  .modal{position:fixed;inset:0;background:rgba(26,26,26,.6);display:none;align-items:flex-start;justify-content:center;z-index:30;padding:40px 16px;overflow:auto}
+  .modal.show{display:flex}
+  .modal .box{background:#FBF8F0;max-width:820px;width:100%;border-radius:14px;padding:22px;font-family:var(--serif)}
+  .modal .box h3{font-family:var(--serif);color:var(--acc);margin-bottom:12px;font-size:20px}
+  .modal .box pre{white-space:pre-wrap;font-family:var(--mono);font-size:12px;background:#F2ECDD;padding:14px;border-radius:8px;max-height:50vh;overflow:auto;color:#3a3528}
+  .modal .box .row{display:flex;gap:10px;margin-top:12px;justify-content:flex-end}
+  .modal .box .cmp{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+  .modal .box .cmp figure{flex:1;min-width:180px;margin:0;text-align:center}
+  .modal .box .cmp img,.modal .box .cmp object{max-width:100%;border:1px solid var(--line);border-radius:8px;aspect-ratio:400/260;object-fit:cover;background:#E3D6BC}
+  .modal .box .cmp figcaption{font-family:var(--mono);font-size:10.5px;color:#6a6453;margin-top:5px}
   .group>h2{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--acc);
     border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:16px;font-family:var(--mono)}
   .sub{color:var(--dim);margin-top:6px;font-size:13.5px;font-family:var(--mono)}
@@ -68,7 +90,7 @@
 <body>
 <header>
   <h1>Biblioteca de <b>Gosto</b> — Vitrine Certa</h1>
-  <p class="sub">Passo 1 do método: cultive o gosto. Agrupa referências por estilo, guarda o vocabulário e gera <b>image prompt</b> + <b>brief</b> prontos pro build.</p>
+  <p class="sub">Passo 1 do método: cultive o gosto. ⭐ favorita, selecione p/ moodboard, compare e gere brief em Markdown pronto pro build.</p>
 </header>
 
 <div class="bar">
@@ -80,18 +102,42 @@
   <select id="fTipo"><option value="">Todos os tipos</option></select>
   <span class="count" id="count"></span>
 </div>
+<div class="favbar">
+  <label><input type="checkbox" id="fFav"> ⭐ só favoritos</label>
+  <span id="favCount"></span>
+</div>
 
 <main id="app"></main>
 
+<div class="dock" id="dock">
+  <span>Moodboard: <b id="dockN">0</b></span>
+  <button id="btnBrief">gerar brief</button>
+  <button id="btnCmp" class="ghost">comparar</button>
+  <button id="btnClear" class="ghost">limpar</button>
+</div>
+
+<div class="modal" id="modal">
+  <div class="box">
+    <h3 id="modalTitle"></h3>
+    <div id="modalBody"></div>
+    <div class="row"><button class="ghost" onclick="closeModal()" style="background:#333;color:#F4F1E8;border:none;padding:8px 16px;border-radius:9px;cursor:pointer;font-family:var(--mono)">fechar</button></div>
+  </div>
+</div>
+
 <div class="help">
   Como alimentar: salve o print em <code>taste-library/shots/</code> e adicione um item em <code>taste-library/data.json</code>.
-  Fontes recomendadas (do vídeo): Dribbble (popular), Pinterest, Twitter/X, sites reais.
-  Cada item vira um card com botões que copiam o <b>image prompt</b> (hero) e o <b>brief</b> (build completo).
+  Funcionalidades: ⭐ favorita (persiste), □ seleciona p/ moodboard, <b>gerar brief</b> monta os 4 pilares do vídeo em Markdown,
+  <b>comparar</b> abre os prints lado a lado, <b>similares</b> ranqueia por feeling.
 </div>
 
 <script>
 const $ = s => document.querySelector(s);
 let DATA = {itens:[]};
+const FAV_KEY='tg_favs', SEL_KEY='tg_sel';
+const favs = loadSet(FAV_KEY), sel = loadSet(SEL_KEY);
+
+function loadSet(k){ try { return new Set(JSON.parse(localStorage.getItem(k)||'[]')); } catch { return new Set(); } }
+function saveSet(k,s){ try { localStorage.setItem(k, JSON.stringify([...s])); } catch {} }
 
 async function load(){
   try{
@@ -106,8 +152,12 @@ async function load(){
   fillSelect('#fPremio', 'premiacao');
   fillSelect('#fTipo', 'tipo_pagina');
   fillNichos();
-  ['#q','#fEstilo','#fNicho','#fFonte','#fPremio','#fTipo'].forEach(s => $(s).addEventListener('input', render));
+  ['#q','#fEstilo','#fNicho','#fFonte','#fPremio','#fTipo','#fFav'].forEach(s => $(s).addEventListener('input', render));
+  $('#btnBrief').addEventListener('click', gerarBrief);
+  $('#btnCmp').addEventListener('click', comparar);
+  $('#btnClear').addEventListener('click', clearSel);
   render();
+  syncDock();
 }
 
 function uniq(key){ return [...new Set(DATA.itens.map(i => i[key]).filter(Boolean))].sort(); }
@@ -123,6 +173,8 @@ function fillNichos(){
 function match(i){
   const q = $('#q').value.toLowerCase().trim();
   const e = $('#fEstilo').value, n = $('#fNicho').value, f = $('#fFonte').value, pr = $('#fPremio').value, t = $('#fTipo').value;
+  const favOnly = $('#fFav').checked;
+  if(favOnly && !favs.has(i.id)) return false;
   if(e && i.estilo!==e) return false;
   if(f && i.fonte!==f) return false;
   if(pr && i.premiacao!==pr) return false;
@@ -138,16 +190,23 @@ function match(i){
 function render(){
   const items = DATA.itens.filter(match);
   $('#count').textContent = items.length + ' / ' + DATA.itens.length + ' refs';
+  $('#favCount').textContent = favs.size ? (favs.size+' favorito(s)') : '';
   if(!items.length){ $('#app').innerHTML = '<p class="empty">Nenhuma referência com esses filtros.</p>'; return; }
   const groups = {};
   items.forEach(i => { (groups[i.estilo] ||= []).push(i); });
   $('#app').innerHTML = Object.keys(groups).sort().map(est => `
     <section class="group">
-      <h2>${esc(est)} · ${groups[est].length}</h2>
+      <h2>${esc(est)} · ${groups[est].length} <button class="copygrp" data-est="${enc(est)}" style="float:right;background:none;border:1px solid var(--line);color:var(--acc);border-radius:6px;font-family:var(--mono);font-size:11px;padding:2px 8px;cursor:pointer">copiar prompts do grupo</button></h2>
       <div class="grid">${groups[est].map(card).join('')}</div>
     </section>`).join('');
-  document.querySelectorAll('button[data-copy]').forEach(b =>
-    b.addEventListener('click', () => copy(b)));
+  document.querySelectorAll('button[data-copy]').forEach(b => b.addEventListener('click', () => copy(b)));
+  document.querySelectorAll('.star').forEach(b => b.addEventListener('click', () => toggleFav(b.getAttribute('data-id'), b)));
+  document.querySelectorAll('.sel').forEach(c => {
+    c.checked = sel.has(c.getAttribute('data-id'));
+    c.addEventListener('change', () => toggleSel(c.getAttribute('data-id'), c.checked));
+  });
+  document.querySelectorAll('.copygrp').forEach(b => b.addEventListener('click', () => copyGroup(b.getAttribute('data-est'))));
+  document.querySelectorAll('.simbtn').forEach(b => b.addEventListener('click', () => showSimilar(b.getAttribute('data-id'))));
 }
 
 function card(i){
@@ -155,7 +214,10 @@ function card(i){
   const media = /\.svg$/i.test(shot)
     ? `<object data="${shot}" type="image/svg+xml"></object>`
     : `<img src="${shot}" loading="lazy" alt="${esc(i.titulo||'')}">`;
+  const faving = favs.has(i.id);
   return `<article class="card">
+    <input type="checkbox" class="sel" data-id="${esc(i.id)}" aria-label="selecionar p/ moodboard">
+    <button class="star ${faving?'on':''}" data-id="${esc(i.id)}" aria-label="favoritar">${faving?'★':'☆'}</button>
     ${media}
     <div class="body">
       <h3>${esc(i.titulo||'(sem título)')}</h3>
@@ -169,11 +231,36 @@ function card(i){
       ${i.url?`<a class="src" href="${esc(i.url)}" target="_blank" rel="noopener">↗ site real: ${esc(domain(i.url))}</a>`:''}
       ${i.url_premio?`<a class="src premio-link" href="${esc(i.url_premio)}" target="_blank" rel="noopener">🏆 ver na ${esc(i.fonte||'premiação')}</a>`:''}
       <div class="btns">
-        <button data-copy="${enc(i.image_prompt||'')}">copy image prompt</button>
-        <button data-copy="${enc(i.brief||'')}">copy brief</button>
+        <button data-copy="${enc(cardPrompt(i))}">copy image prompt</button>
+        <button data-copy="${enc(cardBrief(i))}">copy brief</button>
+        <button class="simbtn" data-id="${esc(i.id)}">similares</button>
       </div>
     </div>
   </article>`;
+}
+
+// --- Onda 1: cardPrompt dinâmico (substitui string fixa de data.json) ---
+function cardPrompt(i){
+  const est = i.estilo||'editorial';
+  const kw = (i.keywords||[]).join(', ');
+  const nichos = (i.nicho_fit||[]).join(', ');
+  return `Hero image prompt — site de ${nichos||'marca'} premiado (estilo "${est}").
+Paleta e materiais coerentes com "${est}"; vocabulário: ${kw||'clean, editorial'}.
+Referência de feeling (NÃO copiar conteúdo): ${i.titulo||''} (${domain(i.url||'')}).
+Tom: cultiva gosto, anti-slop — nunca Inter, nunca gradiente roxo, nunca blob 3D SaaS.`;
+}
+function cardBrief(i){
+  return `# Brief — ${i.titulo||'(ref)'}
+## Aesthetic
+${i.estilo||'editorial'} — ${i.vocabulario||''}
+## Reference (match the FEEL, don't copy)
+${i.titulo||''} · ${domain(i.url||'')} · ${i.premiacao||''}
+## Intent
+Público: ${(i.nicho_fit||[]).join('/')||'geral'}. Ação desejada: clicar / pedir no WhatsApp.
+## Guardrails
+Nunca Inter; nunca gradiente roxo; nunca blob 3D. Estilo próprio de ${i.nicho_fit?.[0]||'nicho'}.
+## Keywords
+${(i.keywords||[]).join(' · ')}`;
 }
 
 function copy(b){
@@ -182,14 +269,102 @@ function copy(b){
   navigator.clipboard.writeText(txt).then(()=>{
     b.classList.add('copied'); const o=b.textContent; b.textContent='✓ copiado';
     setTimeout(()=>{b.classList.remove('copied');b.textContent=o;},1400);
-  });
+  }).catch(()=>{ b.textContent='⚠ erro'; setTimeout(()=>reset(b),1400); });
 }
-function reset(b){ b.textContent = b.previousText || 'copy'; }
+function reset(b){ b.textContent = b.dataset.orig || b.textContent; }
 
-const esc = s => String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function toggleFav(id, btn){
+  if(favs.has(id)){ favs.delete(id); btn.classList.remove('on'); btn.textContent='☆'; }
+  else { favs.add(id); btn.classList.add('on'); btn.textContent='★'; }
+  saveSet(FAV_KEY, favs); $('#favCount').textContent = favs.size ? (favs.size+' favorito(s)') : '';
+  if($('#fFav').checked) render();
+}
+function toggleSel(id, on){
+  if(on) sel.add(id); else sel.delete(id);
+  saveSet(SEL_KEY, sel); syncDock();
+}
+function syncDock(){
+  const d = $('#dock'); if(!d) return;
+  if(sel.size){ d.classList.add('show'); $('#dockN').textContent = sel.size; }
+  else d.classList.remove('show');
+}
+function clearSel(){ sel.clear(); saveSet(SEL_KEY, sel); syncDock(); render(); }
+
+// --- Onda 2: moodboard + gerar brief (4 pilares) em Markdown ---
+function gerarBrief(){
+  const items = DATA.itens.filter(i => sel.has(i.id));
+  if(!items.length) return;
+  const estilos = mode(items.map(i=>i.estilo));
+  const nichos = mode(items.flatMap(i=>i.nicho_fit||[]));
+  const vocab = [...new Set(items.flatMap(i=>(i.vocabulario||'').split(/[;,]/).map(s=>s.trim()).filter(Boolean)))].slice(0,6).join(' · ');
+  const refs = items.map(i=>`- ${i.titulo||''} — ${domain(i.url||'')} (${i.estilo||''}, ${i.premiacao||''})`).join('\n');
+  const kws = [...new Set(items.flatMap(i=>i.keywords||[]))].slice(0,10).join(' · ');
+  const md = `# Brief composto — Moodboard (${items.length} refs)
+## Aesthetic
+Famílias dominantes: ${estilos}. Vocabulário: ${vocab||'—'}.
+## Reference (match the FEEL, don't copy content)
+${refs}
+## Intent
+Público-alvo: ${(nichos?nichos+' (PME local)':'geral')}.
+Ação desejada: clicar / pedir no WhatsApp (funil Vitrine Certa).
+## Guardrails
+Nunca Inter; nunca gradiente roxo; nunca blob 3D SaaS. Cada nicho mantém cor/fonte/mecânica ÚNICAS.
+## Keywords
+${kws||'—'}`;
+  openModal('Brief do Moodboard (Markdown)', md, true);
+}
+
+// --- Onda 3: comparar side-by-side ---
+function comparar(){
+  const items = DATA.itens.filter(i => sel.has(i.id));
+  if(items.length<2) return;
+  const figs = items.map(i=>{
+    const shot = esc(i.shot||'shots/_placeholder.svg');
+    const media = /\.svg$/i.test(shot) ? `<object data="${shot}" type="image/svg+xml"></object>` : `<img src="${shot}" alt="">`;
+    return `<figure>${media}<figcaption>${esc(i.titulo||'')} · ${esc(i.estilo||'')} · ${esc(i.premiacao||'')}</figcaption></figure>`;
+  }).join('');
+  openModal('Comparar ('+items.length+')', `<div class="cmp">${figs}</div>`, false);
+}
+
+// --- Onda 3: similares por feeling ---
+function showSimilar(id){
+  const base = DATA.itens.find(i=>i.id===id); if(!base) return;
+  const scored = DATA.itens.filter(i=>i.id!==id).map(i=>({i, s:score(base,i)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,5);
+  const list = scored.map(({i,s})=>`<div style="display:flex;gap:10px;align-items:center;margin:8px 0;font-family:var(--mono);font-size:12px">
+    <img src="${esc(i.shot||'shots/_placeholder.svg')}" style="width:90px;height:58px;object-fit:cover;border-radius:6px;background:#E3D6BC" onerror="this.src='shots/_placeholder.svg'">
+    <span>${esc(i.titulo||'')} · ${esc(i.estilo||'')} <b style="color:var(--acc)">${s.toFixed(1)}</b></span></div>`).join('');
+  openModal('Similares a '+esc(base.titulo||''), list||'sem similares', false);
+}
+function score(a,b){
+  let s=0;
+  if(a.estilo && a.estilo===b.estilo) s+=1;
+  const ka=new Set(a.keywords||[]), kb=new Set(b.keywords||[]);
+  ka.forEach(k=>{ if(kb.has(k)) s+=0.3; });
+  const na=new Set(a.nicho_fit||[]), nb=new Set(b.nicho_fit||[]);
+  na.forEach(n=>{ if(nb.has(n)) s+=0.2; });
+  return s;
+}
+
+function copyGroup(est){
+  est = dec(est);
+  const items = DATA.itens.filter(i=>i.estilo===est);
+  const md = items.map(i=>`# ${i.titulo||''}\n${cardPrompt(i)}\n\n${cardBrief(i)}`).join('\n\n---\n\n');
+  navigator.clipboard.writeText(md).then(()=>{ flash('prompts do grupo copiados'); });
+}
+
+// --- modal helper ---
+function openModal(title, bodyHtml, isPre){
+  const m=$('#modal'); $('#modalTitle').textContent=title;
+  $('#modalBody').innerHTML = isPre ? `<pre>${esc(bodyHtml)}</pre>` : bodyHtml;
+  m.classList.add('show');
+}
+function closeModal(){ $('#modal').classList.remove('show'); }
+
+const esc = s => String(s??'').replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c]));
 const enc = s => encodeURIComponent(String(s??''));
 const dec = s => decodeURIComponent(s||'');
 const domain = u => { try { return new URL(u).hostname.replace(/^www\./,''); } catch { return u; } };
+function mode(arr){ const m={}; arr.forEach(x=>{ if(x) m[x]=(m[x]||0)+1; }); return Object.entries(m).sort((a,b)=>b[1]-a[1]).map(e=>e[0]).slice(0,3).join(' / '); }
 
 load();
 </script>

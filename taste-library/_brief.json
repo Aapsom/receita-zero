@@ -1,6 +1,14 @@
 {
   "nicho": "biblioteca-gosto",
-  "estado": "aplicado",
+  "estado": "aplicado + funcional",
+  "funcionalidades": {
+    "favoritar": "⭐ localStorage (tg_favs) + filtro 'só favoritos'",
+    "moodboard": "checkbox por card → dock flutuante → gerar brief / comparar / limpar",
+    "gerar_brief": "monta 4 pilares do vídeo (aesthetic/reference/intent/guardrails) em Markdown dos cards selecionados",
+    "comparar": "modal com prints lado a lado (anti-slop: ver junto, não isolado)",
+    "similares": "score(i,j) por estilo+keywords+nicho, top 5",
+    "export_melhorado": "cardPrompt(i) e cardBrief(i) DINÂMICOS (não string fixa); 'copiar prompts do grupo' em MD"
+  },
   "escolha_final": "B2-A · Papel Cru (Print Tech Paper, pipeline do vídeo)",
   "funil": {
     "ideacao_10": "5 vídeo (B1-B5) + 5 anti-ai-slop (A1-A5)",
