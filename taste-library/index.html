@@ -100,6 +100,7 @@
   <select id="fFonte"><option value="">Todas as fontes</option></select>
   <select id="fPremio"><option value="">Todas as premiações</option></select>
   <select id="fTipo"><option value="">Todos os tipos</option></select>
+  <select id="fRef"><option value="">Todos os tipos de ref</option></select>
   <span class="count" id="count"></span>
 </div>
 <div class="favbar">
@@ -151,8 +152,9 @@ async function load(){
   fillSelect('#fFonte', 'fonte');
   fillSelect('#fPremio', 'premiacao');
   fillSelect('#fTipo', 'tipo_pagina');
+  fillSelect('#fRef', 'tipo_ref');
   fillNichos();
-  ['#q','#fEstilo','#fNicho','#fFonte','#fPremio','#fTipo','#fFav'].forEach(s => $(s).addEventListener('input', render));
+  ['#q','#fEstilo','#fNicho','#fFonte','#fPremio','#fTipo','#fRef','#fFav'].forEach(s => $(s).addEventListener('input', render));
   $('#btnBrief').addEventListener('click', gerarBrief);
   $('#btnCmp').addEventListener('click', comparar);
   $('#btnClear').addEventListener('click', clearSel);
@@ -172,13 +174,14 @@ function fillNichos(){
 
 function match(i){
   const q = $('#q').value.toLowerCase().trim();
-  const e = $('#fEstilo').value, n = $('#fNicho').value, f = $('#fFonte').value, pr = $('#fPremio').value, t = $('#fTipo').value;
+  const e = $('#fEstilo').value, n = $('#fNicho').value, f = $('#fFonte').value, pr = $('#fPremio').value, t = $('#fTipo').value, r = $('#fRef').value;
   const favOnly = $('#fFav').checked;
   if(favOnly && !favs.has(i.id)) return false;
   if(e && i.estilo!==e) return false;
   if(f && i.fonte!==f) return false;
   if(pr && i.premiacao!==pr) return false;
   if(t && i.tipo_pagina!==t) return false;
+  if(r && i.tipo_ref!==r) return false;
   if(n && !(i.nicho_fit||[]).includes(n)) return false;
   if(q){
     const hay = [i.titulo,i.estilo,i.vocabulario,(i.keywords||[]).join(' '),(i.nicho_fit||[]).join(' ')].join(' ').toLowerCase();
@@ -223,7 +226,8 @@ function card(i){
       <h3>${esc(i.titulo||'(sem título)')}</h3>
       <div class="tags">
         ${(i.premiacao && i.premiacao!=='n/a'?[`<span class="tag premio">🏆 ${esc(i.premiacao)}</span>`]:[]).join('')}
-        ${(i.tipo_pagina?[`<span class="tag">${esc(i.tipo_pagina)}</span>`]:[]).join('')}
+        ${(i.tipo_ref && i.tipo_ref!=='landing completa'?[`<span class="tag">${esc(i.tipo_ref)}</span>`]:[]).join('')}
+        ${(i.tipo_pagina && i.tipo_pagina!=='landing completa'?[`<span class="tag">${esc(i.tipo_pagina)}</span>`]:[]).join('')}
         ${(i.nicho_fit||[]).map(n=>`<span class="tag nicho">${esc(n)}</span>`).join('')}
       </div>
       ${i.keywords?.length?`<div class="kw">${i.keywords.map(esc).join(' · ')}</div>`:''}
