@@ -74,7 +74,8 @@
         "sem gradiente roxo",
         "sem Inter",
         "sem stock genérico"
-      ]
+      ],
+      "url_premio": "https://www.awwwards.com/tasty-design-restaurant-and-catering-websites.html"
     },
     {
       "id": "pet-kindred",
@@ -101,7 +102,8 @@
         "sem gradiente roxo",
         "sem Inter"
       ],
-      "url_real": "https://kindredpetcare.com/"
+      "url_real": "https://kindredpetcare.com/",
+      "url_premio": "https://www.awwwards.com/sites/kindred-pet-care"
     },
     {
       "id": "pet-rooof",
@@ -128,7 +130,8 @@
         "sem gradiente roxo",
         "sem Inter"
       ],
-      "url_real": "https://www.shoprooof.com/"
+      "url_real": "https://www.shoprooof.com/",
+      "url_premio": "https://www.awwwards.com/sites/rooof-pet-furniture"
     },
     {
       "id": "padaria-wildwood",
@@ -154,7 +157,8 @@
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
-      ]
+      ],
+      "url_premio": "https://www.awwwards.com/inspiration/wildwood-bakery-illustrated-e-commerce-website"
     },
     {
       "id": "padaria-bernice",
@@ -181,7 +185,8 @@
         "sem gradiente roxo",
         "sem Inter"
       ],
-      "url_real": "https://bernicebakery.com/"
+      "url_real": "https://bernicebakery.com/",
+      "url_premio": "https://www.awwwards.com/sites/bernice-bakery"
     },
     {
       "id": "salao-don-barber",
@@ -208,7 +213,8 @@
         "sem gradiente roxo",
         "sem Inter"
       ],
-      "url_real": "https://don-barber.gr/en"
+      "url_real": "https://don-barber.gr/en",
+      "url_premio": "https://www.awwwards.com/sites/don-barber-groom"
     },
     {
       "id": "salao-marco-ambrosi",
@@ -235,7 +241,8 @@
         "sem gradiente roxo",
         "sem Inter"
       ],
-      "url_real": "https://www.marcoambrosi.salon/"
+      "url_real": "https://www.marcoambrosi.salon/",
+      "url_premio": "https://www.awwwards.com/sites/marco-ambrosi-salon"
     },
     {
       "id": "clinica-halo-dental",
@@ -262,7 +269,8 @@
         "sem gradiente roxo",
         "sem Inter"
       ],
-      "url_real": "https://halodental.com/"
+      "url_real": "https://halodental.com/",
+      "url_premio": "https://www.awwwards.com/sites/halo-dental"
     },
     {
       "id": "imobiliaria-awwwards-re",
@@ -288,7 +296,8 @@
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
-      ]
+      ],
+      "url_premio": "https://www.awwwards.com/websites/real-estate/"
     },
     {
       "id": "oficina-acoustic-garage",
@@ -314,7 +323,8 @@
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
-      ]
+      ],
+      "url_premio": "https://www.cssdesignawards.com/woty2020/sites/acoustic-garage/"
     },
     {
       "id": "lavanderia-hampy",
@@ -341,7 +351,8 @@
         "sem gradiente roxo",
         "sem Inter"
       ],
-      "url_real": "https://www.hampy.be/"
+      "url_real": "https://www.hampy.be/",
+      "url_premio": "https://www.awwwards.com/sites/hampy"
     },
     {
       "id": "pizzaria-pizza-hut",
@@ -368,7 +379,8 @@
         "sem gradiente roxo",
         "sem Inter"
       ],
-      "url_real": "http://pizzahut.co.uk/restaurants"
+      "url_real": "http://pizzahut.co.uk/restaurants",
+      "url_premio": "https://www.awwwards.com/sites/pizza-hut-restaurants"
     },
     {
       "id": "padaria-ceremony-coffee",
@@ -395,7 +407,8 @@
         "sem gradiente roxo",
         "sem Inter"
       ],
-      "url_real": "https://ceremonycoffee.com/"
+      "url_real": "https://ceremonycoffee.com/",
+      "url_premio": "https://www.awwwards.com/sites/ceremony-coffee-roasters"
     },
     {
       "id": "pet-veterinary",
@@ -422,7 +435,8 @@
         "sem gradiente roxo",
         "sem Inter"
       ],
-      "url_real": "https://websyvet.com/"
+      "url_real": "https://websyvet.com/",
+      "url_premio": "https://www.awwwards.com/sites/website-design-for-veterinary"
     },
     {
       "id": "salao-salon-sona",
@@ -449,7 +463,8 @@
         "sem gradiente roxo",
         "sem Inter"
       ],
-      "url_real": "http://ss.art4web.co/"
+      "url_real": "http://ss.art4web.co/",
+      "url_premio": "https://www.awwwards.com/sites/salon-sona"
     },
     {
       "id": "clinica-axel",
@@ -476,7 +491,8 @@
         "sem gradiente roxo",
         "sem Inter"
       ],
-      "url_real": "https://axel.clinic/en/"
+      "url_real": "https://axel.clinic/en/",
+      "url_premio": "https://www.awwwards.com/sites/axel-clinic"
     },
     {
       "id": "imobiliaria-oh-architecture",
@@ -503,7 +519,8 @@
         "sem gradiente roxo",
         "sem Inter"
       ],
-      "url_real": "https://www.oharchitecture.com.au/"
+      "url_real": "https://www.oharchitecture.com.au/",
+      "url_premio": "https://www.awwwards.com/sites/oh-architecture"
     }
   ]
 }
