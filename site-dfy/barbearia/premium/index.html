@@ -1,670 +1,617 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Barbearia Navalha de Ouro — São Paulo</title>
-<meta name="description" content="Barbearia em São Vicente. A agenda das três cadeiras, aberta: escolha o serviço e veja onde ele cabe ainda hoje.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barbearia Norte — São Vicente/SP</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Gloock&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-/* Hallmark · macrostructure: 19 Map/Diagram · Vitrine Certa / Barbearia Premium
-   governado por=duração do serviço · cor=tom de tintura, sem cor de marca
-   display=Gloock · dados=DM Sans tabular
-   pre-emit critique: P5 H4 E5 S4 R4 V5
-   Tokens e justificativas: DESIGN.md ao lado. Zero hex fora deste :root. */
 :root{
-  --papel:#F3EBE7; --papel2:#E7DAD4; --linha:#D3C1B9;
-  --tinta:#241A16;  --fumo:#6B564E;  --claro:#FAF6F4;
-
-  /* tons de tintura — o acento é a cor do cabelo, não uma cor de marca.
-     Escurecidos até passarem 4.5:1 sobre --papel (o mel e a platina não
-     passavam nos tons "reais"; ver DESIGN.md). Um ativo por vez. */
-  --acaju:#8C2F39; --mel:#8A5C24; --platina:#5C6673;
-  --wa:#25D366;
-
-  --tom:var(--tinta);   /* trocado pelo serviço escolhido */
-
-  --display:'Gloock',Georgia,serif;
-  --sans:'DM Sans',system-ui,sans-serif;
-  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:40px;--s7:64px;--s8:104px;
-  --ease:cubic-bezier(.22,1,.36,1);
+  --bg:#0A0A0A;
+  --ink:#F2F2F2;
+  --paper:#F2F2F2;
+  --accent:#E63946;
+  --accent-dim:#B7202B;
+  --muted:#888;
+  --muted-2:#555;
+  --muted-3:#444;
+  --border:#1F1F1F;
+  --border-2:#2A2A2A;
+  --grid:#161616;
+  --cell:#121212;
+  --cell-2:#0F0F0F;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-html,body{overflow-x:clip}
-body{background:var(--papel);color:var(--tinta);font-family:var(--sans);
-  font-size:1rem;line-height:1.6;-webkit-font-smoothing:antialiased}
-.num{font-variant-numeric:tabular-nums;letter-spacing:-.01em}
-h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.02;letter-spacing:-.015em}
-a{color:inherit}
-.wrap{max-inline-size:1140px;margin-inline:auto;padding-inline:var(--s5)}
-
-/* ── barra de estado ──────────────────────────────────────────── */
-.barra{background:var(--tinta);color:var(--claro);font-size:.78rem;
-  letter-spacing:.06em;text-transform:uppercase}
-.barra .wrap{display:flex;gap:var(--s5);align-items:center;flex-wrap:wrap;
-  padding-block:var(--s3)}
-.barra b{font-weight:500}
-.barra .marca{margin-inline-start:auto;font-family:var(--display);
-  font-size:.95rem;letter-spacing:.02em;text-transform:none}
-.pip{display:inline-block;inline-size:7px;block-size:7px;border-radius:999px;
-  background:currentColor;margin-inline-end:var(--s2);vertical-align:middle}
-
-/* ── hero: o dia desenhado ────────────────────────────────────── */
-.hero{padding-block:var(--s7) var(--s6)}
-.olho{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--fumo);
-  margin-block-end:var(--s4)}
-h1{font-size:clamp(2.6rem,7vw,5.2rem)}
-.lede{font-size:clamp(1.02rem,1.6vw,1.18rem);color:var(--fumo);
-  max-inline-size:54ch;margin-block-start:var(--s4)}
-
-/* escolha do serviço — chips */
-.escolha{margin-block-start:var(--s6);border-block-start:1px solid var(--linha);
-  padding-block-start:var(--s5)}
-.escolha p{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--fumo);margin-block-end:var(--s3)}
-.chips{display:flex;gap:var(--s2);flex-wrap:wrap}
-.chip{background:transparent;border:1px solid var(--linha);border-radius:999px;
-  padding:.55rem 1rem;font:500 .92rem var(--sans);color:var(--tinta);cursor:pointer;
-  display:flex;align-items:baseline;gap:.5rem;
-  transition:border-color .2s var(--ease),background .2s var(--ease),color .2s var(--ease)}
-.chip small{font-size:.78rem;color:var(--fumo);font-variant-numeric:tabular-nums;
-  transition:color .2s var(--ease)}
-.chip:hover{border-color:var(--tinta)}
-.chip[aria-pressed="true"]{background:var(--tom);border-color:var(--tom);color:var(--claro)}
-.chip[aria-pressed="true"] small{color:var(--claro);opacity:.75}
-
-/* faixa do dia */
-.faixa-wrap{margin-block-start:var(--s5);overflow-x:auto;padding-block-end:var(--s2)}
-.faixa{min-inline-size:790px;position:relative}
-.regua{position:relative;block-size:22px;margin-inline-start:132px}
-.regua span{position:absolute;transform:translateX(-50%);font-size:.72rem;
-  color:var(--fumo);font-variant-numeric:tabular-nums}
-/* as pontas da régua não podem sangrar para fora da faixa. Marcadas por atributo,
-   não por :first-child — a primeira etiqueta pode ter sido suprimida pelo "agora". */
-.regua span[data-ponta="ini"]{transform:none}
-.regua span[data-ponta="fim"]{transform:translateX(-100%)}
-.cad{display:grid;grid-template-columns:132px minmax(0,1fr);align-items:stretch;
-  border-block-start:1px solid var(--linha)}
-.cad:last-of-type{border-block-end:1px solid var(--linha)}
-.cad .quem{padding:var(--s4) var(--s3) var(--s4) 0}
-.cad .quem b{display:block;font-family:var(--display);font-size:1.05rem;line-height:1.1}
-/* 92px empurrava "escova e tratamento" para 3 linhas e a etiqueta ficava mais
-   alta que a própria pista. Coluna mais larga + corpo menor resolve sem cortar. */
-.cad .quem small{display:block;font-size:.7rem;line-height:1.35;color:var(--fumo)}
-.pista{position:relative;block-size:62px;background:
-  /* meia-hora em risco fino: a grade do tempo é a grade da página */
-  repeating-linear-gradient(90deg,var(--linha) 0 1px,transparent 1px calc(100%/20))}
-
-.bloco{position:absolute;inset-block:9px;border-radius:3px;overflow:hidden;
-  display:flex;align-items:center;padding-inline:.55rem;font-size:.75rem;
-  white-space:nowrap}
-/* ocupado: hachura, não bloco chapado — lê como "não é para você" sem virar cor */
-.ocup{background:repeating-linear-gradient(-45deg,var(--papel2) 0 5px,transparent 5px 10px);
-  border:1px solid var(--linha);color:var(--fumo)}
-.vago{border:1px dashed var(--linha);color:var(--fumo);
-  transition:opacity .3s var(--ease),border-color .3s var(--ease)}
-.vago[data-cabe="0"]{opacity:.3}
-.vago[data-cabe="1"]{border-style:solid;border-color:var(--tom);color:var(--tom)}
-/* barra-fantasma: o serviço escolhido, do tamanho exato da duração,
-   pousado onde ele caberia. É a única animação da página. */
-.fantasma{position:absolute;inset-block:0;background:var(--tom);color:var(--claro);
-  border-radius:2px;display:flex;align-items:center;padding-inline:.5rem;
-  font-size:.72rem;font-weight:500;
-  animation:pousa .45s var(--ease) both}
-@keyframes pousa{from{opacity:0;transform:scaleX(.4);transform-origin:0 50%}
-                 to{opacity:1;transform:scaleX(1)}}
-.passado{position:absolute;inset-block:0;inset-inline-start:0;
-  background:var(--papel);opacity:.72;pointer-events:none}
-.agora-linha{position:absolute;inset-block:-4px;inline-size:2px;background:var(--tinta);
-  pointer-events:none}
-.agora-linha::after{content:"agora";position:absolute;inset-block-start:-19px;
-  inset-inline-start:-3px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--tinta)}
-.agora-linha[data-mudo]::after{content:none}
-
-/* lista de encaixes — o que age, no celular e no desktop */
-.encaixes{margin-block-start:var(--s6)}
-.encaixes>p{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--fumo);margin-block-end:var(--s3)}
-.enc{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:var(--s4);
-  align-items:center;border-block-start:1px solid var(--linha);padding-block:var(--s4)}
-.enc:last-child{border-block-end:1px solid var(--linha)}
-.enc .hora{font-size:1.5rem;font-weight:500;font-variant-numeric:tabular-nums;
-  letter-spacing:-.02em;color:var(--tom);min-inline-size:6.5ch}
-.enc .quem2{font-size:.95rem}
-.enc .quem2 small{display:block;font-size:.8rem;color:var(--fumo)}
-.nada{border:1px solid var(--linha);background:var(--papel2);padding:var(--s5);
-  display:grid;gap:var(--s3)}
-.nada b{font-family:var(--display);font-size:1.25rem;font-weight:400}
-.nada p{color:var(--fumo);font-size:.95rem;max-inline-size:56ch}
-
-.wa-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--wa);
-  color:#0B2E19;border:0;border-radius:999px;padding:.7rem 1.15rem;
-  font:700 .9rem var(--sans);text-decoration:none;white-space:nowrap;justify-self:end;
-  transition:filter .2s var(--ease)}
-.wa-btn:hover{filter:brightness(1.06)}
-.wa-btn svg{inline-size:16px;block-size:16px;fill:currentColor;flex:none}
-
-/* ── seções ───────────────────────────────────────────────────── */
-.sec{border-block-start:1px solid var(--linha);padding-block:var(--s7)}
-.sec h2{font-size:clamp(1.8rem,3.6vw,2.7rem)}
-.sec .sub{color:var(--fumo);max-inline-size:58ch;margin-block-start:var(--s3)}
-.grade{margin-block-start:var(--s6)}
-
-/* tabela de duração e preço */
-.tab-wrap{overflow-x:auto}
-.tab{inline-size:100%;min-inline-size:580px;border-collapse:collapse;
-  border:1px solid var(--linha);background:var(--claro)}
-.tab th,.tab td{text-align:start;padding:var(--s4) var(--s5);
-  border-block-start:1px solid var(--linha);font-size:.95rem;vertical-align:top}
-.tab thead th{background:var(--papel2);border-block-start:0;font-size:.72rem;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--fumo);font-weight:500}
-.tab .n{font-variant-numeric:tabular-nums;white-space:nowrap}
-.tab .fora{color:var(--fumo);font-size:.88rem}
-.nota-tab{margin-block-start:var(--s4);font-size:.88rem;color:var(--fumo);max-inline-size:62ch}
-
-/* equipe */
-.equipe{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
-  background:var(--linha);border:1px solid var(--linha)}
-.pessoa{background:var(--claro);padding:var(--s5)}
-.pessoa h3{font-size:1.5rem}
-.pessoa .esp{color:var(--tom);font-size:.78rem;letter-spacing:.12em;
-  text-transform:uppercase;margin-block:var(--s2) var(--s3)}
-.pessoa p{font-size:.92rem;color:var(--fumo)}
-.pessoa dl{margin-block-start:var(--s4);display:grid;grid-template-columns:auto 1fr;
-  gap:var(--s1) var(--s3);font-size:.85rem}
-.pessoa dt{color:var(--fumo)}
-.pessoa dd{font-variant-numeric:tabular-nums}
-
-/* o que não fazemos */
-.naofaz{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;
-  background:var(--linha);border:1px solid var(--linha)}
-.naofaz div{background:var(--papel);padding:var(--s5)}
-.naofaz b{font-family:var(--display);font-weight:400;font-size:1.15rem;display:block;
-  margin-block-end:var(--s2)}
-.naofaz p{font-size:.92rem;color:var(--fumo)}
-
-/* e se… */
-.sees{display:grid;gap:var(--s5);grid-template-columns:repeat(2,minmax(0,1fr))}
-.sees div{border-block-start:1px solid var(--linha);padding-block-start:var(--s4)}
-.sees b{display:block;font-size:1rem;margin-block-end:var(--s2)}
-.sees p{font-size:.93rem;color:var(--fumo)}
-
-/* retoque */
-.retoque{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--s6);
-  align-items:center;background:var(--tinta);color:var(--claro);padding:var(--s6)}
-.retoque .selo{font-family:var(--display);font-size:clamp(3rem,8vw,5rem);line-height:.9;
-  text-align:center}
-.retoque .selo small{display:block;font-family:var(--sans);font-size:.72rem;
-  letter-spacing:.16em;text-transform:uppercase;opacity:.7;margin-block-start:var(--s2)}
-.retoque ol{margin-block-start:var(--s4);padding-inline-start:1.15rem;display:grid;
-  gap:var(--s2);font-size:.93rem;opacity:.88}
-.retoque h2{color:var(--claro)}
-
-/* rodapé = quadro de horários */
-.rodape{border-block-start:1px solid var(--linha);padding-block:var(--s7)}
-.rod-grade{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:var(--s6)}
-.rod-grade h3{font-size:1.6rem}
-.rod-grade p,.rod-grade li{font-size:.93rem;color:var(--fumo)}
-.horarios{list-style:none;display:grid;gap:var(--s2);margin-block-start:var(--s3)}
-.horarios li{display:flex;justify-content:space-between;gap:var(--s4);
-  border-block-end:1px solid var(--linha);padding-block-end:var(--s2)}
-.horarios b{color:var(--tinta);font-weight:500;font-variant-numeric:tabular-nums}
-
-/* venda própria só aqui — regra de isolamento do braço Vitrine Certa */
-.vc{border-block-start:1px solid var(--linha);padding-block:var(--s6);
-  font-size:.8rem;letter-spacing:.04em;color:var(--fumo);text-align:center}
-.vc a{color:var(--tinta)}
-
-@media (max-width:900px){
-  .equipe,.naofaz,.sees,.rod-grade{grid-template-columns:1fr}
-  .retoque{grid-template-columns:1fr;gap:var(--s5)}
-  .retoque .selo{text-align:start}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:400;
+  line-height:1.5;
+  overflow-x:clip;
+  -webkit-font-smoothing:antialiased;
 }
-@media (max-width:640px){
-  /* o botão desce para baixo do encaixe em vez de espremer 3 colunas */
-  .enc{grid-template-columns:auto minmax(0,1fr);row-gap:var(--s3)}
-  .enc .wa-btn{grid-column:1/-1;justify-self:start}
-  .barra .marca{margin-inline-start:0;inline-size:100%}
+html{overflow-x:clip}
+.hero>*,.serv-row>*,.hero-right{min-width:0}
+.serv-desc{overflow-wrap:break-word}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:1;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:80px 80px;opacity:.5;
 }
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *{animation-duration:.001ms!important;transition-duration:.001ms!important}
+.wrap{position:relative;z-index:2}
+.a{font-family:'Archivo Black',sans-serif;text-transform:uppercase;line-height:.92;letter-spacing:-.02em}
+.mono{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:'tnum'}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+.nav{display:flex;justify-content:space-between;align-items:center;padding:1.4rem clamp(1.5rem,4vw,2.4rem);border-bottom:3px solid var(--accent);position:sticky;top:0;background:var(--bg);z-index:50}
+.nav-brand{font-family:'Archivo Black',sans-serif;font-size:1.4rem;text-transform:uppercase;letter-spacing:-.01em;display:flex;align-items:baseline;gap:.5rem}
+.nav-brand span{color:var(--accent)}
+.nav-brand .ord{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.16em;color:var(--muted)}
+.nav-links{display:flex;gap:1.6rem;align-items:center}
+.nav-links a{font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#CCC;transition:color .12s,transform .12s}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{background:var(--accent);color:#fff !important;padding:.55rem 1.2rem;font-weight:700;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;transition:transform .12s,background .12s,box-shadow .12s}
+.nav-cta:hover{transform:translate(-3px,-3px);box-shadow:3px 3px 0 var(--border-2)}
+.nav-cta:active{transform:translate(0,0);box-shadow:none}
+.burger{display:none;background:none;border:0;color:var(--ink);cursor:pointer;font-size:1.4rem;font-family:'Space Grotesk',sans-serif}
+
+/* HERO */
+.hero{padding:6rem clamp(1.5rem,4vw,2.4rem) 7rem;border-bottom:3px solid var(--border-2);position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:0}
+.hero-left{padding-right:2rem}
+.hero-mark{position:absolute;top:2rem;right:2rem;color:var(--accent);font-size:.7rem;font-weight:700;letter-spacing:.2em}
+.hero-num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.2em;color:var(--accent);margin-bottom:1.6rem;display:flex;align-items:center;gap:.6rem}
+.hero-num .tick{width:28px;height:2px;background:var(--accent)}
+.hero-title{font-size:clamp(3.5rem,13vw,11rem);text-transform:uppercase}
+.hero-title .red{color:var(--accent)}
+.hero-sub{max-width:30ch;margin-top:1.8rem;font-size:1.12rem;color:#BBB;font-weight:400;line-height:1.5}
+.hero-cta{display:inline-flex;align-items:center;gap:.6rem;margin-top:2.6rem;background:var(--accent);color:#fff;padding:1.1rem 2.2rem;font-family:'Archivo Black',sans-serif;font-size:.95rem;text-transform:uppercase;letter-spacing:.04em;border:3px solid var(--accent);cursor:pointer;transition:transform .12s,background .12s,box-shadow .12s}
+.hero-cta:hover{transform:translate(-5px,-5px);background:var(--accent-dim);border-color:var(--accent-dim);box-shadow:5px 5px 0 var(--border-2)}
+.hero-cta:active{transform:translate(0,0);box-shadow:none}
+.hero-cta .arr{font-family:'Space Grotesk',sans-serif;font-weight:700}
+.hero-right{display:flex;flex-direction:column;justify-content:center;gap:0;border-left:3px solid var(--border-2);padding-left:2rem}
+.hero-stat{border-bottom:1px solid var(--border);padding:1.1rem 0;display:flex;justify-content:space-between;align-items:baseline}
+.hero-stat:first-child{padding-top:0}
+.hero-stat:last-child{border-bottom:0}
+.hero-stat .k{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.hero-stat .v{font-family:'Archivo Black',sans-serif;font-size:1.6rem;font-variant-numeric:tabular-nums}
+.hero-stat .v.red{color:var(--accent)}
+
+/* SECTION HEAD */
+.sec{padding:5rem clamp(1.5rem,4vw,2.4rem);border-bottom:3px solid var(--border-2)}
+.sec-head{display:grid;grid-template-columns:auto 1fr auto;align-items:end;gap:2rem;margin-bottom:3.5rem}
+.sec-num{font-family:'Archivo Black',sans-serif;color:var(--accent);font-size:1.1rem;letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.sec-title{font-size:clamp(2.2rem,7vw,4.5rem)}
+.sec-tagend{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-align:right;font-weight:600}
+
+/* SERVIÇOS — poster tipográfico */
+.serv-table{border-top:3px solid var(--ink)}
+.serv-row{display:grid;grid-template-columns:.08fr 1.2fr 1.8fr .8fr auto;gap:1.4rem;align-items:baseline;padding:1.8rem 0;border-bottom:3px solid var(--border-2);transition:background .1s,padding .12s;cursor:default}
+.serv-row:hover{background:var(--cell);padding-left:1rem;padding-right:1rem}
+.serv-row:hover .serv-price{color:var(--accent);transform:translateX(-4px)}
+.serv-row:hover .serv-name{transform:translateX(4px)}
+.serv-idx{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--muted);font-size:.82rem;font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.serv-name{font-family:'Archivo Black',sans-serif;font-size:1.5rem;text-transform:uppercase;letter-spacing:-.01em;transition:transform .12s}
+.serv-name .tag{display:inline-block;margin-left:.6rem;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border:2px solid var(--accent);padding:.12rem .5rem;vertical-align:middle}
+.serv-desc{color:#999;font-size:.92rem;line-height:1.45}
+.serv-price{font-family:'Archivo Black',sans-serif;font-size:1.8rem;color:var(--ink);font-variant-numeric:tabular-nums;transition:color .12s,transform .12s;text-align:right;white-space:nowrap}
+.serv-price small{color:var(--muted);font-size:.72rem;font-family:'Space Grotesk',sans-serif;font-weight:400;letter-spacing:.02em}
+
+/* HORÁRIOS — grade setimal */
+.horarios{display:grid;grid-template-columns:repeat(7,1fr);gap:0;border:3px solid var(--border-2)}
+.hora{padding:1.6rem 1.1rem;display:flex;flex-direction:column;gap:.6rem;align-items:flex-start;border-right:2px solid var(--border);min-height:140px;transition:background .1s}
+.hora:last-child{border-right:0}
+.hora:hover{background:var(--cell)}
+.hora .d{font-family:'Archivo Black',sans-serif;font-size:.82rem;letter-spacing:.02em;text-transform:uppercase}
+.hora .h{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.88rem;color:#CCC;font-variant-numeric:tabular-nums}
+.hora .h.off{color:var(--accent-dim);font-weight:700}
+.hora .h.off::after{content:' --';color:var(--muted-2)}
+.hora.today{background:var(--accent)}
+.hora.today .d,.hora.today .h{color:#fff}
+.hora.today .h.off{color:#fff;opacity:.6}
+
+/* PROVA — citações duras */
+.prova{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0;border:3px solid var(--border-2)}
+.depo{border-right:2px solid var(--border);padding:2.2rem 2rem;position:relative;background:var(--cell-2);transition:background .1s}
+.depo:last-child{border-right:0}
+.depo:hover{background:var(--cell)}
+.depo::before{content:'"';position:absolute;top:.4rem;left:1.4rem;color:var(--accent);font-size:3rem;font-family:Georgia,serif;opacity:.4;line-height:1}
+.depo .n{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--accent);font-size:.74rem;letter-spacing:.12em;font-variant-numeric:tabular-nums;margin-bottom:1.2rem}
+.depo p{font-size:1.04rem;color:#DDD;margin:0 0 1.4rem;line-height:1.45}
+.depo-foot{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--border-2);padding-top:1rem}
+.depo-cidadao{font-family:'Archivo Black',sans-serif;font-size:.82rem;text-transform:uppercase;color:#999}
+.depo-meta{font-family:'Space Grotesk',sans-serif;font-size:.72rem;color:var(--muted);letter-spacing:.04em}
+.nota{color:var(--accent);font-size:1rem;letter-spacing:.14em}
+
+/* CTA FINAL */
+.cta-final{padding:7rem clamp(1.5rem,4vw,2.4rem);text-align:center;border-bottom:3px solid var(--border-2);position:relative;background:var(--bg)}
+.cta-final::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:var(--accent)}
+.cta-final h2{font-size:clamp(2.8rem,9vw,7rem);text-transform:uppercase}
+.cta-final h2 .red{color:var(--accent)}
+.cta-final p{color:#AAA;max-width:44ch;margin:1.8rem auto 0}
+.cta-final .hero-cta{font-size:1.2rem;padding:1.4rem 3rem;margin-top:2.4rem}
+.cta-stat{display:flex;justify-content:center;gap:3rem;margin-top:3rem;flex-wrap:wrap}
+.cta-stat div{border-left:3px solid var(--accent);padding-left:1rem;text-align:left}
+.cta-stat strong{display:block;font-family:'Archivo Black',sans-serif;font-size:1.4rem;font-variant-numeric:tabular-nums}
+.cta-stat span{color:var(--muted);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase}
+
+/* FOOTER */
+/* FOOTER */ footer{padding:2.4rem clamp(1.5rem,4vw,2.4rem);display:flex;justify-content:space-between;align-items:baseline;color:var(--muted-2);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;flex-wrap:wrap;gap:1rem}
+footer strong{font-weight:700;color:var(--accent)}
+footer .ord{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--muted-3);letter-spacing:.14em}
+
+/* RISCO DA NAVALHA — svg path absoluto (cobre documento), clip horizontal */
+#riscoNavalha{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:3;overflow:hidden}
+#riscoNavalha svg{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;display:block}
+#riscoNavalha path{fill:none;stroke:var(--accent);stroke-width:3.5;stroke-linecap:butt;stroke-linejoin:miter}
+
+/* SUBLINHADO DE TÍTULO DE SEÇÃO — "risco" curto via pseudo */
+.sec-title{position:relative}
+.sec-title::after{content:'';position:absolute;left:-.06em;right:-.06em;bottom:.06em;height:5px;background:var(--accent);transform:scaleX(0);transform-origin:left center;transition:transform .35s cubic-bezier(.2,.6,.2,1)}
+.sec-title.underline::after{transform:scaleX(1)}
+
+/* TICKET — senhas da fila */
+.ticket-mono{font-family:'JetBrains Mono','Space Grotesk',monospace}
+.serv-ticket-btn{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:transparent;border:2px solid var(--accent);padding:.45rem .85rem;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem;transition:transform .12s,background .12s,color .12s,box-shadow .12s;line-height:1;white-space:nowrap}
+.serv-ticket-btn:hover{background:var(--accent);color:#fff;transform:translate(-2px,-2px);box-shadow:2px 2px 0 var(--border-2)}
+.serv-ticket-btn:active{transform:translate(0,0);box-shadow:none}
+.serv-ticket-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.serv-row:focus-within{background:var(--cell);padding-left:1rem;padding-right:1rem}
+
+/* painel inline do ticket */
+.ticket-panel{margin-top:1.5rem}
+.ticket{
+  display:none;
+  font-family:'JetBrains Mono','Space Grotesk',monospace;
+  background:#F2F2F2;color:#0A0A0A;
+  border:3px dashed #0A0A0A;
+  padding:1.1rem 1.25rem 1.25rem;
+  max-width:340px;
+  position:relative;
+  clip-path:inset(0 0 100% 0);
+}
+.ticket.show{display:block}
+.ticket.animate{animation:ticketPrint .42s cubic-bezier(.2,.6,.2,1) forwards}
+@keyframes ticketPrint{
+  0%{clip-path:inset(0 0 100% 0);transform:translateY(-6px)}
+  100%{clip-path:inset(0 0 0% 0);transform:translateY(0)}
+}
+.ticket-head{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #0A0A0A;padding-bottom:.5rem;margin-bottom:.85rem;letter-spacing:.02em}
+.ticket-head .brand{font-family:'Archivo Black',sans-serif;font-size:.78rem;letter-spacing:-.005em}
+.ticket-head .num{font-weight:700;font-size:.72rem;color:#E63946;letter-spacing:.06em}
+.ticket-sep{border:none;border-top:2px dashed #0A0A0A;margin:.85rem 0;height:0}
+.ticket-body{font-size:.82rem;line-height:1.85}
+.ticket-body .row{display:flex;justify-content:space-between;border-bottom:1px dashed #444;padding:.15rem 0}
+.ticket-body .row:last-child{border-bottom:0}
+.ticket-body .row .k{color:#666;text-transform:uppercase;font-size:.66rem;letter-spacing:.06em;align-self:center}
+.ticket-body .row .v{font-weight:700;letter-spacing:.02em}
+.ticket-body .row .v.red{color:#E63946}
+.ticket-wa{display:block;margin-top:1.1rem;background:#0A0A0A;color:#F2F2F2;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:.65rem .9rem;border:2px solid #0A0A0A;transition:transform .12s,box-shadow .12s,background .12s}
+.ticket-wa:hover{background:#E63946;border-color:#E63946;transform:translate(-2px,-2px);box-shadow:2px 2px 0 #999}
+.ticket-wa:active{transform:translate(0,0);box-shadow:none}
+.ticket-wa::after{content:' ->'}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .hero-left{padding-right:0;padding-bottom:3rem}
+  .hero-right{border-left:0;border-top:3px solid var(--border-2);padding-left:0;padding-top:2rem}
+  .horarios{grid-template-columns:repeat(4,1fr)}
+  .hora{border-bottom:2px solid var(--border)}
+}
+@media(max-width:768px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg);flex-direction:column;padding:1.5rem 2rem;border-bottom:3px solid var(--accent);gap:1.2rem}
+  .nav-links.open{display:flex}
+  .burger{display:block}
+  .hero{padding:3rem 1.5rem 4rem}
+  .sec{padding:3.5rem 1.5rem}
+  .serv-row{grid-template-columns:.1fr 1fr auto auto;gap:1rem;align-items:center}
+  .serv-desc{grid-column:1/-1;order:3}
+  .serv-name{grid-column:2;order:1}
+  .serv-ticket-btn{grid-column:3;order:2}
+  .serv-price{grid-column:4;order:4;text-align:right}
+  .serv-idx{order:0}
+  .horarios{grid-template-columns:repeat(2,1fr)}
+  .sec-head{grid-template-columns:auto auto;gap:1rem}
+  .sec-tagend{display:none}
+  .cta-final{padding:4rem 1.5rem}
+  .cta-stat{gap:1.5rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *{transition:none !important;animation:none !important;scroll-behavior:auto !important}
+  .sec-title::after{transform:scaleX(1) !important}
+  #riscoNavalha path{stroke-dasharray:none !important;stroke-dashoffset:0 !important}
+  .ticket{clip-path:inset(0 0 0% 0) !important;transform:none !important}
 }
 </style>
-
-<style>/* gera-nicho.js override */:root{--primary:#1a1a1a;--p:#1a1a1a;--accent:#c9a227;--ac:#c9a227;}</style>
 </head>
 <body>
-
-<div class="barra"><div class="wrap">
-  <span><span class="pip"></span><b id="b-dia">hoje</b></span>
-  <span id="b-conta"><b id="b-livres">—</b> de <b id="b-total">5</b> serviços ainda cabem hoje</span>
-  <span id="b-fecha">fecha <b class="num">19:00</b></span>
-  <span class="marca">Fio &amp; Companhia</span>
-</div></div>
-
-<main>
-
-<section class="hero"><div class="wrap">
-  <p class="olho">Barbearia · São Vicente</p>
-  <h1>Barbearia Navalha de Ouro <em>· São Paulo</em></h1>
-  <p class="lede">A agenda das três cadeiras, aberta. Escolha o serviço e a gente
-    mostra onde ele cabe ainda hoje — com hora, cadeira e nome de quem atende.
-    Sem “me manda seu horário preferido”.</p>
-
-  <div class="escolha">
-    <p>1 · escolha o serviço</p>
-    <div class="chips" id="chips" role="group" aria-label="Serviço"></div>
+<div class="wrap">
+<div id="riscoNavalha" aria-hidden="true"><svg width="100%" height="100%" preserveAspectRatio="none"><path id="riscoPath" d=""/></svg></div>
+<nav class="nav">
+  <div class="nav-brand">NOR<span>TE</span><span class="ord">/01</span></div>
+  <div class="nav-links" id="links">
+    <a href="#servicos">Servicos</a>
+    <a href="#horarios">Horarios</a>
+    <a href="#prova">Avaliacoes</a>
+    <a href="https://wa.me/5511970776856" class="nav-cta">Agendar</a>
   </div>
+  <button class="burger" id="burger" aria-label="Menu">|||</button>
+</nav>
 
-  <div class="faixa-wrap">
-    <div class="faixa" id="faixa">
-      <div class="regua" id="regua"></div>
+<section class="hero" id="top">
+  <div class="hero-mark">EST. 2019 / SAO VICENTE/SP</div>
+  <div class="hero-left">
+    <div class="hero-num"><span class="tick"></span>01 / 04</div>
+    <h1 class="hero-title a">BARBEARIA<br><span class="red">NORTE.</span></h1>
+    <p class="hero-sub">Corte na regua, navalha na mao e zero enrolacao. Aqui voce entra baguncado e sai com a cabeca no lugar -- na frente da pracinha, aberto de terca a sabado.</p>
+    <a href="https://wa.me/5511970776856" class="hero-cta">Agendar pelo WhatsApp <span class="arr">-></span></a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stat"><span class="k">Espera media</span><span class="v num">5 min</span></div>
+    <div class="hero-stat"><span class="k">Cortes no ano</span><span class="v num red" data-count="1200">1.200+</span></div>
+    <div class="hero-stat"><span class="k">Avaliacao Google</span><span class="v num">4.9 / 5</span></div>
+    <div class="hero-stat"><span class="k">Funcionamento</span><span class="v" style="font-size:1.1rem">Ter -- Sab</span></div>
+  </div>
+</section>
+
+<section class="sec" id="servicos">
+  <div class="sec-head">
+    <div class="sec-num num">02 / 04</div>
+    <h2 class="sec-title a">SERVICOS</h2>
+    <div class="sec-tagend">Tabela fixa / 2026</div>
+  </div>
+  <div class="serv-table">
+    <div class="serv-row" data-serv="Corte" data-price="R$ 45">
+      <div class="serv-idx num">01</div>
+      <div class="serv-name">Corte <span class="tag">Mais pedido</span></div>
+      <p class="serv-desc">Maquina ou navalha, do social ao degrade. Acabamento com acetonico e finalizador.</p>
+      <button class="serv-ticket-btn" type="button" aria-label="Tirar senha para Corte">Senha</button>
+      <div class="serv-price">R$ 45 <small>/corte</small></div>
+    </div>
+    <div class="serv-row" data-serv="Barba" data-price="R$ 35">
+      <div class="serv-idx num">02</div>
+      <div class="serv-name">Barba</div>
+      <p class="serv-desc">Toalha quente, navalha e desenho. Sai com o fio de conversa na regua.</p>
+      <button class="serv-ticket-btn" type="button" aria-label="Tirar senha para Barba">Senha</button>
+      <div class="serv-price">R$ 35 <small>/barba</small></div>
+    </div>
+    <div class="serv-row" data-serv="Corte + Barba" data-price="R$ 70">
+      <div class="serv-idx num">03</div>
+      <div class="serv-name">Corte + Barba <span class="tag">Combo</span></div>
+      <p class="serv-desc">O servico completo. Saque o servo com jeito de gente arrumada.</p>
+      <button class="serv-ticket-btn" type="button" aria-label="Tirar senha para Corte e Barba">Senha</button>
+      <div class="serv-price">R$ 70 <small>/combo</small></div>
+    </div>
+    <div class="serv-row" data-serv="Sobrancelha" data-price="R$ 15">
+      <div class="serv-idx num">04</div>
+      <div class="serv-name">Sobrancelha</div>
+      <p class="serv-desc">Limpeza com navalha, sem desenho de palito. Relastro sempre tem.</p>
+      <button class="serv-ticket-btn" type="button" aria-label="Tirar senha para Sobrancelha">Senha</button>
+      <div class="serv-price">R$ 15 <small>/cada</small></div>
+    </div>
+    <div class="serv-row" data-serv="Pezinho" data-price="R$ 15">
+      <div class="serv-idx num">05</div>
+      <div class="serv-name">Pezinho</div>
+      <p class="serv-desc">Acabamento na nuca com navalha. Desembaralha o desleixo sem refazer o corte.</p>
+      <button class="serv-ticket-btn" type="button" aria-label="Tirar senha para Pezinho">Senha</button>
+      <div class="serv-price">R$ 15 <small>/cada</small></div>
+    </div>
+    <div class="serv-row" data-serv="Platinado" data-price="R$ 120">
+      <div class="serv-idx num">06</div>
+      <div class="serv-name">Platinado</div>
+      <p class="serv-desc">Descoloracao completa e tonalizador. Tempo medio de 2h, com fio de conversa.</p>
+      <button class="serv-ticket-btn" type="button" aria-label="Tirar senha para Platinado">Senha</button>
+      <div class="serv-price">R$ 120 <small>/processo</small></div>
     </div>
   </div>
+  <div class="ticket-panel" id="ticketPanel" aria-live="polite" aria-atomic="true"></div>
+</section>
 
-  <div class="encaixes">
-    <p>2 · onde ele cabe</p>
-    <div id="lista"></div>
+<section class="sec" id="horarios">
+  <div class="sec-head">
+    <div class="sec-num num">03 / 04</div>
+    <h2 class="sec-title a">HORARIOS</h2>
+    <div class="sec-tagend">Grade semanal</div>
   </div>
-</div></section>
-
-<section class="sec"><div class="wrap">
-  <h2>Quanto tempo leva de verdade</h2>
-  <p class="sub">É esta tabela que desenha a agenda ali em cima — não é número de
-    enfeite. Se a coloração leva 3 horas, ela ocupa 3 horas da cadeira.</p>
-  <div class="grade tab-wrap">
-    <table class="tab">
-      <thead><tr><th>Serviço</th><th>Tempo na cadeira</th><th>A partir de</th><th>O que não está incluso</th></tr></thead>
-      <tbody id="tab-serv"></tbody>
-    </table>
+  <div class="horarios" id="gradeHorarios">
+    <div class="hora"><div class="d">Seg</div><div class="h off">Fechado</div></div>
+    <div class="hora"><div class="d">Ter</div><div class="h num">09h -- 19h</div></div>
+    <div class="hora"><div class="d">Qua</div><div class="h num">09h -- 19h</div></div>
+    <div class="hora"><div class="d">Qui</div><div class="h num">09h -- 19h</div></div>
+    <div class="hora"><div class="d">Sex</div><div class="h num">09h -- 20h</div></div>
+    <div class="hora"><div class="d">Sab</div><div class="h num">08h -- 18h</div></div>
+    <div class="hora"><div class="d">Dom</div><div class="h off">Fechado</div></div>
   </div>
-  <p class="nota-tab">“A partir de” é o preço do cabelo curto a médio. Cabelo muito
-    longo ou muito grosso consome mais produto e mais tempo — a diferença é dita
-    <b>antes</b> de começar, com o preço fechado. Nunca no fim.</p>
-</div></section>
+  <p class="mono" style="margin-top:2rem;color:var(--muted)">Mande horario e servico no WhatsApp. Respondemos na hora -- sem recepcionista, sem robo, sem fila opaca.</p>
+</section>
 
-<section class="sec"><div class="wrap">
-  <h2>Quem senta na cadeira ao lado</h2>
-  <p class="sub">Você escolhe a pessoa, não “um profissional disponível”.</p>
-  <div class="grade equipe">
-    <article class="pessoa">
-      <h3>Rita</h3>
-      <p class="esp">Coloração e correção de cor</p>
-      <p>Faz o teste de mecha antes de qualquer química. Se o cabelo não aguentar
-        o tom que você quer, ela diz na consulta — não no meio do processo.</p>
-      <dl><dt>Cadeira</dt><dd>01</dd><dt>Na casa há</dt><dd>9 anos</dd></dl>
-    </article>
-    <article class="pessoa">
-      <h3>Dani</h3>
-      <p class="esp">Corte e repicado</p>
-      <p>Corta a seco para ver o cabelo cair como ele cai de verdade. Atende
-        cabelo cacheado e crespo sem alisar para “facilitar”.</p>
-      <dl><dt>Cadeira</dt><dd>02</dd><dt>Na casa há</dt><dd>4 anos</dd></dl>
-    </article>
-    <article class="pessoa">
-      <h3>Sol</h3>
-      <p class="esp">Escova e tratamento</p>
-      <p>Cuida da parte que ninguém fotografa: hidratação, reconstrução e o
-        cronograma capilar depois de uma química pesada.</p>
-      <dl><dt>Cadeira</dt><dd>03</dd><dt>Na casa há</dt><dd>6 anos</dd></dl>
-    </article>
+<section class="sec" id="prova">
+  <div class="sec-head">
+    <div class="sec-num num">04 / 04</div>
+    <h2 class="sec-title a">PROVA</h2>
+    <div class="sec-tagend">Google / 318 notas / 4.9 media</div>
   </div>
-</div></section>
-
-<section class="sec"><div class="wrap">
-  <h2>O que a gente não faz</h2>
-  <p class="sub">Dizer o que não fazemos economiza o seu sábado.</p>
-  <div class="grade naofaz">
-    <div><b>Progressiva com formol</b>
-      <p>É proibido em barbearia e estraga o cabelo e o pulmão de quem trabalha aqui.
-        Fazemos alisamento sem formol — o resultado é mais discreto e a gente
-        avisa disso antes.</p></div>
-    <div><b>Encaixe sem hora marcada</b>
-      <p>Se a gente aceita “dou um jeitinho”, quem está na cadeira espera. As três
-        cadeiras trabalham com hora marcada, e é por isso que a agenda ali em cima
-        é confiável.</p></div>
-    <div><b>Loiro platinado em uma sessão</b>
-      <p>Sair de castanho escuro para platinado em um dia é o que arrebenta o fio.
-        Fazemos em duas ou três sessões, com intervalo, e o orçamento cobre todas.</p></div>
-    <div><b>Preço por telefone sem ver o cabelo</b>
-      <p>Para corte e escova, o preço é o da tabela. Para química, a gente olha o
-        cabelo primeiro — quinze minutos de avaliação, sem custo e sem compromisso.</p></div>
-  </div>
-</div></section>
-
-<section class="sec"><div class="wrap">
-  <h2>E se…</h2>
-  <div class="grade sees">
-    <div><b>…eu atrasar 15 minutos?</b>
-      <p>A gente atende. Passando de 20, o serviço pode ter que virar uma versão
-        mais curta para não empurrar quem vem depois — e você decide se prefere remarcar.</p></div>
-    <div><b>…eu precisar desmarcar?</b>
-      <p>Avise até 3 horas antes, pelo WhatsApp, sem multa e sem sermão. É esse
-        aviso que libera o buraco para outra pessoa no mesmo dia.</p></div>
-    <div><b>…eu não gostar da cor?</b>
-      <p>Volte em até 7 dias. Ajuste de tom dentro da mesma família de cor é sem
-        custo — está escrito na política de retoque aqui embaixo.</p></div>
-    <div><b>…eu quiser levar minha filha junto?</b>
-      <p>Pode. Só marque as duas cadeiras no mesmo horário pelo WhatsApp, senão
-        uma de vocês espera — a agenda é por cadeira, não por pessoa.</p></div>
-  </div>
-</div></section>
-
-<section class="sec"><div class="wrap">
-  <div class="retoque">
-    <p class="selo">7<small>dias de retoque</small></p>
-    <div>
-      <h2>A política, escrita</h2>
-      <ol>
-        <li>Ajuste de tom dentro da mesma família de cor: <b>sem custo</b>, uma vez, em até 7 dias.</li>
-        <li>Corte: ajuste de comprimento ou de franja sem custo em até 7 dias.</li>
-        <li>Mudar de ideia sobre a cor (do acaju para o loiro, por exemplo) é serviço novo — não é retoque.</li>
-        <li>Retoque é feito por quem atendeu você. Se a agenda dela estiver cheia, a gente encaixa fora do horário normal.</li>
-        <li>Química feita em outro barbearia nos últimos 30 dias: a gente atende, mas o retoque não cobre — não sabemos o que já foi usado no fio.</li>
-      </ol>
+  <div class="prova">
+    <div class="depo">
+      <div class="n num">001 / 318</div>
+      <p>Caroco de gente. Cheguei com uma maracutaia na cabeca e o neguinho desembolou num degrade lizo. Pretao de respeito.</p>
+      <div class="depo-foot">
+        <div>
+          <div class="depo-cidadao">RAFAEL M.</div>
+          <div class="depo-meta">14 avaliacoes</div>
+        </div>
+        <div class="nota">★ ★ ★ ★ ★</div>
+      </div>
+    </div>
+    <div class="depo">
+      <div class="n num">002 / 318</div>
+      <p>Tava bom, pode melhorar na barba. Mas o corte ta Google nas maos. Volto sempre.</p>
+      <div class="depo-foot">
+        <div>
+          <div class="depo-cidadao">JUNINHO L.</div>
+          <div class="depo-meta">9 avaliacoes</div>
+        </div>
+        <div class="nota">★ ★ ★ ★ ★</div>
+      </div>
+    </div>
+    <div class="depo">
+      <div class="n num">003 / 318</div>
+      <p>Preco justo, atendimento de respeito, sem palhacada. Chega pra usar e sai arrumado.</p>
+      <div class="depo-foot">
+        <div>
+          <div class="depo-cidadao">THIAGO B.</div>
+          <div class="depo-meta">22 avaliacoes</div>
+        </div>
+        <div class="nota">★ ★ ★ ★ ★</div>
+      </div>
     </div>
   </div>
-</div></section>
+</section>
 
-<footer class="rodape"><div class="wrap">
-  <div class="rod-grade">
-    <div>
-      <h3>Fio &amp; Companhia</h3>
-      <p>Rua Frei Gaspar, 000 · Centro · São Vicente/SP<br>
-        Três cadeiras, hora marcada.</p>
-      <p style="margin-block-start:var(--s4)">
-        <a class="wa-btn" id="wa-geral" href="#" style="justify-self:start">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.06 24l1.68-6.16A11.9 11.9 0 010 11.9C0 5.33 5.34 0 11.9 0a11.9 11.9 0 018.42 20.32 11.82 11.82 0 01-8.42 3.49h-.01c-2 0-3.98-.5-5.73-1.46L.06 24zm6.6-3.8l.36.21a9.9 9.9 0 004.85 1.33h.01a9.87 9.87 0 007-16.86 9.82 9.82 0 00-7-2.9 9.88 9.88 0 00-8.37 15.15l.23.37-1 3.65 3.92-.95z"/></svg>
-          Falar com o barbearia
-        </a>
-      </p>
-    </div>
-    <div>
-      <h3 style="font-size:1.1rem">Quando a gente abre</h3>
-      <ul class="horarios" id="horarios"></ul>
-    </div>
-    <div>
-      <h3 style="font-size:1.1rem">Como funciona</h3>
-      <p>Só com hora marcada. A agenda desta página é a agenda de verdade das três
-        cadeiras — quando um horário some daqui, é porque alguém marcou.</p>
-      <p style="margin-block-start:var(--s3)">Pagamento: dinheiro, Pix, débito e
-        crédito em até 3× sem juros.</p>
-    </div>
+<section class="cta-final">
+  <h2 class="a">SUA VEZ,<br><span class="red">SEU CORTE.</span></h2>
+  <p>Manda mensagem com horario e servico. Garantia de cadeira sinuca sem fila opaca.</p>
+  <a href="https://wa.me/5511970776856" class="hero-cta">Agendar Agora <span class="arr">-></span></a>
+  <div class="cta-stat">
+    <div><strong class="num" data-count="1200">1.200+</strong><span>Cortes no ano</span></div>
+    <div><strong class="num">4.9</strong><span>Avaliacao Google</span></div>
+    <div><strong class="num">5min</strong><span>Espera media</span></div>
   </div>
-</div></footer>
+</section>
 
-</main>
-
-<div class="vc"><div class="wrap">
-  Site feito pela <a href="../../../receita-zero/index.html">Vitrine Certa</a> —
-  sites prontos para negócio de bairro, a partir de R$ 49/mês.
-</div></div>
+<footer>
+  <span><strong>NORTE</strong> / Barbearia / Rua Martirio de Assis, 142 / Sao Vicente/SP</span>
+  <span class="ord">Edicao 01 / 2026</span>
+</footer>
+</div>
 
 <script>
-/* ⚠️ DEMO — barbearia, equipe, agenda e preços são fictícios, para portfólio.
-   Trocar este bloco (e só ele) pelos dados reais antes de entregar. */
-const SALAO = {
-  whats:'5511970776856',
-  abre:9, fecha:19,               /* horas cheias; o dia tem 600 minutos */
-  passo:15,                       /* encaixes começam de 15 em 15 min */
-  cadeiras:[
-    {n:1, quem:'Rita', esp:'coloração'},
-    {n:2, quem:'Dani', esp:'corte'},
-    {n:3, quem:'Sol',  esp:'escova e tratamento'}
-  ],
-  /* min = tempo REAL na cadeira. É este número que desenha a faixa. */
-  servicos:[
-    {id:'escova', nome:'Escova',            min:45,  preco:60,  tom:'--tinta',
-     fora:'Corte. A escova é a finalização, não inclui cortar.'},
-    {id:'corte',  nome:'Corte',             min:60,  preco:80,  tom:'--tinta',
-     fora:'Coloração e tratamento. Sai lavado e finalizado.'},
-    {id:'cor',    nome:'Coloração de raiz', min:180, preco:260, tom:'--acaju',
-     fora:'Comprimento. Pintar o cabelo todo é outro serviço, com outro tempo.'},
-    {id:'luzes',  nome:'Luzes / mechas',    min:240, preco:420, tom:'--mel',
-     fora:'Matização depois de 20 dias. Fica marcada na hora, cobrada à parte.'},
-    {id:'plat',   nome:'Loiro platinado',   min:300, preco:620, tom:'--platina',
-     fora:'A segunda sessão, se o cabelo pedir. O orçamento diz antes se vai pedir.'}
-  ],
-  /* agenda de hoje, em minutos desde a abertura. Só o TIPO de serviço aparece:
-     nome de cliente na vitrine do barbearia é vazamento, não prova social. */
-  ocupado:{
-    1:[[0,180,'Coloração'],[240,300,'Corte'],[420,540,'Luzes']],
-    2:[[60,120,'Corte'],[150,210,'Corte'],[330,375,'Escova']],
-    3:[[0,45,'Escova'],[90,180,'Tratamento'],[300,345,'Escova'],[480,540,'Escova']]
-  },
-  semana:[['Segunda','fechado'],['Terça a sexta','9:00 – 19:00'],
-          ['Sábado','8:00 – 17:00'],['Domingo','fechado']]
-};
+(function(){
+  var prefersReduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 
-const $ = s => document.querySelector(s);
-const DIA = (SALAO.fecha - SALAO.abre) * 60;          /* 600 min */
-const pct = m => (m / DIA * 100) + '%';
-const hhmm = m => {
-  const t = SALAO.abre * 60 + m;
-  return String(Math.floor(t / 60)).padStart(2,'0') + ':' + String(t % 60).padStart(2,'0');
-};
-const dur = m => m >= 60 ? (m % 60 ? `${Math.floor(m/60)}h${m%60}` : `${Math.floor(m/60)}h`) : `${m}min`;
-const din = v => 'R$ ' + v.toFixed(2).replace('.', ',');
-
-/* ── que horas são ────────────────────────────────────────────────
-   ?agora=14:30 congela um instante (serve ao painel de demonstração e a
-   um print). Sem o parâmetro, é o relógio de verdade. */
-const qs = new URLSearchParams(location.search);
-function agoraMin(){
-  const q = qs.get('agora');
-  let h;
-  if (q && /^\d{1,2}:\d{2}$/.test(q)){ const [a,b] = q.split(':').map(Number); h = a + b/60; }
-  else { const d = new Date(); h = d.getHours() + d.getMinutes()/60; }
-  return Math.round((h - SALAO.abre) * 60);           /* pode ser <0 ou >DIA */
-}
-const AGORA = agoraMin();
-const FECHADO = AGORA >= DIA;                         /* já passou das 19:00 */
-const ini = Math.max(0, AGORA);                       /* antes de abrir = dia inteiro livre */
-
-/* ── buracos: o complemento do que está ocupado ──────────────────── */
-function buracos(nCad){
-  const oc = [...(SALAO.ocupado[nCad] || [])].sort((a,b) => a[0] - b[0]);
-  const out = []; let cur = 0;
-  for (const [a,b] of oc){ if (a > cur) out.push([cur, a]); cur = Math.max(cur, b); }
-  if (cur < DIA) out.push([cur, DIA]);
-  return out;
-}
-/* Um buraco serve se, DEPOIS de descontar o que já passou e arredondar para o
-   próximo passo de 15 min, ainda sobra a duração inteira do serviço. */
-function encaixe(b, min){
-  const bruto = Math.max(b[0], ini);
-  const inicio = Math.ceil(bruto / SALAO.passo) * SALAO.passo;
-  return (!FECHADO && b[1] - inicio >= min) ? inicio : null;
-}
-
-/* ── chips ────────────────────────────────────────────────────────── */
-$('#chips').innerHTML = SALAO.servicos.map(s =>
-  `<button type="button" class="chip" data-id="${s.id}" aria-pressed="false">
-     ${s.nome} <small>${dur(s.min)}</small></button>`).join('');
-
-/* ── faixa: régua + 3 pistas, montadas dos dados ──────────────────── */
-const regua = $('#regua');
-for (let h = SALAO.abre; h <= SALAO.fecha; h++){
-  const m = (h - SALAO.abre) * 60;
-  /* a etiqueta "agora" mora na régua; a hora cheia que cair em cima dela sai.
-     Duas palavras sobrepostas no mesmo pixel é o que parece defeito — faltar
-     um "15h" ao lado de um marcador de agora, não. */
-  if (AGORA > 0 && AGORA < DIA && Math.abs(m - AGORA) < 45) continue;
-  const sp = document.createElement('span');
-  sp.style.insetInlineStart = pct(m);
-  sp.className = 'num'; sp.textContent = h + 'h';
-  if (m === 0) sp.dataset.ponta = 'ini';
-  if (m === DIA) sp.dataset.ponta = 'fim';
-  regua.appendChild(sp);
-}
-const faixa = $('#faixa');
-for (const c of SALAO.cadeiras){
-  const row = document.createElement('div');
-  row.className = 'cad';
-  row.innerHTML = `<div class="quem"><b>${c.quem}</b><small>cadeira 0${c.n} · ${c.esp}</small></div>
-                   <div class="pista" data-cad="${c.n}"></div>`;
-  faixa.appendChild(row);
-}
-
-/* ── pintar ───────────────────────────────────────────────────────── */
-function pintar(sel){
-  const tom = sel ? sel.tom : '--tinta';
-  document.documentElement.style.setProperty('--tom', `var(${tom})`);
-
-  const achados = [];
-  for (const c of SALAO.cadeiras){
-    const pista = faixa.querySelector(`.pista[data-cad="${c.n}"]`);
-    pista.innerHTML = '';
-
-    for (const [a,b,rot] of (SALAO.ocupado[c.n] || [])){
-      const d = document.createElement('div');
-      d.className = 'bloco ocup';
-      d.style.insetInlineStart = pct(a); d.style.inlineSize = pct(b - a);
-      d.textContent = rot;
-      pista.appendChild(d);
-    }
-    for (const b of buracos(c.n)){
-      const d = document.createElement('div');
-      d.className = 'bloco vago';
-      d.style.insetInlineStart = pct(b[0]); d.style.inlineSize = pct(b[1] - b[0]);
-      const inicio = sel ? encaixe(b, sel.min) : null;
-      d.dataset.cabe = sel ? (inicio !== null ? '1' : '0') : '';
-      if (inicio !== null && sel){
-        achados.push({cad:c, inicio, fim:inicio + sel.min});
-        const g = document.createElement('div');
-        g.className = 'fantasma';
-        /* posição relativa ao buraco, não à pista */
-        g.style.insetInlineStart = ((inicio - b[0]) / (b[1] - b[0]) * 100) + '%';
-        g.style.inlineSize = (sel.min / (b[1] - b[0]) * 100) + '%';
-        g.textContent = hhmm(inicio);
-        d.appendChild(g);
-      } else {
-        /* o rótulo conta o que AINDA dá para usar, não o tamanho do buraco no
-           papel: às 14:30 um vão de 14h–16h não é "livre · 2h", é 1h30. E vão
-           que já passou inteiro não recebe rótulo nenhum — não está livre, acabou. */
-        const resta = b[1] - Math.max(b[0], ini);
-        if (!FECHADO && resta >= 45) d.textContent = 'livre · ' + dur(resta);
-      }
-      pista.appendChild(d);
-    }
-    /* o que já passou fica apagado, e a linha do agora mostra por quê */
-    if (AGORA > 0 && AGORA < DIA){
-      const sombra = document.createElement('div');
-      sombra.className = 'passado'; sombra.style.inlineSize = pct(AGORA);
-      pista.appendChild(sombra);
-      /* a linha do agora atravessa as três cadeiras — é um corte no dia inteiro,
-         não um detalhe da primeira. Só a de cima leva o rótulo. */
-      const linha = document.createElement('div');
-      linha.className = 'agora-linha'; linha.style.insetInlineStart = pct(AGORA);
-      if (c.n !== 1) linha.dataset.mudo = '1';
-      pista.appendChild(linha);
-    }
+  /* ========== BURGER MENU ========== */
+  var burger=document.getElementById('burger');
+  var links=document.getElementById('links');
+  if(burger&&links){
+    burger.addEventListener('click',function(){links.classList.toggle('open');});
   }
-  achados.sort((x,y) => x.inicio - y.inicio);
-  listar(sel, achados);
-  return achados;
-}
-
-/* ── lista de encaixes ────────────────────────────────────────────── */
-function listar(sel, achados){
-  const lista = $('#lista');
-  if (!sel){
-    lista.innerHTML = `<div class="nada"><b>Escolha um serviço ali em cima.</b>
-      <p>Cada serviço leva um tempo diferente, então cada um cabe num lugar
-      diferente do dia. Sem saber qual é, a gente só teria como mostrar a agenda
-      cheia — que é o que todo site de barbearia faz.</p></div>`;
-    return;
+  var anchors=document.querySelectorAll('a[href^="#"]');
+  for(var i=0;i<anchors.length;i++){
+    anchors[i].addEventListener('click',function(e){
+      var id=this.getAttribute('href').slice(1);
+      var el=document.getElementById(id);
+      if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});if(links){links.classList.remove('open');}}
+    });
   }
-  if (!achados.length){
-    /* Dois motivos diferentes para não caber — e cada um pede a sua frase.
-       Reaproveitar o mesmo parágrafo fazia o barbearia fechado dizer que não queria
-       "correr até as 20:30", o que não vinha ao caso. */
-    const titulo = FECHADO
-      ? `Hoje já fechamos. ${sel.nome} leva ${dur(sel.min)} — o primeiro encaixe é amanhã, na abertura.`
-      : `Hoje não cabe mais ${sel.nome.toLowerCase()}: são ${dur(sel.min)} na cadeira `
-        + `e não sobra esse tanto até as ${hhmm(DIA)}.`;
-    const corpo = FECHADO
-      ? `A agenda de amanhã abre às ${hhmm(0)} e ainda está inteira. Mande a mensagem
-         agora que a gente já deixa a cadeira reservada no seu nome.`
-      : `Preferimos dizer isso agora a encaixar você no fim do dia e correr com o
-         barbearia fechando — ${sel.nome.toLowerCase()} apressado é ${sel.nome.toLowerCase()}
-         mal feito. O primeiro horário livre é amanhã às ${hhmm(0)}, com a
-         ${SALAO.cadeiras[0].quem}.`;
-    lista.innerHTML = `<div class="nada">
-      <b>${titulo}</b>
-      <p>${corpo}</p>
-      <a class="wa-btn" style="justify-self:start" id="amanha" href="#">
-        ${waIcon()} Marcar para amanhã</a></div>`;
-    $('#amanha').href = wa(`Oi! Queria marcar ${sel.nome} (${dur(sel.min)}) para amanhã de manhã, se puder.`);
-    return;
+
+  /* ========== COUNTERS ========== */
+  function animateCount(el){
+    var target=parseInt(el.getAttribute('data-count'),10);
+    var cur=0;
+    var step=Math.max(1,Math.floor(target/40));
+    var timer=setInterval(function(){
+      cur+=step;
+      if(cur>=target){cur=target;clearInterval(timer);}
+      var s=cur>=1000?(cur/1000).toFixed(1).replace('.','.')+'+':cur+'+';
+      el.textContent=s;
+    },20);
   }
-  lista.innerHTML = achados.map(a => `
-    <div class="enc">
-      <span class="hora num">${hhmm(a.inicio)}</span>
-      <span class="quem2">com a <b>${a.cad.quem}</b>
-        <small>cadeira 0${a.cad.n} · termina ${hhmm(a.fim)} · ${sel.nome} · ${din(sel.preco)}</small></span>
-      <a class="wa-btn" href="${wa(msgEncaixe(sel, a))}">${waIcon()} Marcar ${hhmm(a.inicio)}</a>
-    </div>`).join('');
-}
-function msgEncaixe(sel, a){
-  return `Oi! Vi no site que sobrou ${hhmm(a.inicio)} hoje com a ${a.cad.quem} `
-       + `(cadeira 0${a.cad.n}). Quero marcar ${sel.nome} — ${dur(sel.min)}, `
-       + `${din(sel.preco)}. Pode confirmar?`;
-}
-const wa = t => 'https://wa.me/' + SALAO.whats + '?text=' + encodeURIComponent(t);
-const waIcon = () => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.06 24l1.68-6.16A11.9 11.9 0 010 11.9C0 5.33 5.34 0 11.9 0a11.9 11.9 0 018.42 20.32 11.82 11.82 0 01-8.42 3.49h-.01c-2 0-3.98-.5-5.73-1.46L.06 24zm6.6-3.8l.36.21a9.9 9.9 0 004.85 1.33h.01a9.87 9.87 0 007-16.86 9.82 9.82 0 00-7-2.9 9.88 9.88 0 00-8.37 15.15l.23.37-1 3.65 3.92-.95z"/></svg>`;
+  if(!prefersReduce&&'IntersectionObserver' in window){
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){animateCount(en.target);obs.unobserve(en.target);}
+      });
+    },{threshold:.5});
+    var counters=document.querySelectorAll('[data-count]');
+    for(var j=0;j<counters.length;j++){obs.observe(counters[j]);}
+  }
 
-/* ── interação ────────────────────────────────────────────────────── */
-let atual = null;
-$('#chips').addEventListener('click', ev => {
-  const b = ev.target.closest('.chip'); if (!b) return;
-  const s = SALAO.servicos.find(x => x.id === b.dataset.id);
-  atual = (atual && atual.id === s.id) ? null : s;        /* clicar de novo desmarca */
-  [...$('#chips').children].forEach(c =>
-    c.setAttribute('aria-pressed', String(!!atual && c.dataset.id === atual.id)));
-  pintar(atual);
-});
+  /* ========== GRADE HORARIOS (today highlight) ========== */
+  var grade=document.getElementById('gradeHorarios');
+  if(grade){
+    var today=new Date().getDay();
+    var cells=grade.querySelectorAll('.hora');
+    if(cells[today]){cells[today].classList.add('today');}
+  }
 
-/* ── tabela e rodapé, dos mesmos dados ────────────────────────────── */
-$('#tab-serv').innerHTML = SALAO.servicos.map(s => `
-  <tr><td><b>${s.nome}</b></td>
-      <td class="n">${dur(s.min)}</td>
-      <td class="n">${din(s.preco)}</td>
-      <td class="fora">${s.fora}</td></tr>`).join('');
-$('#horarios').innerHTML = SALAO.semana.map(([d,h]) =>
-  `<li><span>${d}</span><b>${h}</b></li>`).join('');
+  /* ========== TICKET — "SENHA DA FILA" ========== */
+  var WA_NUMBER='5511970776856';
+  var ticketPanel=document.getElementById('ticketPanel');
 
-/* ── barra de estado ──────────────────────────────────────────────── */
-const DIAS = ['domingo','segunda','terça','quarta','quinta','sexta','sábado'];
-$('#b-dia').textContent = FECHADO ? 'hoje já fechamos' : DIAS[new Date().getDay()];
-/* fechado: contar "0 de 5 cabem hoje" logo depois de "já fechamos" é dizer duas
-   vezes a mesma coisa. Some a contagem e a barra vira o aviso útil. */
-$('#b-fecha').innerHTML = FECHADO
-  ? 'abre amanhã <b class="num">' + hhmm(0) + '</b>'
-  : 'fecha <b class="num">' + hhmm(DIA) + '</b>';
-if (FECHADO) $('#b-conta').hidden = true;
-$('#wa-geral').href = wa('Oi! Vi o site de vocês e queria falar sobre um horário.');
+  function pseudoSenhaDoDia(){
+    var d=new Date();
+    var y=d.getFullYear(), m=d.getMonth()+1, day=d.getDate();
+    var seed=((y*10000)+(m*100)+day) % 997;
+    return 41+(seed%59);
+  }
 
-/* Contagem honesta: quantos dos serviços ainda cabem hoje. Sai do mesmo cálculo
-   da faixa — não é número escrito na mão. O rótulo diz exatamente isto: dizer
-   "3 encaixes livres" seria contar outra coisa e mentir de leve. */
-const livres = SALAO.servicos.filter(s =>
-  SALAO.cadeiras.some(c => buracos(c.n).some(b => encaixe(b, s.min) !== null))).length;
-$('#b-livres').textContent = FECHADO ? '0' : String(livres);
-$('#b-total').textContent  = String(SALAO.servicos.length);
+  function fmtSenha(n){
+    return (n<100?'0'+n:''+n).slice(-3);
+  }
 
-/* ?servico=cor já abre com o serviço marcado. Serve ao painel de demonstração e,
-   na vida real, ao link que o barbearia manda: "olha onde cabe sua coloração hoje". */
-const qServ = qs.get('servico');
-atual = (qServ && SALAO.servicos.find(s => s.id === qServ)) || null;
-if (atual) [...$('#chips').children].forEach(c =>
-  c.setAttribute('aria-pressed', String(c.dataset.id === atual.id)));
-pintar(atual);
+  function gerarTicket(serv,price,senhaNum){
+    var senha=fmtSenha(senhaNum);
+    var waText='Quero agendar: '+serv+' — '+price+'. Senha #'+senha;
+    var waHref='https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(waText);
+    var ticket=document.createElement('div');
+    ticket.className='ticket';
+    ticket.setAttribute('role','status');
+    ticket.setAttribute('aria-label','Senha '+senha+' para '+serv);
+    ticket.innerHTML=
+      '<div class="ticket-head"><span class="brand">BARBEARIA NORTE</span><span class="num">SENHA #'+senha+'</span></div>'+
+      '<div class="ticket-body">'+
+        '<div class="row"><span class="k">Servico</span><span class="v">'+serv+'</span></div>'+
+        '<div class="row"><span class="k">Preco</span><span class="v red">'+price+'</span></div>'+
+        '<div class="row"><span class="k">Status</span><span class="v">Aguardando agendamento</span></div>'+
+      '</div>'+
+      '<hr class="ticket-sep">'+
+      '<a href="'+waHref+'" class="ticket-wa" target="_blank" rel="noopener">Confirmar no WhatsApp</a>';
+    return ticket;
+  }
+
+  function bindTicketButtons(){
+    if(!ticketPanel)return;
+    var btns=document.querySelectorAll('.serv-ticket-btn');
+    btns.forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var row=btn.closest('.serv-row');
+        if(!row)return;
+        var serv=row.getAttribute('data-serv');
+        var price=row.getAttribute('data-price');
+        var senha=pseudoSenhaDoDia();
+        ticketPanel.innerHTML='';
+        var ticket=gerarTicket(serv,price,senha);
+        ticketPanel.appendChild(ticket);
+        requestAnimationFrame(function(){
+          ticket.classList.add('show');
+          if(!prefersReduce){
+            void ticket.offsetWidth;
+            ticket.classList.add('animate');
+          }
+        });
+      });
+    });
+  }
+
+  if(prefersReduce){
+    document.querySelectorAll('.ticket').forEach(function(t){
+      t.style.clipPath='inset(0 0 0% 0)';
+    });
+  }
+  bindTicketButtons();
+
+  /* ========== RISCO DA NAVALHA — SVG path progressive draw ========== */
+  var riscoPath=document.getElementById('riscoPath');
+  var riscoContainer=document.getElementById('riscoNavalha');
+
+  function getSectionYs(){
+    var secs=document.querySelectorAll('section, footer');
+    var ys=[];
+    secs.forEach(function(s){
+      ys.push(s.offsetTop);
+    });
+    return ys;
+  }
+
+  function buildPath(){
+    var sh=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);
+    var ys=getSectionYs();
+    if(!ys.length||sh<200)return'';
+    var W=Math.max(320,window.innerWidth);
+    /* corre nas CALHAS laterais (fora das colunas de texto) e só cruza a página
+       na fronteira entre seções — onde já existe a borda 3px, sem cortar palavra */
+    var gutter=Math.max(10,Math.min(28,W*0.02));
+    var xR=W-gutter, xL=gutter;
+    var segs=['M '+xR+',0'];
+    var lastX=xR;
+    for(var i=1;i<ys.length;i++){
+      var yb=Math.min(ys[i],sh);          /* fronteira da seção */
+      var nx=(lastX===xR)?xL:xR;
+      segs.push('L '+lastX+','+yb);       /* desce pela calha */
+      segs.push('L '+nx+','+yb);          /* cruza sobre a borda da seção */
+      lastX=nx;
+    }
+    segs.push('L '+lastX+','+sh);
+    return segs.join(' ');
+  }
+
+  function setupRisco(){
+    if(!riscoPath||!riscoContainer)return;
+    var sh=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);
+    var vw=Math.max(320,window.innerWidth);
+    riscoContainer.style.height=sh+'px';
+    var svg=riscoContainer.querySelector('svg');
+    if(svg){svg.setAttribute('width',vw);svg.setAttribute('height',sh);svg.setAttribute('viewBox','0 0 '+vw+' '+sh);}
+    if(prefersReduce){
+      riscoPath.setAttribute('d',buildPath());
+      riscoPath.style.strokeDasharray='none';
+      riscoPath.style.strokeDashoffset='0';
+      return;
+    }
+    var d=buildPath();
+    riscoPath.setAttribute('d',d);
+    var len=riscoPath.getTotalLength();
+    if(isNaN(len)||len===0){return;}
+    riscoPath.style.strokeDasharray=len;
+    riscoPath.style.strokeDashoffset=len;
+    var ticking=false;
+    function update(){
+      var sv=window.scrollY;
+      var vp=window.innerHeight;
+      var maxScroll=Math.max(1,sh-vp);
+      var progress=Math.max(0,Math.min(1,sv/maxScroll));
+      riscoPath.style.strokeDashoffset=Math.max(0,len*(1-progress));
+      ticking=false;
+    }
+    window.addEventListener('scroll',function(){
+      if(!ticking){ticking=true;requestAnimationFrame(update);}}, {passive:true});
+    var resizeTimer;
+    window.addEventListener('resize',function(){
+      clearTimeout(resizeTimer);
+      resizeTimer=setTimeout(function(){
+        sh=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);
+        vw=Math.max(320,window.innerWidth);
+        riscoContainer.style.height=sh+'px';
+        if(svg){svg.setAttribute('width',vw);svg.setAttribute('height',sh);svg.setAttribute('viewBox','0 0 '+vw+' '+sh);}
+        d=buildPath();
+        riscoPath.setAttribute('d',d);
+        len=riscoPath.getTotalLength();
+        riscoPath.style.strokeDasharray=len;
+        update();
+      },150);
+    },{passive:true});
+    update();
+  }
+
+  setupRisco();
+
+  /* ========== SUBLINHADO — sec-title "risco" curto ========== */
+  if(!prefersReduce&&'IntersectionObserver' in window){
+    var stObs=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          en.target.classList.add('underline');
+          stObs.unobserve(en.target);
+        }
+      });
+    },{threshold:.3});
+    var titles=document.querySelectorAll('.sec-title');
+    for(var k=0;k<titles.length;k++){stObs.observe(titles[k]);}
+  }else{
+    var st=[].slice.call(document.querySelectorAll('.sec-title'));
+    st.forEach(function(t){t.classList.add('underline');});
+  }
+
+  /* ========== REBUILD RISCO on font load ========== */
+  if(document.fonts&&document.fonts.ready){
+    document.fonts.ready.then(function(){setupRisco();});
+  }
+})();
 </script>
 </body>
 </html>

@@ -1,98 +1,153 @@
 {
-  "tenant_id": "vitrinecerta",
-  "schema_ref": "aristoteles/tenant_brand.py (swap_brandmark output shape)",
-  "negocio": {
-    "nome": "Vitrine Certa",
-    "vertical": "gerador-sites-pme",
-    "descricao": "Gerador de sites vitrine R$0 (GitHub Pages) para PME local. Tenant white-label do ATLAS — reaproveita F1/F4/RAG, não reconstrói."
+ "tenant_id": "vitrinecerta",
+ "schema_ref": "aristoteles/tenant_brand.py (swap_brandmark output shape)",
+ "negocio": {
+  "nome": "Vitrine Certa",
+  "vertical": "gerador-sites-pme",
+  "descricao": "Gerador de sites vitrine R$0 (GitHub Pages) para PME local. Tenant white-label do ATLAS — reaproveita F1/F4/RAG, não reconstrói."
+ },
+ "brand": {
+  "nome": "Vitrine Certa",
+  "brandmark": "Vitrine Certa",
+  "logo": "vitrinecerta-logo.svg",
+  "conceito": "vidro + lâmpada acesa · logo=janela de vitrine cujo vão forma um check (exposição + acerto)",
+  "paleta": {
+   "bg": "#EEF0F4",
+   "primary": "#E8873A",
+   "accent": "#9C4D15",
+   "text": "#16181F"
   },
-  "brand": {
-    "nome": "Vitrine Certa",
-    "brandmark": "Vitrine Certa",
-    "logo": "vitrinecerta-logo.svg",
-    "conceito": "vidro + lâmpada acesa · logo=janela de vitrine cujo vão forma um check (exposição + acerto)",
-    "paleta": {
-      "bg": "#EEF0F4",
-      "primary": "#E8873A",
-      "accent": "#9C4D15",
-      "text": "#16181F"
-    },
-    "nota_isolamento_aapson": "NÃO usar tokens AAPSON (#0B0714/#A78BFA/#D9F03A/#C8743C/#EFE9FF/Fraunces). Paleta própria vidro+lâmpada. Ver DESIGN.md."
+  "nota_isolamento_aapson": "NÃO usar tokens AAPSON (#0B0714/#A78BFA/#D9F03A/#C8743C/#EFE9FF/Fraunces). Paleta própria vidro+lâmpada. Ver DESIGN.md."
+ },
+ "tom": {
+  "assintota": "cordial",
+  "nivel": "acessivel-pme"
+ },
+ "isolamento": {
+  "state_path": "tenants/vitrinecerta/state",
+  "compartilha_state": false,
+  "nota": "Isolamento por isolate_tenant_state() do ATLAS. NUNCA compartilha dados entre tenants."
+ },
+ "atlas_reuso": {
+  "F1_receptionist": true,
+  "F4_dunning": true,
+  "rag_por_nicho": true,
+  "landings_pme": true,
+  "reconstroi": false
+ },
+ "nichos": {
+  "clinica": {
+   "label": "Clínica",
+   "rag_source": "atlas:rag/clinica",
+   "paleta": {
+    "bg": "#0F0A1A",
+    "primary": "#A855F7",
+    "accent": "#EC4899",
+    "text": "#F8FAFC"
+   },
+   "site_dir": "site-dfy/clínica"
   },
-  "tom": {
-    "assintota": "cordial",
-    "nivel": "acessivel-pme"
+  "imobiliaria": {
+   "label": "Imobiliária",
+   "rag_source": "atlas:rag/imobiliaria",
+   "paleta": {
+    "bg": "#0D0D1A",
+    "primary": "#F59E0B",
+    "accent": "#EF4444",
+    "text": "#F3F4F6"
+   },
+   "site_dir": "site-dfy/imobiliária"
   },
-  "isolamento": {
-    "state_path": "tenants/vitrinecerta/state",
-    "compartilha_state": false,
-    "nota": "Isolamento por isolate_tenant_state() do ATLAS. NUNCA compartilha dados entre tenants."
+  "lavanderia": {
+   "label": "Lavanderia",
+   "rag_source": "atlas:rag/lavanderia",
+   "paleta": {
+    "bg": "#0A0F1A",
+    "primary": "#3B82F6",
+    "accent": "#2DD4BF",
+    "text": "#F1F5F9"
+   },
+   "site_dir": "site-dfy/lavanderia"
   },
-  "atlas_reuso": {
-    "F1_receptionist": true,
-    "F4_dunning": true,
-    "rag_por_nicho": true,
-    "landings_pme": true,
-    "reconstroi": false
+  "oficina": {
+   "label": "Oficina",
+   "rag_source": "atlas:rag/oficina",
+   "paleta": {
+    "bg": "#0A0A0A",
+    "primary": "#EF4444",
+    "accent": "#FACC15",
+    "text": "#F9FAFB"
+   },
+   "site_dir": "site-dfy/oficina"
   },
-  "nichos": {
-    "clinica": {
-      "label": "Clínica",
-      "rag_source": "atlas:rag/clinica",
-      "paleta": { "bg": "#0F0A1A", "primary": "#A855F7", "accent": "#EC4899", "text": "#F8FAFC" },
-      "site_dir": "site-dfy/clínica"
-    },
-    "imobiliaria": {
-      "label": "Imobiliária",
-      "rag_source": "atlas:rag/imobiliaria",
-      "paleta": { "bg": "#0D0D1A", "primary": "#F59E0B", "accent": "#EF4444", "text": "#F3F4F6" },
-      "site_dir": "site-dfy/imobiliária"
-    },
-    "lavanderia": {
-      "label": "Lavanderia",
-      "rag_source": "atlas:rag/lavanderia",
-      "paleta": { "bg": "#0A0F1A", "primary": "#3B82F6", "accent": "#2DD4BF", "text": "#F1F5F9" },
-      "site_dir": "site-dfy/lavanderia"
-    },
-    "oficina": {
-      "label": "Oficina",
-      "rag_source": "atlas:rag/oficina",
-      "paleta": { "bg": "#0A0A0A", "primary": "#EF4444", "accent": "#FACC15", "text": "#F9FAFB" },
-      "site_dir": "site-dfy/oficina"
-    },
-    "padaria": {
-      "label": "Padaria",
-      "rag_source": "atlas:rag/padaria",
-      "paleta": { "bg": "#140F0A", "primary": "#F59E0B", "accent": "#FACC15", "text": "#FDF6EC" },
-      "site_dir": "site-dfy/padaria"
-    },
-    "pet": {
-      "label": "Pet Shop",
-      "rag_source": "atlas:rag/pet",
-      "paleta": { "bg": "#0A140F", "primary": "#2DD4BF", "accent": "#4ADE80", "text": "#F1F5F9" },
-      "site_dir": "site-dfy/pet"
-    },
-    "pizzaria": {
-      "label": "Pizzaria",
-      "rag_source": "atlas:rag/pizzaria",
-      "paleta": { "bg": "#140A0A", "primary": "#EF4444", "accent": "#FACC15", "text": "#FDF4F4" },
-      "site_dir": "site-dfy/pizzaria"
-    },
-    "salao": {
-      "label": "Salão",
-      "rag_source": "atlas:rag/salao",
-      "paleta": { "bg": "#140A14", "primary": "#EC4899", "accent": "#A855F7", "text": "#FDF4FB" },
-      "site_dir": "site-dfy/salão"
-    }
+  "padaria": {
+   "label": "Padaria",
+   "rag_source": "atlas:rag/padaria",
+   "paleta": {
+    "bg": "#140F0A",
+    "primary": "#F59E0B",
+    "accent": "#FACC15",
+    "text": "#FDF6EC"
+   },
+   "site_dir": "site-dfy/padaria"
   },
-  "planos": {
-    "essencial": 49,
-    "premium": 149,
-    "dominio": 199,
-    "pacote_light": 99,
-    "pacote_full": 199
+  "pet": {
+   "label": "Pet Shop",
+   "rag_source": "atlas:rag/pet",
+   "paleta": {
+    "bg": "#0A140F",
+    "primary": "#2DD4BF",
+    "accent": "#4ADE80",
+    "text": "#F1F5F9"
+   },
+   "site_dir": "site-dfy/pet"
   },
-  "fase": "Fase 0 (Hermes) — tenant criado, nichos mapeados. Fase 1 (Sheets->webhook) é GATE do CEO.",
-  "gerado_por": "hermes autonomo — Semana 1 Mes 1",
-  "gerado_em": "2026-07-23"
+  "pizzaria": {
+   "label": "Pizzaria",
+   "rag_source": "atlas:rag/pizzaria",
+   "paleta": {
+    "bg": "#140A0A",
+    "primary": "#EF4444",
+    "accent": "#FACC15",
+    "text": "#FDF4F4"
+   },
+   "site_dir": "site-dfy/pizzaria"
+  },
+  "salao": {
+   "label": "Salão",
+   "rag_source": "atlas:rag/salao",
+   "paleta": {
+    "bg": "#140A14",
+    "primary": "#EC4899",
+    "accent": "#A855F7",
+    "text": "#FDF4FB"
+   },
+   "site_dir": "site-dfy/salão"
+  },
+  "barbearia": {
+   "label": "Barbearia",
+   "rag_source": "atlas:rag/salao",
+   "paleta": {
+    "bg": "#0A0A0A",
+    "primary": "#E63946",
+    "accent": "#B7202B",
+    "text": "#F2F2F2"
+   },
+   "site_dir": "site-dfy/barbearia",
+   "assinaturas": {
+    "mecanica": "senha-da-fila (ticket + wa.me pre-preenchido)",
+    "estetica": "risco-da-navalha (SVG scroll-draw nas calhas)"
+   }
+  }
+ },
+ "planos": {
+  "essencial": 49,
+  "premium": 149,
+  "dominio": 199,
+  "pacote_light": 99,
+  "pacote_full": 199
+ },
+ "fase": "Fase 0 (Hermes) — tenant criado, nichos mapeados. Fase 1 (Sheets->webhook) é GATE do CEO.",
+ "gerado_por": "hermes autonomo — Semana 1 Mes 1",
+ "gerado_em": "2026-07-23"
 }
