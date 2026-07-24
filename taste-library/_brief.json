@@ -1,0 +1,26 @@
+{
+  "nicho": "biblioteca-gosto",
+  "estado": "aplicado",
+  "escolha_final": "B2-A · Papel Cru (Print Tech Paper, pipeline do vídeo)",
+  "funil": {
+    "ideacao_10": "5 vídeo (B1-B5) + 5 anti-ai-slop (A1-A5)",
+    "convergencia_1": "B2 (Print Tech Paper, do Bloco B/vídeo)",
+    "refinamentos_3": ["B2-A Papel Cru", "B2-B Kraft Quente", "B2-C Off-white"],
+    "final_1": "B2-A"
+  },
+  "tokens_b2a": {
+    "bg": "#EDE7D8",
+    "panel": "#FBF8F0",
+    "line": "#d8cfb8",
+    "ink": "#1A1A1A",
+    "dim": "#7a7565",
+    "acc": "#E5443B",
+    "acc2": "#B5462F",
+    "serif": "Fraunces",
+    "mono": "JetBrains Mono"
+  },
+  "ancoras_reais": ["tech-05 acova.ai (print tech paper)", "padaria Wildwood (ilustração autoral)"],
+  "guardrails": "nunca Inter; nunca gradiente roxo; fundo claro enquadra prints dark-mode como moldura de papel",
+  "pipeline_usado": "vídeo (Taste/Impeccable + Higgsfield + 21st.dev) — sem mistura anti-ai-slop no refinamento, por decisão do dono",
+  "data": "2026-07-24"
+}
