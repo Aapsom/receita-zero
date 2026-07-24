@@ -7771,7 +7771,7 @@
     },
     {
       "id": "ref-comp-21btn",
-      "titulo": "21st.dev · Button components",
+      "titulo": "Origin UI · Button w/ animated arrow",
       "shot": "shots/ref-comp-21btn.png",
       "estilo": "swiss minimal",
       "nicho_fit": [
@@ -7780,8 +7780,8 @@
       ],
       "fonte": "21st.dev",
       "premiacao": "comunidade",
-      "url": "https://21st.dev/community/components/s/button",
-      "url_premio": "https://21st.dev/community/components/s/button",
+      "url": "https://21st.dev/community/components/originui/button/button-with-animated-arrow",
+      "url_premio": "https://21st.dev/community/components/originui/button/button-with-animated-arrow",
       "tipo_pagina": "componente",
       "tipo_ref": "componente",
       "keywords": [
@@ -7789,17 +7789,17 @@
         "cta",
         "pill"
       ],
-      "vocabulario": "Biblioteca de componentes premiados (21st.dev) — botões/CTA.",
+      "vocabulario": "Botão específico premiado (Origin UI via 21st.dev) — seta animada no CTA.",
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
       ],
       "image_prompt": "swiss minimal componente reference, real feel, no text",
-      "brief": "Aesthetic: swiss minimal. Reference: 21st.dev · Button components. Guardrails: nunca Inter, nunca gradiente roxo."
+      "brief": "Aesthetic: swiss minimal. Reference: Origin UI · Button w/ animated arrow. Guardrails: nunca Inter, nunca gradiente roxo."
     },
     {
       "id": "ref-comp-mobbin",
-      "titulo": "Mobbin · Button UI",
+      "titulo": "shadcn/ui · Button base",
       "shot": "shots/ref-comp-mobbin.png",
       "estilo": "swiss minimal",
       "nicho_fit": [
@@ -7807,8 +7807,8 @@
       ],
       "fonte": "Mobbin",
       "premiacao": "catálogo",
-      "url": "https://mobbin.com/explore/web/ui-elements/button",
-      "url_premio": "https://mobbin.com/explore/web/ui-elements/button",
+      "url": "https://ui.shadcn.com/docs/components/base/button",
+      "url_premio": "https://ui.shadcn.com/docs/components/base/button",
       "tipo_pagina": "componente",
       "tipo_ref": "componente",
       "keywords": [
@@ -7816,17 +7816,17 @@
         "form",
         "input"
       ],
-      "vocabulario": "Catálogo Mobbin de botões/inputs reais em produtos.",
+      "vocabulario": "Doc real de botão (shadcn/ui) — base de componente premiado.",
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
       ],
       "image_prompt": "swiss minimal componente reference, real feel, no text",
-      "brief": "Aesthetic: swiss minimal. Reference: Mobbin · Button UI. Guardrails: nunca Inter, nunca gradiente roxo."
+      "brief": "Aesthetic: swiss minimal. Reference: shadcn/ui · Button base. Guardrails: nunca Inter, nunca gradiente roxo."
     },
     {
       "id": "ref-hero-fit",
-      "titulo": "Awwwards · Hero fit design",
+      "titulo": "Awwwards · Hero Neosfer connect",
       "shot": "shots/ref-hero-fit.png",
       "estilo": "cinematic quiet",
       "nicho_fit": [
@@ -7835,8 +7835,8 @@
       ],
       "fonte": "Awwwards",
       "premiacao": "inspiration",
-      "url": "https://www.awwwards.com/inspiration/hero-section-fit-design",
-      "url_premio": "https://www.awwwards.com/inspiration/hero-section-fit-design",
+      "url": "https://www.awwwards.com/inspiration/hero-section-connect-page-neosfer-1",
+      "url_premio": "https://www.awwwards.com/inspiration/hero-section-connect-page-neosfer-1",
       "tipo_pagina": "hero",
       "tipo_ref": "hero",
       "keywords": [
@@ -7844,17 +7844,17 @@
         "background",
         "imagery"
       ],
-      "vocabulario": "Hero sections premiadas — referência de hero imagery (Higgsfield no vídeo).",
+      "vocabulario": "Hero específico de site real (Neosfer) — referência de hero imagery.",
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
       ],
       "image_prompt": "cinematic quiet hero reference, real feel, no text",
-      "brief": "Aesthetic: cinematic quiet. Reference: Awwwards · Hero fit design. Guardrails: nunca Inter, nunca gradiente roxo."
+      "brief": "Aesthetic: cinematic quiet. Reference: Awwwards · Hero Neosfer connect. Guardrails: nunca Inter, nunca gradiente roxo."
     },
     {
       "id": "ref-hero-anim",
-      "titulo": "Awwwards · Hero animation mosey",
+      "titulo": "SaaSpo · Hero examples",
       "shot": "shots/ref-hero-anim.png",
       "estilo": "dither mono",
       "nicho_fit": [
@@ -7862,8 +7862,8 @@
       ],
       "fonte": "Awwwards",
       "premiacao": "inspiration",
-      "url": "https://www.awwwards.com/inspiration/hero-section-animations-mosey",
-      "url_premio": "https://www.awwwards.com/inspiration/hero-section-animations-mosey",
+      "url": "https://saaspo.com/section-type/saas-hero-section-examples",
+      "url_premio": "https://saaspo.com/section-type/saas-hero-section-examples",
       "tipo_pagina": "hero",
       "tipo_ref": "hero",
       "keywords": [
@@ -7871,17 +7871,17 @@
         "animation",
         "scroll"
       ],
-      "vocabulario": "Hero com animação de scroll — feeling, não copiar.",
+      "vocabulario": "Catálogo de heroes reais de SaaS — sentar o feeling, não copiar.",
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
       ],
       "image_prompt": "dither mono hero reference, real feel, no text",
-      "brief": "Aesthetic: dither mono. Reference: Awwwards · Hero animation mosey. Guardrails: nunca Inter, nunca gradiente roxo."
+      "brief": "Aesthetic: dither mono. Reference: SaaSpo · Hero examples. Guardrails: nunca Inter, nunca gradiente roxo."
     },
     {
       "id": "ref-tipo-award",
-      "titulo": "Awwwards · Typography winners",
+      "titulo": "Google Fonts · Pairing typefaces",
       "shot": "shots/ref-tipo-award.png",
       "estilo": "editorial serif",
       "nicho_fit": [
@@ -7890,8 +7890,8 @@
       ],
       "fonte": "Awwwards",
       "premiacao": "winner",
-      "url": "https://www.awwwards.com/websites/winner_category_typography/",
-      "url_premio": "https://www.awwwards.com/websites/winner_category_typography/",
+      "url": "https://fonts.google.com/knowledge/choosing_type/pairing_typefaces",
+      "url_premio": "https://fonts.google.com/knowledge/choosing_type/pairing_typefaces",
       "tipo_pagina": "tipografia",
       "tipo_ref": "tipografia",
       "keywords": [
@@ -7899,17 +7899,17 @@
         "fontpair",
         "display"
       ],
-      "vocabulario": "Sites vencedores em tipografia — pares de fonte de referência.",
+      "vocabulario": "Guia real de pairing de fontes (Google Fonts) — par do nicho.",
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
       ],
       "image_prompt": "editorial serif tipografia reference, real feel, no text",
-      "brief": "Aesthetic: editorial serif. Reference: Awwwards · Typography winners. Guardrails: nunca Inter, nunca gradiente roxo."
+      "brief": "Aesthetic: editorial serif. Reference: Google Fonts · Pairing typefaces. Guardrails: nunca Inter, nunca gradiente roxo."
     },
     {
       "id": "ref-tipo-fontpair",
-      "titulo": "Fontpair · Tools",
+      "titulo": "Fontpair · All pairs",
       "shot": "shots/ref-tipo-fontpair.png",
       "estilo": "editorial serif",
       "nicho_fit": [
@@ -7918,8 +7918,8 @@
       ],
       "fonte": "Fontpair",
       "premiacao": "ferramenta",
-      "url": "https://fontpair.co/typography-tools",
-      "url_premio": "https://fontpair.co/typography-tools",
+      "url": "https://fontpair.co/all",
+      "url_premio": "https://fontpair.co/all",
       "tipo_pagina": "tipografia",
       "tipo_ref": "tipografia",
       "keywords": [
@@ -7927,17 +7927,17 @@
         "serif",
         "sans"
       ],
-      "vocabulario": "Ferramenta de pairing de fontes — construir o par do nicho.",
+      "vocabulario": "Lista real de pares de fonte — construir o par do nicho.",
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
       ],
       "image_prompt": "editorial serif tipografia reference, real feel, no text",
-      "brief": "Aesthetic: editorial serif. Reference: Fontpair · Tools. Guardrails: nunca Inter, nunca gradiente roxo."
+      "brief": "Aesthetic: editorial serif. Reference: Fontpair · All pairs. Guardrails: nunca Inter, nunca gradiente roxo."
     },
     {
       "id": "ref-motion-hover",
-      "titulo": "Awwwards · Microinteraction hover",
+      "titulo": "Awwwards · Handsome hover button",
       "shot": "shots/ref-motion-hover.png",
       "estilo": "swiss minimal",
       "nicho_fit": [
@@ -7946,8 +7946,8 @@
       ],
       "fonte": "Awwwards",
       "premiacao": "inspiration",
-      "url": "https://www.awwwards.com/inspiration/microinteraction-hover-state",
-      "url_premio": "https://www.awwwards.com/inspiration/microinteraction-hover-state",
+      "url": "https://www.awwwards.com/inspiration/handsome-hover-button-interaction",
+      "url_premio": "https://www.awwwards.com/inspiration/handsome-hover-button-interaction",
       "tipo_pagina": "motion",
       "tipo_ref": "motion",
       "keywords": [
@@ -7955,17 +7955,17 @@
         "microinteraction",
         "transition"
       ],
-      "vocabulario": "Micro-interações de hover premiadas — motion de detalhe.",
+      "vocabulario": "Hover de botão específico premiado — motion de CTA real.",
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
       ],
       "image_prompt": "swiss minimal motion reference, real feel, no text",
-      "brief": "Aesthetic: swiss minimal. Reference: Awwwards · Microinteraction hover. Guardrails: nunca Inter, nunca gradiente roxo."
+      "brief": "Aesthetic: swiss minimal. Reference: Awwwards · Handsome hover button. Guardrails: nunca Inter, nunca gradiente roxo."
     },
     {
       "id": "ref-motion-btn",
-      "titulo": "Awwwards · Button hover kaboroom",
+      "titulo": "CodePen · Button micro-interaction",
       "shot": "shots/ref-motion-btn.png",
       "estilo": "brutalist",
       "nicho_fit": [
@@ -7973,8 +7973,8 @@
       ],
       "fonte": "Awwwards",
       "premiacao": "inspiration",
-      "url": "https://www.awwwards.com/inspiration/button-s-hover-animation-kaboroom",
-      "url_premio": "https://www.awwwards.com/inspiration/button-s-hover-animation-kaboroom",
+      "url": "https://codepen.io/flik185/pen/XpPEmq",
+      "url_premio": "https://codepen.io/flik185/pen/XpPEmq",
       "tipo_pagina": "motion",
       "tipo_ref": "motion",
       "keywords": [
@@ -7982,17 +7982,17 @@
         "hover",
         "animation"
       ],
-      "vocabulario": "Animação de hover em botão — referência de motion de CTA.",
+      "vocabulario": "Demo real de micro-interação em botão (CodePen) — referência de motion.",
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
       ],
       "image_prompt": "brutalist motion reference, real feel, no text",
-      "brief": "Aesthetic: brutalist. Reference: Awwwards · Button hover kaboroom. Guardrails: nunca Inter, nunca gradiente roxo."
+      "brief": "Aesthetic: brutalist. Reference: CodePen · Button micro-interaction. Guardrails: nunca Inter, nunca gradiente roxo."
     },
     {
       "id": "ref-det-icon",
-      "titulo": "Awwwards · Icon inspiration",
+      "titulo": "Lucide · Icons",
       "shot": "shots/ref-det-icon.png",
       "estilo": "organic warm",
       "nicho_fit": [
@@ -8001,8 +8001,8 @@
       ],
       "fonte": "Awwwards",
       "premiacao": "inspiration",
-      "url": "https://www.awwwards.com/inspiration_search/icons/",
-      "url_premio": "https://www.awwwards.com/inspiration_search/icons/",
+      "url": "https://lucide.dev/icons",
+      "url_premio": "https://lucide.dev/icons",
       "tipo_pagina": "detalhe",
       "tipo_ref": "detalhe",
       "keywords": [
@@ -8010,17 +8010,17 @@
         "svg",
         "detail"
       ],
-      "vocabulario": "Banco de ícones premiados — detalhe de UI.",
+      "vocabulario": "Repositório real de ícones (Lucide) — detalhe de UI.",
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
       ],
       "image_prompt": "organic warm detalhe reference, real feel, no text",
-      "brief": "Aesthetic: organic warm. Reference: Awwwards · Icon inspiration. Guardrails: nunca Inter, nunca gradiente roxo."
+      "brief": "Aesthetic: organic warm. Reference: Lucide Icons. Guardrails: nunca Inter, nunca gradiente roxo."
     },
     {
       "id": "ref-det-badge",
-      "titulo": "Awwwards · Badge icon museum",
+      "titulo": "Awwwards · Badges for the people",
       "shot": "shots/ref-det-badge.png",
       "estilo": "print tech paper",
       "nicho_fit": [
@@ -8029,8 +8029,8 @@
       ],
       "fonte": "Awwwards",
       "premiacao": "trending",
-      "url": "https://www.awwwards.com/inspiration/trending-badge-icon-museum",
-      "url_premio": "https://www.awwwards.com/inspiration/trending-badge-icon-museum",
+      "url": "https://www.awwwards.com/inspiration/badges-infographics-for-the-people-1",
+      "url_premio": "https://www.awwwards.com/inspiration/badges-infographics-for-the-people-1",
       "tipo_pagina": "detalhe",
       "tipo_ref": "detalhe",
       "keywords": [
@@ -8038,13 +8038,13 @@
         "award",
         "seal"
       ],
-      "vocabulario": "Museu de badges/awards — selo de premiação de referência.",
+      "vocabulario": "Infográfico de badges específico (Awwwards) — detalhe de premiação.",
       "guardrails_ok": [
         "sem gradiente roxo",
         "sem Inter"
       ],
       "image_prompt": "print tech paper detalhe reference, real feel, no text",
-      "brief": "Aesthetic: print tech paper. Reference: Awwwards · Badge icon museum. Guardrails: nunca Inter, nunca gradiente roxo."
+      "brief": "Aesthetic: print tech paper. Reference: Awwwards · Badges for the people. Guardrails: nunca Inter, nunca gradiente roxo."
     }
   ]
 }
