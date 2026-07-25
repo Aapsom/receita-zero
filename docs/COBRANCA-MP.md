@@ -13,27 +13,25 @@
 
 | Plano | Valor | Tipo MP | O que inclui |
 |-------|-------|---------|--------------|
-| **Essencial** | R$49/mês | `preapproval` (recorrente) | Landing, form, WhatsApp, SEO básico |
-| **Premium** | R$149/mês | `preapproval` | Site narrativo + mecânicas + motion + tracker |
-| **Domínio/Full** | R$199/mês | `preapproval` | Premium + domínio `.com.br` + e-mail + SSL + backup |
+| **Básico** | R$49/mês | `preapproval` | Site + WhatsApp + já aparece no Google + relatório básico de visualizações |
+| **Plus** | R$99/mês | `preapproval` | Básico + acabamento premium + motion + seção "como funciona" |
+| **Premium** | R$149/mês | `preapproval` | Plus + mecânica única do nicho + pedido/agenda |
 
-### 1.2 Pacotes de atualização (assinatura recorrente — cross-sell)
+### 1.2 Pacotes de add (assinatura recorrente — cross-sell, oferecidos 30d depois)
 
 | Pacote | Valor | Tipo MP | O que inclui |
 |--------|-------|---------|--------------|
-| **Light** | R$99/mês | `preapproval` | 2 atualizações de cardápio/fotos por mês |
-| **Full (atualização)** | R$199/mês | `preapproval` | Atualizações ilimitadas + 1 melhoria/mês |
-
-> ⚠️ Correção vs versão S3: NÃO existe "plano Plus R$99/mês". R$99 é o **pacote Light**
-> de atualização (cross-sell sobre um plano mensal), não um tier de site.
+| **Site Sempre Novinho** Básico | R$99/mês | `preapproval` | 2 atualizações de cardápio/fotos por mês |
+| **Site Sempre Novinho** Ilimitado | R$199/mês | `preapproval` | Atualizações ilimitadas + 1 melhoria/mês |
+| **Aparecer no Google PRO** | R$297/mês | `preapproval` | Domínio + GBP + SEO local + Insights completo (bundle) |
+| **Cliente na Porta** | R$199/mês + R$299 setup | `preapproval` + `preference` | Gestão Google/Meta Ads (verba à parte) |
 
 ### 1.3 Avulsos (pagamento único — `preference` + Pix)
 
 | Item | Valor | Tipo MP |
 |------|-------|---------|
-| Atualização de cardápio/fotos (GATE 2=C) | R$29/un | `preference` (Pix + cartão) |
+| Atualização avulsa (R$29) | R$29/un | `preference` (Pix + cartão) |
 | Melhoria de layout | R$79–R$199 | `preference` |
-| Nova funcionalidade | a partir de R$150 | `preference` |
 | Correção de bug | **grátis** | — (não gera cobrança) |
 
 ---

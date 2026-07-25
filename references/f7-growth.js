@@ -49,6 +49,31 @@ function buildReport({ cliente, sc, sessoes, waCliques, periodo }) {
   };
 }
 
+function renderHTML(r) {
+  const topQ = (r.top_queries || []).map(q => `<li>${q.q} — <b>${q.cliques}</b> cliques</li>`).join('');
+  return `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Relatório — ${r.cliente}</title>
+<style>body{font-family:system-ui,sans-serif;background:#0B0714;color:#EFE9FF;margin:0;padding:6vw 8vw;line-height:1.6}
+h1{color:#2DD4BF}.card{background:rgba(45,212,191,.07);border:1px solid rgba(45,212,191,.25);border-radius:14px;padding:1.4rem;margin:1rem 0}
+.kpi{display:flex;gap:1.4rem;flex-wrap:wrap}.kpi div{font-size:2rem;font-weight:900;color:#C6FF00}.kpi span{display:block;font-size:.8rem;color:rgba(239,233,255,.6)}
+em{color:#2DD4BF;font-style:normal}ul{margin:.4rem 0 0}</style></head>
+<body>
+<h1>Relatório de presença no Google — ${r.cliente}</h1>
+<p>Período <em>${r.periodo}</em></p>
+<div class="kpi">
+  <div>${r.impressoes}<span>vezes que apareceu</span></div>
+  <div>${r.cliques}<span>cliques no site</span></div>
+  <div>${r.ctr}<span>CTR</span></div>
+  <div>${r.sessoes_clarity}<span>visitas (Clarity)</span></div>
+  <div>${r.leads_whatsapp}<span>leads no WhatsApp</span></div>
+</div>
+<div class="card"><h3>Resumo</h3><p>${r.resumo_ptbr}</p></div>
+<div class="card"><h3>Principais buscas</h3><ul>${topQ || '<li>sem dados ainda</li>'}</ul></div>
+<p style="opacity:.5;font-size:.8rem">Vitrine Certa — relatório gerado automaticamente.</p>
+</body></html>`;
+}
+
 function mock() {
   const sc = parseSCCSVFromRows([
     'Query,Clicks,Impressions,CTR,Position',
@@ -77,9 +102,22 @@ function parseSCCSVFromRows(txt) {
 }
 
 // ---- CLI ----
+const htmlFlag = process.argv.includes('--html');
+const outFlag = process.argv.indexOf('--out');
+const outPath = outFlag ? process.argv[outFlag + 1] : null;
+
+function emit(r) {
+  if (htmlFlag) {
+    const html = renderHTML(r);
+    if (outPath) { require('fs').writeFileSync(outPath, html); console.log('HTML -> ' + outPath); }
+    else console.log(html);
+  } else {
+    console.log(JSON.stringify(r, null, 2));
+  }
+}
+
 if (process.argv.includes('--mock')) {
-  const r = mock();
-  console.log(JSON.stringify(r, null, 2));
+  emit(mock());
   process.exit(0);
 }
 const ci = process.argv.indexOf('--cliente');
@@ -88,7 +126,7 @@ const si = process.argv.indexOf('--clarity-sessoes');
 const wi = process.argv.indexOf('--wa-cliques');
 const pi = process.argv.indexOf('--periodo');
 if (!ci || !sci) {
-  console.log('USO: node references/f7-growth.js --cliente NOME --sc arquivo.csv --clarity-sessoes N --wa-cliques N [--periodo AAAA-MM]');
+  console.log('USO: node references/f7-growth.js --cliente NOME --sc arquivo.csv --clarity-sessoes N --wa-cliques N [--periodo AAAA-MM] [--html] [--out relatorio.html]');
   process.exit(1);
 }
 const cliente = process.argv[ci + 1];
@@ -97,4 +135,4 @@ const sessoes = si ? parseInt(process.argv[si + 1]) || 0 : 0;
 const waCliques = wi ? parseInt(process.argv[wi + 1]) || 0 : 0;
 const periodo = pi ? process.argv[pi + 1] : new Date().toISOString().slice(0, 7);
 const r = buildReport({ cliente, sc, sessoes, waCliques, periodo });
-console.log(JSON.stringify(r, null, 2));
+emit(r);

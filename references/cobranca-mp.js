@@ -26,15 +26,22 @@ const os = require('os');
 const API_HOST = 'api.mercadopago.com';
 const BACK_URL = 'https://receitazero.github.io/receita-zero/receita-zero/';
 
-// Matriz canônica (docs/COBRANCA-MP.md §1)
+// Matriz canônica (docs/COBRANCA-MP.md §1 — precificação v2.9/v2.10)
 const PLANOS = {
-  essencial: { valor: 49.0,  reason: 'Vitrine Certa — Plano Essencial (R$49/mês)' },
-  premium:   { valor: 149.0, reason: 'Vitrine Certa — Plano Premium (R$149/mês)' },
-  full:      { valor: 199.0, reason: 'Vitrine Certa — Plano Domínio/Full (R$199/mês)' },
+  basico:  { valor: 49.0,  reason: 'Vitrine Certa — Plano Básico (R$49/mês)' },
+  plus:    { valor: 99.0,  reason: 'Vitrine Certa — Plano Plus (R$99/mês)' },
+  premium: { valor: 149.0, reason: 'Vitrine Certa — Plano Premium (R$149/mês)' },
 };
 const PACOTES = {
-  light: { valor: 99.0,  titulo: 'Vitrine Certa — Pacote Light (2 atualizações/mês)' },
-  full:  { valor: 199.0, titulo: 'Vitrine Certa — Pacote Full (atualizações ilimitadas)' },
+  // Manutenção
+  site_novinho_basico:  { valor: 99.0,  titulo: 'Vitrine Certa — Site Sempre Novinho Básico (2 atualizações/mês)' },
+  site_novinho_total:   { valor: 199.0, titulo: 'Vitrine Certa — Site Sempre Novinho Ilimitado (+1 melhoria)' },
+  // Presença
+  aparecer_google_pro:  { valor: 297.0, titulo: 'Vitrine Certa — Aparecer no Google PRO (domínio+GBP+SEO+Insights)' },
+  // Tráfego (só setup; mensal é recorrente à parte)
+  cliente_na_porta:     { valor: 199.0, titulo: 'Vitrine Certa — Cliente na Porta (gestão Ads, +setup R$299)' },
+  // Avulso
+  atualizacao_avulsa:   { valor: 29.0,  titulo: 'Vitrine Certa — Atualização avulsa (R$29)' },
 };
 
 function lerToken() {
