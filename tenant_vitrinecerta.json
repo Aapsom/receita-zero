@@ -138,6 +138,27 @@
     "mecanica": "senha-da-fila (ticket + wa.me pre-preenchido)",
     "estetica": "risco-da-navalha (SVG scroll-draw nas calhas)"
    }
+  },
+  "restaurante": {
+   "label": "Restaurante",
+   "rag_source": "atlas:restaurante",
+   "premium_variant": "v10c (broadsheet quente)",
+   "mechanic_signature": "jornal de bairro (estética); Pedido do Leitor em v10b (não usada na final)",
+   "aesthetic_signature": "papel amarelado/envelhecido + vinho profundo + xilogravuras SVG + selo giratório",
+   "palette": {
+    "bg": "#F4F0E6",
+    "ink": "#1D1A15",
+    "accent": "#7A2B2B",
+    "accent2": "#C98A1B"
+   },
+   "fontes": [
+    "Playfair Display",
+    "Source Serif 4"
+   ],
+   "cta": "https://wa.me/5511970776856",
+   "cta_label": "Reservar/Pedir no WhatsApp",
+   "status": "pronto",
+   "live": true
   }
  },
  "planos": {
