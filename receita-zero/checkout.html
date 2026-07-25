@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vitrine Certa — Fechar contrato</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B0714;--fg:#EFE9FF;--p:#2DD4BF;--ac:#C6FF00;--muted:rgba(239,233,255,.62);--card:rgba(45,212,191,.07);--line:rgba(45,212,191,.25)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:'Fraunces',serif;min-height:100vh;padding:6vh 6vw;line-height:1.55}
+.wrap{max-width:680px;margin:0 auto}
+.kick{color:var(--ac);text-transform:uppercase;letter-spacing:.2em;font-size:.72rem;margin-bottom:1rem}
+h1{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;line-height:1.05;margin-bottom:1.4rem}
+h1 em{color:var(--p);font-style:normal}
+.timer{background:rgba(198,255,0,.08);border:1px solid rgba(198,255,0,.3);border-radius:12px;padding:1rem 1.2rem;margin:1.4rem 0;text-align:center}
+.timer .lbl{font-size:.8rem;color:var(--ac);letter-spacing:.04em}
+.timer .clock{font-size:1.6rem;font-weight:900;color:var(--ac);font-variant-numeric:tabular-nums;margin-top:.3rem}
+.timer .off{font-size:.95rem;color:var(--fg);margin-top:.4rem}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.4rem;margin:1rem 0}
+.plan.destaque{border-color:var(--ac);box-shadow:0 0 0 1px rgba(198,255,0,.25)}
+.plan .badge{display:inline-block;background:var(--ac);color:var(--bg);font-size:.68rem;font-weight:900;letter-spacing:.06em;padding:.15rem .6rem;border-radius:99px;margin-bottom:.5rem}
+.plan h3{font-size:1.3rem;color:var(--p);margin-bottom:.3rem}
+.plan .preco{font-size:2rem;font-weight:900;color:var(--fg)}
+.plan .preco small{font-size:.9rem;color:var(--muted);font-weight:400}
+.plan .ancora{font-size:.85rem;color:var(--muted);text-decoration:line-through;margin-left:.4rem}
+.plan ul{list-style:none;margin:.8rem 0}
+.plan li{padding:.25rem 0;color:var(--muted);font-size:.95rem}
+.plan li::before{content:"✓ ";color:var(--p)}
+.upsell{background:rgba(45,212,191,.05);border:1px dashed var(--line);border-radius:14px;padding:1.2rem;margin:1.2rem 0}
+.upsell h4{color:var(--p);font-size:1.05rem;margin-bottom:.4rem}
+.upsell .preco{font-weight:900;color:var(--fg)}
+.upsell .ancora{text-decoration:line-through;color:var(--muted);font-size:.85rem;margin-left:.4rem}
+.upsell .bonus{font-size:.85rem;color:var(--ac);margin-top:.4rem}
+.faq{margin:1.4rem 0;font-size:.9rem;color:var(--muted)}
+.faq details{padding:.5rem 0;border-bottom:1px solid rgba(239,233,255,.08)}
+.faq summary{cursor:pointer;color:var(--fg);font-weight:600}
+.cta{display:block;width:100%;background:var(--p);color:var(--bg);text-align:center;font-weight:900;font-size:1.1rem;padding:1rem;border-radius:12px;text-decoration:none;margin-top:1rem;font-family:inherit}
+.cta.ghost{background:transparent;color:var(--p);border:1px solid var(--line)}
+.note{font-size:.75rem;color:rgba(239,233,255,.4);text-align:center;margin-top:1.2rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="kick">Último passo</span>
+  <h1>Seu site <em>pronto em 48h</em>. É só confirmar.</h1>
+
+  <div class="timer" id="timer">
+    <div class="lbl">OFERTA DE LANÇAMENTO — acaba em</div>
+    <div class="clock" id="clock">07 : 00 : 00 : 00</div>
+    <div class="off">15% de desconto na <b>primeira fatura</b> de qualquer plano</div>
+  </div>
+
+  <div class="plan" id="card"></div>
+
+  <div class="upsell" id="upsell"></div>
+
+  <a class="cta" id="pagar" href="#">Quero esse plano →</a>
+  <a class="cta ghost" id="wa" href="#">Mais dúvidas? Falo no WhatsApp</a>
+
+  <div class="faq">
+    <details open><summary>Preciso de cartão de crédito?</summary><p>Não. Cobramos via <b>Pix recorrente</b> (Mercado Pago). Todo mês vem o link no seu WhatsApp.</p></details>
+    <details><summary>Tem fidelidade ou contrato?</summary><p>Não. Você paga mês a mês e cancela quando quiser, sem multa.</p></details>
+    <details><summary>O site já aparece no Google?</summary><p>Sim. Todo plano é indexado no Google logo após publicado. O pacote "Aparecer no Google PRO" sobe ainda mais sua posição e coloca sua ficha no mapa.</p></details>
+    <details><summary>Posso parcelar?</summary><p>O plano é mensal (R$49 a R$149). Sem juros porque é Pix recorrente, não financiamento.</p></details>
+  </div>
+
+  <p class="note">Vitrine Certa — sites que vendem para o comércio local. Valores sujeitos a confirmação em proposta.</p>
+</div>
+
+<script>
+const PLANOS = {
+  basico:  { nome:'Básico',  valor:49,  pop:false, itens:['Site da sua empresa, no ar em 48h','Botão de WhatsApp direto','Já aparece na busca do Google local','Resumo mensal de quem visitou — grátis'] },
+  plus:    { nome:'Plus',    valor:99,  pop:false, itens:['Tudo do Básico','Acabamento premium + motion suave','Seção "como funciona"'] },
+  premium: { nome:'Premium', valor:149, pop:true,  itens:['Tudo do Plus','Mecânica única do seu nicho','Pedido/agenda montados no site','Suporte prioritário'] },
+};
+const params = new URLSearchParams(location.search);
+const chave = params.get('plano') || 'premium';
+const p = PLANOS[chave] || PLANOS.premium;
+
+// render plano
+const card = document.getElementById('card');
+card.className = 'plan' + (p.pop ? ' destaque' : '');
+card.innerHTML = (p.pop ? '<span class="badge">MAIS PROCURADO</span>' : '') +
+  `<h3>${p.nome}</h3>` +
+  `<div class="preco">R$${p.valor}<small>/mês</small></div>` +
+  `<ul>${p.itens.map(i=>`<li>${i}</li>`).join('')}</ul>`;
+
+// upsell Aparecer no Google PRO (ancoragem de->por + bonus)
+const upsell = document.getElementById('upsell');
+upsell.innerHTML = `<h4>Quer subir no Google?</h4>` +
+  `<div><span class="preco">R$297/mês</span><span class="ancora">de R$347</span></div>` +
+  `<p style="color:var(--muted);font-size:.9rem;margin-top:.3rem">Seu .com.br + ficha no mapa + SEO local + relatório completo de quem chegou.</p>` +
+  `<div class="bonus">🎁 12 meses = 1 mês grátis (fidelidade, não urgência)</div>`;
+
+// timer de lancamento (7 dias a partir do carregamento; demo)
+const FIM = Date.now() + 7*24*3600*1000;
+function tick(){
+  let s = Math.max(0, Math.floor((FIM - Date.now())/1000));
+  const d = Math.floor(s/86400); s -= d*86400;
+  const h = Math.floor(s/3600); s -= h*3600;
+  const m = Math.floor(s/60); s -= m*60;
+  document.getElementById('clock').textContent =
+    `${String(d).padStart(2,'0')} : ${String(h).padStart(2,'0')} : ${String(m).padStart(2,'0')} : ${String(s).padStart(2,'0')}`;
+}
+tick(); setInterval(tick, 1000);
+
+// acoes
+const wa = `https://wa.me/5511970776856?text=` + encodeURIComponent(`Quero o plano ${p.nome} (R$${p.valor}/mês)`);
+document.getElementById('wa').href = wa;
+// pagar -> por enquanto leva pro WA com a escolha (cobranca MP entra quando token no cofre)
+document.getElementById('pagar').href = wa;
+</script>
+</body>
+</html>
