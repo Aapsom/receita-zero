@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://receitazero.github.io/receita-zero/sitemap.xml
