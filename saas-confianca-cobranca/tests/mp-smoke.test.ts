@@ -12,13 +12,24 @@
  *
  * IMPORTANTE (regra ts-no-dynamic-import): MercadoPagoBillingProvider lê
  * `process.env.MP_ACCESS_TOKEN` no module-load time (top-level const MP_TOKEN).
- * Static import congelaria MP_TOKEN='' antes de podermos stubar o env, fazendo
- * criarAssinatura lançar. Uso dynamic import como "module loading boundary" —
- * exceção explícita da regra — para garantir que o env é aplicado antes do load.
+ * Uso dynamic import como "module loading boundary" — exceção explícita da regra —
+ * para garantir que o env é aplicado antes do load via vi.hoisted.
  *
  * Sem Zod no projeto: leituras pós-JSON.parse usam type guards com `in`.
  */
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import type { MercadoPagoBillingProvider } from '@/lib/billing/mercadopago';
+
+// vi.hoisted: stuba env ANTES do module-load (MP_TOKEN é const top-level)
+const { stubToken, stubWebhook, stubAvanca } = vi.hoisted(() => ({
+  stubToken: 'TEST_TOKEN',
+  stubWebhook: 'TEST_SECRET',
+  stubAvanca: 'https://avanca.test',
+}));
+
+vi.stubEnv('MP_ACCESS_TOKEN', stubToken);
+vi.stubEnv('MP_WEBHOOK_SECRET', stubWebhook);
+vi.stubEnv('AVANCA_API_URL', stubAvanca);
 
 type FetchCall = { url: string; init: RequestInit };
 
@@ -39,13 +50,10 @@ function makeResponse(status: number, body: unknown): Response {
   } as unknown as Response;
 }
 
-async function loadProvider(): Promise<
-  typeof import('../src/lib/billing/mercadopago.ts')
-> {
-  vi.stubEnv('MP_ACCESS_TOKEN', 'TEST_TOKEN');
-  vi.stubEnv('MP_WEBHOOK_SECRET', 'TEST_SECRET');
-  vi.stubEnv('AVANCA_API_URL', 'https://avanca.test');
-  return await import('../src/lib/billing/mercadopago.ts');
+async function loadProvider(): Promise<{
+  MercadoPagoBillingProvider: typeof MercadoPagoBillingProvider;
+}> {
+  return await import('../src/lib/billing/mercadopago');
 }
 
 interface AssinaturaInputLike {
@@ -102,9 +110,7 @@ function readAutoRecurringAmount(
   return undefined;
 }
 
-function readPayerId(
-  obj: Record<string, unknown>
-): string {
+function readPayerId(obj: Record<string, unknown>): string {
   if ('payer' in obj) {
     const payer = obj.payer;
     if (payer && typeof payer === 'object' && 'id' in payer) {
@@ -129,7 +135,6 @@ beforeEach(() => {
 
 afterEach(() => {
   vi.restoreAllMocks();
-  vi.unstubAllEnvs();
 });
 
 describe('MP customer_id fix', () => {
@@ -145,7 +150,7 @@ describe('MP customer_id fix', () => {
     });
 
     const { MercadoPagoBillingProvider } = await loadProvider();
-    const provider = new MercadoPagoBillingProvider('TEST_TOKEN');
+    const provider = new MercadoPagoBillingProvider();
     const result = await provider.criarAssinatura(
       input({ pme_id: 'pme-123', payment_method: 'pix_auto' })
     );
@@ -169,7 +174,7 @@ describe('MP customer_id fix', () => {
     enqueue(200, { id: 'preapproval_2', status: 'authorized' });
 
     const { MercadoPagoBillingProvider } = await loadProvider();
-    const provider = new MercadoPagoBillingProvider('TEST_TOKEN');
+    const provider = new MercadoPagoBillingProvider();
     await provider.criarAssinatura(
       input({ pme_id: 'pme-new', payment_method: 'credit_card' })
     );
@@ -191,7 +196,7 @@ describe('MP customer_id fix', () => {
     enqueue(200, { id: 'preapproval_3', status: 'authorized' });
 
     const { MercadoPagoBillingProvider } = await loadProvider();
-    const provider = new MercadoPagoBillingProvider('TEST_TOKEN');
+    const provider = new MercadoPagoBillingProvider();
     await provider.criarAssinatura(
       input({ pme_id: 'pme-race', payment_method: 'pix_auto' })
     );
@@ -212,7 +217,7 @@ describe('transaction_amount fix (centavos → reais)', () => {
     enqueue(200, { id: 'p1', status: 'authorized' });
 
     const { MercadoPagoBillingProvider } = await loadProvider();
-    const provider = new MercadoPagoBillingProvider('TEST_TOKEN');
+    const provider = new MercadoPagoBillingProvider();
     await provider.criarAssinatura(
       input({ pme_id: 'p1', plano: 'essencial', payment_method: 'pix_auto' })
     );
@@ -226,7 +231,7 @@ describe('transaction_amount fix (centavos → reais)', () => {
     enqueue(200, { id: 'pay1', status: 'pending', transaction_amount: 99 });
 
     const { MercadoPagoBillingProvider } = await loadProvider();
-    const provider = new MercadoPagoBillingProvider('TEST_TOKEN');
+    const provider = new MercadoPagoBillingProvider();
     await provider.criarAssinatura(
       input({ pme_id: 'p2', plano: 'plus', payment_method: 'boleto' })
     );
@@ -242,7 +247,7 @@ describe('transaction_amount fix (centavos → reais)', () => {
     enqueue(200, { id: 'pay2', status: 'pending' });
 
     const { MercadoPagoBillingProvider } = await loadProvider();
-    const provider = new MercadoPagoBillingProvider('TEST_TOKEN');
+    const provider = new MercadoPagoBillingProvider();
     await provider.criarAssinatura(
       input({ pme_id: 'p3', plano: 'premium', payment_method: 'pix_qr' })
     );
@@ -259,7 +264,7 @@ describe('X-Idempotency-Key on payments', () => {
     enqueue(200, { id: 'pay3', status: 'pending' });
 
     const { MercadoPagoBillingProvider } = await loadProvider();
-    const provider = new MercadoPagoBillingProvider('TEST_TOKEN');
+    const provider = new MercadoPagoBillingProvider();
     await provider.criarAssinatura(
       input({ pme_id: 'p4', payment_method: 'boleto' })
     );
