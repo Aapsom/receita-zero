@@ -3,622 +3,466 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Clínica Andirá — atende meu convênio? A resposta honesta, em São Vicente</title>
-  <!-- Vitrine Certa Analytics -->
-<meta name="google-site-verification" content="rnYREYB-JR9uyXWd7UwSkGJn4kyjyVpHakO6lgSxJ-w">
-<script type="text/javascript">
-(function(c,l,a,r,i,t,y){
-  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-})(window,document,"clarity","script","xrpcs8vw2o");
-</script>
-  
-
-
-  
-<meta name="description" content="Diga seu convênio e a especialidade: a clínica responde na hora se cobre, se tem co-participação, se está em carência e qual é a próxima vaga real — a de convênio e a particular.">
-<meta property="og:title" content="Clínica Andirá — atende meu convênio? A resposta honesta">
-<meta property="og:description" content="A pergunta que todo mundo faz no balcão, respondida sem enrolação: cobre ou não cobre, com carência ou não, e quando é a próxima vaga de verdade.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://receitazero.github.io/receita-zero/site-dfy/cl%C3%ADnica/premium/index.html">
-<meta property="og:image" content="https://receitazero.github.io/receita-zero/site-dfy/cl%C3%ADnica/premium/preview.png">
-<meta name="twitter:card" content="summary_large_image">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "MedicalClinic",
-  "name": "Clínica Andirá",
-  "description": "Clínica em São Vicente com verificação de convênio online: cobertura, co-participação, carência e próxima vaga real por especialidade.",
-  "url": "https://receitazero.github.io/receita-zero/site-dfy/cl%C3%ADnica/premium/index.html",
-  "areaServed": "São Vicente, SP",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "São Vicente",
-    "addressRegion": "SP",
-    "addressCountry": "BR"
-  },
-  "telephone": "+5511970776856",
-  "medicalSpecialty": [
-    "ClínicaMédica",
-    "Cardiovascular",
-    "Dermatology",
-    "Orthopedic",
-    "Gynecologic",
-    "Pediatric"
-  ]
-}
-</script>
+<title>Forno da Vila — pizza a lenha em São Vicente</title>
+<meta name="description" content="Forno a lenha em São Vicente. Massa de 48 horas. Aberto das 18h às 23h30.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-/* Hallmark · macrostructure: 06 Conversational FAQ · motor: cobertura/elegibilidade (a regra de acesso que vira fila) · costume: guia de elegibilidade */
+/* PARALELO — redesign alternativo da pizzaria premium
+   Conceito: "A NOITE INTEIRA" — mesmo plano, execução diferente
+   Diferença: motion CSS pura, sem JS de relógio odômetro, sem SVG complexo */
 :root{
-  --paper:#EEF2F6;      /* página — branco clínico frio */
-  --card:#FFFFFF;       /* superfície de guia */
-  --card2:#F4F7FA;      /* campos / trilha */
-  --ink:#132335;        /* tinta quase-preta */
-  --muted:#46586B;      /* secundário */
-  --faint:#6E7F90;      /* legendas */
-  --line:#D3DDE7;       /* fio fino */
-  --line2:#78899A;      /* borda de campo (piso 3:1) */
-  --azul:#1A5A9E;       /* acento clínico credenciado (o único azul) */
-  --azulfundo:#14385F;  /* fundo escuro do cabeçalho da guia */
-  --coberto:#15743F;    /* verde: coberto */
-  --copart:#9A5B00;     /* âmbar: atenção / co-participação */
-  --carencia:#A32F49;   /* vermelho-rosa: carência / bloqueio */
-  --slate:#3D4F60;      /* neutro: não credenciado → só particular */
-  --disp:'Spectral',Georgia,serif;
-  --sans:'Public Sans',system-ui,sans-serif;
-  --mono:'Spline Sans Mono',ui-monospace,monospace;
-  --r:6px;
+  /* NOITE */
+  --n-tinta:#141A2A; --n-carvao:#0C1120; --n-tinta2:#1C2438; --n-linha:#2B3450;
+  --n-giz:#EDEFF5; --n-fumaca:#98A0B8; --n-brasa:#FF5A1F; --n-nucleo:#FFF1E6;
+  /* DIA */
+  --d-tinta:#ECEDF1; --d-carvao:#DDDFE7; --d-tinta2:#F7F8FB; --d-linha:#D3D7E2;
+  --d-giz:#141A2A; --d-fumaca:#5C6478; --d-brasa:#D6410E; --d-nucleo:#8A2B06;
+  /* resolvidos */
+  --tinta:color-mix(in oklab, var(--n-tinta), var(--d-tinta) calc(var(--dia,0)*100%));
+  --carvao:color-mix(in oklab, var(--n-carvao), var(--d-carvao) calc(var(--dia,0)*100%));
+  --tinta2:color-mix(in oklab, var(--n-tinta2), var(--d-tinta2) calc(var(--dia,0)*100%));
+  --linha:color-mix(in oklab, var(--n-linha), var(--d-linha) calc(var(--dia,0)*100%));
+  --giz:color-mix(in oklab, var(--n-giz), var(--d-giz) calc(var(--dia,0)*100%));
+  --fumaca:color-mix(in oklab, var(--n-fumaca), var(--d-fumaca) calc(var(--dia,0)*100%));
+  --brasa:color-mix(in oklab, var(--n-brasa), var(--d-brasa) calc(var(--dia,0)*100%));
+  --wa:#25D366;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Instrument Sans',system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
 }
-*{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth}
-body{
-  background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;
-  -webkit-font-smoothing:antialiased;overflow-x:clip;
-  /* linhas de guia médica: papel pautado clínico */
-  background-image:linear-gradient(var(--line) 1px,transparent 1px);
-  background-size:100% 30px;background-position:0 -1px;
-}
-.wrap{max-width:1080px;margin-inline:auto;padding-inline:22px}
-h1,h2,h3,h4{font-family:var(--disp);line-height:1.12;letter-spacing:-.01em;font-weight:600}
-.kick{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--azul);font-weight:600}
-a{color:inherit}
-.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.5rem;border-radius:var(--r);font-family:var(--sans);font-weight:700;font-size:.98rem;cursor:pointer;border:1px solid transparent;text-decoration:none;transition:background .18s,border-color .18s}
-.btn-solid{background:var(--azul);color:#fff}
-.btn-solid:hover{background:#154e88}
-.btn-ghost{background:transparent;border-color:var(--line2);color:var(--ink)}
-.btn-ghost:hover{border-color:var(--azul);color:var(--azul)}
-
-/* NAV */
-.nav{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-block:.7rem}
-.brand{display:flex;align-items:center;gap:.55rem;font-family:var(--disp);font-weight:700;font-size:1.18rem}
-.brand .rx{display:grid;place-items:center;width:30px;height:30px;border-radius:7px;background:var(--azulfundo);color:#fff;font-family:var(--mono);font-weight:600;font-size:.82rem}
-.nav a.lk{font-size:.9rem;color:var(--muted);text-decoration:none;font-weight:600}
-.nav-cta{display:flex;gap:.7rem;align-items:center}
-
-/* HERO — a pergunta */
-.hero{padding-block:3rem 2.2rem}
-.hero .grid{display:grid;grid-template-columns:1.02fr .98fr;gap:2.4rem;align-items:center}
-.hero h1{font-size:clamp(2.1rem,4.6vw,3.35rem);margin:.5rem 0 .9rem}
-.hero h1 em{font-style:italic;color:var(--azul)}
-.hero .lede{color:var(--muted);font-size:1.08rem;max-width:46ch;margin-bottom:1.5rem}
-.hero .cta{display:flex;gap:.7rem;flex-wrap:wrap}
-.hero .note{margin-top:1.1rem;font-size:.84rem;color:var(--faint);display:flex;align-items:center;gap:.5rem}
-.hero .note b{color:var(--muted);font-weight:700}
-
-/* card de balcão (a fala do recepcionista) */
-.desk{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.4rem 1.4rem 1.5rem;box-shadow:0 24px 60px -40px rgba(19,35,53,.5)}
-.desk .who{display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem}
-.desk .who .av{width:38px;height:38px;border-radius:50%;background:var(--card2);border:1px solid var(--line);display:grid;place-items:center;font-size:1.1rem}
-.desk .who .nm{font-weight:700;font-size:.92rem}
-.desk .who .rl{font-size:.76rem;color:var(--faint)}
-.bubble{background:var(--card2);border:1px solid var(--line);border-radius:12px;border-top-left-radius:3px;padding:.8rem .95rem;font-size:.96rem;color:var(--ink);margin-bottom:.7rem}
-.bubble.you{background:#EAF1F8;border-color:#CFE0EE;border-top-left-radius:12px;border-top-right-radius:3px;text-align:right;color:var(--azulfundo);font-weight:600}
-.bubble .q{color:var(--faint);font-size:.78rem;display:block;margin-bottom:.15rem;font-weight:600;letter-spacing:.02em}
-
-/* SECTIONS */
-section{padding-block:3.2rem}
-.shead{max-width:52ch;margin-bottom:1.8rem}
-.shead h2{font-size:clamp(1.6rem,3.2vw,2.3rem);margin:.4rem 0 .5rem}
-.shead p{color:var(--muted)}
-
-/* VERIFICADOR — motor */
-.checker{display:grid;grid-template-columns:.85fr 1.15fr;gap:1.8rem;align-items:start}
-.form{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.5rem}
-.form h3{font-size:1.05rem;margin-bottom:.2rem}
-.form .sub{color:var(--faint);font-size:.85rem;margin-bottom:1.1rem}
-.field{margin-bottom:1rem}
-.field label{display:block;font-size:.74rem;text-transform:uppercase;letter-spacing:.09em;font-weight:700;color:var(--faint);margin-bottom:.35rem}
-.field select,.field input{width:100%;background:var(--card2);border:1px solid var(--line2);border-radius:var(--r);padding:.72rem .85rem;font-size:.98rem;color:var(--ink);font-family:var(--sans)}
-.field select:focus,.field input:focus{outline:2px solid color-mix(in srgb,var(--azul) 45%,transparent);outline-offset:1px;border-color:var(--azul)}
-.field .hint{font-size:.76rem;color:var(--faint);margin-top:.3rem}
-
-/* GUIA de elegibilidade (o costume) */
-.guia{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;position:relative;box-shadow:0 26px 64px -42px rgba(19,35,53,.55)}
-.guia .top{background:var(--azulfundo);color:#fff;padding:1rem 1.3rem;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
-.guia .top .t1{font-family:var(--disp);font-weight:700;font-size:1.05rem;letter-spacing:.01em}
-.guia .top .t2{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;opacity:.8;margin-top:.15rem}
-.guia .top .prot{font-family:var(--mono);font-size:.72rem;text-align:right;opacity:.9;line-height:1.5}
-/* serrilha de guia destacável */
-.serr{height:12px;background:
-  radial-gradient(circle at 8px 12px,var(--paper) 6px,transparent 6.5px) repeat-x;
-  background-size:16px 12px;background-position:0 -6px;margin-block:-1px}
-.guia .body{padding:1.25rem 1.3rem 1.4rem}
-.badge{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--sans);font-weight:700;font-size:.82rem;letter-spacing:.03em;padding:.34rem .7rem;border-radius:100px;border:1.5px solid;text-transform:uppercase}
-.badge .dot{width:9px;height:9px;border-radius:50%;flex:none}
-.badge.coberto{color:var(--coberto);border-color:var(--coberto);background:color-mix(in srgb,var(--coberto) 9%,#fff)}
-.badge.coberto .dot{background:var(--coberto)}
-.badge.copart{color:var(--copart);border-color:var(--copart);background:color-mix(in srgb,var(--copart) 10%,#fff)}
-.badge.copart .dot{background:var(--copart)}
-.badge.carencia{color:var(--carencia);border-color:var(--carencia);background:color-mix(in srgb,var(--carencia) 8%,#fff)}
-.badge.carencia .dot{background:var(--carencia)}
-.badge.particular{color:var(--slate);border-color:var(--slate);background:color-mix(in srgb,var(--slate) 8%,#fff)}
-.badge.particular .dot{background:var(--slate)}
-.g-line{display:flex;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px dashed var(--line);font-size:.93rem}
-.g-line:last-of-type{border-bottom:0}
-.g-line .k{color:var(--muted)}
-.g-line .v{font-weight:700;text-align:right}
-.g-line .v small{display:block;font-weight:500;color:var(--faint);font-size:.76rem}
-.vaga-box{margin-top:.9rem;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:.85rem .95rem}
-.vaga-box .vl{display:flex;justify-content:space-between;align-items:baseline;gap:.8rem}
-.vaga-box .vl .lbl{font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);font-weight:700}
-.vaga-box .vl .dt{font-family:var(--disp);font-weight:700;font-size:1.15rem}
-.vaga-box .cmp{font-size:.8rem;color:var(--muted);margin-top:.4rem}
-.vaga-box .cmp b{color:var(--ink)}
-.honest{margin-top:.9rem;font-size:.86rem;color:var(--muted);border-left:3px solid var(--line2);padding-left:.8rem}
-.honest.warn{border-left-color:var(--carencia)}
-.honest.slate{border-left-color:var(--slate)}
-.guia .act{margin-top:1.1rem;display:flex;gap:.6rem;flex-wrap:wrap}
-.guia .act .btn{flex:1;justify-content:center;min-width:150px}
-/* carimbo (forma, não só cor) */
-.carimbo{position:absolute;top:70px;right:16px;transform:rotate(-11deg);border:2.5px double var(--carencia);color:var(--carencia);border-radius:8px;padding:.28rem .6rem;font-family:var(--mono);font-weight:600;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;opacity:.9;pointer-events:none;background:color-mix(in srgb,var(--carencia) 6%,#fff)}
-.carimbo.slate{border-color:var(--slate);color:var(--slate);background:color-mix(in srgb,var(--slate) 6%,#fff)}
-
-/* MATRIZ — o "não" público */
-.matriz-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
-table.matriz{border-collapse:collapse;width:100%;min-width:640px;font-size:.9rem}
-table.matriz th,table.matriz td{padding:.7rem .8rem;text-align:left;border-bottom:1px solid var(--line)}
-table.matriz thead th{background:var(--card2);font-family:var(--sans);font-weight:700;font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);position:sticky;top:0}
-table.matriz tbody tr:last-child td{border-bottom:0}
-table.matriz td.plan{font-weight:700}
-.cell{display:inline-flex;align-items:center;gap:.35rem;font-weight:600;font-size:.82rem}
-.cell .mk{width:8px;height:8px;border-radius:2px;flex:none}
-.cell.sim{color:var(--coberto)} .cell.sim .mk{background:var(--coberto)}
-.cell.cop{color:var(--copart)} .cell.cop .mk{background:var(--copart);border-radius:50%}
-.cell.nao{color:var(--slate)} .cell.nao .mk{background:none;border:1.5px solid var(--slate);border-radius:50%}
-.cell.car{color:var(--carencia)} .cell.car .mk{width:10px;height:2px;border-radius:0;background:var(--carencia)}
-.legenda{display:flex;flex-wrap:wrap;gap:1.1rem;margin-top:.9rem;font-size:.82rem;color:var(--muted)}
-
-/* ESPECIALIDADES */
-.esp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-.esp-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.15rem}
-.esp-card .ic{font-size:1.5rem}
-.esp-card h4{font-size:1.02rem;margin:.45rem 0 .3rem}
-.esp-card p{color:var(--muted);font-size:.85rem}
-.esp-card .wait{font-family:var(--mono);font-size:.76rem;color:var(--faint);margin-top:.6rem}
-
-/* CTA final + venda nossa */
-.final{background:var(--azulfundo);color:#EAF1F8;border-radius:16px;padding:2.6rem 1.8rem;text-align:center}
-.final h2{color:#fff;font-size:clamp(1.6rem,3vw,2.2rem)}
-.final p{color:#B9CBDD;max-width:48ch;margin:.7rem auto 1.4rem}
-.final .cta{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap}
-.final .btn-solid{background:#fff;color:var(--azulfundo)}
-.final .btn-solid:hover{background:#e7eef5}
-.final .btn-ghost{border-color:#3a5f85;color:#EAF1F8}
-.vitrine{margin-top:2.2rem;padding-top:1.4rem;border-top:1px solid var(--line);text-align:center;color:var(--faint);font-size:.85rem}
-.vitrine a{color:var(--azul);font-weight:700;text-decoration:none}
-footer{padding-block:1.6rem;text-align:center;color:var(--faint);font-size:.82rem}
-
-.demo-flag{display:none;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:var(--copart);border:1px solid var(--copart);border-radius:5px;padding:.12rem .4rem;text-transform:uppercase}
-body[data-demo] .demo-flag{display:inline-block}
-
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip}
+body{background:var(--tinta);color:var(--giz);font-family:var(--sans);font-size:1.0625rem;line-height:1.55;transition:background .6s, color .6s}
+h1,h2{font-family:var(--serif);font-weight:400;line-height:.98;letter-spacing:-.02em}
+em{font-style:italic}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.tab{font-variant-numeric:tabular-nums}
+.reveal{clip-path:inset(100% 0 0 0);opacity:.001;transition:clip-path .52s var(--ease),opacity .52s var(--ease)}
+.reveal.on{clip-path:inset(0);opacity:1}
+/* RÉGUA */
+.regua{position:fixed;top:0;left:0;right:0;z-index:40;background:color-mix(in oklab, var(--tinta) 88%,transparent);backdrop-filter:blur(8px)}
+.regua-in{display:flex;align-items:center;gap:24px;padding:10px 24px}
+.trilho{position:relative;flex:1;height:34px}
+.trilho ol{position:absolute;inset:0;display:flex;list-style:none;align-items:center}
+.trilho li{flex:1;position:relative}
+.trilho a{font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.02em;color:var(--fumaca);text-decoration:none;padding:2px 0;white-space:nowrap}
+.trilho::after{content:'';position:absolute;bottom:6px;left:0;right:0;height:1px;background:var(--linha)}
+.agulha{position:absolute;bottom:2px;width:9px;height:9px;border-radius:999px;background:var(--fumaca);transition:left .8s var(--ease)}
+.relogio{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:500}
+.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--linha);border-radius:999px;padding:3px 10px;font-size:.74rem;font-weight:600}
+.ponto{width:7px;height:7px;border-radius:999px}
+.tema{background:none;border:1px solid var(--linha);border-radius:999px;color:var(--fumaca);width:32px;height:32px;cursor:pointer;font-size:.9rem;line-height:1;display:grid;place-items:center}
+/* HERO */
+.hero{min-height:100dvh;display:flex;flex-direction:column;justify-content:center;padding:64px 24px}
+.hero-grid{display:grid;grid-template-columns:1fr 1.02fr;gap:40px;align-items:center}
+.marca{font-family:var(--serif);font-size:1.05rem;margin-bottom:24px}
+.hora-secao{font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.hero h1{font-size:clamp(2.75rem,7vw,5.5rem);margin-bottom:16px}
+.hero h1 em{color:var(--brasa)}
+.local{max-width:34ch;margin-bottom:32px}
+.local b{font-weight:500}
+.estado{border:1px solid var(--linha);border-radius:2px;padding:24px;max-width:430px;background:var(--tinta2)}
+.estado-nome{font-family:var(--serif);font-size:1.5rem}
+.estado-sub{color:var(--fumaca);font-size:.9rem}
+.estado-espera{font-size:.9rem;color:var(--fumaca);margin-top:8px}
+.estado-espera b{color:var(--giz);font-weight:500}
+.wa-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--wa);color:#0B1F13;font-family:var(--sans);font-weight:600;font-size:.95rem;padding:.72rem 1.15rem;border-radius:999px;text-decoration:none;box-shadow:0 10px 24px -12px color-mix(in oklab,var(--wa) 70%,transparent);margin-top:16px}
+.wa-btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px color-mix(in oklab,var(--wa) 80%,transparent)}
+/* FORNO (SVG simples) */
+.forno{width:100%;height:auto;display:block}
+.forno .tijolo{fill:none;stroke:var(--linha);stroke-width:1.1}
+.forno .arco{fill:var(--tinta2);stroke:var(--linha);stroke-width:1.5}
+.forno .boca{fill:var(--carvao)}
+.forno .piso{fill:var(--tinta2)}
+.forno .lenha{fill:var(--tinta2)}
+.forno .massa{fill:var(--giz);opacity:.8}
+.forno .crosta{fill:none;stroke:var(--brasa);stroke-width:2;opacity:calc(.3+var(--calor,.5)*.55)}
+.forno .cobertura{fill:var(--brasa);opacity:calc(.35+var(--calor,.5)*.55)}
+.forno .chama{opacity:var(--calor,.5);animation:brasa 4.7s infinite}
+@keyframes brasa{0%{filter:brightness(1)}17%{filter:brightness(1.22)}23%{filter:brightness(.93)}61%{filter:brightness(1.14)}79%{filter:brightness(.97)}100%{filter:brightness(1)}}
+.forma{transform-box:fill-box;transform-origin:center;animation:gira 26s linear infinite}
+.forno:hover .forma{animation-play-state:paused}
+@keyframes gira{to{rotate:360deg}}
+/* SEÇÕES */
+.secao{padding:80px 0;border-top:1px solid var(--linha)}
+.hora-secao{display:block;text-align:center;margin-bottom:24px}
+.secao h2{font-size:clamp(1.9rem,4vw,3rem);max-width:22ch;margin:0 auto 40px;text-align:center}
+.fita{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--linha)}
+.prova{padding:24px;border-left:1px solid var(--linha)}
+.prova:first-child{border-left:0}
+.prova .quando{font-size:.78rem;font-weight:600;letter-spacing:.12em;color:var(--fumaca);margin-bottom:8px}
+.prova h3{font-size:1.35rem;margin-bottom:8px}
+.prova p{color:var(--fumaca);font-size:.94rem;max-width:28ch}
+.prova svg{margin-bottom:16px}
+.prova circle{fill:none;stroke:var(--fumaca);stroke-width:1.2}
+/* PAINEL DE FORNO */
+.painel{border-top:1px solid var(--linha)}
+.painel .fita{border:0}
+.linha-pizza{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--linha);font-family:var(--sans)}
+.linha-pizza:last-child{border-bottom:0}
+.linha-pizza .tempo{font-variant-numeric:tabular-nums;font-weight:600}
+.linha-pizza .nome{font-family:var(--serif)}
+.linha-pizza .preco{font-variant-numeric:tabular-nums}
+.linha-pizza .add{background:none;border:1px solid var(--linha);border-radius:999px;padding:4px 10px;cursor:pointer;font-size:.8rem}
+/* COMANDA */
+.comanda{position:fixed;bottom:0;left:0;right:0;background:var(--carvao);border-top:1px solid var(--linha);transform:translateY(100%);transition:transform .3s var(--ease)}
+.comanda.ativa{transform:translateY(0)}
+.comanda-in{display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+.comanda-total{font-family:var(--serif);font-size:1.25rem}
+.comanda-enviar{background:var(--wa);color:#0B1F13;border:none;border-radius:999px;padding:8px 16px;font-weight:600;cursor:pointer}
+/* RODAPÉ */
+footer{border-top:1px solid var(--linha);padding:24px;text-align:center;font-size:.85rem}
 @media(max-width:860px){
-  .hero .grid{grid-template-columns:1fr;gap:1.6rem}
-  .checker{grid-template-columns:1fr}
-  .esp-grid{grid-template-columns:1fr 1fr}
-  .nav a.lk{display:none}
+  .hero{min-height:auto;padding:40px 16px}
+  .hero-grid{grid-template-columns:1fr}
+  .fita{grid-template-columns:1fr}
+  .prova{border-left:0;border-top:1px solid var(--linha}
+  .prova:first-child{border-top:0}
 }
-@media(max-width:520px){ .esp-grid{grid-template-columns:1fr} }
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{clip-path:none;opacity:1}
+  .forma{animation:none}
+}
 </style>
 </head>
 <body>
-<nav class="nav"><div class="wrap">
-  <div class="brand"><span class="rx">A+</span>Clínica Andirá</div>
-  <div class="nav-cta">
-    <a class="lk" href="#matriz">Convênios</a>
-    <a class="lk" href="#espec">Especialidades</a>
-    <a class="btn btn-solid" href="#checar" style="padding:.55rem 1.1rem;font-size:.88rem">Checar convênio</a>
-  </div>
-</div></nav>
 
-<header class="hero"><div class="wrap"><div class="grid">
-  <div>
-    <span class="kick">Clínica · Itararé, São Vicente <span class="demo-flag">demo</span></span>
-    <h1>“Atende meu convênio?”<br><em>A resposta honesta.</em></h1>
-    <p class="lede">A pergunta que todo mundo faz no balcão — e que nenhum site responde. Diga seu plano e a especialidade: a gente diz na hora se <b>cobre</b>, se tem <b>co-participação</b>, se está em <b>carência</b> — e qual é a <b>próxima vaga de verdade</b>, a de convênio e a particular.</p>
-    <div class="cta">
-      <a class="btn btn-solid" href="#checar">Checar meu convênio →</a>
-      <a class="btn btn-ghost" href="#matriz">Ver todos os convênios</a>
-    </div>
-    <div class="note">🔒 <span><b>Sem cadastro.</b> A checagem é uma estimativa da clínica; a confirmação final é da operadora.</span></div>
+<header class="regua">
+  <div class="regua-in">
+    <nav class="trilho" aria-label="A noite">
+      <ol>
+        <li><a href="#h18">18</a></li>
+        <li><a href="#h19">19</a></li>
+        <li><a href="#h20">20</a></li>
+        <li><a href="#h21">21</a></li>
+        <li><a href="#h22">22</a></li>
+        <li><a href="#h23">23</a></li>
+      </ol>
+      <span class="agulha" id="agulha" style="left:0%"></span>
+    </nav>
+    <p class="relogio tab">
+      <span id="relogio">00:00</span>
+      <span class="pill" id="pill"><span class="ponto"></span><span id="pill-txt">—</span></span>
+    </p>
+    <button class="tema" id="tema" type="button" aria-label="Alternar dia e noite">☾</button>
   </div>
-  <div class="desk" aria-label="Balcão da recepção">
-    <div class="who"><div class="av">🩺</div><div><div class="nm">Recepção · Clínica Andirá</div><div class="rl">responde de seg a sáb</div></div></div>
-    <div class="bubble you"><span class="q">você pergunta</span>“Vocês atendem SulAmérica pra dermatologia?”</div>
-    <div class="bubble"><span class="q">a maioria dos sites</span>“Sim, atendemos todos os convênios! Agende já.” <em style="color:var(--carencia)">(e você descobre o contrário no balcão)</em></div>
-    <div class="bubble"><span class="q">aqui</span>“SulAmérica cobre dermato, <b>com co-participação de R$ 55</b>. Próxima vaga de convênio: daqui a 12 dias. Particular tem <b>amanhã</b> por R$ 260. Qual prefere?”</div>
-  </div>
-</div></div></header>
+</header>
 
-<!-- VERIFICADOR -->
-<section id="checar"><div class="wrap">
-  <div class="shead">
-    <span class="kick">Verificação de elegibilidade</span>
-    <h2>Seu convênio, sua especialidade — a guia sai na hora</h2>
-    <p>Não é “sim pra tudo”. Cada plano credencia especialidades diferentes, com regras diferentes. Escolha e veja a sua.</p>
-  </div>
-  <div class="checker">
-    <div class="form">
-      <h3>Monte sua checagem</h3>
-      <p class="sub">Nenhum dado é enviado — tudo roda no seu navegador.</p>
-      <div class="field">
-        <label for="conv">Convênio</label>
-        <select id="conv"></select>
-      </div>
-      <div class="field">
-        <label for="esp">Especialidade</label>
-        <select id="esp"></select>
-      </div>
-      <div class="field">
-        <label for="adesao">Entrada no plano <span style="text-transform:none;letter-spacing:0;font-weight:500;color:var(--faint)">(pra checar carência)</span></label>
-        <input id="adesao" type="date">
-        <div class="hint">Deixe em branco se já é cliente antigo do plano.</div>
+<main>
+
+<section class="hero" id="h18">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="marca"><b>Forno da Vila</b> — pizza a lenha</p>
+      <p class="hora-secao tab">18:00</p>
+      <h1>A noite<br><em>inteira.</em></h1>
+      <p class="local">Massa de <b>48 horas</b>, forno a lenha desde 2014.<br>
+         Av. Exemplo, 000 — Itararé, São Vicente.</p>
+      <div class="estado" id="estado">
+        <p><span class="estado-nome" id="estado-nome">—</span><br>
+           <span class="estado-sub" id="estado-sub"></span></p>
+        <p class="estado-espera" id="estado-espera"></p>
+        <a class="wa-btn" id="cta" href="#" target="_blank" rel="noopener">
+          <span id="cta-txt">Pedir no WhatsApp</span>
+        </a>
       </div>
     </div>
+    <div class="hero-arte">
+      <!-- SVG do forno — versão simplificada -->
+      <svg class="forno" viewBox="0 0 440 340" aria-hidden="true" focusable="false">
+        <defs>
+          <radialGradient id="g-brasa" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FFF1E6" stop-opacity=".9"/>
+            <stop offset="38%" stop-color="#FF5A1F" stop-opacity=".6"/>
+            <stop offset="100%" stop-color="#FF5A1F" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <path class="arco" d="M44 302 L44 208 A176 148 0 0 1 396 208 L396 302 Z"/>
+        <g class="tijolo">
+          <path d="M70 302 L70 210 A150 126 0 0 1 370 210 L370 302"/>
+          <path d="M89 302 L89 212 A131 110 0 0 1 351 212 L351 302"/>
+        </g>
+        <path class="boca" d="M108 300 L108 214 A112 96 0 0 1 332 214 L332 300 Z"/>
+        <ellipse class="piso" cx="220" cy="298" rx="112" ry="26"/>
+        <g class="chama"><ellipse cx="220" cy="296" rx="118" ry="34" fill="url(#g-brasa)"/></g>
+        <g class="lenha">
+          <rect x="272" y="272" width="52" height="9" rx="4.5" transform="rotate(-7 298 276)"/>
+          <rect x="282" y="282" width="44" height="9" rx="4.5" transform="rotate(5 304 286)"/>
+        </g>
+        <g transform="translate(198 284) scale(1 .4)">
+          <g class="forma">
+            <circle class="massa" r="66"/>
+            <circle class="crosta" r="66"/>
+            <circle class="crosta" r="53"/>
+            <g class="cobertura">
+              <circle cx="-19" cy="-22" r="7"/><circle cx="20" cy="-13" r="6"/>
+              <circle cx="-4" cy="16" r="7.5"/><circle cx="26" cy="19" r="5.5"/>
+            </g>
+          </g>
+        </g>
+        <path class="bancada" d="M28 302 H412 a6 6 0 0 1 6 6 v14 a6 6 0 0 1-6 6 H28 a6 6 0 0 1-6-6 v-14 a6 6 0 0 1 6-6 z"/>
+      </svg>
+    </div>
+  </div>
+</section>
 
-    <div class="guia" id="guia">
-      <div class="carimbo" id="carimbo" style="display:none"></div>
-      <div class="top">
-        <div><div class="t1">Guia de Elegibilidade</div><div class="t2">CLÍNICA ANDIRÁ · SÃO VICENTE/SP</div></div>
-        <div class="prot" id="prot">Nº ANDIRA-0000<br>emitida agora</div>
+<section class="secao" id="h19">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">18:40</p>
+    <h2 class="reveal">Começa 48 horas antes de você ter fome.</h2>
+    <div class="fita">
+      <article class="prova reveal">
+        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="8"/></svg>
+        <p class="quando tab">48H ANTES</p>
+        <h3>Descanso</h3>
+        <p>A massa dorme na câmara fria. Sem pressa e sem fermento a mais.</p>
+      </article>
+      <article class="prova reveal">
+        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="14"/></svg>
+        <p class="quando tab">ONTEM</p>
+        <h3>Sova</h3>
+        <p>Trabalhada à mão, uma vez só. É o que deixa a borda leve.</p>
+      </article>
+      <article class="prova reveal">
+        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="21"/></svg>
+        <p class="quando tab">HOJE, 16H</p>
+        <h3>Bolas</h3>
+        <p>Porcionada e coberta. Às 18h em ponto, a primeira entra no forno.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="secao painel" id="h20">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">19:30</p>
+    <h2 class="reveal">Saindo do forno</h2>
+    <div class="fita reveal">
+      <div class="linha-pizza">
+        <span class="tempo tab">~9 min</span>
+        <span class="nome">Margherita</span>
+        <span class="preco tab">R$ 45</span>
+        <button class="add" data-sabor="Margherita" data-preco="45">+</button>
       </div>
-      <div class="serr"></div>
-      <div class="body">
-        <div id="badgeWrap" style="margin-bottom:.9rem"></div>
-        <div class="g-line"><span class="k">Convênio</span><span class="v" id="gConv">—</span></div>
-        <div class="g-line"><span class="k">Especialidade</span><span class="v" id="gEsp">—</span></div>
-        <div class="g-line"><span class="k">Valor da consulta</span><span class="v" id="gVal">—</span></div>
-        <div class="g-line"><span class="k">Carência</span><span class="v" id="gCar">—</span></div>
-        <div class="g-line"><span class="k">Profissional</span><span class="v" id="gProf">—</span></div>
-        <div class="vaga-box">
-          <div class="vl"><span class="lbl">Próxima vaga</span><span class="dt" id="gVaga">—</span></div>
-          <div class="cmp" id="gCmp"></div>
-        </div>
-        <div class="honest" id="gHonest"></div>
-        <div class="act" id="gAct"></div>
+      <div class="linha-pizza">
+        <span class="tempo tab">~11 min</span>
+        <span class="nome">Calabresa</span>
+        <span class="preco tab">R$ 48</span>
+        <button class="add" data-sabor="Calabresa" data-preco="48">+</button>
+      </div>
+      <div class="linha-pizza">
+        <span class="tempo tab">~13 min</span>
+        <span class="nome">Portuguesa</span>
+        <span class="preco tab">R$ 52</span>
+        <button class="add" data-sabor="Portuguesa" data-preco="52">+</button>
+      </div>
+      <div class="linha-pizza">
+        <span class="tempo tab">~16 min</span>
+        <span class="nome">Quatro Queijos</span>
+        <span class="preco tab">R$ 58</span>
+        <button class="add" data-sabor="Quatro Queijos" data-preco="58">+</button>
       </div>
     </div>
   </div>
-</div></section>
+</section>
 
-<!-- MATRIZ: o "não" público -->
-<section id="matriz"><div class="wrap">
-  <div class="shead">
-    <span class="kick">Nada de letra miúda</span>
-    <h2>O que cada convênio cobre — na cara</h2>
-    <p>A tabela que a concorrente esconde. Se um plano não credencia uma especialidade aqui, está escrito. Sem surpresa no balcão.</p>
-  </div>
-  <div class="matriz-wrap"><table class="matriz" id="matrizTbl"><thead></thead><tbody></tbody></table></div>
-  <div class="legenda">
-    <span class="cell sim"><span class="mk"></span>Coberto</span>
-    <span class="cell cop"><span class="mk"></span>Coberto com co-participação</span>
-    <span class="cell car"><span class="mk"></span>Coberto após carência</span>
-    <span class="cell nao"><span class="mk"></span>Não credenciado — só particular</span>
-  </div>
-</div></section>
-
-<!-- ESPECIALIDADES -->
-<section id="espec"><div class="wrap">
-  <div class="shead">
-    <span class="kick">O que atendemos</span>
-    <h2>Especialidades e a fila real de cada uma</h2>
-    <p>A espera não é igual pra todas — cardiologia lota, clínico geral tem quase sempre. O número embaixo é a média de dias por convênio.</p>
-  </div>
-  <div class="esp-grid" id="espGrid"></div>
-</div></section>
-
-<!-- FINAL -->
-<section><div class="wrap">
-  <div class="final">
-    <h2>Descubra em 20 segundos, sem ligar</h2>
-    <p>Cheque seu convênio, veja a próxima vaga e confirme no WhatsApp — com a guia já preenchida do jeito certo.</p>
-    <div class="cta">
-      <a class="btn btn-solid" href="#checar">Checar meu convênio</a>
-      <a class="btn btn-ghost" id="waGeral" href="https://wa.me/5511970776856" target="_blank" rel="noopener">Falar com a recepção</a>
+<section class="secao" id="h21">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">21:00</p>
+    <h2 class="reveal">O horário em que o forno não descansa.</h2>
+    <div class="fita reveal">
+      <div style="padding:24px;border-bottom:1px solid var(--linha)">
+        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">180 pizzas no sábado</p>
+        <p style="color:var(--fumaca)">Cada uma assada na hora certa.</p>
+      </div>
+      <div style="padding:24px;border-bottom:1px solid var(--linha)">
+        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">48h de massa</p>
+        <p style="color:var(--fumaca)">Fermentação natural, sem pressa.</p>
+      </div>
+      <div style="padding:24px">
+        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">12 anos de forno</p>
+        <p style="color:var(--fumaca)">Lenha de carvalho desde 2014.</p>
+      </div>
     </div>
   </div>
-  <div class="vitrine">
-    Este é um site <b>Premium</b> feito pela <a href="https://receitazero.github.io/receita-zero/receita-zero/" target="_blank" rel="noopener">Vitrine Certa</a> — sites prontos pra pequenos negócios de São Vicente, no ar em 48h.
+</section>
+
+<section class="secao" id="h22">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">22:15</p>
+    <h2 class="reveal">Onde a gente chega</h2>
+    <div class="fita reveal">
+      <div style="padding:24px">
+        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">Centro — 25 min</p>
+        <p style="color:var(--fumaca)">Itararé — 30 min · Pq. Bitaru — 35 min · Jd. Rio Branco — 40 min</p>
+      </div>
+    </div>
   </div>
-</div></section>
+</section>
 
-<footer><div class="wrap">Clínica Andirá · dados fictícios de demonstração · São Vicente/SP · © 2026</div></footer>
+<section class="secao" id="h23">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">23:30</p>
+    <h2 class="reveal">Depois disso, o forno apaga.</h2>
+    <div class="fita reveal">
+      <div style="padding:24px">
+        <p style="font-family:var(--sans);font-size:1.1rem;letter-spacing:.02em">
+          Última rodada às 23:30. Depois, o forno apaga.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<script>
-/* ====== BLOCO REVENDÁVEL — trocar de clínica = editar só isto ====== */
-const CASA = {
-  nome:'Clínica Andirá', bairro:'Itararé, São Vicente', wa:'5511970776856',
-  abre:8, fecha:19,
-  // especialidades: rótulo, ícone, preço particular, fila-base em dias e o profissional
-  esp:{
-    clinico:{ nome:'Clínico Geral', ic:'🩺', part:190, fila:2, prof:'Dr. Bento Salles' },
-    cardio:{  nome:'Cardiologia',   ic:'❤️', part:330, fila:9, prof:'Dra. Íris Katz' },
-    derma:{   nome:'Dermatologia',  ic:'🧴', part:260, fila:12, prof:'Dra. Nara Lund' },
-    ortoped:{ nome:'Ortopedia',     ic:'🦴', part:300, fila:7, prof:'Dr. Caio Prado' },
-    gineco:{  nome:'Ginecologia',   ic:'🌸', part:270, fila:6, prof:'Dra. Vera Assis' },
-    pediatria:{nome:'Pediatria',    ic:'🧸', part:210, fila:3, prof:'Dr. Ravi Nunes' },
-  },
-  // convênios: o que credencia (esp cobertas), co-participação R$ e carência em dias
-  convenios:{
-    particular:{ nome:'Particular',      cobre:'all', copart:0,  carencia:0,   filaMult:0.3 },
-    unimed:{     nome:'Unimed',           cobre:['clinico','cardio','ortoped','gineco','pediatria'], copart:0,  carencia:0,   filaMult:1.0 },
-    bradesco:{   nome:'Bradesco Saúde',   cobre:['clinico','cardio','derma','gineco'],               copart:40, carencia:0,   filaMult:1.1 },
-    amil:{       nome:'Amil',             cobre:['clinico','ortoped','pediatria'],                   copart:0,  carencia:180, filaMult:1.2 },
-    sulamerica:{ nome:'SulAmérica',       cobre:['clinico','cardio','derma','ortoped','gineco','pediatria'], copart:55, carencia:0, filaMult:1.0 },
-  },
-};
-const DEMO = { conv:'sulamerica', esp:'derma', adesao:'', flag:true };
-/* ================================================================= */
+</main>
 
-const $=s=>document.querySelector(s);
-const q=new URLSearchParams(location.search);
-const isDemo=q.has('demo');
-const MESES=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
-const DIAS=['dom','seg','ter','qua','qui','sex','sáb'];
-
-// hora congelável p/ demo/link
-function agora(){
-  const h=q.get('agora');
-  const d=new Date(2026,6,23,10,30); // base fixa: 23/jul/2026 10:30 (determinístico)
-  if(h&&/^\d{1,2}:\d{2}$/.test(h)){const[H,M]=h.split(':').map(Number);d.setHours(H,M,0,0);}
-  return d;
-}
-function addDiasUteis(base,n){
-  const d=new Date(base);let add=0;
-  while(add<n){ d.setDate(d.getDate()+1); const wd=d.getDay(); if(wd!==0) add++; } // conta seg–sáb
-  return d;
-}
-function fmtData(d){ return `${DIAS[d.getDay()]} ${d.getDate()} ${MESES[d.getMonth()]}`; }
-function slotHora(esp){ const base=[8,9,10,11,14,15,16,17]; const i=(esp.length*3)%base.length; const h=base[i]; return String(h).padStart(2,'0')+':00'; }
-
-// popula selects, matriz, especialidades
-function boot(){
-  const cvS=$('#conv'), esS=$('#esp');
-  for(const[k,v]of Object.entries(CASA.convenios)) cvS.insertAdjacentHTML('beforeend',`<option value="${k}">${v.nome}</option>`);
-  for(const[k,v]of Object.entries(CASA.esp)) esS.insertAdjacentHTML('beforeend',`<option value="${k}">${v.nome}</option>`);
-  // matriz
-  const espKeys=Object.keys(CASA.esp);
-  let head='<tr><th>Convênio</th>'+espKeys.map(k=>`<th>${CASA.esp[k].nome}</th>`).join('')+'</tr>';
-  $('#matrizTbl thead').innerHTML=head;
-  let rows='';
-  for(const[ck,cv]of Object.entries(CASA.convenios)){
-    if(ck==='particular') continue;
-    let tds='';
-    for(const ek of espKeys){
-      const cob = cv.cobre==='all'||cv.cobre.includes(ek);
-      if(!cob) tds+=`<td><span class="cell nao"><span class="mk"></span>só particular</span></td>`;
-      else if(cv.carencia>0) tds+=`<td><span class="cell car"><span class="mk"></span>após carência</span></td>`;
-      else if(cv.copart>0) tds+=`<td><span class="cell cop"><span class="mk"></span>co-part R$ ${cv.copart}</span></td>`;
-      else tds+=`<td><span class="cell sim"><span class="mk"></span>coberto</span></td>`;
-    }
-    rows+=`<tr><td class="plan">${cv.nome}</td>${tds}</tr>`;
-  }
-  $('#matrizTbl tbody').innerHTML=rows;
-  // especialidades
-  let eg='';
-  for(const[k,v]of Object.entries(CASA.esp)){
-    eg+=`<div class="esp-card"><div class="ic">${v.ic}</div><h4>${v.nome}</h4><p>Particular a partir de R$ ${v.part}.</p><div class="wait">fila convênio ~${v.fila} d · particular ~${Math.max(1,Math.ceil(v.fila*0.3))} d</div></div>`;
-  }
-  $('#espGrid').innerHTML=eg;
-}
-
-// MOTOR de elegibilidade
-function emitir(convK,espK,adesaoStr){
-  const cv=CASA.convenios[convK], es=CASA.esp[espK];
-  const particular = convK==='particular';
-  const credenciado = particular || cv.cobre==='all' || cv.cobre.includes(espK);
-  const now=agora();
-  let status, valor, carLabel, honest, honestCls='', carimbo=null, filaDias, ateProfBadge;
-
-  if(particular){
-    status='particular';
-    valor='R$ '+es.part;
-    carLabel='—';
-    filaDias=Math.max(1,Math.ceil(es.fila*CASA.convenios.particular.filaMult));
-    honest=`Atendimento particular, com a agenda mais aberta. Emitimos recibo pra reembolso — se o seu plano reembolsa.`;
-  } else if(!credenciado){
-    status='soparticular';
-    valor='R$ '+es.part+' (particular)';
-    carLabel='—';
-    filaDias=Math.max(1,Math.ceil(es.fila*CASA.convenios.particular.filaMult));
-    honestCls='slate';
-    honest=`<b>${cv.nome} não credencia ${es.nome} nesta clínica.</b> A gente não vai fingir que sim. Dá pra atender <b>particular</b> — com a vaga mais cedo — ou você usa seu plano em outra unidade da rede.`;
-    carimbo={txt:'só particular',cls:'slate'};
-  } else {
-    // carência?
-    let bloqCarencia=false, liberaData=null;
-    if(!particular && cv.carencia>0){
-      const ad = adesaoStr ? new Date(adesaoStr+'T00:00:00') : null;
-      if(ad && !isNaN(ad)){
-        liberaData=new Date(ad); liberaData.setDate(liberaData.getDate()+cv.carencia);
-        if(liberaData>now) bloqCarencia=true;
-      } else {
-        // sem data → assumimos cliente antigo (sem carência), mas avisamos
-      }
-    }
-    if(bloqCarencia){
-      status='carencia';
-      valor= cv.copart>0 ? 'R$ '+cv.copart+' (co-part) após liberar' : 'coberto após liberar';
-      const dd=Math.ceil((liberaData-now)/86400000);
-      carLabel=`libera ${fmtData(liberaData)} · faltam ${dd} d`;
-      filaDias=Math.max(1,Math.ceil(es.fila*CASA.convenios.particular.filaMult));
-      honestCls='warn';
-      honest=`<b>Seu plano ${cv.nome} ainda está em carência pra ${es.nome}</b> (${cv.carencia} dias a partir da entrada). Pelo convênio, só a partir de <b>${fmtData(liberaData)}</b>. Se precisar antes, dá pra fazer <b>particular</b> por R$ ${es.part}.`;
-      carimbo={txt:'em carência',cls:''};
-    } else {
-      status = cv.copart>0 ? 'copart' : 'coberto';
-      valor = particular ? 'R$ '+es.part+' (particular)' : (cv.copart>0 ? 'Coberto · co-part R$ '+cv.copart : 'Coberto pelo plano · R$ 0');
-      carLabel = particular ? '—' : (cv.carencia>0 ? 'cliente sem carência pendente' : 'sem carência');
-      filaDias = Math.max(1,Math.ceil(es.fila*cv.filaMult));
-      if(particular){
-        honest=`Atendimento particular com a agenda mais aberta. Recibo pra reembolso, se o seu plano reembolsa.`;
-      } else if(cv.copart>0){
-        honest=`Coberto — você paga só a <b>co-participação de R$ ${cv.copart}</b> na recepção, o resto é com o plano. Isso vem no boleto do convênio, não é taxa nossa.`;
-        honestCls='';
-      } else {
-        honest=`Coberto integralmente pelo ${cv.nome}. Leve carteirinha e documento com foto.`;
-      }
-    }
-  }
-
-  // próxima vaga: convênio x particular
-  const vagaConv = credenciado && !particular ? addDiasUteis(now, filaDias) : null;
-  const vagaPart = addDiasUteis(now, Math.max(1,Math.ceil(es.fila*CASA.convenios.particular.filaMult)));
-  const vagaPrincipal = (status==='coberto'||status==='copart') ? vagaConv : vagaPart;
-
-  return {status, particular, credenciado, convNome:cv.nome, espNome:es.nome, prof:es.prof,
-    valor, carLabel, honest, honestCls, carimbo,
-    vagaPrincipal, vagaConv, vagaPart, filaDias,
-    slot:slotHora(es.nome), espPart:es.part};
-}
-
-const BADGE={
-  coberto:['coberto','Coberto pelo plano'],
-  copart:['copart','Coberto · com co-participação'],
-  carencia:['carencia','Em carência'],
-  particular:['particular','Particular'],
-  soparticular:['particular','Só particular'],
-};
-
-function render(){
-  const convK=$('#conv').value, espK=$('#esp').value, ad=$('#adesao').value;
-  const r=emitir(convK,espK,ad);
-  const [cls,label]=BADGE[r.status];
-  $('#badgeWrap').innerHTML=`<span class="badge ${cls}"><span class="dot"></span>${label}</span>`;
-  $('#gConv').textContent=r.convNome;
-  $('#gEsp').textContent=r.espNome;
-  $('#gVal').textContent=r.valor;
-  $('#gCar').textContent=r.carLabel;
-  $('#gProf').textContent=r.prof;
-
-  // próxima vaga principal
-  $('#gVaga').textContent = `${fmtData(r.vagaPrincipal)} · ${r.slot}`;
-  // comparação convênio x particular quando ambos existem
-  let cmp='';
-  if(r.status==='coberto'||r.status==='copart'){
-    cmp=`Pelo convênio: <b>${fmtData(r.vagaConv)}</b>. Quer antes? Particular tem <b>${fmtData(r.vagaPart)}</b> por R$ ${r.espPart}.`;
-  } else if(r.status==='carencia'){
-    cmp=`A vaga acima é <b>particular</b> (R$ ${r.espPart}) — a de convênio abre quando a carência liberar.`;
-  } else if(r.status==='particular'){
-    cmp=`Consulta particular: a agenda mais aberta da clínica. Recibo pra reembolso, se o seu plano reembolsa.`;
-  } else {
-    cmp=`A vaga acima é <b>particular</b> (R$ ${r.espPart}). Seu plano não credencia essa especialidade aqui.`;
-  }
-  $('#gCmp').innerHTML=cmp;
-
-  const h=$('#gHonest'); h.className='honest '+(r.honestCls||''); h.innerHTML=r.honest;
-
-  // carimbo (forma, não só cor)
-  const cm=$('#carimbo');
-  if(r.carimbo){ cm.style.display='block'; cm.textContent=r.carimbo.txt; cm.className='carimbo '+(r.carimbo.cls||''); }
-  else cm.style.display='none';
-
-  // protocolo
-  const seed=(convK.length*7+espK.length*13)%9000+1000;
-  $('#prot').innerHTML=`Nº ANDIRA-${seed}<br>emitida ${DIAS[agora().getDay()]} ${agora().getDate()} ${MESES[agora().getMonth()]}`;
-
-  // ações
-  const dataTxt=`${fmtData(r.vagaPrincipal)} ${r.slot}`;
-  const msg=`Olá! Vim pela guia do site. Convênio: ${r.convNome}. Especialidade: ${r.espNome}. Quero a vaga de ${dataTxt}.`;
-  const wa=`https://wa.me/${CASA.wa}?text=${encodeURIComponent(msg)}`;
-  let acts=`<a class="btn btn-solid" href="${wa}" target="_blank" rel="noopener">Confirmar no WhatsApp →</a>`;
-  if((r.status==='coberto'||r.status==='copart')){
-    const msgP=`Olá! Prefiro a vaga particular de ${r.espNome} em ${fmtData(r.vagaPart)}. Pode ser?`;
-    acts+=`<a class="btn btn-ghost" href="https://wa.me/${CASA.wa}?text=${encodeURIComponent(msgP)}" target="_blank" rel="noopener">Prefiro particular</a>`;
-  }
-  $('#gAct').innerHTML=acts;
-}
-
-// aplica params de URL / demo
-function applyParams(){
-  if(isDemo){ document.body.setAttribute('data-demo',''); }
-  const preset = isDemo ? DEMO : {};
-  const conv=q.get('conv')||preset.conv;
-  const esp=q.get('esp')||preset.esp;
-  const ades=q.get('adesao')||preset.adesao;
-  if(conv&&CASA.convenios[conv]) $('#conv').value=conv;
-  if(esp&&CASA.esp[esp]) $('#esp').value=esp;
-  if(ades) $('#adesao').value=ades;
-  $('#waGeral').href=`https://wa.me/${CASA.wa}`;
-}
-
-boot();
-applyParams();
-render();
-['conv','esp','adesao'].forEach(id=>$('#'+id).addEventListener('change',()=>{ render();
-  if(location.hash!=='#checar'){/* mantém foco na guia sem pular */}
-}));
-</script>
-
-  
-
-  <!-- Vitrine Certa Exit-Intent -->
-<style>
-#vc-exit{position:fixed;inset:0;background:rgba(11,7,20,.82);z-index:9998;display:none;
-  align-items:center;justify-content:center;padding:1.4rem;font-family:system-ui,sans-serif}
-#vc-exit.show{display:flex;animation:vcFade .25s ease}
-@keyframes vcFade{from{opacity:0}to{opacity:1}}
-#vc-exit .box{background:#0B0714;color:#EFE9FF;border:1px solid rgba(45,212,191,.4);
-  border-radius:16px;max-width:420px;width:100%;padding:1.8rem;text-align:center;
-  box-shadow:0 24px 70px rgba(0,0,0,.6)}
-#vc-exit h3{margin:0 0 .5rem;color:#2DD4BF;font-size:1.35rem;line-height:1.25}
-#vc-exit p{margin:0 0 1.2rem;opacity:.85;font-size:.98rem;line-height:1.5}
-#vc-exit .cta{display:inline-block;background:#C6FF00;color:#0B0714;font-weight:800;
-  text-decoration:none;padding:.85rem 1.4rem;border-radius:99px;font-size:1rem}
-#vc-exit .close{display:block;margin:.9rem auto 0;background:none;border:0;color:rgba(239,233,255,.5);
-  font-size:.82rem;cursor:pointer}
-</style>
-<div id="vc-exit" role="dialog" aria-modal="true" aria-label="Antes de sair">
-  <div class="box">
-    <h3>Espera aí! ;)</h3>
-    <p>Antes de ir: quer receber <b>promoções e novidades</b> do <span id="vc-biz">nosso comércio</span> direto no seu WhatsApp? É rapidinho.</p>
-    <a class="cta" id="vc-exit-wa" href="https://wa.me/5511970776856?text=Quero%20receber%20promoções%20no%20WhatsApp">Receber no WhatsApp</a>
-    <button class="close" id="vc-exit-x">Agora não, obrigado</button>
+<div class="comanda" id="comanda">
+  <div class="comanda-in">
+    <span class="comanda-total" id="comanda-total">0 itens · R$ 0</span>
+    <button class="comanda-enviar" id="comanda-enviar">Enviar comanda →</button>
   </div>
 </div>
+
+<footer>
+  <div class="wrap">
+    <p>Forno da Vila · pizza a lenha em São Vicente · aberto 18h–23:30 · © 2026</p>
+    <p style="margin-top:8px"><a href="../../receita-zero/#planos" style="color:var(--fumaca)">Quer um site assim pro seu negócio?</a></p>
+  </div>
+</footer>
+
 <script>
-(function(){
-  var shown=false;
-  function show(){
-    if(shown||sessionStorage.getItem('vc_exit_done'))return;
-    shown=true;sessionStorage.setItem('vc_exit_done','1');
-    document.getElementById('vc-exit').classList.add('show');
-  }
-  function hide(){document.getElementById('vc-exit').classList.remove('show');}
-  document.addEventListener('visibilitychange',function(){if(document.hidden)show();});
-  window.addEventListener('beforeunload',function(e){if(!sessionStorage.getItem('vc_exit_done')){e.preventDefault();e.returnValue='';}});
-  document.addEventListener('click',function(e){
-    if(e.target&&e.target.id==='vc-exit-x')hide();
-    if(e.target&&e.target.id==='vc-exit')hide();
+/* Configuração fictícia de portfólio — trocar pelos dados reais */
+const CASA = {
+  abre:18, aquecendoAte:18.34, ultimoPedido:23.5, fecha:24,
+  picoDe:20, picoAte:22,
+  esperaBase:25, esperaPico:45,
+  whats:'5511970776856'
+};
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const clamp = (v,a,b) => Math.min(b, Math.max(a, v));
+
+function horaAgora(){
+  const forcada = new URLSearchParams(location.search).get('h');
+  if(forcada !== null && forcada !== '') return clamp(parseFloat(forcada), 0, 23.999);
+  const agora = new Date();
+  const h = agora.getHours();
+  const m = agora.getMinutes();
+  return h + m/60;
+}
+
+function estadoDe(h){
+  if(h >= CASA.ultimoPedido && h < CASA.fecha)
+    return {id:'ultima', nome:'Última rodada', sub:'pedidos até 23:30', calor:1, espera:CASA.esperaPico, cta:'Última rodada — faltam ' + Math.round((CASA.fecha-h)*60) + ' min', msg:'Oi! Dá tempo da última rodada?'};
+  if(h >= CASA.picoDe && h < CASA.picoAte)
+    return {id:'pico', nome:'Pico', sub:'o forno não descansa', calor:1, espera:CASA.esperaPico, cta:'Pedir agora (~'+CASA.esperaPico+' min)', msg:'Oi! Pedido (sei que tá no pico):'};
+  if(h >= CASA.aquecendoAte && h < CASA.ultimoPedido)
+    return {id:'aberto', nome:'Aberto', sub:'saindo do forno', calor:.72, espera:CASA.esperaBase, cta:'Pedir agora', msg:'Oi! Pedido:'};
+  if(h >= CASA.abre && h < CASA.aquecendoAte)
+    return {id:'aquecendo', nome:'Aquecendo', sub:'primeiras saem 18:20', calor:.38, espera:null, cta:'Entrar na primeira fornada', msg:'Oi! Pego a primeira fornada?'};
+  return {id:'fechado', nome:'Fechado', sub:'abre 18:00', calor:0, espera:null, cta:'Programar pedido pras 18h', msg:'Oi! Queria deixar um pedido pra hoje às 18h:'};
+}
+
+function diaDe(h){
+  if(h < 6) return 0;
+  if(h < 17) return 1;
+  if(h < 18) return 1 - (h - 17);
+  return 0;
+}
+
+function formataHora(h){
+  const hh = String(Math.floor(h)).padStart(2,'0');
+  const mm = String(Math.floor((h % 1) * 60)).padStart(2,'0');
+  return hh + ':' + mm;
+}
+
+let temaManual = null;
+let comanda = [];
+
+function pinta(){
+  const h = horaAgora();
+  const e = estadoDe(h);
+  const dia = temaManual === null ? diaDe(h) : temaManual;
+  document.documentElement.style.setProperty('--calor', e.calor);
+  document.documentElement.style.setProperty('--dia', dia.toFixed(3));
+  $('#relogio').textContent = formataHora(h);
+  $('#relogio').className = 'tab';
+  $('#pill').style.background = e.calor > 0 ? 'var(--brasa)' : 'transparent';
+  $('#pill-txt').textContent = e.espera ? e.nome + ' · ~' + e.espera + ' min' : e.nome;
+  $('#estado-nome').textContent = e.nome;
+  $('#estado-sub').textContent = e.sub;
+  $('#estado-espera').innerHTML = e.espera ? 'Saindo do forno em <b>~' + e.espera + ' minutos</b>.' : (e.id === 'fechado' ? 'O forno acende às 18h. Deixa o pedido programado.' : 'As primeiras saem às 18:20.');
+  $('#cta-txt').textContent = e.cta;
+  $('#cta').href = 'https://wa.me/' + CASA.whats + '?text=' + encodeURIComponent(e.msg);
+  $('#tema').textContent = dia > .5 ? '☀' : '☾';
+  const ag = $('#agulha');
+  const dentro = h >= CASA.abre && h < CASA.fecha;
+  ag.style.opacity = dentro ? '1' : '0';
+  ag.style.left = clamp((h - CASA.abre) / 6, 0, 1) * 100 + '%';
+  $$('.trilho a').forEach(a => a.style.fontWeight = (+a.textContent === Math.floor(h)) ? '600' : '500');
+}
+
+$('#tema').addEventListener('click', () => {
+  const atual = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--dia')) || 0;
+  temaManual = atual > .5 ? 0 : 1;
+  pinta();
+});
+
+/* Reveal por máscara — ativa ao rolar ou no carregamento */
+function checkReveal(){
+  $$('.reveal:not(.on)').forEach(el=>{
+    const r=el.getBoundingClientRect();
+    if(r.top < innerHeight*0.8) el.classList.add('on');
   });
-})();
+}
+addEventListener('scroll', checkReveal, {passive:true});
+/* ativa todos no carregamento (site de portfólio: prioriza acessibilidade) */
+setTimeout(() => $$('.reveal').forEach(el => el.classList.add('on')), 100);
+
+/* Comanda */
+$$('.add').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const sabor = btn.dataset.sabor;
+    const preco = +btn.dataset.preco;
+    comanda.push({sabor, preco});
+    atualizaComanda();
+  });
+});
+
+function atualizaComanda(){
+  const total = comanda.reduce((s, i) => s + i.preco, 0);
+  $('#comanda-total').textContent = comanda.length + ' itens · R$ ' + total;
+  $('#comanda').classList.toggle('ativa', comanda.length > 0);
+}
+
+$('#comanda-enviar').addEventListener('click', () => {
+  const total = comanda.reduce((s, i) => s + i.preco, 0);
+  const itens = comanda.map(i => '• ' + i.sabor + ' — R$' + i.preco).join('\n');
+  const msg = 'Pedido — ' + formataHora(horaAgora()) + '\n' + itens + '\nTotal R$' + total;
+  window.open('https://wa.me/' + CASA.whats + '?text=' + encodeURIComponent(msg), '_blank');
+});
+
+/* Scroll-driven: o scroll é a noite passando */
+if(!CSS.supports('animation-timeline','scroll()')){
+  let alvo = 0, cur = 0, rodando = false;
+  const passo = () => {
+    cur += (alvo - cur) * 0.06;
+    document.documentElement.style.setProperty('--noite', cur.toFixed(4));
+    if(Math.abs(alvo - cur) > 0.0008) requestAnimationFrame(passo); else rodando = false;
+  };
+  addEventListener('scroll', () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    alvo = max > 0 ? clamp(scrollY / max, 0, 1) : 0;
+    if(!rodando){ rodando = true; requestAnimationFrame(passo); }
+  }, {passive:true});
+}
+
+pinta();
+setInterval(pinta, 20000);
 </script>
 </body>
 </html>

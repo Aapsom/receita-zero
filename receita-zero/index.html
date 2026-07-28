@@ -3,867 +3,466 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vitrine Certa — o site que responde pelo seu comércio, no ar em 48h</title>
-  <!-- Vitrine Certa Analytics -->
-<meta name="google-site-verification" content="rnYREYB-JR9uyXWd7UwSkGJn4kyjyVpHakO6lgSxJ-w">
-<script type="text/javascript">
-(function(c,l,a,r,i,t,y){
-  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-})(window,document,"clarity","script","xrpcs8vw2o");
-</script>
-<meta name="description" content="Vitrine Certa: sites para comércio local que RESPONDEM — cardápio que fecha pedido, agenda que marca, verificador que responde. No ar em 48h com o seu WhatsApp. R$49/mês, sem contrato.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20x='4'%20y='6'%20width='24'%20height='21'%20rx='3'%20fill='none'%20stroke='%2316181F'%20stroke-width='2.2'/%3E%3Cpath%20d='M4%2012%20H28'%20stroke='%2316181F'%20stroke-width='2.2'/%3E%3Cpath%20d='M10.5%2018.5%20l3.8%203.8%20L22%2014.6'%20fill='none'%20stroke='%23E8873A'%20stroke-width='3'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E">
-<meta property="og:title" content="Vitrine Certa — o site que responde pelo seu comércio">
-<meta property="og:description" content="Sites para comércio local que funcionam de verdade. No ar em 48h com o seu WhatsApp. R$49/mês, sem contrato.">
-<meta property="og:type" content="website">
+<title>Forno da Vila — pizza a lenha em São Vicente</title>
+<meta name="description" content="Forno a lenha em São Vicente. Massa de 48 horas. Aberto das 18h às 23h30.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-/* Hallmark · macrostructure: 14 Narrative Workflow · Vitrine Certa / Landing Mãe
-   objeto=vitrine que contém as 8 lojas · cor=espectro dos 8 nichos (luz viaja, type ancora)
-   movimento=vivo e reativo (spotlight, lâmpada que respira, contadores, cards que acendem)
-   efeitos=vidro profundo + halo de luz + spotlight no cursor + grão · não-poluído: 1 cor ativa por vez */
+/* PARALELO — redesign alternativo da pizzaria premium
+   Conceito: "A NOITE INTEIRA" — mesmo plano, execução diferente
+   Diferença: motion CSS pura, sem JS de relógio odômetro, sem SVG complexo */
 :root{
-  --vidro:#EDEFF4; --vidro2:#E3E7EF; --branco:#FBFCFE;
-  --linha:#CBD4E0; --linha2:#778799;
-  --tinta:#14161D; --fumaca:#525A6A; --fraco:#5A6373;
-  --claro:#FBFCFE; --claro2:#C3CBD6;
-  --noite:#111219; --noite2:#191C25; --noite-linha:#2E3340;
-  --lamp:#E8873A; --lamp-2:#9C4D15;
-  --wa:#1EA956;
-  /* espectro: cor ativa (viaja) + tinta legível da cor ativa */
-  --accent:#E8873A; --accent-ink:#9C4D15;
-  --r:14px; --r-sm:3px;
-  --sp-xs:.4rem; --sp-sm:.7rem; --sp-md:1rem; --sp-lg:1.5rem; --sp-xl:2.3rem; --sp-2xl:3.4rem; --sp-3xl:5rem;
-  --disp:'Space Grotesk',Georgia,serif;
-  --sans:'Plus Jakarta Sans','Segoe UI',system-ui,sans-serif;
-  --mono:'JetBrains Mono',ui-monospace,monospace;
-  --sombra:0 26px 64px -32px rgba(20,22,29,.34), 0 8px 22px -14px rgba(20,22,29,.16);
-  --sombra-sm:0 3px 14px -6px rgba(20,22,29,.22);
+  /* NOITE */
+  --n-tinta:#141A2A; --n-carvao:#0C1120; --n-tinta2:#1C2438; --n-linha:#2B3450;
+  --n-giz:#EDEFF5; --n-fumaca:#98A0B8; --n-brasa:#FF5A1F; --n-nucleo:#FFF1E6;
+  /* DIA */
+  --d-tinta:#ECEDF1; --d-carvao:#DDDFE7; --d-tinta2:#F7F8FB; --d-linha:#D3D7E2;
+  --d-giz:#141A2A; --d-fumaca:#5C6478; --d-brasa:#D6410E; --d-nucleo:#8A2B06;
+  /* resolvidos */
+  --tinta:color-mix(in oklab, var(--n-tinta), var(--d-tinta) calc(var(--dia,0)*100%));
+  --carvao:color-mix(in oklab, var(--n-carvao), var(--d-carvao) calc(var(--dia,0)*100%));
+  --tinta2:color-mix(in oklab, var(--n-tinta2), var(--d-tinta2) calc(var(--dia,0)*100%));
+  --linha:color-mix(in oklab, var(--n-linha), var(--d-linha) calc(var(--dia,0)*100%));
+  --giz:color-mix(in oklab, var(--n-giz), var(--d-giz) calc(var(--dia,0)*100%));
+  --fumaca:color-mix(in oklab, var(--n-fumaca), var(--d-fumaca) calc(var(--dia,0)*100%));
+  --brasa:color-mix(in oklab, var(--n-brasa), var(--d-brasa) calc(var(--dia,0)*100%));
+  --wa:#25D366;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Instrument Sans',system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
 }
-*{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth}
-body{background:var(--vidro);color:var(--tinta);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip;position:relative}
-/* camada 1: halo de luz da cor ativa, fixo no topo (viaja com o espectro) */
-body::before{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;transition:background .8s ease;background:
-  radial-gradient(52% 40% at 84% -8%, color-mix(in srgb,var(--accent) 34%,transparent), transparent 62%),
-  radial-gradient(48% 36% at 10% 4%, color-mix(in srgb,var(--accent) 12%,transparent), transparent 60%);}
-/* camada 2: spotlight que segue o cursor, tingido pela cor ativa */
-#spot{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.9;mix-blend-mode:multiply;transition:opacity .4s;
-  background:radial-gradient(360px circle at var(--mx,80%) var(--my,10%), color-mix(in srgb,var(--accent) 22%,transparent), transparent 66%);}
-/* camada 3: grão premium */
-body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;mix-blend-mode:soft-light;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
-.wrap{max-width:1120px;margin-inline:auto;padding-inline:24px;position:relative}
-section{padding-block:var(--sp-3xl);position:relative}
-h1,h2,h3{font-family:var(--disp);line-height:1.06;letter-spacing:-.02em;font-weight:300;font-feature-settings:"ss01"}
-h2{font-size:clamp(1.8rem,3.6vw,2.7rem)}
-h3{font-weight:500;letter-spacing:-.01em}
-p{max-width:64ch}
-a{color:var(--accent-ink);text-decoration:none;transition:color .4s}
-.kick{display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--accent-ink);margin-bottom:var(--sp-sm);transition:color .5s}
-.lamp-word{color:var(--accent-ink);transition:color .5s}
-.center{text-align:center}
-.sec-head{max-width:60ch;margin-inline:auto;margin-bottom:var(--sp-2xl)}
-.sec-head p{margin-inline:auto;color:var(--fumaca)}
-/* botões — âncora âmbar (não viajam) */
-.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.95rem 1.7rem;border-radius:999px;font-family:var(--sans);font-weight:700;font-size:1rem;cursor:pointer;border:1.5px solid transparent;text-decoration:none;transition:background .18s,border-color .18s,transform .18s,box-shadow .18s;line-height:1}
-.btn:hover{transform:translateY(-2px)}
-.btn-lamp{background:var(--lamp);color:#241202;box-shadow:0 14px 34px -14px rgba(232,135,58,.75)}
-.btn-lamp:hover{background:#F0913F;box-shadow:0 20px 46px -14px rgba(232,135,58,.85)}
-.btn-ghost{background:color-mix(in srgb,var(--branco) 55%,transparent);border-color:var(--linha2);color:var(--tinta);backdrop-filter:blur(8px)}
-.btn-ghost:hover{border-color:var(--tinta);background:var(--branco)}
-.btn-wa{background:var(--wa);color:#052e16}
-.btn-wa:hover{background:#25c063}
-.btn-sm{padding:.6rem 1.15rem;font-size:.9rem}
-/* vidro profundo */
-.vidro{background:color-mix(in srgb,var(--branco) 46%,transparent);border:1px solid rgba(255,255,255,.6);border-radius:var(--r);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:var(--sombra-sm),inset 0 1px 0 rgba(255,255,255,.7)}
-/* logo */
-.logo{width:30px;height:30px;color:var(--tinta);flex:none}
-.brand{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--disp);font-weight:500;font-size:1.22rem;letter-spacing:-.02em;color:var(--tinta)}
-/* NAV */
-.nav{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--vidro) 72%,transparent);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border-bottom:1px solid rgba(255,255,255,.5);box-shadow:0 1px 0 var(--linha)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-block:.85rem;gap:1rem}
-.nav .links{display:flex;align-items:center;gap:1.4rem}
-.nav .links a.txt{color:var(--fumaca);font-weight:600;font-size:.94rem}
-.nav .links a.txt:hover{color:var(--tinta)}
-@media(max-width:680px){.nav .links a.txt{display:none}}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip}
+body{background:var(--tinta);color:var(--giz);font-family:var(--sans);font-size:1.0625rem;line-height:1.55;transition:background .6s, color .6s}
+h1,h2{font-family:var(--serif);font-weight:400;line-height:.98;letter-spacing:-.02em}
+em{font-style:italic}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.tab{font-variant-numeric:tabular-nums}
+.reveal{clip-path:inset(100% 0 0 0);opacity:.001;transition:clip-path .52s var(--ease),opacity .52s var(--ease)}
+.reveal.on{clip-path:inset(0);opacity:1}
+/* RÉGUA */
+.regua{position:fixed;top:0;left:0;right:0;z-index:40;background:color-mix(in oklab, var(--tinta) 88%,transparent);backdrop-filter:blur(8px)}
+.regua-in{display:flex;align-items:center;gap:24px;padding:10px 24px}
+.trilho{position:relative;flex:1;height:34px}
+.trilho ol{position:absolute;inset:0;display:flex;list-style:none;align-items:center}
+.trilho li{flex:1;position:relative}
+.trilho a{font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.02em;color:var(--fumaca);text-decoration:none;padding:2px 0;white-space:nowrap}
+.trilho::after{content:'';position:absolute;bottom:6px;left:0;right:0;height:1px;background:var(--linha)}
+.agulha{position:absolute;bottom:2px;width:9px;height:9px;border-radius:999px;background:var(--fumaca);transition:left .8s var(--ease)}
+.relogio{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:500}
+.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--linha);border-radius:999px;padding:3px 10px;font-size:.74rem;font-weight:600}
+.ponto{width:7px;height:7px;border-radius:999px}
+.tema{background:none;border:1px solid var(--linha);border-radius:999px;color:var(--fumaca);width:32px;height:32px;cursor:pointer;font-size:.9rem;line-height:1;display:grid;place-items:center}
 /* HERO */
-.hero{padding-top:var(--sp-2xl)}
-.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:var(--sp-2xl);align-items:center}
-.hero h1{font-size:clamp(2.5rem,5.6vw,4.3rem);margin-bottom:var(--sp-lg)}
-.hero .lede{color:var(--fumaca);font-size:1.13rem;max-width:46ch;margin-bottom:var(--sp-xl)}
-.hero .cta{display:flex;gap:.8rem;flex-wrap:wrap}
-.hero .microcopy{margin-top:var(--sp-md);font-family:var(--mono);font-size:.78rem;color:var(--fraco);letter-spacing:.02em}
-/* a VITRINE viva do hero — cicla pelas 8 lojas */
-.vitrine-wrap{position:relative}
-/* halo colorido atrás da vitrine (viaja com a loja ativa) */
-.vitrine-wrap::before{content:'';position:absolute;inset:-16% -3% -20% -3%;z-index:0;pointer-events:none;transition:background .7s ease;filter:blur(40px);
-  background:radial-gradient(62% 60% at 60% 32%, color-mix(in srgb,var(--accent) 62%,transparent), transparent 70%);opacity:.55}
-.vitrine{position:relative;z-index:1;border-radius:20px;overflow:hidden;border:1px solid var(--noite-linha);background:var(--noite);box-shadow:var(--sombra);transition:box-shadow .6s}
-.vitrine .toldo{display:flex;gap:6px;align-items:center;padding:.7rem .9rem;border-bottom:1px solid var(--noite-linha);background:var(--noite2)}
-.vitrine .toldo i{width:9px;height:9px;border-radius:50%;background:#3a3f4d;display:block}
-.vitrine .toldo .url{margin-left:.4rem;font-family:var(--mono);font-size:.68rem;color:#9aa2b2;letter-spacing:.02em}
-.vitrine .glass{position:relative;padding:1.5rem 1.4rem 1.5rem;min-height:288px}
-.vitrine .lamp{position:absolute;top:1.1rem;right:1.2rem;width:14px;height:14px;border-radius:50%;background:var(--accent);
-  box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 22%,transparent),0 0 26px 5px color-mix(in srgb,var(--accent) 66%,transparent);
-  animation:breathe 3.4s ease-in-out infinite}
-@keyframes breathe{0%,100%{opacity:.75;transform:scale(.9)}50%{opacity:1;transform:scale(1.12)}}
-.vitrine .emoji{font-size:1.5rem;line-height:1;margin-bottom:.5rem;display:block}
-.vitrine .shopname{font-family:var(--disp);font-weight:500;color:var(--accent);font-size:1.35rem;letter-spacing:-.01em;transition:color .5s}
-.vitrine .addr{font-family:var(--mono);font-size:.72rem;color:#8b93a3;margin-top:.15rem;margin-bottom:1rem}
-.estado{display:inline-flex;align-items:center;gap:.5rem;font-weight:700;font-size:.9rem;padding:.38rem .8rem;border-radius:999px;border:1.5px solid;font-family:var(--sans);color:#7ff0a8;border-color:#2f7d4e;background:rgba(47,125,78,.16)}
-.estado .mk{width:11px;height:11px;flex:none;border-radius:2px;background:#7ff0a8}
-.vitrine .statusline{margin-top:.9rem;color:var(--claro2);font-size:.92rem;min-height:2.6em}
-.vitrine .statusline b{color:var(--claro)}
-.vitrine .wabtn{display:flex;width:fit-content;align-items:center;gap:.5rem;margin-top:1rem;padding:.7rem 1.2rem;border-radius:999px;font-weight:700;font-size:.92rem;background:var(--wa);color:#052e16}
-/* orbs = os 8 nichos, o espectro clicável */
-.orbs{display:flex;gap:.5rem;justify-content:center;margin-top:1.1rem;flex-wrap:wrap}
-.orb{width:26px;height:26px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0;background:none;position:relative;transition:transform .2s}
-.orb i{position:absolute;inset:4px;border-radius:50%;background:var(--c);transition:inset .2s}
-.orb:hover{transform:scale(1.15)}
-.orb[aria-selected="true"]{border-color:var(--c)}
-.orb[aria-selected="true"] i{inset:5px}
-.orb .em{position:absolute;inset:0;display:grid;place-items:center;font-size:.7rem;opacity:0;transition:opacity .2s}
-.orb:hover .em,.orb[aria-selected="true"] .em{opacity:1}
-.orb:hover i,.orb[aria-selected="true"] i{filter:brightness(.7)}
-/* faixa de prova + contadores */
-.prova{border-block:1px solid rgba(255,255,255,.5);background:color-mix(in srgb,var(--branco) 40%,transparent);backdrop-filter:blur(8px)}
-.prova .wrap{display:flex;flex-wrap:wrap;gap:.8rem 2rem;justify-content:center;align-items:center;padding-block:1.15rem;font-family:var(--mono);font-size:.82rem;color:var(--fumaca);letter-spacing:.01em}
-.prova b{color:var(--tinta);font-weight:600;font-variant-numeric:tabular-nums}
-.prova .dot{color:var(--accent-ink);transition:color .5s}
-/* diferenciais */
-.difs{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-lg)}
-.dif{padding:var(--sp-xl);border-radius:var(--r);position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s}
-.dif.big{background:var(--noite);color:var(--claro);border:1px solid var(--noite-linha);box-shadow:var(--sombra)}
-.dif.big::before{content:'';position:absolute;top:-30%;right:-20%;width:70%;height:90%;pointer-events:none;transition:background .6s;
-  background:radial-gradient(circle, color-mix(in srgb,var(--accent) 40%,transparent), transparent 66%);opacity:.5}
-.dif.big:hover{transform:translateY(-3px)}
-.dif.big h3{color:var(--claro);font-size:1.65rem;margin-bottom:.6rem;position:relative}
-.dif.big p{color:var(--claro2);position:relative}
-.dif.big .num{font-family:var(--mono);font-size:.74rem;color:var(--accent);letter-spacing:.18em;text-transform:uppercase;margin-bottom:1rem;display:block;position:relative;transition:color .5s}
-.dif.sm{background:color-mix(in srgb,var(--branco) 50%,transparent);border:1px solid rgba(255,255,255,.6);backdrop-filter:blur(14px);box-shadow:var(--sombra-sm),inset 0 1px 0 rgba(255,255,255,.7)}
-.dif.sm:hover{transform:translateY(-3px);box-shadow:var(--sombra)}
-.dif.sm h3{font-size:1.25rem;margin-bottom:.4rem}
-.dif.sm p{color:var(--fumaca);font-size:.95rem}
-.dif.sm .ic{font-size:1.4rem;margin-bottom:.7rem;display:block}
-.difs-row2{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-lg);margin-top:var(--sp-lg)}
-.livechips{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.1rem;position:relative}
-.livechips a{font-family:var(--mono);font-size:.74rem;color:var(--claro2);border:1px solid var(--noite-linha);border-radius:999px;padding:.32rem .7rem;transition:border-color .2s,color .2s,background .2s}
-.livechips a:hover{border-color:var(--c,var(--accent));color:#fff;background:color-mix(in srgb,var(--c,var(--accent)) 26%,transparent)}
-/* passos */
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-lg)}
-.step{background:color-mix(in srgb,var(--branco) 50%,transparent);border:1px solid rgba(255,255,255,.6);border-radius:var(--r);padding:var(--sp-xl);position:relative;backdrop-filter:blur(14px);box-shadow:var(--sombra-sm),inset 0 1px 0 rgba(255,255,255,.7);transition:transform .22s,box-shadow .22s}
-.step:hover{transform:translateY(-4px);box-shadow:var(--sombra)}
-.step .n{font-family:var(--mono);font-size:.82rem;color:var(--accent-ink);font-weight:600;margin-bottom:.7rem;transition:color .5s}
-.step h3{font-size:1.2rem;margin-bottom:.4rem}
-.step p{color:var(--fumaca);font-size:.93rem}
-/* moldura de vitrine p/ iframe */
-.frame-vitrine{border-radius:18px;overflow:hidden;border:1px solid var(--linha2);background:var(--branco);box-shadow:var(--sombra);position:relative}
-.frame-vitrine .toldo{display:flex;gap:6px;align-items:center;padding:.6rem .85rem;border-bottom:1px solid var(--linha);background:var(--vidro2)}
-.frame-vitrine .toldo i{width:9px;height:9px;border-radius:50%;background:#c2ccd8;display:block}
-.frame-vitrine .toldo .url{margin-left:.4rem;font-family:var(--mono);font-size:.68rem;color:var(--fraco)}
-.frame-vitrine iframe{width:100%;height:520px;border:0;background:#fff;display:block}
-.ctrl{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin:var(--sp-md) 0 var(--sp-lg)}
-select{background:var(--branco);color:var(--tinta);border:1.5px solid var(--linha2);border-radius:999px;padding:.7rem 1.1rem;font-family:var(--sans);font-size:.95rem;font-weight:600;cursor:pointer}
-.hint{color:var(--fraco);font-size:.85rem;margin-top:.9rem;text-align:center}
-/* gerador */
-.gen-box{max-width:640px;margin:0 auto}
-.gen-box.vidro{padding:var(--sp-xl)}
-.gen-row{margin-bottom:var(--sp-md)}
-.gen-2col{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-md)}
-.gen-box input,.gen-box select{width:100%;background:var(--branco);border:1.5px solid var(--linha2);border-radius:10px;padding:13px 14px;font-family:var(--sans);font-size:15px;color:var(--tinta)}
-.gen-box input::placeholder{color:var(--fraco)}
-.gen-box label{display:block;font-family:var(--mono);font-size:.72rem;color:var(--fumaca);margin-bottom:.35rem;letter-spacing:.04em}
-.gen-err{color:#b3261e;font-size:.88rem;margin-top:var(--sp-sm);text-align:center;font-weight:600}
-.gen-result{max-width:820px;margin:var(--sp-2xl) auto 0;text-align:center}
-.gen-result-txt{color:var(--fumaca);margin:0 auto var(--sp-md)}
-.gen-result-txt b{color:var(--tinta)}
-/* grid premium */
-.price-filter{display:flex;justify-content:center;gap:.5rem;margin:0 auto var(--sp-xl);flex-wrap:wrap}
-.price-filter button{background:color-mix(in srgb,var(--branco) 55%,transparent);color:var(--fumaca);border:1.5px solid var(--linha2);border-radius:999px;padding:.55rem 1.15rem;font-family:var(--sans);font-weight:600;font-size:.9rem;cursor:pointer;transition:all .18s;backdrop-filter:blur(6px)}
-.price-filter button:hover{color:var(--tinta);border-color:var(--tinta)}
-.price-filter button.active{background:var(--lamp);color:#241202;border-color:var(--lamp);font-weight:700}
-.premium-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-md)}
-.pg{display:flex;flex-direction:column;gap:.15rem;background:color-mix(in srgb,var(--branco) 55%,transparent);border:1px solid rgba(255,255,255,.6);border-radius:var(--r);padding:var(--sp-lg);text-decoration:none;color:var(--tinta);transition:transform .2s,border-color .2s,box-shadow .2s;backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.6);position:relative}
-.pg:hover{transform:translateY(-5px);border-color:var(--c,var(--accent));box-shadow:0 22px 50px -22px var(--c,var(--accent))}
-.pg b{font-family:var(--disp);font-weight:500;font-size:1.12rem}
-.pg span{color:var(--fraco);font-size:.84rem}
-.pg[data-tier].hide{display:none}
-/* planos */
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-lg);max-width:960px;margin:0 auto}
-.plans.dois{grid-template-columns:1fr 1fr;max-width:760px}
-.plan{background:color-mix(in srgb,var(--branco) 60%,transparent);border:1px solid rgba(255,255,255,.6);border-radius:18px;padding:var(--sp-xl);position:relative;display:flex;flex-direction:column;backdrop-filter:blur(14px);box-shadow:var(--sombra-sm),inset 0 1px 0 rgba(255,255,255,.7);transition:transform .22s,box-shadow .22s}
-.plan:hover{transform:translateY(-4px);box-shadow:var(--sombra)}
-.plan.destaque{border-color:color-mix(in srgb,var(--lamp) 60%,var(--linha));box-shadow:0 26px 60px -30px rgba(232,135,58,.5)}
-.plan .badge{position:absolute;top:-12px;left:var(--sp-xl);background:var(--lamp);color:#241202;font-weight:700;font-size:.7rem;padding:.3rem .8rem;border-radius:999px;font-family:var(--mono);letter-spacing:.04em}
-.plan h3{font-size:1.3rem;margin-bottom:.2rem}
-.plan .price{font-family:var(--disp);font-size:2.6rem;font-weight:700;margin:.3rem 0;font-feature-settings:"ss01","tnum"}
-.plan .price small{font-size:1rem;color:var(--fumaca);font-weight:500;font-family:var(--sans)}
-.plan .sub{color:var(--fumaca);font-size:.92rem;margin-bottom:var(--sp-md)}
-.plan ul{list-style:none;padding:0;margin:0 0 var(--sp-lg);flex:1}
-.plan li{padding:.4rem 0;color:var(--fumaca);font-size:.93rem;display:flex;gap:.55rem;align-items:flex-start}
-.plan li::before{content:'';width:16px;height:16px;flex:none;margin-top:.18rem;background:var(--lamp-2);-webkit-mask:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3.2 3.2L13 5' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");mask:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3.2 3.2L13 5' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
-.plan .btn{width:100%;justify-content:center}
-/* faq */
-.faq details{background:color-mix(in srgb,var(--branco) 55%,transparent);border:1px solid rgba(255,255,255,.6);border-radius:12px;padding:var(--sp-md) var(--sp-lg);margin-bottom:.55rem;max-width:780px;margin-inline:auto;backdrop-filter:blur(10px)}
-.faq summary{font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:1rem;align-items:center}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:'+';font-family:var(--mono);color:var(--accent-ink);font-size:1.3rem;line-height:1;transition:transform .2s,color .5s}
-.faq details[open] summary::after{transform:rotate(45deg)}
-.faq p{color:var(--fumaca);margin-top:.6rem;font-size:.93rem;max-width:none}
-/* cta final */
-.cta-final .inner{background:var(--noite);border-radius:22px;padding:var(--sp-3xl) var(--sp-xl);text-align:center;position:relative;overflow:hidden;box-shadow:var(--sombra)}
-.cta-final .inner::before{content:'';position:absolute;top:-45%;right:-8%;width:62%;height:130%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 42%,transparent),transparent 62%);pointer-events:none;transition:background .6s}
-.cta-final .inner::after{content:'';position:absolute;bottom:-50%;left:-10%;width:55%;height:120%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 22%,transparent),transparent 62%);pointer-events:none;transition:background .6s}
-.cta-final h2{color:var(--claro);position:relative;margin-bottom:.6rem}
-.cta-final p{color:var(--claro2);position:relative;max-width:52ch;margin:0 auto var(--sp-xl)}
-.cta-final .cta{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;position:relative}
-/* footer */
-footer{border-top:1px solid var(--linha);padding-block:var(--sp-xl);color:var(--fumaca);font-size:.88rem}
-footer .wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
-footer .brand{font-size:1.05rem}
-footer .logo{width:24px;height:24px}
-/* reveal */
-.reveal{clip-path:inset(-80px -80px 100% -80px);opacity:0;transition:clip-path .6s cubic-bezier(.22,1,.36,1),opacity .6s cubic-bezier(.22,1,.36,1)}
-.reveal.in{clip-path:inset(-80px -80px -80px -80px);opacity:1}
+.hero{min-height:100dvh;display:flex;flex-direction:column;justify-content:center;padding:64px 24px}
+.hero-grid{display:grid;grid-template-columns:1fr 1.02fr;gap:40px;align-items:center}
+.marca{font-family:var(--serif);font-size:1.05rem;margin-bottom:24px}
+.hora-secao{font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.hero h1{font-size:clamp(2.75rem,7vw,5.5rem);margin-bottom:16px}
+.hero h1 em{color:var(--brasa)}
+.local{max-width:34ch;margin-bottom:32px}
+.local b{font-weight:500}
+.estado{border:1px solid var(--linha);border-radius:2px;padding:24px;max-width:430px;background:var(--tinta2)}
+.estado-nome{font-family:var(--serif);font-size:1.5rem}
+.estado-sub{color:var(--fumaca);font-size:.9rem}
+.estado-espera{font-size:.9rem;color:var(--fumaca);margin-top:8px}
+.estado-espera b{color:var(--giz);font-weight:500}
+.wa-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--wa);color:#0B1F13;font-family:var(--sans);font-weight:600;font-size:.95rem;padding:.72rem 1.15rem;border-radius:999px;text-decoration:none;box-shadow:0 10px 24px -12px color-mix(in oklab,var(--wa) 70%,transparent);margin-top:16px}
+.wa-btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px color-mix(in oklab,var(--wa) 80%,transparent)}
+/* FORNO (SVG simples) */
+.forno{width:100%;height:auto;display:block}
+.forno .tijolo{fill:none;stroke:var(--linha);stroke-width:1.1}
+.forno .arco{fill:var(--tinta2);stroke:var(--linha);stroke-width:1.5}
+.forno .boca{fill:var(--carvao)}
+.forno .piso{fill:var(--tinta2)}
+.forno .lenha{fill:var(--tinta2)}
+.forno .massa{fill:var(--giz);opacity:.8}
+.forno .crosta{fill:none;stroke:var(--brasa);stroke-width:2;opacity:calc(.3+var(--calor,.5)*.55)}
+.forno .cobertura{fill:var(--brasa);opacity:calc(.35+var(--calor,.5)*.55)}
+.forno .chama{opacity:var(--calor,.5);animation:brasa 4.7s infinite}
+@keyframes brasa{0%{filter:brightness(1)}17%{filter:brightness(1.22)}23%{filter:brightness(.93)}61%{filter:brightness(1.14)}79%{filter:brightness(.97)}100%{filter:brightness(1)}}
+.forma{transform-box:fill-box;transform-origin:center;animation:gira 26s linear infinite}
+.forno:hover .forma{animation-play-state:paused}
+@keyframes gira{to{rotate:360deg}}
+/* SEÇÕES */
+.secao{padding:80px 0;border-top:1px solid var(--linha)}
+.hora-secao{display:block;text-align:center;margin-bottom:24px}
+.secao h2{font-size:clamp(1.9rem,4vw,3rem);max-width:22ch;margin:0 auto 40px;text-align:center}
+.fita{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--linha)}
+.prova{padding:24px;border-left:1px solid var(--linha)}
+.prova:first-child{border-left:0}
+.prova .quando{font-size:.78rem;font-weight:600;letter-spacing:.12em;color:var(--fumaca);margin-bottom:8px}
+.prova h3{font-size:1.35rem;margin-bottom:8px}
+.prova p{color:var(--fumaca);font-size:.94rem;max-width:28ch}
+.prova svg{margin-bottom:16px}
+.prova circle{fill:none;stroke:var(--fumaca);stroke-width:1.2}
+/* PAINEL DE FORNO */
+.painel{border-top:1px solid var(--linha)}
+.painel .fita{border:0}
+.linha-pizza{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--linha);font-family:var(--sans)}
+.linha-pizza:last-child{border-bottom:0}
+.linha-pizza .tempo{font-variant-numeric:tabular-nums;font-weight:600}
+.linha-pizza .nome{font-family:var(--serif)}
+.linha-pizza .preco{font-variant-numeric:tabular-nums}
+.linha-pizza .add{background:none;border:1px solid var(--linha);border-radius:999px;padding:4px 10px;cursor:pointer;font-size:.8rem}
+/* COMANDA */
+.comanda{position:fixed;bottom:0;left:0;right:0;background:var(--carvao);border-top:1px solid var(--linha);transform:translateY(100%);transition:transform .3s var(--ease)}
+.comanda.ativa{transform:translateY(0)}
+.comanda-in{display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+.comanda-total{font-family:var(--serif);font-size:1.25rem}
+.comanda-enviar{background:var(--wa);color:#0B1F13;border:none;border-radius:999px;padding:8px 16px;font-weight:600;cursor:pointer}
+/* RODAPÉ */
+footer{border-top:1px solid var(--linha);padding:24px;text-align:center;font-size:.85rem}
+@media(max-width:860px){
+  .hero{min-height:auto;padding:40px 16px}
+  .hero-grid{grid-template-columns:1fr}
+  .fita{grid-template-columns:1fr}
+  .prova{border-left:0;border-top:1px solid var(--linha}
+  .prova:first-child{border-top:0}
+}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .reveal{transition:none;opacity:1;clip-path:none}
-  .btn:hover,.step:hover,.pg:hover,.dif:hover,.plan:hover{transform:none}
-  .vitrine .lamp{animation:none}
-  #spot{display:none}
-  body::before{transition:none}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{clip-path:none;opacity:1}
+  .forma{animation:none}
 }
-/* responsivo */
-@media(max-width:900px){.difs{grid-template-columns:1fr}.premium-grid{grid-template-columns:1fr 1fr}.plans,.plans.dois{grid-template-columns:1fr}}
-@media(max-width:820px){.hero .wrap{grid-template-columns:1fr}.hero .vitrine-wrap{order:-1;max-width:440px;margin-inline:auto;width:100%}.steps{grid-template-columns:1fr}}
-@media(max-width:560px){.gen-2col{grid-template-columns:1fr}.difs-row2{grid-template-columns:1fr}.frame-vitrine iframe{height:440px}}
-@media(max-width:390px){.premium-grid{grid-template-columns:1fr}.plans.dois{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div id="spot"></div>
 
-<nav class="nav">
-  <div class="wrap">
-    <a class="brand" href="#top" aria-label="Vitrine Certa — início">
-      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
-        <rect x="4" y="6" width="24" height="21" rx="3" fill="none" stroke="currentColor" stroke-width="2.2"/>
-        <path d="M4 12 H28" stroke="currentColor" stroke-width="2.2"/>
-        <path d="M10.5 18.5 l3.8 3.8 L22 14.6" fill="none" stroke="var(--lamp)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      Vitrine Certa
-    </a>
-    <div class="links">
-      <a class="txt" href="#exemplos">Exemplos ao vivo</a>
-      <a class="txt" href="#planos">Planos</a>
-      <a class="btn btn-lamp btn-sm" href="#gerador">Montar o meu →</a>
-    </div>
-  </div>
-</nav>
-
-<header class="hero" id="top">
-  <div class="wrap">
-    <div class="hero-text">
-      <span class="kick reveal">Sites para comércio local</span>
-      <h1 class="reveal">O site que <span class="lamp-word">responde</span> pelo seu comércio.</h1>
-      <p class="lede reveal">Aqui embaixo não tem foto de site — tem site <b>funcionando</b>: cardápio que fecha pedido, agenda que marca, verificador que responde na hora. O seu fica no ar em <b>48h</b>, com o <b>seu</b> WhatsApp.</p>
-      <div class="cta reveal">
-        <a class="btn btn-lamp" href="#exemplos">Ver um site respondendo →</a>
-        <a class="btn btn-ghost" href="#gerador">Montar o meu (48h)</a>
-      </div>
-      <p class="microcopy reveal">R$49/mês · sem contrato · cancela quando quiser</p>
-      <p class="trial-badge reveal">🎁 <b>7 dias grátis</b> — site no ar hoje, sem cartão. Paga só se gostar.</p>
-    </div>
-    <div class="vitrine-wrap reveal">
-      <div class="vitrine" id="vitrine">
-        <div class="toldo"><i></i><i></i><i></i><span class="url" id="v-url">forno-a-lenha.vitrinecerta.site</span></div>
-        <div class="glass">
-          <span class="lamp" aria-hidden="true"></span>
-          <span class="emoji" id="v-emoji">🍕</span>
-          <div class="shopname" id="v-nome">Forno a Lenha</div>
-          <div class="addr" id="v-addr">Pizzaria · Itararé, São Vicente</div>
-          <span class="estado"><span class="mk"></span><span id="v-badge">Aberto agora</span></span>
-          <div class="statusline" id="v-status">Fecha às <b>23h</b>. Peça agora que sai em 40 min.</div>
-          <div class="wabtn">💬 <span id="v-wa">Pedir no WhatsApp</span></div>
-        </div>
-      </div>
-      <div class="orbs" id="orbs" role="tablist" aria-label="Escolher loja"></div>
-    </div>
+<header class="regua">
+  <div class="regua-in">
+    <nav class="trilho" aria-label="A noite">
+      <ol>
+        <li><a href="#h18">18</a></li>
+        <li><a href="#h19">19</a></li>
+        <li><a href="#h20">20</a></li>
+        <li><a href="#h21">21</a></li>
+        <li><a href="#h22">22</a></li>
+        <li><a href="#h23">23</a></li>
+      </ol>
+      <span class="agulha" id="agulha" style="left:0%"></span>
+    </nav>
+    <p class="relogio tab">
+      <span id="relogio">00:00</span>
+      <span class="pill" id="pill"><span class="ponto"></span><span id="pill-txt">—</span></span>
+    </p>
+    <button class="tema" id="tema" type="button" aria-label="Alternar dia e noite">☾</button>
   </div>
 </header>
 
-<div class="prova">
+<main>
+
+<section class="hero" id="h18">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="marca"><b>Forno da Vila</b> — pizza a lenha</p>
+      <p class="hora-secao tab">18:00</p>
+      <h1>A noite<br><em>inteira.</em></h1>
+      <p class="local">Massa de <b>48 horas</b>, forno a lenha desde 2014.<br>
+         Av. Exemplo, 000 — Itararé, São Vicente.</p>
+      <div class="estado" id="estado">
+        <p><span class="estado-nome" id="estado-nome">—</span><br>
+           <span class="estado-sub" id="estado-sub"></span></p>
+        <p class="estado-espera" id="estado-espera"></p>
+        <a class="wa-btn" id="cta" href="#" target="_blank" rel="noopener">
+          <span id="cta-txt">Pedir no WhatsApp</span>
+        </a>
+      </div>
+    </div>
+    <div class="hero-arte">
+      <!-- SVG do forno — versão simplificada -->
+      <svg class="forno" viewBox="0 0 440 340" aria-hidden="true" focusable="false">
+        <defs>
+          <radialGradient id="g-brasa" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FFF1E6" stop-opacity=".9"/>
+            <stop offset="38%" stop-color="#FF5A1F" stop-opacity=".6"/>
+            <stop offset="100%" stop-color="#FF5A1F" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <path class="arco" d="M44 302 L44 208 A176 148 0 0 1 396 208 L396 302 Z"/>
+        <g class="tijolo">
+          <path d="M70 302 L70 210 A150 126 0 0 1 370 210 L370 302"/>
+          <path d="M89 302 L89 212 A131 110 0 0 1 351 212 L351 302"/>
+        </g>
+        <path class="boca" d="M108 300 L108 214 A112 96 0 0 1 332 214 L332 300 Z"/>
+        <ellipse class="piso" cx="220" cy="298" rx="112" ry="26"/>
+        <g class="chama"><ellipse cx="220" cy="296" rx="118" ry="34" fill="url(#g-brasa)"/></g>
+        <g class="lenha">
+          <rect x="272" y="272" width="52" height="9" rx="4.5" transform="rotate(-7 298 276)"/>
+          <rect x="282" y="282" width="44" height="9" rx="4.5" transform="rotate(5 304 286)"/>
+        </g>
+        <g transform="translate(198 284) scale(1 .4)">
+          <g class="forma">
+            <circle class="massa" r="66"/>
+            <circle class="crosta" r="66"/>
+            <circle class="crosta" r="53"/>
+            <g class="cobertura">
+              <circle cx="-19" cy="-22" r="7"/><circle cx="20" cy="-13" r="6"/>
+              <circle cx="-4" cy="16" r="7.5"/><circle cx="26" cy="19" r="5.5"/>
+            </g>
+          </g>
+        </g>
+        <path class="bancada" d="M28 302 H412 a6 6 0 0 1 6 6 v14 a6 6 0 0 1-6 6 H28 a6 6 0 0 1-6-6 v-14 a6 6 0 0 1 6-6 z"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="secao" id="h19">
   <div class="wrap">
-    <span><b data-count="48">48</b>h no ar</span><span class="dot">·</span>
-    <span><b data-count="8">8</b> nichos com demo vivo</span><span class="dot">·</span>
-    <span>R$<b data-count="49">49</b>/mês, sem contrato</span><span class="dot">·</span>
-    <span>lead direto no <b>seu</b> WhatsApp</span><span class="dot">·</span>
-    <span>o <b>"não"</b> que os outros escondem</span>
+    <p class="hora-secao tab reveal">18:40</p>
+    <h2 class="reveal">Começa 48 horas antes de você ter fome.</h2>
+    <div class="fita">
+      <article class="prova reveal">
+        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="8"/></svg>
+        <p class="quando tab">48H ANTES</p>
+        <h3>Descanso</h3>
+        <p>A massa dorme na câmara fria. Sem pressa e sem fermento a mais.</p>
+      </article>
+      <article class="prova reveal">
+        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="14"/></svg>
+        <p class="quando tab">ONTEM</p>
+        <h3>Sova</h3>
+        <p>Trabalhada à mão, uma vez só. É o que deixa a borda leve.</p>
+      </article>
+      <article class="prova reveal">
+        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="21"/></svg>
+        <p class="quando tab">HOJE, 16H</p>
+        <h3>Bolas</h3>
+        <p>Porcionada e coberta. Às 18h em ponto, a primeira entra no forno.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="secao painel" id="h20">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">19:30</p>
+    <h2 class="reveal">Saindo do forno</h2>
+    <div class="fita reveal">
+      <div class="linha-pizza">
+        <span class="tempo tab">~9 min</span>
+        <span class="nome">Margherita</span>
+        <span class="preco tab">R$ 45</span>
+        <button class="add" data-sabor="Margherita" data-preco="45">+</button>
+      </div>
+      <div class="linha-pizza">
+        <span class="tempo tab">~11 min</span>
+        <span class="nome">Calabresa</span>
+        <span class="preco tab">R$ 48</span>
+        <button class="add" data-sabor="Calabresa" data-preco="48">+</button>
+      </div>
+      <div class="linha-pizza">
+        <span class="tempo tab">~13 min</span>
+        <span class="nome">Portuguesa</span>
+        <span class="preco tab">R$ 52</span>
+        <button class="add" data-sabor="Portuguesa" data-preco="52">+</button>
+      </div>
+      <div class="linha-pizza">
+        <span class="tempo tab">~16 min</span>
+        <span class="nome">Quatro Queijos</span>
+        <span class="preco tab">R$ 58</span>
+        <button class="add" data-sabor="Quatro Queijos" data-preco="58">+</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="secao" id="h21">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">21:00</p>
+    <h2 class="reveal">O horário em que o forno não descansa.</h2>
+    <div class="fita reveal">
+      <div style="padding:24px;border-bottom:1px solid var(--linha)">
+        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">180 pizzas no sábado</p>
+        <p style="color:var(--fumaca)">Cada uma assada na hora certa.</p>
+      </div>
+      <div style="padding:24px;border-bottom:1px solid var(--linha)">
+        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">48h de massa</p>
+        <p style="color:var(--fumaca)">Fermentação natural, sem pressa.</p>
+      </div>
+      <div style="padding:24px">
+        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">12 anos de forno</p>
+        <p style="color:var(--fumaca)">Lenha de carvalho desde 2014.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="secao" id="h22">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">22:15</p>
+    <h2 class="reveal">Onde a gente chega</h2>
+    <div class="fita reveal">
+      <div style="padding:24px">
+        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">Centro — 25 min</p>
+        <p style="color:var(--fumaca)">Itararé — 30 min · Pq. Bitaru — 35 min · Jd. Rio Branco — 40 min</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="secao" id="h23">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">23:30</p>
+    <h2 class="reveal">Depois disso, o forno apaga.</h2>
+    <div class="fita reveal">
+      <div style="padding:24px">
+        <p style="font-family:var(--sans);font-size:1.1rem;letter-spacing:.02em">
+          Última rodada às 23:30. Depois, o forno apaga.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="comanda" id="comanda">
+  <div class="comanda-in">
+    <span class="comanda-total" id="comanda-total">0 itens · R$ 0</span>
+    <button class="comanda-enviar" id="comanda-enviar">Enviar comanda →</button>
   </div>
 </div>
-
-<section id="porque">
-  <div class="wrap">
-    <div class="sec-head center">
-      <span class="kick reveal">Por que o nosso vende</span>
-      <h2 class="reveal">Um site de R$500 é um folheto caro.<br>O nosso trabalha.</h2>
-    </div>
-    <div class="difs">
-      <div class="dif big reveal">
-        <span class="num">O diferencial</span>
-        <h3>Ele responde.</h3>
-        <p>Cardápio que monta o pedido, agenda que marca horário, verificador de convênio que diz sim ou não na hora. Não é imagem bonita parada — é o site fazendo o trabalho enquanto você atende. Clica num nicho e vê rodando:</p>
-        <div class="livechips">
-          <a href="../site-dfy/pizzaria/premium/index.html" style="--c:#E5443B" target="_blank" rel="noopener">🍕 pizzaria</a>
-          <a href="../site-dfy/pet/premium/index.html" style="--c:#1FAE6B" target="_blank" rel="noopener">🐾 pet</a>
-          <a href="../site-dfy/clínica/premium/index.html" style="--c:#2E86D6" target="_blank" rel="noopener">🦷 clínica</a>
-          <a href="../site-dfy/salão/premium/index.html" style="--c:#E355A2" target="_blank" rel="noopener">💇 salão</a>
-          <a href="../site-dfy/oficina/premium/index.html" style="--c:#F26A1B" target="_blank" rel="noopener">🔧 oficina</a>
-          <a href="../site-dfy/padaria/premium/index.html" style="--c:#EA9A2E" target="_blank" rel="noopener">🥖 padaria</a>
-          <a href="../site-dfy/lavanderia/premium/index.html" style="--c:#17B6C7" target="_blank" rel="noopener">🧺 lavanderia</a>
-          <a href="../site-dfy/imobiliária/premium/index.html" style="--c:#6B6BE8" target="_blank" rel="noopener">🏠 imobiliária</a>
-          <a href="../site-dfy/barbearia/premium/index.html" style="--c:#E63946" target="_blank" rel="noopener">💈 barbearia</a>
-          <a href="../site-dfy/restaurante/premium/index.html" style="--c:#7A2B2B" target="_blank" rel="noopener">🍽️ restaurante</a>
-        </div>
-      </div>
-      <div class="dif big reveal">
-        <span class="num">A velocidade</span>
-        <h3>No ar em 48h.</h3>
-        <p>Você manda o tipo de comércio e a cidade. A gente estrutura, você aprova, publica. Dois dias — não dois meses, não "te retorno orçamento". E já sai com o botão do <b>seu</b> WhatsApp, pra o cliente te chamar direto, sem intermediário e sem comissão por venda.</p>
-        <div class="livechips">
-          <a href="#gerador">▸ montar o meu agora</a>
-          <a href="#como">▸ ver os 3 passos</a>
-        </div>
-      </div>
-    </div>
-    <div class="difs-row2">
-      <div class="dif sm reveal">
-        <span class="ic">🚫</span>
-        <h3>Diz o "não" na cara.</h3>
-        <p>Fechado? Em carência? Fora da área de entrega? O site avisa — cor e forma, sem letra-miúda. A honestidade é o que faz o cliente confiar e voltar. É o oposto do "atendemos tudo!" que ninguém acredita.</p>
-      </div>
-      <div class="dif sm reveal">
-        <span class="ic">🔓</span>
-        <h3>R$49, cancela quando quiser.</h3>
-        <p>Sem taxa de setup, sem fidelidade, sem contrato de 12 meses. Você testa um mês; se não trouxer cliente, cancela e a gente devolve seus dados. A conta tem que fechar pra você, não pra gente.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="como">
-  <div class="wrap">
-    <div class="sec-head center">
-      <span class="kick reveal">Como funciona</span>
-      <h2 class="reveal">Seu site em 3 passos, sem você mexer em nada</h2>
-    </div>
-    <div class="steps">
-      <div class="step reveal"><div class="n">01</div><h3>Você manda o nicho</h3><p>Conta o tipo de comércio e a cidade. A gente monta a estrutura, os textos e os serviços a partir disso.</p></div>
-      <div class="step reveal"><div class="n">02</div><h3>Estruturamos em 48h</h3><p>Cardápio, agenda ou catálogo + o botão do seu WhatsApp. Você recebe o link, confere e aprova.</p></div>
-      <div class="step reveal"><div class="n">03</div><h3>Seu cliente te acha</h3><p>No ar, ranqueando na busca local, com o lead caindo direto no seu WhatsApp — nome e pedido já na mensagem.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="exemplos">
-  <div class="wrap">
-    <div class="sec-head center">
-      <span class="kick reveal">Veja rodando</span>
-      <h2 class="reveal">Escolha um nicho e mexa no site dele</h2>
-      <p class="reveal">Cada um é um site real que a gente entrega. Clica nos botões, monta um pedido, marca um horário — é tudo de verdade. Depois é só trocar nome, fotos e preços pelo seu.</p>
-    </div>
-    <div class="ctrl reveal">
-      <select id="pv" aria-label="Escolher nicho para pré-visualizar">
-        <option value="../site-dfy/pizzaria/premium/index.html">🍕 Pizzaria</option>
-        <option value="../site-dfy/pet/premium/index.html">🐾 Pet shop</option>
-        <option value="../site-dfy/clínica/premium/index.html">🦷 Clínica</option>
-        <option value="../site-dfy/salão/premium/index.html">💇 Salão</option>
-        <option value="../site-dfy/oficina/premium/index.html">🔧 Oficina</option>
-        <option value="../site-dfy/padaria/premium/index.html">🥖 Padaria</option>
-        <option value="../site-dfy/lavanderia/premium/index.html">🧺 Lavanderia</option>
-        <option value="../site-dfy/imobiliária/premium/index.html">🏠 Imobiliária</option>
-        <option value="../site-dfy/barbearia/premium/index.html">💈 Barbearia</option>
-        <option value="../site-dfy/restaurante/premium/index.html">🍽️ Restaurante</option>
-      </select>
-    </div>
-    <div class="frame-vitrine reveal">
-      <div class="toldo"><i></i><i></i><i></i><span class="url" id="pv-url">pizzaria.vitrinecerta.site</span></div>
-      <iframe id="pvf" data-src="../site-dfy/pizzaria/premium/index.html" title="Exemplo de site ao vivo" loading="lazy"></iframe>
-    </div>
-    <p class="hint reveal">↑ um site de verdade rodando dentro desta página. Mexe nele.</p>
-  </div>
-</section>
-
-<section id="gerador">
-  <div class="wrap">
-    <div class="sec-head center">
-      <span class="kick reveal">Monte em 1 minuto</span>
-      <h2 class="reveal">Cola seu Maps ou Instagram e veja o site nascer</h2>
-      <p class="reveal">A gente puxa o nome do seu negócio do link e monta um preview personalizado na hora. Sem cadastro, sem cartão.</p>
-    </div>
-    <div class="gen-box vidro reveal">
-      <div class="gen-row">
-        <label for="gen-link">Link do seu negócio</label>
-        <input id="gen-link" type="text" placeholder="Cole o Google Maps ou o Instagram" />
-      </div>
-      <div class="gen-row gen-2col">
-        <div>
-          <label for="gen-nicho">Tipo de comércio</label>
-          <select id="gen-nicho">
-            <option value="pizzaria">🍕 Pizzaria</option>
-            <option value="pet">🐾 Pet shop</option>
-            <option value="padaria">🥖 Padaria</option>
-            <option value="oficina">🔧 Oficina</option>
-            <option value="salão">💇 Salão</option>
-            <option value="clínica">🦷 Clínica</option>
-            <option value="lavanderia">🧺 Lavanderia</option>
-            <option value="imobiliária">🏠 Imobiliária</option>
-          </select>
-        </div>
-        <div>
-          <label for="gen-cidade">Cidade</label>
-          <input id="gen-cidade" type="text" placeholder="ex: São Vicente" />
-        </div>
-      </div>
-      <button id="gen-btn" class="btn btn-lamp" style="width:100%;justify-content:center;margin-top:.4rem">Gerar meu site grátis →</button>
-      <p id="gen-err" class="gen-err" style="display:none"></p>
-      <div style="margin-top:var(--sp-md);padding-top:var(--sp-md);border-top:1px solid var(--linha);display:none" id="gen-photos-section">
-        <label for="gen-ig1" style="font-family:var(--mono);font-size:.72rem;color:var(--fumaca);margin-bottom:.35rem;letter-spacing:.04em">Fotos do Instagram (opcional)</label>
-        <input id="gen-ig1" type="text" placeholder="https://instagram.com/p/XXXXX (foto 1)" style="margin-bottom:.4rem" />
-        <input id="gen-ig2" type="text" placeholder="https://instagram.com/p/XXXXX (foto 2)" />
-        <input id="gen-ig3" type="text" placeholder="https://instagram.com/p/XXXXX (foto 3)" />
-        <p style="font-size:.78rem;color:var(--fraco);margin-top:.4rem">Cole links diretos de fotos do seu Instagram. Assim o site mostra suas fotos reais.</p>
-      </div>
-    </div>
-    <div id="gen-result" class="gen-result" style="display:none">
-      <p class="gen-result-txt">Preview de <b id="gen-nome"></b> em <b id="gen-cidade-out"></b>:</p>
-      <div class="frame-vitrine reveal">
-        <div class="toldo"><i></i><i></i><i></i><span class="url">seu-negocio.vitrinecerta.site</span></div>
-        <iframe id="gen-frame" src="" title="Preview do seu site"></iframe>
-      </div>
-      <div style="display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:var(--sp-lg)">
-        <a id="gen-wa" class="btn btn-wa" href="#" target="_blank" rel="noopener">Quero esse (R$49/mês) →</a>
-        <a class="btn btn-ghost" href="#planos">Ver todos os planos</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="premium-link">
-  <div class="wrap">
-    <div class="sec-head center">
-      <span class="kick reveal">A versão completa</span>
-      <h2 class="reveal">Cada nicho com a mecânica que ele precisa</h2>
-      <p class="reveal">O Premium (R$149/mês) entrega a mecânica única do seu tipo de comércio: cardápio imersivo, avatar do pet, orçamento ao vivo, agenda com antes/depois, verificador de convênio. Filtra por faixa e abre o exemplo real:</p>
-    </div>
-    <div class="price-filter reveal">
-      <button data-tier="all" class="active">Todos</button>
-      <button data-tier="essencial">Essencial R$49</button>
-      <button data-tier="plus">Plus R$99</button>
-      <button data-tier="premium">Premium R$149</button>
-    </div>
-    <div class="premium-grid reveal">
-      <a class="pg" data-tier="essencial" style="--c:#E5443B" href="../site-dfy/pizzaria/index.html" target="_blank" rel="noopener">🍕 <b>Pizzaria</b><span>Cardápio + delivery</span></a>
-      <a class="pg" data-tier="plus" style="--c:#E5443B" href="../site-dfy/pizzaria/plus/index.html" target="_blank" rel="noopener">🍕 <b>Pizzaria</b><span>Montar pizza clicável</span></a>
-      <a class="pg" data-tier="premium" style="--c:#E5443B" href="../site-dfy/pizzaria/premium/index.html" target="_blank" rel="noopener">🍕 <b>Pizzaria</b><span>Cardápio imersivo</span></a>
-      <a class="pg" data-tier="essencial" style="--c:#1FAE6B" href="../site-dfy/pet/index.html" target="_blank" rel="noopener">🐾 <b>Pet shop</b><span>Vitrine + contato</span></a>
-      <a class="pg" data-tier="plus" style="--c:#1FAE6B" href="../site-dfy/pet/plus/index.html" target="_blank" rel="noopener">🐾 <b>Pet shop</b><span>Quiz de preço</span></a>
-      <a class="pg" data-tier="premium" style="--c:#1FAE6B" href="../site-dfy/pet/premium/index.html" target="_blank" rel="noopener">🐾 <b>Pet shop</b><span>Avatar + calculadora</span></a>
-      <a class="pg" data-tier="essencial" style="--c:#EA9A2E" href="../site-dfy/padaria/index.html" target="_blank" rel="noopener">🥖 <b>Padaria</b><span>Cardápio + encomenda</span></a>
-      <a class="pg" data-tier="plus" style="--c:#EA9A2E" href="../site-dfy/padaria/plus/index.html" target="_blank" rel="noopener">🥖 <b>Padaria</b><span>Encomendar bolo</span></a>
-      <a class="pg" data-tier="premium" style="--c:#EA9A2E" href="../site-dfy/padaria/premium/index.html" target="_blank" rel="noopener">🥖 <b>Padaria</b><span>Story + encomenda</span></a>
-      <a class="pg" data-tier="essencial" style="--c:#F26A1B" href="../site-dfy/oficina/index.html" target="_blank" rel="noopener">🔧 <b>Oficina</b><span>Serviços + contato</span></a>
-      <a class="pg" data-tier="plus" style="--c:#F26A1B" href="../site-dfy/oficina/plus/index.html" target="_blank" rel="noopener">🔧 <b>Oficina</b><span>Orçamento clicável</span></a>
-      <a class="pg" data-tier="premium" style="--c:#F26A1B" href="../site-dfy/oficina/premium/index.html" target="_blank" rel="noopener">🔧 <b>Oficina</b><span>Orçamento ao vivo</span></a>
-      <a class="pg" data-tier="essencial" style="--c:#E355A2" href="../site-dfy/salão/index.html" target="_blank" rel="noopener">💇 <b>Salão</b><span>Serviços + agenda</span></a>
-      <a class="pg" data-tier="plus" style="--c:#E355A2" href="../site-dfy/salão/plus/index.html" target="_blank" rel="noopener">💇 <b>Salão</b><span>Before/after slider</span></a>
-      <a class="pg" data-tier="premium" style="--c:#E355A2" href="../site-dfy/salão/premium/index.html" target="_blank" rel="noopener">💇 <b>Salão</b><span>Agenda + antes/depois</span></a>
-      <a class="pg" data-tier="essencial" style="--c:#2E86D6" href="../site-dfy/clínica/index.html" target="_blank" rel="noopener">🦷 <b>Clínica</b><span>Especialidades + marcação</span></a>
-      <a class="pg" data-tier="plus" style="--c:#2E86D6" href="../site-dfy/clínica/plus/index.html" target="_blank" rel="noopener">🦷 <b>Clínica</b><span>Simulador de preço</span></a>
-      <a class="pg" data-tier="premium" style="--c:#2E86D6" href="../site-dfy/clínica/premium/index.html" target="_blank" rel="noopener">🦷 <b>Clínica</b><span>Verificador de convênio</span></a>
-      <a class="pg" data-tier="essencial" style="--c:#17B6C7" href="../site-dfy/lavanderia/index.html" target="_blank" rel="noopener">🧺 <b>Lavanderia</b><span>Serviços + coleta</span></a>
-      <a class="pg" data-tier="plus" style="--c:#17B6C7" href="../site-dfy/lavanderia/plus/index.html" target="_blank" rel="noopener">🧺 <b>Lavanderia</b><span>Simulador de preço</span></a>
-      <a class="pg" data-tier="premium" style="--c:#17B6C7" href="../site-dfy/lavanderia/premium/index.html" target="_blank" rel="noopener">🧺 <b>Lavanderia</b><span>Coleta + prazo ao vivo</span></a>
-      <a class="pg" data-tier="essencial" style="--c:#6B6BE8" href="../site-dfy/imobiliária/index.html" target="_blank" rel="noopener">🏠 <b>Imobiliária</b><span>Imóveis + contato</span></a>
-      <a class="pg" data-tier="plus" style="--c:#6B6BE8" href="../site-dfy/imobiliária/plus/index.html" target="_blank" rel="noopener">🏠 <b>Imobiliária</b><span>Filtro de imóveis</span></a>
-      <a class="pg" data-tier="premium" style="--c:#6B6BE8" href="../site-dfy/imobiliária/premium/index.html" target="_blank" rel="noopener">🏠 <b>Imobiliária</b><span>Filtro + mini-mapa</span></a>
-      <a class="pg" data-tier="premium" style="--c:#E63946" href="../site-dfy/barbearia/premium/index.html" target="_blank" rel="noopener">💈 <b>Barbearia</b><span>Senha da fila + WhatsApp pronto</span></a>
-      <a class="pg" data-tier="premium" style="--c:#7A2B2B" href="../site-dfy/restaurante/premium/index.html" target="_blank" rel="noopener">🍽️ <b>Restaurante</b><span>Jornal de bairro + cardápio</span></a>
-    </div>
-  </div>
-</section>
-
-<section id="planos">
-  <div class="wrap">
-    <div class="sec-head center">
-      <span class="kick reveal">Planos</span>
-      <h2 class="reveal">Simples, sem contrato, sem pegadinha</h2>
-    </div>
-    <div class="plans">
-      <div class="plan reveal">
-        <h3>Essencial</h3>
-        <div class="price">R$49<small>/mês</small></div>
-        <p class="sub">Zero entrada · cancela quando quiser</p>
-        <ul>
-          <li>Site da sua empresa, no ar em 48h</li>
-          <li>Hospedagem e endereço inclusos</li>
-          <li>Botão de WhatsApp direto</li>
-          <li>Aparece na busca do Google local</li>
-        </ul>
-        <a class="btn btn-ghost" href="checkout.html?plano=basico">Quero o Básico</a>
-      </div>
-      <div class="plan reveal">
-        <h3>Plus</h3>
-        <div class="price">R$99<small>/mês</small></div>
-        <p class="sub">Tudo do Essencial + acabamento premium</p>
-        <ul>
-          <li>Motion e hover cuidados nas fotos</li>
-          <li>Seção "como funciona" do seu produto</li>
-          <li>Rolagem suave no celular</li>
-          <li>Visual mais caprichado</li>
-        </ul>
-        <a class="btn btn-ghost" href="checkout.html?plano=plus">Quero o Plus</a>
-      </div>
-      <div class="plan destaque reveal">
-        <span class="badge">MAIS PROCURADO</span>
-        <h3>Premium</h3>
-        <div class="price">R$149<small>/mês</small></div>
-        <p class="sub">Tudo do Plus + a mecânica que responde</p>
-        <ul>
-          <li>Mecânica única do seu nicho</li>
-          <li>Pedido/agenda montados no site</li>
-          <li>Estados ao vivo (aberto, prazo, cobertura)</li>
-          <li>Suporte prioritário</li>
-        </ul>
-        <a class="btn btn-lamp" href="checkout.html?plano=premium">Quero o Premium</a>
-      </div>
-    </div>
-    <div class="center" style="margin-top:var(--sp-xl)">
-      <a class="btn btn-ghost btn-sm reveal" href="https://wa.me/5511970776856?text=Quero%20come%C3%A7ar%20com%20o%20Essencial%20(R%2449/m%C3%AAs)" target="_blank" rel="noopener">Começar agora (R$49/mês) →</a>
-    </div>
-  </div>
-</section>
-
-<section id="manutencao">
-  <div class="wrap">
-    <div class="sec-head center">
-      <span class="kick reveal">Quer crescer depois de contratar?</span>
-      <h2 class="reveal">Sem pressa. O site já aparece no Google. Quando quiser mais, a gente te avisa.</h2>
-      <p class="reveal" style="opacity:.8;max-width:60ch;margin-inline:auto">Todo plano já aparece na busca do Google e a gente te manda um resumo mensal de quantas pessoas chegaram. Estes pacotes são <b>próximos passos</b>, não obrigação — oferecemos 30 dias depois, com o seu número real.</p>
-    </div>
-    <div class="steps">
-      <div class="step reveal"><div class="n">GRÁTIS</div><h3>Já incluso no seu plano</h3><p>Correção de errinho (link, texto, foto) sem custo. E o resumo de visualizações no Google vai pro seu e-mail.</p></div>
-      <div class="step reveal"><div class="n">MEXER HOJE · R$29</div><h3>Atualização rápida</h3><p>Trocar prato, preço ou foto: R$29 por atualização. Pra quem não quer assinar nada.</p></div>
-      <div class="step reveal"><div class="n">SITE SEMPRE NOVINHO</div><h3>Manutenção</h3><p>De R$99/mês (2 atualizações) a R$199 (ilimitado + 1 melhoria). Seu site sempre atualizado.</p></div>
-    </div>
-    <div class="plans dois" style="margin-top:var(--sp-2xl)">
-      <div class="plan reveal">
-        <h3>Aparecer no Google PRO</h3>
-        <div class="price">R$297<small>/mês</small></div>
-        <p class="sub">Seu .com.br + ficha no mapa + subir posição + ver números completos</p>
-        <ul>
-          <li>Domínio próprio (seunegocio.com.br) + e-mail + SSL + backup</li>
-          <li>Ficha no Google Maps (Google Business Profile)</li>
-          <li>SEO local pra subir nas buscas</li>
-          <li>Relatório completo de quem chegou</li>
-        </ul>
-        <a class="btn btn-ghost" href="https://wa.me/5511970776856?text=Quero%20saber%20mais%20sobre%20Aparecer%20no%20Google%20PRO" target="_blank" rel="noopener">Quero saber mais</a>
-      </div>
-      <div class="plan destaque reveal">
-        <span class="badge">PRÓXIMO PASSO</span>
-        <h3>Cliente na Porta</h3>
-        <div class="price">R$199<small>/mês + setup</small></div>
-        <p class="sub">A gente anuncia pra você no Google e Instagram</p>
-        <ul>
-          <li>Gestão de anúncios (Google/Meta)</li>
-          <li>Verba de anúncio à parte (recomendamos R$300+/mês)</li>
-          <li>Relatório de quanto cada anúncio trouxe</li>
-          <li>Pra quem já quer clientes hoje, não só aparecer</li>
-        </ul>
-        <a class="btn btn-lamp" href="https://wa.me/5511970776856?text=Quero%20saber%20mais%20sobre%20Cliente%20na%20Porta%20(an%C3%BAncios)" target="_blank" rel="noopener">Quero saber mais</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="faq">
-  <div class="wrap">
-    <div class="sec-head center">
-      <span class="kick reveal">Dúvidas</span>
-      <h2 class="reveal">Perguntas frequentes</h2>
-    </div>
-    <details class="reveal" open><summary>Em 48h mesmo?</summary><p>Sim. O site do Essencial fica pronto em até 48h úteis depois que você envia o nicho e a cidade. Você recebe um link de pré-visualização, aprova e a gente publica. Ajustes de cor, texto ou foto entram numa rodada de revisão rápida sem custo extra.</p></details>
-    <details class="reveal"><summary>Tem fidelidade ou contrato?</summary><p>Não. Você paga mês a mês e cancela quando quiser, sem multa e sem burocracia. O site fica no ar enquanto a assinatura estiver ativa; se cancelar, tiramos do ar e devolvemos seus dados. Sem letra miúda.</p></details>
-    <details class="reveal"><summary>O site "que responde" funciona sem eu fazer nada?</summary><p>Funciona. O cardápio monta o pedido, a agenda mostra horários, o verificador responde — tudo no próprio site. Quando o cliente conclui, cai uma mensagem pronta no seu WhatsApp com nome e pedido. Você só recebe e confirma.</p></details>
-    <details class="reveal"><summary>Quem faz o site, é robô ou pessoa?</summary><p>Um sistema monta a estrutura, os textos e os serviços a partir do seu nicho, e uma revisão humana dá o polimento final (tom, coerência, conferência de preços). Você aprova antes de subir. Não é gerador solto — tem cuidado humano no meio.</p></details>
-    <details class="reveal"><summary>Onde o lead (cliente) cai?</summary><p>Direto no seu WhatsApp, numa mensagem já trazendo o nome e o que o cliente quer. No Premium (ou add-on), também fica registrado numa planilha sua para follow-up. Sem intermediário e sem comissão por venda.</p></details>
-    <details class="reveal"><summary>Preciso saber de site ou programação?</summary><p>Não. Você manda o nicho, a cidade e (se tiver) o link do Maps ou Instagram. A gente estrutura tudo. Para trocar um preço ou texto depois, é só pedir no WhatsApp — ou editar você mesma num editor simples que disponibilizamos.</p></details>
-    <details class="reveal"><summary>Aparece no Google?</summary><p>Sim. Cada site sai com título, descrição e cabeçalhos otimizados para a sua cidade (ex.: "padaria em São Vicente"), o que ajuda a ranquear nas buscas locais. Quanto antes publicar e mais avaliações juntar, melhor a posição.</p></details>
-    <details class="reveal"><summary>Posso usar minhas fotos?</summary><p>Pode, e fica melhor. Se mandar fotos reais do seu comércio, a gente usa. Se não tiver, usamos imagens de alta qualidade do nicho como base e você troca quando quiser. Nunca usamos imagem de terceiro sem direito.</p></details>
-    <details class="reveal"><summary>E se eu já tiver um site?</summary><p>A gente refaz no padrão Vitrine Certa (mais rápido, moderno e com WhatsApp integrado) ou importa o seu conteúdo. Muita gente troca justamente porque o site antigo não traz lead. O Premium inclui essa migração.</p></details>
-    <details class="reveal"><summary>Qual a diferença entre os planos?</summary><p><b>Essencial (R$49):</b> site, hospedagem, endereço, WhatsApp e Google. <b>Plus (R$99):</b> tudo isso + acabamento premium com motion e seção de processo. <b>Premium (R$149):</b> tudo do Plus + a mecânica única do nicho (pedido, agenda, estados ao vivo) e suporte prioritário. Se você agenda horário ou vende pelo site, o Premium se paga sozinho.</p></details>
-    <details class="reveal"><summary>Como funciona o pagamento?</summary><p>Pix, cartão ou boleto, mês a mês. Sem taxa de setup e sem pedir cartão para o teste — você só paga quando aprovar o site no ar.</p></details>
-    <details class="reveal"><summary>Trocar cardápio ou fotos tem custo?</summary><p>R$29 por atualização de conteúdo (prato, preço ou foto novos). Se atualiza com frequência, vale o pacote Light (R$99/mês = 2) ou Full (R$199/mês = ilimitado). Bug continua sendo de graça.</p></details>
-  </div>
-</section>
-
-<section class="cta-final">
-  <div class="wrap">
-    <div class="inner reveal">
-      <h2>Pronta pra ter um site que trabalha?</h2>
-      <p>Manda o seu nicho e a cidade. Em 48h ele está no ar, respondendo, com o seu WhatsApp.</p>
-      <div class="cta">
-        <a class="btn btn-wa" href="https://wa.me/5511970776856?text=Quero%20meu%20site%20Vitrine%20Certa" target="_blank" rel="noopener">💬 Falar no WhatsApp</a>
-        <a class="btn btn-ghost" href="#exemplos" style="color:var(--claro);border-color:var(--noite-linha)">Ver um site respondendo</a>
-      </div>
-    </div>
-  </div>
-</section>
 
 <footer>
   <div class="wrap">
-    <span class="brand">
-      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
-        <rect x="4" y="6" width="24" height="21" rx="3" fill="none" stroke="currentColor" stroke-width="2.2"/>
-        <path d="M4 12 H28" stroke="currentColor" stroke-width="2.2"/>
-        <path d="M10.5 18.5 l3.8 3.8 L22 14.6" fill="none" stroke="var(--lamp)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      Vitrine Certa
-    </span>
-    <span>Sites que respondem, para comércio local · © 2026 · braço independente</span>
+    <p>Forno da Vila · pizza a lenha em São Vicente · aberto 18h–23:30 · © 2026</p>
+    <p style="margin-top:8px"><a href="../../receita-zero/#planos" style="color:var(--fumaca)">Quer um site assim pro seu negócio?</a></p>
   </div>
 </footer>
 
-<script src="../references/leads.js"></script>
 <script>
-var RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* Configuração fictícia de portfólio — trocar pelos dados reais */
+const CASA = {
+  abre:18, aquecendoAte:18.34, ultimoPedido:23.5, fecha:24,
+  picoDe:20, picoAte:22,
+  esperaBase:25, esperaPico:45,
+  whats:'5511970776856'
+};
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const clamp = (v,a,b) => Math.min(b, Math.max(a, v));
 
-// === ESPECTRO: as 8 lojas (cor viaja, type ancora) ===
-var NICHOS=[
-  {k:'pizzaria', em:'🍕', nome:'Forno a Lenha', tipo:'Pizzaria', cor:'#E5443B', ink:'#C22A22', dom:'forno-a-lenha', badge:'Aberto agora', st:'Fecha às <b>23h</b>. Peça agora que sai em 40 min.', wa:'Pedir no WhatsApp'},
-  {k:'salao', em:'💇', nome:'Studio Lumière', tipo:'Salão', cor:'#E355A2', ink:'#B92E7E', dom:'studio-lumiere', badge:'Agenda aberta', st:'2 horários livres hoje. <b>Escova + corte</b> às 16h.', wa:'Agendar horário'},
-  {k:'clinica', em:'🦷', nome:'Clínica Andirá', tipo:'Clínica', cor:'#2E86D6', ink:'#1E63A6', dom:'clinica-andira', badge:'Convênio ok', st:'Sua <b>Unimed</b> cobre cardiologia aqui. Vaga quinta.', wa:'Verificar convênio'},
-  {k:'pet', em:'🐾', nome:'Casa Pet', tipo:'Pet shop', cor:'#1FAE6B', ink:'#136B42', dom:'casa-pet', badge:'Banho hoje', st:'Porte médio: <b>R$70</b>, sai em 2h. Táxi-dog incluso.', wa:'Agendar banho'},
-  {k:'padaria', em:'🥖', nome:'Pão & Cia', tipo:'Padaria', cor:'#EA9A2E', ink:'#7E5004', dom:'pao-e-cia', badge:'Quentinho', st:'Fornada das <b>17h</b> saindo. Bolo por encomenda até 20h.', wa:'Encomendar'},
-  {k:'oficina', em:'🔧', nome:'Auto Center SV', tipo:'Oficina', cor:'#F26A1B', ink:'#A8430A', dom:'auto-center-sv', badge:'Orçando', st:'Revisão completa a partir de <b>R$180</b>. Encaixe amanhã.', wa:'Pedir orçamento'},
-  {k:'lavanderia', em:'🧺', nome:'Lave Bem', tipo:'Lavanderia', cor:'#17B6C7', ink:'#0B6672', dom:'lave-bem', badge:'Coleta hoje', st:'Edredom casal <b>R$45</b>, pronto em 48h. Coleta até 18h.', wa:'Agendar coleta'},
-  {k:'imobiliaria', em:'🏠', nome:'Lar Ideal', tipo:'Imobiliária', cor:'#8484F0', ink:'#4B4BC0', dom:'lar-ideal', badge:'3 novos', st:'<b>2 quartos</b>, R$1.400, aceita pet — 3 novos essa semana.', wa:'Falar com corretor'},
-];
+function horaAgora(){
+  const forcada = new URLSearchParams(location.search).get('h');
+  if(forcada !== null && forcada !== '') return clamp(parseFloat(forcada), 0, 23.999);
+  const agora = new Date();
+  const h = agora.getHours();
+  const m = agora.getMinutes();
+  return h + m/60;
+}
 
-(function(){
-  var root=document.documentElement.style;
-  var vUrl=document.getElementById('v-url'),vEm=document.getElementById('v-emoji'),vNome=document.getElementById('v-nome'),
-      vAddr=document.getElementById('v-addr'),vBadge=document.getElementById('v-badge'),vSt=document.getElementById('v-status'),
-      vWa=document.getElementById('v-wa'),orbs=document.getElementById('orbs');
-  var cur=0, timer=null;
-  // monta orbs
-  NICHOS.forEach(function(n,i){
-    var b=document.createElement('button');
-    b.className='orb';b.setAttribute('role','tab');b.style.setProperty('--c',n.cor);
-    b.setAttribute('aria-label',n.tipo);
-    b.innerHTML='<i></i><span class="em">'+n.em+'</span>';
-    b.addEventListener('click',function(){go(i,true);});
-    b.addEventListener('mouseenter',function(){go(i,true);});
-    orbs.appendChild(b);
+function estadoDe(h){
+  if(h >= CASA.ultimoPedido && h < CASA.fecha)
+    return {id:'ultima', nome:'Última rodada', sub:'pedidos até 23:30', calor:1, espera:CASA.esperaPico, cta:'Última rodada — faltam ' + Math.round((CASA.fecha-h)*60) + ' min', msg:'Oi! Dá tempo da última rodada?'};
+  if(h >= CASA.picoDe && h < CASA.picoAte)
+    return {id:'pico', nome:'Pico', sub:'o forno não descansa', calor:1, espera:CASA.esperaPico, cta:'Pedir agora (~'+CASA.esperaPico+' min)', msg:'Oi! Pedido (sei que tá no pico):'};
+  if(h >= CASA.aquecendoAte && h < CASA.ultimoPedido)
+    return {id:'aberto', nome:'Aberto', sub:'saindo do forno', calor:.72, espera:CASA.esperaBase, cta:'Pedir agora', msg:'Oi! Pedido:'};
+  if(h >= CASA.abre && h < CASA.aquecendoAte)
+    return {id:'aquecendo', nome:'Aquecendo', sub:'primeiras saem 18:20', calor:.38, espera:null, cta:'Entrar na primeira fornada', msg:'Oi! Pego a primeira fornada?'};
+  return {id:'fechado', nome:'Fechado', sub:'abre 18:00', calor:0, espera:null, cta:'Programar pedido pras 18h', msg:'Oi! Queria deixar um pedido pra hoje às 18h:'};
+}
+
+function diaDe(h){
+  if(h < 6) return 0;
+  if(h < 17) return 1;
+  if(h < 18) return 1 - (h - 17);
+  return 0;
+}
+
+function formataHora(h){
+  const hh = String(Math.floor(h)).padStart(2,'0');
+  const mm = String(Math.floor((h % 1) * 60)).padStart(2,'0');
+  return hh + ':' + mm;
+}
+
+let temaManual = null;
+let comanda = [];
+
+function pinta(){
+  const h = horaAgora();
+  const e = estadoDe(h);
+  const dia = temaManual === null ? diaDe(h) : temaManual;
+  document.documentElement.style.setProperty('--calor', e.calor);
+  document.documentElement.style.setProperty('--dia', dia.toFixed(3));
+  $('#relogio').textContent = formataHora(h);
+  $('#relogio').className = 'tab';
+  $('#pill').style.background = e.calor > 0 ? 'var(--brasa)' : 'transparent';
+  $('#pill-txt').textContent = e.espera ? e.nome + ' · ~' + e.espera + ' min' : e.nome;
+  $('#estado-nome').textContent = e.nome;
+  $('#estado-sub').textContent = e.sub;
+  $('#estado-espera').innerHTML = e.espera ? 'Saindo do forno em <b>~' + e.espera + ' minutos</b>.' : (e.id === 'fechado' ? 'O forno acende às 18h. Deixa o pedido programado.' : 'As primeiras saem às 18:20.');
+  $('#cta-txt').textContent = e.cta;
+  $('#cta').href = 'https://wa.me/' + CASA.whats + '?text=' + encodeURIComponent(e.msg);
+  $('#tema').textContent = dia > .5 ? '☀' : '☾';
+  const ag = $('#agulha');
+  const dentro = h >= CASA.abre && h < CASA.fecha;
+  ag.style.opacity = dentro ? '1' : '0';
+  ag.style.left = clamp((h - CASA.abre) / 6, 0, 1) * 100 + '%';
+  $$('.trilho a').forEach(a => a.style.fontWeight = (+a.textContent === Math.floor(h)) ? '600' : '500');
+}
+
+$('#tema').addEventListener('click', () => {
+  const atual = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--dia')) || 0;
+  temaManual = atual > .5 ? 0 : 1;
+  pinta();
+});
+
+/* Reveal por máscara — ativa ao rolar ou no carregamento */
+function checkReveal(){
+  $$('.reveal:not(.on)').forEach(el=>{
+    const r=el.getBoundingClientRect();
+    if(r.top < innerHeight*0.8) el.classList.add('on');
   });
-  function paint(n){
-    root.setProperty('--accent',n.cor); root.setProperty('--accent-ink',n.ink);
-    vUrl.textContent=n.dom+'.vitrinecerta.site'; vEm.textContent=n.em; vNome.textContent=n.nome;
-    vAddr.textContent=n.tipo+' · São Vicente'; vBadge.textContent=n.badge; vSt.innerHTML=n.st; vWa.textContent=n.wa;
-    [].forEach.call(orbs.children,function(o,i){o.setAttribute('aria-selected', i===cur?'true':'false');});
-  }
-  function go(i,manual){
-    cur=(i+NICHOS.length)%NICHOS.length; paint(NICHOS[cur]);
-    if(manual&&timer){clearInterval(timer);timer=null; if(!RM) start(6000);} // reinicia o ciclo mais devagar após interação
-  }
-  function start(ms){ if(RM) return; timer=setInterval(function(){go(cur+1,false);},ms||3400); }
-  paint(NICHOS[0]);
-  if(!RM){ start(3400);
-    var vw=document.querySelector('.vitrine-wrap');
-    vw.addEventListener('mouseenter',function(){if(timer){clearInterval(timer);timer=null;}});
-    vw.addEventListener('mouseleave',function(){if(!timer)start(3400);});
-  }
-})();
+}
+addEventListener('scroll', checkReveal, {passive:true});
+/* ativa todos no carregamento (site de portfólio: prioriza acessibilidade) */
+setTimeout(() => $$('.reveal').forEach(el => el.classList.add('on')), 100);
 
-// === spotlight que segue o cursor ===
-(function(){
-  if(RM) return;
-  var s=document.documentElement.style, raf=false, mx=80, my=10;
-  window.addEventListener('pointermove',function(e){
-    mx=(e.clientX/window.innerWidth*100); my=(e.clientY/window.innerHeight*100);
-    if(!raf){raf=true;requestAnimationFrame(function(){s.setProperty('--mx',mx+'%');s.setProperty('--my',my+'%');raf=false;});}
-  },{passive:true});
-})();
-
-// === contadores ===
-(function(){
-  var els=document.querySelectorAll('[data-count]');
-  function run(el){
-    var end=+el.getAttribute('data-count'); if(RM){el.textContent=end;return;}
-    var t0=null, dur=900;
-    function step(ts){ if(!t0)t0=ts; var p=Math.min((ts-t0)/dur,1); el.textContent=Math.round(end*(1-Math.pow(1-p,3))); if(p<1)requestAnimationFrame(step); }
-    requestAnimationFrame(step);
-  }
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){run(e.target);io.unobserve(e.target);}});},{threshold:.6});
-    els.forEach(function(el){io.observe(el);});
-  }else els.forEach(run);
-})();
-
-// === reveal ===
-(function(){
-  var els=document.querySelectorAll('.reveal');
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14,rootMargin:'0px 0px -30px 0px'});
-    els.forEach(function(el){io.observe(el);});
-    setTimeout(function(){els.forEach(function(el){el.classList.add('in');});},1400);
-  }else els.forEach(function(el){el.classList.add('in');});
-})();
-
-// === exemplos ===
-(function(){
-  var pv=document.getElementById('pv'),pvf=document.getElementById('pvf'),url=document.getElementById('pv-url');
-  if(!pvf) return;
-  // carrega o demo vivo só quando a seção se aproxima do viewport (economiza ~180KB no load inicial)
-  function ligar(){ if(!pvf.src) pvf.src=pvf.getAttribute('data-src'); }
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){
-      es.forEach(function(e){ if(e.isIntersecting){ ligar(); io.disconnect(); } });
-    },{rootMargin:'600px 0px'});
-    io.observe(pvf);
-  } else { ligar(); }
-  if(!pv) return;
-  pv.addEventListener('change',function(){
-    pvf.src=pv.value;
-    var m=pv.value.match(/site-dfy\/([^\/]+)\//);
-    if(url&&m) url.textContent=decodeURIComponent(m[1]).replace(/[áâã]/g,'a').replace(/í/g,'i').replace(/[óô]/g,'o')+'.vitrinecerta.site';
-  });
-})();
-
-// === filtro de preço ===
-document.querySelectorAll('.price-filter button').forEach(function(btn){
-  btn.addEventListener('click',function(){
-    document.querySelector('.price-filter button.active').classList.remove('active');
-    btn.classList.add('active');
-    var tier=btn.getAttribute('data-tier');
-    document.querySelectorAll('.pg').forEach(function(card){
-      card.classList.toggle('hide', tier!=='all' && card.getAttribute('data-tier')!==tier);
-    });
+/* Comanda */
+$$('.add').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const sabor = btn.dataset.sabor;
+    const preco = +btn.dataset.preco;
+    comanda.push({sabor, preco});
+    atualizaComanda();
   });
 });
 
-// === gerador ===
-(function(){
-  var IG_PROXY='https://images.weserv.io/?w=800&h=600&we=edge&url=';
-  var link=document.getElementById('gen-link'),nicho=document.getElementById('gen-nicho'),cidade=document.getElementById('gen-cidade'),
-      btn=document.getElementById('gen-btn'),err=document.getElementById('gen-err'),result=document.getElementById('gen-result'),
-      frame=document.getElementById('gen-frame'),nomeOut=document.getElementById('gen-nome'),cidadeOut=document.getElementById('gen-cidade-out'),wa=document.getElementById('gen-wa'),
-      ig1=document.getElementById('gen-ig1'),ig2=document.getElementById('gen-ig2'),ig3=document.getElementById('gen-ig3'),
-      photosSection=document.getElementById('gen-photos-section');
-  if(!btn) return;
-  // Mostra a seção de fotos do Instagram
-  photosSection.style.display='block';
-  function extraiNome(u){
-    u=u.trim();
-    try{
-      if(u.includes('maps.google')||u.includes('goo.gl')){
-        var m=u.match(/[?&]q=([^&]+)/); if(m) return decodeURIComponent(m[1]).replace(/\+/g,' ');
-        m=u.match(/\/place\/([^/]+)\//); if(m) return decodeURIComponent(m[1]).replace(/\+/g,' ');
-      }
-      if(u.includes('instagram')||u.startsWith('@')){
-        var i=u.match(/(?:instagram\.com\/)?@?([a-z0-9._]+)/i);
-        if(i) return i[1].replace(/[._]/g,' ');
-      }
-    }catch(e){}
-    return '';
-  }
-  function extractIgPhoto(link){
-    try{
-      if(link.includes('instagram.com/p/')||link.includes('instagr.am/p/')){
-        var u=new URL(link);
-        var sc=u.pathname.split('/').filter(Boolean)[1];
-        if(sc) return sc;
-      }
-    }catch(e){}
-    return null;
-  }
-  btn.addEventListener('click',function(){
-    err.style.display='none';
-    var nome=extraiNome(link.value), cid=cidade.value.trim(), nch=nicho.value;
-    if(!nome && !link.value.trim()){err.textContent='Cole o link do Maps ou Instagram do seu negócio.';err.style.display='block';return;}
-    if(!cid){err.textContent='Informe a cidade do seu negócio.';err.style.display='block';return;}
-    var displayNome = nome || (link.value.trim().split('/').pop().slice(0,40)) || 'Seu Negócio';
-    // Coleta fotos do Instagram
-    var igLinks=[ig1.value.trim(),ig2.value.trim(),ig3.value.trim()].filter(Boolean);
-    var imgParams=[];
-    for(var i=0;i<igLinks.length;i++){
-      var sc=extractIgPhoto(igLinks[i]);
-      if(sc){
-        imgParams.push(IG_PROXY+'www.instagram.com/p/'+sc+'/');
-      }
-    }
-    // Monta a URL do iframe com nome, cidade e fotos
-    var src='../site-dfy/'+nch+'/index.html?nome='+encodeURIComponent(displayNome)+'&cidade='+encodeURIComponent(cid);
-    for(var j=0;j<Math.min(3,imgParams.length);j++){
-      src+='&img'+(j+1)+'='+encodeURIComponent(imgParams[j]);
-    }
-    frame.src=src; nomeOut.textContent=displayNome; cidadeOut.textContent=cid;
-    wa.href='https://wa.me/5511970776856?text='+encodeURIComponent('Quero o site da '+displayNome+' ('+cid+') — plano Essencial R$49/mês');
-    result.style.display='block';
-    result.scrollIntoView({behavior:'smooth',block:'center'});
-    if(window.captureLead){captureLead({nome:displayNome,cidade:cid,nicho:nch,origem:'gerador',whatsapp:'',mensagem:link.value,photos:imgParams.join(',')});}
-  });
-})();
-</script>
+function atualizaComanda(){
+  const total = comanda.reduce((s, i) => s + i.preco, 0);
+  $('#comanda-total').textContent = comanda.length + ' itens · R$ ' + total;
+  $('#comanda').classList.toggle('ativa', comanda.length > 0);
+}
 
-  
+$('#comanda-enviar').addEventListener('click', () => {
+  const total = comanda.reduce((s, i) => s + i.preco, 0);
+  const itens = comanda.map(i => '• ' + i.sabor + ' — R$' + i.preco).join('\n');
+  const msg = 'Pedido — ' + formataHora(horaAgora()) + '\n' + itens + '\nTotal R$' + total;
+  window.open('https://wa.me/' + CASA.whats + '?text=' + encodeURIComponent(msg), '_blank');
+});
 
-  <!-- Vitrine Certa Exit-Intent -->
-<style>
-#vc-exit{position:fixed;inset:0;background:rgba(11,7,20,.82);z-index:9998;display:none;
-  align-items:center;justify-content:center;padding:1.4rem;font-family:system-ui,sans-serif}
-#vc-exit.show{display:flex;animation:vcFade .25s ease}
-@keyframes vcFade{from{opacity:0}to{opacity:1}}
-#vc-exit .box{background:#0B0714;color:#EFE9FF;border:1px solid rgba(45,212,191,.4);
-  border-radius:16px;max-width:420px;width:100%;padding:1.8rem;text-align:center;
-  box-shadow:0 24px 70px rgba(0,0,0,.6)}
-#vc-exit h3{margin:0 0 .5rem;color:#2DD4BF;font-size:1.35rem;line-height:1.25}
-#vc-exit p{margin:0 0 1.2rem;opacity:.85;font-size:.98rem;line-height:1.5}
-#vc-exit .cta{display:inline-block;background:#C6FF00;color:#0B0714;font-weight:800;
-  text-decoration:none;padding:.85rem 1.4rem;border-radius:99px;font-size:1rem}
-#vc-exit .close{display:block;margin:.9rem auto 0;background:none;border:0;color:rgba(239,233,255,.5);
-  font-size:.82rem;cursor:pointer}
-</style>
-<div id="vc-exit" role="dialog" aria-modal="true" aria-label="Antes de sair">
-  <div class="box">
-    <h3>Espera aí! ;)</h3>
-    <p>Antes de ir: quer receber <b>promoções e novidades</b> do <span id="vc-biz">nosso comércio</span> direto no seu WhatsApp? É rapidinho.</p>
-    <a class="cta" id="vc-exit-wa" href="https://wa.me/5511970776856?text=Quero%20receber%20promoções%20no%20WhatsApp">Receber no WhatsApp</a>
-    <button class="close" id="vc-exit-x">Agora não, obrigado</button>
-  </div>
-</div>
-<script>
-(function(){
-  var shown=false;
-  function show(){
-    if(shown||sessionStorage.getItem('vc_exit_done'))return;
-    shown=true;sessionStorage.setItem('vc_exit_done','1');
-    document.getElementById('vc-exit').classList.add('show');
-  }
-  function hide(){document.getElementById('vc-exit').classList.remove('show');}
-  document.addEventListener('visibilitychange',function(){if(document.hidden)show();});
-  window.addEventListener('beforeunload',function(e){if(!sessionStorage.getItem('vc_exit_done')){e.preventDefault();e.returnValue='';}});
-  document.addEventListener('click',function(e){
-    if(e.target&&e.target.id==='vc-exit-x')hide();
-    if(e.target&&e.target.id==='vc-exit')hide();
-  });
-})();
+/* Scroll-driven: o scroll é a noite passando */
+if(!CSS.supports('animation-timeline','scroll()')){
+  let alvo = 0, cur = 0, rodando = false;
+  const passo = () => {
+    cur += (alvo - cur) * 0.06;
+    document.documentElement.style.setProperty('--noite', cur.toFixed(4));
+    if(Math.abs(alvo - cur) > 0.0008) requestAnimationFrame(passo); else rodando = false;
+  };
+  addEventListener('scroll', () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    alvo = max > 0 ? clamp(scrollY / max, 0, 1) : 0;
+    if(!rodando){ rodando = true; requestAnimationFrame(passo); }
+  }, {passive:true});
+}
+
+pinta();
+setInterval(pinta, 20000);
 </script>
 </body>
 </html>

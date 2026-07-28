@@ -3,681 +3,466 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Barbearia Norte — São Vicente/SP</title>
-  <!-- Vitrine Certa Analytics -->
-<meta name="google-site-verification" content="rnYREYB-JR9uyXWd7UwSkGJn4kyjyVpHakO6lgSxJ-w">
-<script type="text/javascript">
-(function(c,l,a,r,i,t,y){
-  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-})(window,document,"clarity","script","xrpcs8vw2o");
-</script>
-  
-
-
-  
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Barbearia Norte — São Vicente/SP",
-  "description": "",
-  "url": ""
-}
-</script>
+<title>Forno da Vila — pizza a lenha em São Vicente</title>
+<meta name="description" content="Forno a lenha em São Vicente. Massa de 48 horas. Aberto das 18h às 23h30.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
+/* PARALELO — redesign alternativo da pizzaria premium
+   Conceito: "A NOITE INTEIRA" — mesmo plano, execução diferente
+   Diferença: motion CSS pura, sem JS de relógio odômetro, sem SVG complexo */
 :root{
-  --bg:#0A0A0A;
-  --ink:#F2F2F2;
-  --paper:#F2F2F2;
-  --accent:#E63946;
-  --accent-dim:#B7202B;
-  --muted:#888;
-  --muted-2:#555;
-  --muted-3:#444;
-  --border:#1F1F1F;
-  --border-2:#2A2A2A;
-  --grid:#161616;
-  --cell:#121212;
-  --cell-2:#0F0F0F;
+  /* NOITE */
+  --n-tinta:#141A2A; --n-carvao:#0C1120; --n-tinta2:#1C2438; --n-linha:#2B3450;
+  --n-giz:#EDEFF5; --n-fumaca:#98A0B8; --n-brasa:#FF5A1F; --n-nucleo:#FFF1E6;
+  /* DIA */
+  --d-tinta:#ECEDF1; --d-carvao:#DDDFE7; --d-tinta2:#F7F8FB; --d-linha:#D3D7E2;
+  --d-giz:#141A2A; --d-fumaca:#5C6478; --d-brasa:#D6410E; --d-nucleo:#8A2B06;
+  /* resolvidos */
+  --tinta:color-mix(in oklab, var(--n-tinta), var(--d-tinta) calc(var(--dia,0)*100%));
+  --carvao:color-mix(in oklab, var(--n-carvao), var(--d-carvao) calc(var(--dia,0)*100%));
+  --tinta2:color-mix(in oklab, var(--n-tinta2), var(--d-tinta2) calc(var(--dia,0)*100%));
+  --linha:color-mix(in oklab, var(--n-linha), var(--d-linha) calc(var(--dia,0)*100%));
+  --giz:color-mix(in oklab, var(--n-giz), var(--d-giz) calc(var(--dia,0)*100%));
+  --fumaca:color-mix(in oklab, var(--n-fumaca), var(--d-fumaca) calc(var(--dia,0)*100%));
+  --brasa:color-mix(in oklab, var(--n-brasa), var(--d-brasa) calc(var(--dia,0)*100%));
+  --wa:#25D366;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Instrument Sans',system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{
-  background:var(--bg);
-  color:var(--ink);
-  font-family:'Space Grotesk',sans-serif;
-  font-weight:400;
-  line-height:1.5;
-  overflow-x:clip;
-  -webkit-font-smoothing:antialiased;
-}
-html{overflow-x:clip}
-.hero>*,.serv-row>*,.hero-right{min-width:0}
-.serv-desc{overflow-wrap:break-word}
-body::before{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:1;
-  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
-  background-size:80px 80px;opacity:.5;
-}
-.wrap{position:relative;z-index:2}
-.a{font-family:'Archivo Black',sans-serif;text-transform:uppercase;line-height:.92;letter-spacing:-.02em}
-.mono{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem}
-.num{font-variant-numeric:tabular-nums;font-feature-settings:'tnum'}
-a{color:inherit;text-decoration:none}
-
-/* NAV */
-.nav{display:flex;justify-content:space-between;align-items:center;padding:1.4rem clamp(1.5rem,4vw,2.4rem);border-bottom:3px solid var(--accent);position:sticky;top:0;background:var(--bg);z-index:50}
-.nav-brand{font-family:'Archivo Black',sans-serif;font-size:1.4rem;text-transform:uppercase;letter-spacing:-.01em;display:flex;align-items:baseline;gap:.5rem}
-.nav-brand span{color:var(--accent)}
-.nav-brand .ord{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.16em;color:var(--muted)}
-.nav-links{display:flex;gap:1.6rem;align-items:center}
-.nav-links a{font-size:.82rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#CCC;transition:color .12s,transform .12s}
-.nav-links a:hover{color:var(--accent)}
-.nav-cta{background:var(--accent);color:#fff !important;padding:.55rem 1.2rem;font-weight:700;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;transition:transform .12s,background .12s,box-shadow .12s}
-.nav-cta:hover{transform:translate(-3px,-3px);box-shadow:3px 3px 0 var(--border-2)}
-.nav-cta:active{transform:translate(0,0);box-shadow:none}
-.burger{display:none;background:none;border:0;color:var(--ink);cursor:pointer;font-size:1.4rem;font-family:'Space Grotesk',sans-serif}
-
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip}
+body{background:var(--tinta);color:var(--giz);font-family:var(--sans);font-size:1.0625rem;line-height:1.55;transition:background .6s, color .6s}
+h1,h2{font-family:var(--serif);font-weight:400;line-height:.98;letter-spacing:-.02em}
+em{font-style:italic}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.tab{font-variant-numeric:tabular-nums}
+.reveal{clip-path:inset(100% 0 0 0);opacity:.001;transition:clip-path .52s var(--ease),opacity .52s var(--ease)}
+.reveal.on{clip-path:inset(0);opacity:1}
+/* RÉGUA */
+.regua{position:fixed;top:0;left:0;right:0;z-index:40;background:color-mix(in oklab, var(--tinta) 88%,transparent);backdrop-filter:blur(8px)}
+.regua-in{display:flex;align-items:center;gap:24px;padding:10px 24px}
+.trilho{position:relative;flex:1;height:34px}
+.trilho ol{position:absolute;inset:0;display:flex;list-style:none;align-items:center}
+.trilho li{flex:1;position:relative}
+.trilho a{font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.02em;color:var(--fumaca);text-decoration:none;padding:2px 0;white-space:nowrap}
+.trilho::after{content:'';position:absolute;bottom:6px;left:0;right:0;height:1px;background:var(--linha)}
+.agulha{position:absolute;bottom:2px;width:9px;height:9px;border-radius:999px;background:var(--fumaca);transition:left .8s var(--ease)}
+.relogio{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:500}
+.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--linha);border-radius:999px;padding:3px 10px;font-size:.74rem;font-weight:600}
+.ponto{width:7px;height:7px;border-radius:999px}
+.tema{background:none;border:1px solid var(--linha);border-radius:999px;color:var(--fumaca);width:32px;height:32px;cursor:pointer;font-size:.9rem;line-height:1;display:grid;place-items:center}
 /* HERO */
-.hero{padding:6rem clamp(1.5rem,4vw,2.4rem) 7rem;border-bottom:3px solid var(--border-2);position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:0}
-.hero-left{padding-right:2rem}
-.hero-mark{position:absolute;top:2rem;right:2rem;color:var(--accent);font-size:.7rem;font-weight:700;letter-spacing:.2em}
-.hero-num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.2em;color:var(--accent);margin-bottom:1.6rem;display:flex;align-items:center;gap:.6rem}
-.hero-num .tick{width:28px;height:2px;background:var(--accent)}
-.hero-title{font-size:clamp(3.5rem,13vw,11rem);text-transform:uppercase}
-.hero-title .red{color:var(--accent)}
-.hero-sub{max-width:30ch;margin-top:1.8rem;font-size:1.12rem;color:#BBB;font-weight:400;line-height:1.5}
-.hero-cta{display:inline-flex;align-items:center;gap:.6rem;margin-top:2.6rem;background:var(--accent);color:#fff;padding:1.1rem 2.2rem;font-family:'Archivo Black',sans-serif;font-size:.95rem;text-transform:uppercase;letter-spacing:.04em;border:3px solid var(--accent);cursor:pointer;transition:transform .12s,background .12s,box-shadow .12s}
-.hero-cta:hover{transform:translate(-5px,-5px);background:var(--accent-dim);border-color:var(--accent-dim);box-shadow:5px 5px 0 var(--border-2)}
-.hero-cta:active{transform:translate(0,0);box-shadow:none}
-.hero-cta .arr{font-family:'Space Grotesk',sans-serif;font-weight:700}
-.hero-right{display:flex;flex-direction:column;justify-content:center;gap:0;border-left:3px solid var(--border-2);padding-left:2rem}
-.hero-stat{border-bottom:1px solid var(--border);padding:1.1rem 0;display:flex;justify-content:space-between;align-items:baseline}
-.hero-stat:first-child{padding-top:0}
-.hero-stat:last-child{border-bottom:0}
-.hero-stat .k{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.hero-stat .v{font-family:'Archivo Black',sans-serif;font-size:1.6rem;font-variant-numeric:tabular-nums}
-.hero-stat .v.red{color:var(--accent)}
-
-/* SECTION HEAD */
-.sec{padding:5rem clamp(1.5rem,4vw,2.4rem);border-bottom:3px solid var(--border-2)}
-.sec-head{display:grid;grid-template-columns:auto 1fr auto;align-items:end;gap:2rem;margin-bottom:3.5rem}
-.sec-num{font-family:'Archivo Black',sans-serif;color:var(--accent);font-size:1.1rem;letter-spacing:.06em;font-variant-numeric:tabular-nums}
-.sec-title{font-size:clamp(2.2rem,7vw,4.5rem)}
-.sec-tagend{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-align:right;font-weight:600}
-
-/* SERVIÇOS — poster tipográfico */
-.serv-table{border-top:3px solid var(--ink)}
-.serv-row{display:grid;grid-template-columns:.08fr 1.2fr 1.8fr .8fr auto;gap:1.4rem;align-items:baseline;padding:1.8rem 0;border-bottom:3px solid var(--border-2);transition:background .1s,padding .12s;cursor:default}
-.serv-row:hover{background:var(--cell);padding-left:1rem;padding-right:1rem}
-.serv-row:hover .serv-price{color:var(--accent);transform:translateX(-4px)}
-.serv-row:hover .serv-name{transform:translateX(4px)}
-.serv-idx{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--muted);font-size:.82rem;font-variant-numeric:tabular-nums;letter-spacing:.04em}
-.serv-name{font-family:'Archivo Black',sans-serif;font-size:1.5rem;text-transform:uppercase;letter-spacing:-.01em;transition:transform .12s}
-.serv-name .tag{display:inline-block;margin-left:.6rem;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border:2px solid var(--accent);padding:.12rem .5rem;vertical-align:middle}
-.serv-desc{color:#999;font-size:.92rem;line-height:1.45}
-.serv-price{font-family:'Archivo Black',sans-serif;font-size:1.8rem;color:var(--ink);font-variant-numeric:tabular-nums;transition:color .12s,transform .12s;text-align:right;white-space:nowrap}
-.serv-price small{color:var(--muted);font-size:.72rem;font-family:'Space Grotesk',sans-serif;font-weight:400;letter-spacing:.02em}
-
-/* HORÁRIOS — grade setimal */
-.horarios{display:grid;grid-template-columns:repeat(7,1fr);gap:0;border:3px solid var(--border-2)}
-.hora{padding:1.6rem 1.1rem;display:flex;flex-direction:column;gap:.6rem;align-items:flex-start;border-right:2px solid var(--border);min-height:140px;transition:background .1s}
-.hora:last-child{border-right:0}
-.hora:hover{background:var(--cell)}
-.hora .d{font-family:'Archivo Black',sans-serif;font-size:.82rem;letter-spacing:.02em;text-transform:uppercase}
-.hora .h{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.88rem;color:#CCC;font-variant-numeric:tabular-nums}
-.hora .h.off{color:var(--accent-dim);font-weight:700}
-.hora .h.off::after{content:' --';color:var(--muted-2)}
-.hora.today{background:var(--accent)}
-.hora.today .d,.hora.today .h{color:#fff}
-.hora.today .h.off{color:#fff;opacity:.6}
-
-/* PROVA — citações duras */
-.prova{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0;border:3px solid var(--border-2)}
-.depo{border-right:2px solid var(--border);padding:2.2rem 2rem;position:relative;background:var(--cell-2);transition:background .1s}
-.depo:last-child{border-right:0}
-.depo:hover{background:var(--cell)}
-.depo::before{content:'"';position:absolute;top:.4rem;left:1.4rem;color:var(--accent);font-size:3rem;font-family:Georgia,serif;opacity:.4;line-height:1}
-.depo .n{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--accent);font-size:.74rem;letter-spacing:.12em;font-variant-numeric:tabular-nums;margin-bottom:1.2rem}
-.depo p{font-size:1.04rem;color:#DDD;margin:0 0 1.4rem;line-height:1.45}
-.depo-foot{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--border-2);padding-top:1rem}
-.depo-cidadao{font-family:'Archivo Black',sans-serif;font-size:.82rem;text-transform:uppercase;color:#999}
-.depo-meta{font-family:'Space Grotesk',sans-serif;font-size:.72rem;color:var(--muted);letter-spacing:.04em}
-.nota{color:var(--accent);font-size:1rem;letter-spacing:.14em}
-
-/* CTA FINAL */
-.cta-final{padding:7rem clamp(1.5rem,4vw,2.4rem);text-align:center;border-bottom:3px solid var(--border-2);position:relative;background:var(--bg)}
-.cta-final::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:var(--accent)}
-.cta-final h2{font-size:clamp(2.8rem,9vw,7rem);text-transform:uppercase}
-.cta-final h2 .red{color:var(--accent)}
-.cta-final p{color:#AAA;max-width:44ch;margin:1.8rem auto 0}
-.cta-final .hero-cta{font-size:1.2rem;padding:1.4rem 3rem;margin-top:2.4rem}
-.cta-stat{display:flex;justify-content:center;gap:3rem;margin-top:3rem;flex-wrap:wrap}
-.cta-stat div{border-left:3px solid var(--accent);padding-left:1rem;text-align:left}
-.cta-stat strong{display:block;font-family:'Archivo Black',sans-serif;font-size:1.4rem;font-variant-numeric:tabular-nums}
-.cta-stat span{color:var(--muted);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase}
-
-/* FOOTER */
-/* FOOTER */ footer{padding:2.4rem clamp(1.5rem,4vw,2.4rem);display:flex;justify-content:space-between;align-items:baseline;color:var(--muted-2);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;flex-wrap:wrap;gap:1rem}
-footer strong{font-weight:700;color:var(--accent)}
-footer .ord{font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--muted-3);letter-spacing:.14em}
-
-/* RISCO DA NAVALHA — svg path absoluto (cobre documento), clip horizontal */
-#riscoNavalha{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:3;overflow:hidden}
-#riscoNavalha svg{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;display:block}
-#riscoNavalha path{fill:none;stroke:var(--accent);stroke-width:3.5;stroke-linecap:butt;stroke-linejoin:miter}
-
-/* SUBLINHADO DE TÍTULO DE SEÇÃO — "risco" curto via pseudo */
-.sec-title{position:relative}
-.sec-title::after{content:'';position:absolute;left:-.06em;right:-.06em;bottom:.06em;height:5px;background:var(--accent);transform:scaleX(0);transform-origin:left center;transition:transform .35s cubic-bezier(.2,.6,.2,1)}
-.sec-title.underline::after{transform:scaleX(1)}
-
-/* TICKET — senhas da fila */
-.ticket-mono{font-family:'JetBrains Mono','Space Grotesk',monospace}
-.serv-ticket-btn{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:transparent;border:2px solid var(--accent);padding:.45rem .85rem;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem;transition:transform .12s,background .12s,color .12s,box-shadow .12s;line-height:1;white-space:nowrap}
-.serv-ticket-btn:hover{background:var(--accent);color:#fff;transform:translate(-2px,-2px);box-shadow:2px 2px 0 var(--border-2)}
-.serv-ticket-btn:active{transform:translate(0,0);box-shadow:none}
-.serv-ticket-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.serv-row:focus-within{background:var(--cell);padding-left:1rem;padding-right:1rem}
-
-/* painel inline do ticket */
-.ticket-panel{margin-top:1.5rem}
-.ticket{
-  display:none;
-  font-family:'JetBrains Mono','Space Grotesk',monospace;
-  background:#F2F2F2;color:#0A0A0A;
-  border:3px dashed #0A0A0A;
-  padding:1.1rem 1.25rem 1.25rem;
-  max-width:340px;
-  position:relative;
-  clip-path:inset(0 0 100% 0);
-}
-.ticket.show{display:block}
-.ticket.animate{animation:ticketPrint .42s cubic-bezier(.2,.6,.2,1) forwards}
-@keyframes ticketPrint{
-  0%{clip-path:inset(0 0 100% 0);transform:translateY(-6px)}
-  100%{clip-path:inset(0 0 0% 0);transform:translateY(0)}
-}
-.ticket-head{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #0A0A0A;padding-bottom:.5rem;margin-bottom:.85rem;letter-spacing:.02em}
-.ticket-head .brand{font-family:'Archivo Black',sans-serif;font-size:.78rem;letter-spacing:-.005em}
-.ticket-head .num{font-weight:700;font-size:.72rem;color:#E63946;letter-spacing:.06em}
-.ticket-sep{border:none;border-top:2px dashed #0A0A0A;margin:.85rem 0;height:0}
-.ticket-body{font-size:.82rem;line-height:1.85}
-.ticket-body .row{display:flex;justify-content:space-between;border-bottom:1px dashed #444;padding:.15rem 0}
-.ticket-body .row:last-child{border-bottom:0}
-.ticket-body .row .k{color:#666;text-transform:uppercase;font-size:.66rem;letter-spacing:.06em;align-self:center}
-.ticket-body .row .v{font-weight:700;letter-spacing:.02em}
-.ticket-body .row .v.red{color:#E63946}
-.ticket-wa{display:block;margin-top:1.1rem;background:#0A0A0A;color:#F2F2F2;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:.65rem .9rem;border:2px solid #0A0A0A;transition:transform .12s,box-shadow .12s,background .12s}
-.ticket-wa:hover{background:#E63946;border-color:#E63946;transform:translate(-2px,-2px);box-shadow:2px 2px 0 #999}
-.ticket-wa:active{transform:translate(0,0);box-shadow:none}
-.ticket-wa::after{content:' ->'}
-
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr}
-  .hero-left{padding-right:0;padding-bottom:3rem}
-  .hero-right{border-left:0;border-top:3px solid var(--border-2);padding-left:0;padding-top:2rem}
-  .horarios{grid-template-columns:repeat(4,1fr)}
-  .hora{border-bottom:2px solid var(--border)}
-}
-@media(max-width:768px){
-  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg);flex-direction:column;padding:1.5rem 2rem;border-bottom:3px solid var(--accent);gap:1.2rem}
-  .nav-links.open{display:flex}
-  .burger{display:block}
-  .hero{padding:3rem 1.5rem 4rem}
-  .sec{padding:3.5rem 1.5rem}
-  .serv-row{grid-template-columns:.1fr 1fr auto auto;gap:1rem;align-items:center}
-  .serv-desc{grid-column:1/-1;order:3}
-  .serv-name{grid-column:2;order:1}
-  .serv-ticket-btn{grid-column:3;order:2}
-  .serv-price{grid-column:4;order:4;text-align:right}
-  .serv-idx{order:0}
-  .horarios{grid-template-columns:repeat(2,1fr)}
-  .sec-head{grid-template-columns:auto auto;gap:1rem}
-  .sec-tagend{display:none}
-  .cta-final{padding:4rem 1.5rem}
-  .cta-stat{gap:1.5rem}
+.hero{min-height:100dvh;display:flex;flex-direction:column;justify-content:center;padding:64px 24px}
+.hero-grid{display:grid;grid-template-columns:1fr 1.02fr;gap:40px;align-items:center}
+.marca{font-family:var(--serif);font-size:1.05rem;margin-bottom:24px}
+.hora-secao{font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.hero h1{font-size:clamp(2.75rem,7vw,5.5rem);margin-bottom:16px}
+.hero h1 em{color:var(--brasa)}
+.local{max-width:34ch;margin-bottom:32px}
+.local b{font-weight:500}
+.estado{border:1px solid var(--linha);border-radius:2px;padding:24px;max-width:430px;background:var(--tinta2)}
+.estado-nome{font-family:var(--serif);font-size:1.5rem}
+.estado-sub{color:var(--fumaca);font-size:.9rem}
+.estado-espera{font-size:.9rem;color:var(--fumaca);margin-top:8px}
+.estado-espera b{color:var(--giz);font-weight:500}
+.wa-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--wa);color:#0B1F13;font-family:var(--sans);font-weight:600;font-size:.95rem;padding:.72rem 1.15rem;border-radius:999px;text-decoration:none;box-shadow:0 10px 24px -12px color-mix(in oklab,var(--wa) 70%,transparent);margin-top:16px}
+.wa-btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px color-mix(in oklab,var(--wa) 80%,transparent)}
+/* FORNO (SVG simples) */
+.forno{width:100%;height:auto;display:block}
+.forno .tijolo{fill:none;stroke:var(--linha);stroke-width:1.1}
+.forno .arco{fill:var(--tinta2);stroke:var(--linha);stroke-width:1.5}
+.forno .boca{fill:var(--carvao)}
+.forno .piso{fill:var(--tinta2)}
+.forno .lenha{fill:var(--tinta2)}
+.forno .massa{fill:var(--giz);opacity:.8}
+.forno .crosta{fill:none;stroke:var(--brasa);stroke-width:2;opacity:calc(.3+var(--calor,.5)*.55)}
+.forno .cobertura{fill:var(--brasa);opacity:calc(.35+var(--calor,.5)*.55)}
+.forno .chama{opacity:var(--calor,.5);animation:brasa 4.7s infinite}
+@keyframes brasa{0%{filter:brightness(1)}17%{filter:brightness(1.22)}23%{filter:brightness(.93)}61%{filter:brightness(1.14)}79%{filter:brightness(.97)}100%{filter:brightness(1)}}
+.forma{transform-box:fill-box;transform-origin:center;animation:gira 26s linear infinite}
+.forno:hover .forma{animation-play-state:paused}
+@keyframes gira{to{rotate:360deg}}
+/* SEÇÕES */
+.secao{padding:80px 0;border-top:1px solid var(--linha)}
+.hora-secao{display:block;text-align:center;margin-bottom:24px}
+.secao h2{font-size:clamp(1.9rem,4vw,3rem);max-width:22ch;margin:0 auto 40px;text-align:center}
+.fita{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--linha)}
+.prova{padding:24px;border-left:1px solid var(--linha)}
+.prova:first-child{border-left:0}
+.prova .quando{font-size:.78rem;font-weight:600;letter-spacing:.12em;color:var(--fumaca);margin-bottom:8px}
+.prova h3{font-size:1.35rem;margin-bottom:8px}
+.prova p{color:var(--fumaca);font-size:.94rem;max-width:28ch}
+.prova svg{margin-bottom:16px}
+.prova circle{fill:none;stroke:var(--fumaca);stroke-width:1.2}
+/* PAINEL DE FORNO */
+.painel{border-top:1px solid var(--linha)}
+.painel .fita{border:0}
+.linha-pizza{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--linha);font-family:var(--sans)}
+.linha-pizza:last-child{border-bottom:0}
+.linha-pizza .tempo{font-variant-numeric:tabular-nums;font-weight:600}
+.linha-pizza .nome{font-family:var(--serif)}
+.linha-pizza .preco{font-variant-numeric:tabular-nums}
+.linha-pizza .add{background:none;border:1px solid var(--linha);border-radius:999px;padding:4px 10px;cursor:pointer;font-size:.8rem}
+/* COMANDA */
+.comanda{position:fixed;bottom:0;left:0;right:0;background:var(--carvao);border-top:1px solid var(--linha);transform:translateY(100%);transition:transform .3s var(--ease)}
+.comanda.ativa{transform:translateY(0)}
+.comanda-in{display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+.comanda-total{font-family:var(--serif);font-size:1.25rem}
+.comanda-enviar{background:var(--wa);color:#0B1F13;border:none;border-radius:999px;padding:8px 16px;font-weight:600;cursor:pointer}
+/* RODAPÉ */
+footer{border-top:1px solid var(--linha);padding:24px;text-align:center;font-size:.85rem}
+@media(max-width:860px){
+  .hero{min-height:auto;padding:40px 16px}
+  .hero-grid{grid-template-columns:1fr}
+  .fita{grid-template-columns:1fr}
+  .prova{border-left:0;border-top:1px solid var(--linha}
+  .prova:first-child{border-top:0}
 }
 @media(prefers-reduced-motion:reduce){
-  *{transition:none !important;animation:none !important;scroll-behavior:auto !important}
-  .sec-title::after{transform:scaleX(1) !important}
-  #riscoNavalha path{stroke-dasharray:none !important;stroke-dashoffset:0 !important}
-  .ticket{clip-path:inset(0 0 0% 0) !important;transform:none !important}
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{clip-path:none;opacity:1}
+  .forma{animation:none}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
-<div id="riscoNavalha" aria-hidden="true"><svg width="100%" height="100%" preserveAspectRatio="none"><path id="riscoPath" d=""/></svg></div>
-<nav class="nav">
-  <div class="nav-brand">NOR<span>TE</span><span class="ord">/01</span></div>
-  <div class="nav-links" id="links">
-    <a href="#servicos">Servicos</a>
-    <a href="#horarios">Horarios</a>
-    <a href="#prova">Avaliacoes</a>
-    <a href="https://wa.me/5511970776856" class="nav-cta">Agendar</a>
-  </div>
-  <button class="burger" id="burger" aria-label="Menu">|||</button>
-</nav>
 
-<section class="hero" id="top">
-  <div class="hero-mark">EST. 2019 / SAO VICENTE/SP</div>
-  <div class="hero-left">
-    <div class="hero-num"><span class="tick"></span>01 / 04</div>
-    <h1 class="hero-title a">BARBEARIA<br><span class="red">NORTE.</span></h1>
-    <p class="hero-sub">Corte na regua, navalha na mao e zero enrolacao. Aqui voce entra baguncado e sai com a cabeca no lugar -- na frente da pracinha, aberto de terca a sabado.</p>
-    <a href="https://wa.me/5511970776856" class="hero-cta">Agendar pelo WhatsApp <span class="arr">-></span></a>
+<header class="regua">
+  <div class="regua-in">
+    <nav class="trilho" aria-label="A noite">
+      <ol>
+        <li><a href="#h18">18</a></li>
+        <li><a href="#h19">19</a></li>
+        <li><a href="#h20">20</a></li>
+        <li><a href="#h21">21</a></li>
+        <li><a href="#h22">22</a></li>
+        <li><a href="#h23">23</a></li>
+      </ol>
+      <span class="agulha" id="agulha" style="left:0%"></span>
+    </nav>
+    <p class="relogio tab">
+      <span id="relogio">00:00</span>
+      <span class="pill" id="pill"><span class="ponto"></span><span id="pill-txt">—</span></span>
+    </p>
+    <button class="tema" id="tema" type="button" aria-label="Alternar dia e noite">☾</button>
   </div>
-  <div class="hero-right">
-    <div class="hero-stat"><span class="k">Espera media</span><span class="v num">5 min</span></div>
-    <div class="hero-stat"><span class="k">Cortes no ano</span><span class="v num red" data-count="1200">1.200+</span></div>
-    <div class="hero-stat"><span class="k">Avaliacao Google</span><span class="v num">4.9 / 5</span></div>
-    <div class="hero-stat"><span class="k">Funcionamento</span><span class="v" style="font-size:1.1rem">Ter -- Sab</span></div>
-  </div>
-</section>
+</header>
 
-<section class="sec" id="servicos">
-  <div class="sec-head">
-    <div class="sec-num num">02 / 04</div>
-    <h2 class="sec-title a">SERVICOS</h2>
-    <div class="sec-tagend">Tabela fixa / 2026</div>
-  </div>
-  <div class="serv-table">
-    <div class="serv-row" data-serv="Corte" data-price="R$ 45">
-      <div class="serv-idx num">01</div>
-      <div class="serv-name">Corte <span class="tag">Mais pedido</span></div>
-      <p class="serv-desc">Maquina ou navalha, do social ao degrade. Acabamento com acetonico e finalizador.</p>
-      <button class="serv-ticket-btn" type="button" aria-label="Tirar senha para Corte">Senha</button>
-      <div class="serv-price">R$ 45 <small>/corte</small></div>
-    </div>
-    <div class="serv-row" data-serv="Barba" data-price="R$ 35">
-      <div class="serv-idx num">02</div>
-      <div class="serv-name">Barba</div>
-      <p class="serv-desc">Toalha quente, navalha e desenho. Sai com o fio de conversa na regua.</p>
-      <button class="serv-ticket-btn" type="button" aria-label="Tirar senha para Barba">Senha</button>
-      <div class="serv-price">R$ 35 <small>/barba</small></div>
-    </div>
-    <div class="serv-row" data-serv="Corte + Barba" data-price="R$ 70">
-      <div class="serv-idx num">03</div>
-      <div class="serv-name">Corte + Barba <span class="tag">Combo</span></div>
-      <p class="serv-desc">O servico completo. Saque o servo com jeito de gente arrumada.</p>
-      <button class="serv-ticket-btn" type="button" aria-label="Tirar senha para Corte e Barba">Senha</button>
-      <div class="serv-price">R$ 70 <small>/combo</small></div>
-    </div>
-    <div class="serv-row" data-serv="Sobrancelha" data-price="R$ 15">
-      <div class="serv-idx num">04</div>
-      <div class="serv-name">Sobrancelha</div>
-      <p class="serv-desc">Limpeza com navalha, sem desenho de palito. Relastro sempre tem.</p>
-      <button class="serv-ticket-btn" type="button" aria-label="Tirar senha para Sobrancelha">Senha</button>
-      <div class="serv-price">R$ 15 <small>/cada</small></div>
-    </div>
-    <div class="serv-row" data-serv="Pezinho" data-price="R$ 15">
-      <div class="serv-idx num">05</div>
-      <div class="serv-name">Pezinho</div>
-      <p class="serv-desc">Acabamento na nuca com navalha. Desembaralha o desleixo sem refazer o corte.</p>
-      <button class="serv-ticket-btn" type="button" aria-label="Tirar senha para Pezinho">Senha</button>
-      <div class="serv-price">R$ 15 <small>/cada</small></div>
-    </div>
-    <div class="serv-row" data-serv="Platinado" data-price="R$ 120">
-      <div class="serv-idx num">06</div>
-      <div class="serv-name">Platinado</div>
-      <p class="serv-desc">Descoloracao completa e tonalizador. Tempo medio de 2h, com fio de conversa.</p>
-      <button class="serv-ticket-btn" type="button" aria-label="Tirar senha para Platinado">Senha</button>
-      <div class="serv-price">R$ 120 <small>/processo</small></div>
-    </div>
-  </div>
-  <div class="ticket-panel" id="ticketPanel" aria-live="polite" aria-atomic="true"></div>
-</section>
+<main>
 
-<section class="sec" id="horarios">
-  <div class="sec-head">
-    <div class="sec-num num">03 / 04</div>
-    <h2 class="sec-title a">HORARIOS</h2>
-    <div class="sec-tagend">Grade semanal</div>
-  </div>
-  <div class="horarios" id="gradeHorarios">
-    <div class="hora"><div class="d">Seg</div><div class="h off">Fechado</div></div>
-    <div class="hora"><div class="d">Ter</div><div class="h num">09h -- 19h</div></div>
-    <div class="hora"><div class="d">Qua</div><div class="h num">09h -- 19h</div></div>
-    <div class="hora"><div class="d">Qui</div><div class="h num">09h -- 19h</div></div>
-    <div class="hora"><div class="d">Sex</div><div class="h num">09h -- 20h</div></div>
-    <div class="hora"><div class="d">Sab</div><div class="h num">08h -- 18h</div></div>
-    <div class="hora"><div class="d">Dom</div><div class="h off">Fechado</div></div>
-  </div>
-  <p class="mono" style="margin-top:2rem;color:var(--muted)">Mande horario e servico no WhatsApp. Respondemos na hora -- sem recepcionista, sem robo, sem fila opaca.</p>
-</section>
-
-<section class="sec" id="prova">
-  <div class="sec-head">
-    <div class="sec-num num">04 / 04</div>
-    <h2 class="sec-title a">PROVA</h2>
-    <div class="sec-tagend">Google / 318 notas / 4.9 media</div>
-  </div>
-  <div class="prova">
-    <div class="depo">
-      <div class="n num">001 / 318</div>
-      <p>Caroco de gente. Cheguei com uma maracutaia na cabeca e o neguinho desembolou num degrade lizo. Pretao de respeito.</p>
-      <div class="depo-foot">
-        <div>
-          <div class="depo-cidadao">RAFAEL M.</div>
-          <div class="depo-meta">14 avaliacoes</div>
-        </div>
-        <div class="nota">★ ★ ★ ★ ★</div>
+<section class="hero" id="h18">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="marca"><b>Forno da Vila</b> — pizza a lenha</p>
+      <p class="hora-secao tab">18:00</p>
+      <h1>A noite<br><em>inteira.</em></h1>
+      <p class="local">Massa de <b>48 horas</b>, forno a lenha desde 2014.<br>
+         Av. Exemplo, 000 — Itararé, São Vicente.</p>
+      <div class="estado" id="estado">
+        <p><span class="estado-nome" id="estado-nome">—</span><br>
+           <span class="estado-sub" id="estado-sub"></span></p>
+        <p class="estado-espera" id="estado-espera"></p>
+        <a class="wa-btn" id="cta" href="#" target="_blank" rel="noopener">
+          <span id="cta-txt">Pedir no WhatsApp</span>
+        </a>
       </div>
     </div>
-    <div class="depo">
-      <div class="n num">002 / 318</div>
-      <p>Tava bom, pode melhorar na barba. Mas o corte ta Google nas maos. Volto sempre.</p>
-      <div class="depo-foot">
-        <div>
-          <div class="depo-cidadao">JUNINHO L.</div>
-          <div class="depo-meta">9 avaliacoes</div>
-        </div>
-        <div class="nota">★ ★ ★ ★ ★</div>
-      </div>
+    <div class="hero-arte">
+      <!-- SVG do forno — versão simplificada -->
+      <svg class="forno" viewBox="0 0 440 340" aria-hidden="true" focusable="false">
+        <defs>
+          <radialGradient id="g-brasa" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FFF1E6" stop-opacity=".9"/>
+            <stop offset="38%" stop-color="#FF5A1F" stop-opacity=".6"/>
+            <stop offset="100%" stop-color="#FF5A1F" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <path class="arco" d="M44 302 L44 208 A176 148 0 0 1 396 208 L396 302 Z"/>
+        <g class="tijolo">
+          <path d="M70 302 L70 210 A150 126 0 0 1 370 210 L370 302"/>
+          <path d="M89 302 L89 212 A131 110 0 0 1 351 212 L351 302"/>
+        </g>
+        <path class="boca" d="M108 300 L108 214 A112 96 0 0 1 332 214 L332 300 Z"/>
+        <ellipse class="piso" cx="220" cy="298" rx="112" ry="26"/>
+        <g class="chama"><ellipse cx="220" cy="296" rx="118" ry="34" fill="url(#g-brasa)"/></g>
+        <g class="lenha">
+          <rect x="272" y="272" width="52" height="9" rx="4.5" transform="rotate(-7 298 276)"/>
+          <rect x="282" y="282" width="44" height="9" rx="4.5" transform="rotate(5 304 286)"/>
+        </g>
+        <g transform="translate(198 284) scale(1 .4)">
+          <g class="forma">
+            <circle class="massa" r="66"/>
+            <circle class="crosta" r="66"/>
+            <circle class="crosta" r="53"/>
+            <g class="cobertura">
+              <circle cx="-19" cy="-22" r="7"/><circle cx="20" cy="-13" r="6"/>
+              <circle cx="-4" cy="16" r="7.5"/><circle cx="26" cy="19" r="5.5"/>
+            </g>
+          </g>
+        </g>
+        <path class="bancada" d="M28 302 H412 a6 6 0 0 1 6 6 v14 a6 6 0 0 1-6 6 H28 a6 6 0 0 1-6-6 v-14 a6 6 0 0 1 6-6 z"/>
+      </svg>
     </div>
-    <div class="depo">
-      <div class="n num">003 / 318</div>
-      <p>Preco justo, atendimento de respeito, sem palhacada. Chega pra usar e sai arrumado.</p>
-      <div class="depo-foot">
-        <div>
-          <div class="depo-cidadao">THIAGO B.</div>
-          <div class="depo-meta">22 avaliacoes</div>
-        </div>
-        <div class="nota">★ ★ ★ ★ ★</div>
+  </div>
+</section>
+
+<section class="secao" id="h19">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">18:40</p>
+    <h2 class="reveal">Começa 48 horas antes de você ter fome.</h2>
+    <div class="fita">
+      <article class="prova reveal">
+        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="8"/></svg>
+        <p class="quando tab">48H ANTES</p>
+        <h3>Descanso</h3>
+        <p>A massa dorme na câmara fria. Sem pressa e sem fermento a mais.</p>
+      </article>
+      <article class="prova reveal">
+        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="14"/></svg>
+        <p class="quando tab">ONTEM</p>
+        <h3>Sova</h3>
+        <p>Trabalhada à mão, uma vez só. É o que deixa a borda leve.</p>
+      </article>
+      <article class="prova reveal">
+        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="21"/></svg>
+        <p class="quando tab">HOJE, 16H</p>
+        <h3>Bolas</h3>
+        <p>Porcionada e coberta. Às 18h em ponto, a primeira entra no forno.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="secao painel" id="h20">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">19:30</p>
+    <h2 class="reveal">Saindo do forno</h2>
+    <div class="fita reveal">
+      <div class="linha-pizza">
+        <span class="tempo tab">~9 min</span>
+        <span class="nome">Margherita</span>
+        <span class="preco tab">R$ 45</span>
+        <button class="add" data-sabor="Margherita" data-preco="45">+</button>
+      </div>
+      <div class="linha-pizza">
+        <span class="tempo tab">~11 min</span>
+        <span class="nome">Calabresa</span>
+        <span class="preco tab">R$ 48</span>
+        <button class="add" data-sabor="Calabresa" data-preco="48">+</button>
+      </div>
+      <div class="linha-pizza">
+        <span class="tempo tab">~13 min</span>
+        <span class="nome">Portuguesa</span>
+        <span class="preco tab">R$ 52</span>
+        <button class="add" data-sabor="Portuguesa" data-preco="52">+</button>
+      </div>
+      <div class="linha-pizza">
+        <span class="tempo tab">~16 min</span>
+        <span class="nome">Quatro Queijos</span>
+        <span class="preco tab">R$ 58</span>
+        <button class="add" data-sabor="Quatro Queijos" data-preco="58">+</button>
       </div>
     </div>
   </div>
 </section>
 
-<section class="cta-final">
-  <h2 class="a">SUA VEZ,<br><span class="red">SEU CORTE.</span></h2>
-  <p>Manda mensagem com horario e servico. Garantia de cadeira sinuca sem fila opaca.</p>
-  <a href="https://wa.me/5511970776856" class="hero-cta">Agendar Agora <span class="arr">-></span></a>
-  <div class="cta-stat">
-    <div><strong class="num" data-count="1200">1.200+</strong><span>Cortes no ano</span></div>
-    <div><strong class="num">4.9</strong><span>Avaliacao Google</span></div>
-    <div><strong class="num">5min</strong><span>Espera media</span></div>
+<section class="secao" id="h21">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">21:00</p>
+    <h2 class="reveal">O horário em que o forno não descansa.</h2>
+    <div class="fita reveal">
+      <div style="padding:24px;border-bottom:1px solid var(--linha)">
+        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">180 pizzas no sábado</p>
+        <p style="color:var(--fumaca)">Cada uma assada na hora certa.</p>
+      </div>
+      <div style="padding:24px;border-bottom:1px solid var(--linha)">
+        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">48h de massa</p>
+        <p style="color:var(--fumaca)">Fermentação natural, sem pressa.</p>
+      </div>
+      <div style="padding:24px">
+        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">12 anos de forno</p>
+        <p style="color:var(--fumaca)">Lenha de carvalho desde 2014.</p>
+      </div>
+    </div>
   </div>
 </section>
+
+<section class="secao" id="h22">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">22:15</p>
+    <h2 class="reveal">Onde a gente chega</h2>
+    <div class="fita reveal">
+      <div style="padding:24px">
+        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">Centro — 25 min</p>
+        <p style="color:var(--fumaca)">Itararé — 30 min · Pq. Bitaru — 35 min · Jd. Rio Branco — 40 min</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="secao" id="h23">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">23:30</p>
+    <h2 class="reveal">Depois disso, o forno apaga.</h2>
+    <div class="fita reveal">
+      <div style="padding:24px">
+        <p style="font-family:var(--sans);font-size:1.1rem;letter-spacing:.02em">
+          Última rodada às 23:30. Depois, o forno apaga.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="comanda" id="comanda">
+  <div class="comanda-in">
+    <span class="comanda-total" id="comanda-total">0 itens · R$ 0</span>
+    <button class="comanda-enviar" id="comanda-enviar">Enviar comanda →</button>
+  </div>
+</div>
 
 <footer>
-  <span><strong>NORTE</strong> / Barbearia / Rua Martirio de Assis, 142 / Sao Vicente/SP</span>
-  <span class="ord">Edicao 01 / 2026</span>
-</footer>
-</div>
-
-<script>
-(function(){
-  var prefersReduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-
-  /* ========== BURGER MENU ========== */
-  var burger=document.getElementById('burger');
-  var links=document.getElementById('links');
-  if(burger&&links){
-    burger.addEventListener('click',function(){links.classList.toggle('open');});
-  }
-  var anchors=document.querySelectorAll('a[href^="#"]');
-  for(var i=0;i<anchors.length;i++){
-    anchors[i].addEventListener('click',function(e){
-      var id=this.getAttribute('href').slice(1);
-      var el=document.getElementById(id);
-      if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});if(links){links.classList.remove('open');}}
-    });
-  }
-
-  /* ========== COUNTERS ========== */
-  function animateCount(el){
-    var target=parseInt(el.getAttribute('data-count'),10);
-    var cur=0;
-    var step=Math.max(1,Math.floor(target/40));
-    var timer=setInterval(function(){
-      cur+=step;
-      if(cur>=target){cur=target;clearInterval(timer);}
-      var s=cur>=1000?(cur/1000).toFixed(1).replace('.','.')+'+':cur+'+';
-      el.textContent=s;
-    },20);
-  }
-  if(!prefersReduce&&'IntersectionObserver' in window){
-    var obs=new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(en.isIntersecting){animateCount(en.target);obs.unobserve(en.target);}
-      });
-    },{threshold:.5});
-    var counters=document.querySelectorAll('[data-count]');
-    for(var j=0;j<counters.length;j++){obs.observe(counters[j]);}
-  }
-
-  /* ========== GRADE HORARIOS (today highlight) ========== */
-  var grade=document.getElementById('gradeHorarios');
-  if(grade){
-    var today=new Date().getDay();
-    var cells=grade.querySelectorAll('.hora');
-    if(cells[today]){cells[today].classList.add('today');}
-  }
-
-  /* ========== TICKET — "SENHA DA FILA" ========== */
-  var WA_NUMBER='5511970776856';
-  var ticketPanel=document.getElementById('ticketPanel');
-
-  function pseudoSenhaDoDia(){
-    var d=new Date();
-    var y=d.getFullYear(), m=d.getMonth()+1, day=d.getDate();
-    var seed=((y*10000)+(m*100)+day) % 997;
-    return 41+(seed%59);
-  }
-
-  function fmtSenha(n){
-    return (n<100?'0'+n:''+n).slice(-3);
-  }
-
-  function gerarTicket(serv,price,senhaNum){
-    var senha=fmtSenha(senhaNum);
-    var waText='Quero agendar: '+serv+' — '+price+'. Senha #'+senha;
-    var waHref='https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(waText);
-    var ticket=document.createElement('div');
-    ticket.className='ticket';
-    ticket.setAttribute('role','status');
-    ticket.setAttribute('aria-label','Senha '+senha+' para '+serv);
-    ticket.innerHTML=
-      '<div class="ticket-head"><span class="brand">BARBEARIA NORTE</span><span class="num">SENHA #'+senha+'</span></div>'+
-      '<div class="ticket-body">'+
-        '<div class="row"><span class="k">Servico</span><span class="v">'+serv+'</span></div>'+
-        '<div class="row"><span class="k">Preco</span><span class="v red">'+price+'</span></div>'+
-        '<div class="row"><span class="k">Status</span><span class="v">Aguardando agendamento</span></div>'+
-      '</div>'+
-      '<hr class="ticket-sep">'+
-      '<a href="'+waHref+'" class="ticket-wa" target="_blank" rel="noopener">Confirmar no WhatsApp</a>';
-    return ticket;
-  }
-
-  function bindTicketButtons(){
-    if(!ticketPanel)return;
-    var btns=document.querySelectorAll('.serv-ticket-btn');
-    btns.forEach(function(btn){
-      btn.addEventListener('click',function(){
-        var row=btn.closest('.serv-row');
-        if(!row)return;
-        var serv=row.getAttribute('data-serv');
-        var price=row.getAttribute('data-price');
-        var senha=pseudoSenhaDoDia();
-        ticketPanel.innerHTML='';
-        var ticket=gerarTicket(serv,price,senha);
-        ticketPanel.appendChild(ticket);
-        requestAnimationFrame(function(){
-          ticket.classList.add('show');
-          if(!prefersReduce){
-            void ticket.offsetWidth;
-            ticket.classList.add('animate');
-          }
-        });
-      });
-    });
-  }
-
-  if(prefersReduce){
-    document.querySelectorAll('.ticket').forEach(function(t){
-      t.style.clipPath='inset(0 0 0% 0)';
-    });
-  }
-  bindTicketButtons();
-
-  /* ========== RISCO DA NAVALHA — SVG path progressive draw ========== */
-  var riscoPath=document.getElementById('riscoPath');
-  var riscoContainer=document.getElementById('riscoNavalha');
-
-  function getSectionYs(){
-    var secs=document.querySelectorAll('section, footer');
-    var ys=[];
-    secs.forEach(function(s){
-      ys.push(s.offsetTop);
-    });
-    return ys;
-  }
-
-  function buildPath(){
-    var sh=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);
-    var ys=getSectionYs();
-    if(!ys.length||sh<200)return'';
-    var W=Math.max(320,window.innerWidth);
-    /* corre nas CALHAS laterais (fora das colunas de texto) e só cruza a página
-       na fronteira entre seções — onde já existe a borda 3px, sem cortar palavra */
-    var gutter=Math.max(10,Math.min(28,W*0.02));
-    var xR=W-gutter, xL=gutter;
-    var segs=['M '+xR+',0'];
-    var lastX=xR;
-    for(var i=1;i<ys.length;i++){
-      var yb=Math.min(ys[i],sh);          /* fronteira da seção */
-      var nx=(lastX===xR)?xL:xR;
-      segs.push('L '+lastX+','+yb);       /* desce pela calha */
-      segs.push('L '+nx+','+yb);          /* cruza sobre a borda da seção */
-      lastX=nx;
-    }
-    segs.push('L '+lastX+','+sh);
-    return segs.join(' ');
-  }
-
-  function setupRisco(){
-    if(!riscoPath||!riscoContainer)return;
-    var sh=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);
-    var vw=Math.max(320,window.innerWidth);
-    riscoContainer.style.height=sh+'px';
-    var svg=riscoContainer.querySelector('svg');
-    if(svg){svg.setAttribute('width',vw);svg.setAttribute('height',sh);svg.setAttribute('viewBox','0 0 '+vw+' '+sh);}
-    if(prefersReduce){
-      riscoPath.setAttribute('d',buildPath());
-      riscoPath.style.strokeDasharray='none';
-      riscoPath.style.strokeDashoffset='0';
-      return;
-    }
-    var d=buildPath();
-    riscoPath.setAttribute('d',d);
-    var len=riscoPath.getTotalLength();
-    if(isNaN(len)||len===0){return;}
-    riscoPath.style.strokeDasharray=len;
-    riscoPath.style.strokeDashoffset=len;
-    var ticking=false;
-    function update(){
-      var sv=window.scrollY;
-      var vp=window.innerHeight;
-      var maxScroll=Math.max(1,sh-vp);
-      var progress=Math.max(0,Math.min(1,sv/maxScroll));
-      riscoPath.style.strokeDashoffset=Math.max(0,len*(1-progress));
-      ticking=false;
-    }
-    window.addEventListener('scroll',function(){
-      if(!ticking){ticking=true;requestAnimationFrame(update);}}, {passive:true});
-    var resizeTimer;
-    window.addEventListener('resize',function(){
-      clearTimeout(resizeTimer);
-      resizeTimer=setTimeout(function(){
-        sh=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);
-        vw=Math.max(320,window.innerWidth);
-        riscoContainer.style.height=sh+'px';
-        if(svg){svg.setAttribute('width',vw);svg.setAttribute('height',sh);svg.setAttribute('viewBox','0 0 '+vw+' '+sh);}
-        d=buildPath();
-        riscoPath.setAttribute('d',d);
-        len=riscoPath.getTotalLength();
-        riscoPath.style.strokeDasharray=len;
-        update();
-      },150);
-    },{passive:true});
-    update();
-  }
-
-  setupRisco();
-
-  /* ========== SUBLINHADO — sec-title "risco" curto ========== */
-  if(!prefersReduce&&'IntersectionObserver' in window){
-    var stObs=new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(en.isIntersecting){
-          en.target.classList.add('underline');
-          stObs.unobserve(en.target);
-        }
-      });
-    },{threshold:.3});
-    var titles=document.querySelectorAll('.sec-title');
-    for(var k=0;k<titles.length;k++){stObs.observe(titles[k]);}
-  }else{
-    var st=[].slice.call(document.querySelectorAll('.sec-title'));
-    st.forEach(function(t){t.classList.add('underline');});
-  }
-
-  /* ========== REBUILD RISCO on font load ========== */
-  if(document.fonts&&document.fonts.ready){
-    document.fonts.ready.then(function(){setupRisco();});
-  }
-})();
-</script>
-
-  
-
-  <!-- Vitrine Certa Exit-Intent -->
-<style>
-#vc-exit{position:fixed;inset:0;background:rgba(11,7,20,.82);z-index:9998;display:none;
-  align-items:center;justify-content:center;padding:1.4rem;font-family:system-ui,sans-serif}
-#vc-exit.show{display:flex;animation:vcFade .25s ease}
-@keyframes vcFade{from{opacity:0}to{opacity:1}}
-#vc-exit .box{background:#0B0714;color:#EFE9FF;border:1px solid rgba(45,212,191,.4);
-  border-radius:16px;max-width:420px;width:100%;padding:1.8rem;text-align:center;
-  box-shadow:0 24px 70px rgba(0,0,0,.6)}
-#vc-exit h3{margin:0 0 .5rem;color:#2DD4BF;font-size:1.35rem;line-height:1.25}
-#vc-exit p{margin:0 0 1.2rem;opacity:.85;font-size:.98rem;line-height:1.5}
-#vc-exit .cta{display:inline-block;background:#C6FF00;color:#0B0714;font-weight:800;
-  text-decoration:none;padding:.85rem 1.4rem;border-radius:99px;font-size:1rem}
-#vc-exit .close{display:block;margin:.9rem auto 0;background:none;border:0;color:rgba(239,233,255,.5);
-  font-size:.82rem;cursor:pointer}
-</style>
-<div id="vc-exit" role="dialog" aria-modal="true" aria-label="Antes de sair">
-  <div class="box">
-    <h3>Espera aí! ;)</h3>
-    <p>Antes de ir: quer receber <b>promoções e novidades</b> do <span id="vc-biz">nosso comércio</span> direto no seu WhatsApp? É rapidinho.</p>
-    <a class="cta" id="vc-exit-wa" href="https://wa.me/5511970776856?text=Quero%20receber%20promoções%20no%20WhatsApp">Receber no WhatsApp</a>
-    <button class="close" id="vc-exit-x">Agora não, obrigado</button>
+  <div class="wrap">
+    <p>Forno da Vila · pizza a lenha em São Vicente · aberto 18h–23:30 · © 2026</p>
+    <p style="margin-top:8px"><a href="../../receita-zero/#planos" style="color:var(--fumaca)">Quer um site assim pro seu negócio?</a></p>
   </div>
-</div>
+</footer>
+
 <script>
-(function(){
-  var shown=false;
-  function show(){
-    if(shown||sessionStorage.getItem('vc_exit_done'))return;
-    shown=true;sessionStorage.setItem('vc_exit_done','1');
-    document.getElementById('vc-exit').classList.add('show');
-  }
-  function hide(){document.getElementById('vc-exit').classList.remove('show');}
-  document.addEventListener('visibilitychange',function(){if(document.hidden)show();});
-  window.addEventListener('beforeunload',function(e){if(!sessionStorage.getItem('vc_exit_done')){e.preventDefault();e.returnValue='';}});
-  document.addEventListener('click',function(e){
-    if(e.target&&e.target.id==='vc-exit-x')hide();
-    if(e.target&&e.target.id==='vc-exit')hide();
+/* Configuração fictícia de portfólio — trocar pelos dados reais */
+const CASA = {
+  abre:18, aquecendoAte:18.34, ultimoPedido:23.5, fecha:24,
+  picoDe:20, picoAte:22,
+  esperaBase:25, esperaPico:45,
+  whats:'5511970776856'
+};
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const clamp = (v,a,b) => Math.min(b, Math.max(a, v));
+
+function horaAgora(){
+  const forcada = new URLSearchParams(location.search).get('h');
+  if(forcada !== null && forcada !== '') return clamp(parseFloat(forcada), 0, 23.999);
+  const agora = new Date();
+  const h = agora.getHours();
+  const m = agora.getMinutes();
+  return h + m/60;
+}
+
+function estadoDe(h){
+  if(h >= CASA.ultimoPedido && h < CASA.fecha)
+    return {id:'ultima', nome:'Última rodada', sub:'pedidos até 23:30', calor:1, espera:CASA.esperaPico, cta:'Última rodada — faltam ' + Math.round((CASA.fecha-h)*60) + ' min', msg:'Oi! Dá tempo da última rodada?'};
+  if(h >= CASA.picoDe && h < CASA.picoAte)
+    return {id:'pico', nome:'Pico', sub:'o forno não descansa', calor:1, espera:CASA.esperaPico, cta:'Pedir agora (~'+CASA.esperaPico+' min)', msg:'Oi! Pedido (sei que tá no pico):'};
+  if(h >= CASA.aquecendoAte && h < CASA.ultimoPedido)
+    return {id:'aberto', nome:'Aberto', sub:'saindo do forno', calor:.72, espera:CASA.esperaBase, cta:'Pedir agora', msg:'Oi! Pedido:'};
+  if(h >= CASA.abre && h < CASA.aquecendoAte)
+    return {id:'aquecendo', nome:'Aquecendo', sub:'primeiras saem 18:20', calor:.38, espera:null, cta:'Entrar na primeira fornada', msg:'Oi! Pego a primeira fornada?'};
+  return {id:'fechado', nome:'Fechado', sub:'abre 18:00', calor:0, espera:null, cta:'Programar pedido pras 18h', msg:'Oi! Queria deixar um pedido pra hoje às 18h:'};
+}
+
+function diaDe(h){
+  if(h < 6) return 0;
+  if(h < 17) return 1;
+  if(h < 18) return 1 - (h - 17);
+  return 0;
+}
+
+function formataHora(h){
+  const hh = String(Math.floor(h)).padStart(2,'0');
+  const mm = String(Math.floor((h % 1) * 60)).padStart(2,'0');
+  return hh + ':' + mm;
+}
+
+let temaManual = null;
+let comanda = [];
+
+function pinta(){
+  const h = horaAgora();
+  const e = estadoDe(h);
+  const dia = temaManual === null ? diaDe(h) : temaManual;
+  document.documentElement.style.setProperty('--calor', e.calor);
+  document.documentElement.style.setProperty('--dia', dia.toFixed(3));
+  $('#relogio').textContent = formataHora(h);
+  $('#relogio').className = 'tab';
+  $('#pill').style.background = e.calor > 0 ? 'var(--brasa)' : 'transparent';
+  $('#pill-txt').textContent = e.espera ? e.nome + ' · ~' + e.espera + ' min' : e.nome;
+  $('#estado-nome').textContent = e.nome;
+  $('#estado-sub').textContent = e.sub;
+  $('#estado-espera').innerHTML = e.espera ? 'Saindo do forno em <b>~' + e.espera + ' minutos</b>.' : (e.id === 'fechado' ? 'O forno acende às 18h. Deixa o pedido programado.' : 'As primeiras saem às 18:20.');
+  $('#cta-txt').textContent = e.cta;
+  $('#cta').href = 'https://wa.me/' + CASA.whats + '?text=' + encodeURIComponent(e.msg);
+  $('#tema').textContent = dia > .5 ? '☀' : '☾';
+  const ag = $('#agulha');
+  const dentro = h >= CASA.abre && h < CASA.fecha;
+  ag.style.opacity = dentro ? '1' : '0';
+  ag.style.left = clamp((h - CASA.abre) / 6, 0, 1) * 100 + '%';
+  $$('.trilho a').forEach(a => a.style.fontWeight = (+a.textContent === Math.floor(h)) ? '600' : '500');
+}
+
+$('#tema').addEventListener('click', () => {
+  const atual = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--dia')) || 0;
+  temaManual = atual > .5 ? 0 : 1;
+  pinta();
+});
+
+/* Reveal por máscara — ativa ao rolar ou no carregamento */
+function checkReveal(){
+  $$('.reveal:not(.on)').forEach(el=>{
+    const r=el.getBoundingClientRect();
+    if(r.top < innerHeight*0.8) el.classList.add('on');
   });
-})();
+}
+addEventListener('scroll', checkReveal, {passive:true});
+/* ativa todos no carregamento (site de portfólio: prioriza acessibilidade) */
+setTimeout(() => $$('.reveal').forEach(el => el.classList.add('on')), 100);
+
+/* Comanda */
+$$('.add').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const sabor = btn.dataset.sabor;
+    const preco = +btn.dataset.preco;
+    comanda.push({sabor, preco});
+    atualizaComanda();
+  });
+});
+
+function atualizaComanda(){
+  const total = comanda.reduce((s, i) => s + i.preco, 0);
+  $('#comanda-total').textContent = comanda.length + ' itens · R$ ' + total;
+  $('#comanda').classList.toggle('ativa', comanda.length > 0);
+}
+
+$('#comanda-enviar').addEventListener('click', () => {
+  const total = comanda.reduce((s, i) => s + i.preco, 0);
+  const itens = comanda.map(i => '• ' + i.sabor + ' — R$' + i.preco).join('\n');
+  const msg = 'Pedido — ' + formataHora(horaAgora()) + '\n' + itens + '\nTotal R$' + total;
+  window.open('https://wa.me/' + CASA.whats + '?text=' + encodeURIComponent(msg), '_blank');
+});
+
+/* Scroll-driven: o scroll é a noite passando */
+if(!CSS.supports('animation-timeline','scroll()')){
+  let alvo = 0, cur = 0, rodando = false;
+  const passo = () => {
+    cur += (alvo - cur) * 0.06;
+    document.documentElement.style.setProperty('--noite', cur.toFixed(4));
+    if(Math.abs(alvo - cur) > 0.0008) requestAnimationFrame(passo); else rodando = false;
+  };
+  addEventListener('scroll', () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    alvo = max > 0 ? clamp(scrollY / max, 0, 1) : 0;
+    if(!rodando){ rodando = true; requestAnimationFrame(passo); }
+  }, {passive:true});
+}
+
+pinta();
+setInterval(pinta, 20000);
 </script>
 </body>
 </html>

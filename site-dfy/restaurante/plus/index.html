@@ -1,545 +1,468 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Cantina do Porto: restaurante em São Vicente com pratos executivos, PF, grelhados e marmitex. Cardápio online e pedido no WhatsApp. Site Plus da Vitrine Certa, visual editorial moderno, pronto em 48h. A partir de R$99/mês.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- SEO Vitrine Certa -->
-<meta property="og:title" content="Cantina do Porto — Restaurante em São Vicente | site Plus">
-<meta property="og:description" content="Cantina do Porto: restaurante em São Vicente com pratos executivos, PF, grelhados e marmitex. Cardápio online e pedido no WhatsApp. Site Plus da Vitrine Certa, visual editorial moderno, pronto em 48h. A partir de R$99/mês.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://receitazero.github.io/receita-zero/site-dfy/restaurante/plus/index.html">
-<meta property="og:image" content="https://receitazero.github.io/receita-zero/site-dfy/restaurante/preview.png">
-<meta name="twitter:card" content="summary_large_image">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Restaurant",
-  "name": "Cantina do Porto",
-  "description": "Restaurante em São Vicente com pratos executivos, PF, grelhados e marmitex. Cardápio online e pedido no WhatsApp. Site Plus da Vitrine Certa, visual editorial moderno, pronto em 48h. A partir de R$99/mês.",
-  "url": "https://receitazero.github.io/receita-zero/site-dfy/restaurante/plus/index.html",
-  "image": "https://receitazero.github.io/receita-zero/site-dfy/restaurante/preview.png",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "São Vicente",
-    "addressRegion": "SP",
-    "addressCountry": "BR"
-  },
-  "telephone": "+5511970776856",
-  "priceRange": "R$99-R$149",
-  "provider": {
-    "@type": "Organization",
-    "name": "Vitrine Certa",
-    "url": "https://receitazero.github.io/receita-zero/receita-zero/"
-  }
-}
-</script>
-<title>Cantina do Porto — Restaurante em São Vicente</title>
-  <!-- Vitrine Certa Analytics -->
-<meta name="google-site-verification" content="rnYREYB-JR9uyXWd7UwSkGJn4kyjyVpHakO6lgSxJ-w">
-<script type="text/javascript">
-(function(c,l,a,r,i,t,y){
-  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-})(window,document,"clarity","script","xrpcs8vw2o");
-</script>
-  
-
-
-  
+<title>Forno da Vila — pizza a lenha em São Vicente</title>
+<meta name="description" content="Forno a lenha em São Vicente. Massa de 48 horas. Aberto das 18h às 23h30.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-/* ═══ PLUS HOUSE-STYLE (Vitrine Certa) ═══
-   Dark editorial unificado. Mesma estrutura pros 8 nichos; só trocar:
-   --accent / --accent-2 (tom do nicho) + conteúdo.
-   NÃO tem mecânica UAU exclusiva (cozinha ao vivo/cardápio digital/tracker) — isso é Premium R$149.
-   Cinematic: progress bar + parallax de hero + reveal em clip-path. */
+/* PARALELO — redesign alternativo da pizzaria premium
+   Conceito: "A NOITE INTEIRA" — mesmo plano, execução diferente
+   Diferença: motion CSS pura, sem JS de relógio odômetro, sem SVG complexo */
 :root{
-  --ink:#0E0B09; --ink-2:#16110D; --ink-3:#221A14; --line:#2C221A; --line-2:#3A2C20;
-  --paper:#F4EDE4; --muted:#A89684; --faint:#756456;
-   --accent:#7a2e1d; --accent-2:#e8b04b;   /* Restaurante brasileiro = terracota + âmbar */
-  --grad:linear-gradient(120deg,var(--accent),var(--accent-2));
-  --s-xs:.4rem;--s-sm:.7rem;--s-md:1rem;--s-lg:1.5rem;--s-xl:2.2rem;--s-2xl:3rem;--s-3xl:4.5rem;
-  --font-body:'Plus Jakarta Sans',system-ui,sans-serif;
-  --font-display:'Fraunces',Georgia,serif;
+  /* NOITE */
+  --n-tinta:#141A2A; --n-carvao:#0C1120; --n-tinta2:#1C2438; --n-linha:#2B3450;
+  --n-giz:#EDEFF5; --n-fumaca:#98A0B8; --n-brasa:#FF5A1F; --n-nucleo:#FFF1E6;
+  /* DIA */
+  --d-tinta:#ECEDF1; --d-carvao:#DDDFE7; --d-tinta2:#F7F8FB; --d-linha:#D3D7E2;
+  --d-giz:#141A2A; --d-fumaca:#5C6478; --d-brasa:#D6410E; --d-nucleo:#8A2B06;
+  /* resolvidos */
+  --tinta:color-mix(in oklab, var(--n-tinta), var(--d-tinta) calc(var(--dia,0)*100%));
+  --carvao:color-mix(in oklab, var(--n-carvao), var(--d-carvao) calc(var(--dia,0)*100%));
+  --tinta2:color-mix(in oklab, var(--n-tinta2), var(--d-tinta2) calc(var(--dia,0)*100%));
+  --linha:color-mix(in oklab, var(--n-linha), var(--d-linha) calc(var(--dia,0)*100%));
+  --giz:color-mix(in oklab, var(--n-giz), var(--d-giz) calc(var(--dia,0)*100%));
+  --fumaca:color-mix(in oklab, var(--n-fumaca), var(--d-fumaca) calc(var(--dia,0)*100%));
+  --brasa:color-mix(in oklab, var(--n-brasa), var(--d-brasa) calc(var(--dia,0)*100%));
+  --wa:#25D366;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Instrument Sans',system-ui,sans-serif;
   --ease:cubic-bezier(.22,1,.36,1);
 }
-*{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth}
-body{background:var(--ink);color:var(--paper);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
-.wrap{max-width:1120px;margin-inline:auto;padding-inline:24px}
-section{padding-block:var(--s-3xl)}
-h1,h2,h3{font-family:var(--font-display);line-height:1.02;letter-spacing:-.02em;font-weight:600}
-a{color:var(--accent);text-decoration:none}
-.eyebrow{display:inline-block;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:var(--s-sm)}
-.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.btn{display:inline-flex;align-items:center;gap:.45rem;padding:.9rem 1.7rem;border-radius:999px;font-weight:700;font-size:1rem;cursor:pointer;border:1px solid transparent;transition:transform .25s,box-shadow .25s}
-.btn:hover{transform:translateY(-2px)}
-.btn-solid{background:var(--grad);color:#160D06;box-shadow:0 14px 40px -14px color-mix(in srgb,var(--accent) 70%,transparent)}
-.btn-outline{background:color-mix(in srgb,var(--ink-3) 60%,transparent);border-color:var(--line-2);color:var(--paper)}
-/* PROGRESS BAR */
-.progress{position:fixed;top:0;left:0;right:0;height:3px;background:transparent;z-index:60}
-.progress i{display:block;height:100%;width:0;background:var(--grad);box-shadow:0 0 14px color-mix(in srgb,var(--accent) 70%,transparent)}
-/* REVEAL cinematic */
-.reveal{clip-path:inset(0 0 100% 0);opacity:.001;transition:clip-path .9s var(--ease),opacity .9s var(--ease)}
-.reveal.in{clip-path:inset(0 0 0 0);opacity:1}
-/* HERO + parallax */
-.hero{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden}
-.hero-bg{position:absolute;inset:-12% 0 -12% 0;z-index:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:saturate(.85) brightness(.5)}
-.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,color-mix(in srgb,var(--ink) 55%,transparent),var(--ink) 92%)}
-.hero .wrap{position:relative;z-index:1;padding-block:var(--s-3xl)}
-.hero h1{font-size:clamp(2.8rem,7vw,5.6rem);margin-bottom:var(--s-lg);max-width:14ch}
-.hero h1 em{font-style:italic;color:var(--accent)}
-.hero p.lede{color:var(--muted);font-size:1.18rem;max-width:46ch;margin:0 0 var(--s-xl)}
-.hero .cta{display:flex;gap:.8rem;flex-wrap:wrap}
-/* MARQUEE */
-.marquee{border-block:1px solid var(--line);background:var(--ink-2);color:var(--paper);padding:14px 0;overflow:hidden;white-space:nowrap}
-.marquee span{display:inline-block;padding-inline:2rem;font-family:var(--font-display);font-style:italic;font-weight:600;font-size:1.05rem;color:var(--accent-2);animation:scrollx 22s linear infinite}
-@keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-/* QUIZ */
-.quiz{max-width:560px;margin:var(--s-xl) auto 0;background:var(--ink-2);border:1px solid var(--line);border-radius:18px;padding:var(--s-xl);text-align:left;box-shadow:0 24px 70px -34px color-mix(in srgb,var(--accent) 40%,transparent)}
-.quiz h3{font-size:1.3rem;margin-bottom:var(--s-md);font-family:var(--font-display)}
-.quiz label{font-size:.78rem;color:var(--faint);display:block;margin:.8rem 0 .3rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
-.quiz select{width:100%;background:var(--ink-3);border:1px solid var(--line-2);border-radius:10px;padding:11px 13px;color:var(--paper);font-family:var(--font-body);font-size:14px}
-.quiz .sug{margin-top:1rem;font-size:1rem;color:var(--muted)}
-.quiz .sug b{color:var(--accent);font-family:var(--font-display);font-size:1.2rem}
-.wa-btn{display:inline-flex;align-items:center;gap:.45rem;margin-top:1rem;background:#25D366;color:#0B1F13;font-weight:700;font-size:.95rem;padding:.7rem 1.2rem;border-radius:999px;text-decoration:none;box-shadow:0 10px 24px -10px rgba(37,211,102,.6);transition:transform .2s,box-shadow .2s}
-.wa-btn:hover{transform:translateY(-2px)}
-.wa-btn svg{width:18px;height:18px;fill:#0B1F13}
-/* MONTAR PRATO (mecânica Plus: leve, não canibaliza o completo do Premium) */
-.orc{background:var(--ink-2);border:1px solid var(--line);border-radius:22px;padding:var(--s-2xl);display:grid;grid-template-columns:1.4fr 1fr;gap:var(--s-2xl)}
-.orc .grp{margin-bottom:1rem}
-.orc label{display:block;font-size:.76rem;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);font-weight:700;margin-bottom:.4rem}
-.orc .add{display:flex;gap:.5rem;flex-wrap:wrap}
-.orc .add span{padding:.5rem .9rem;border-radius:999px;border:1px solid var(--line-2);background:var(--ink-3);color:var(--muted);font-size:.9rem;cursor:pointer;transition:.2s}
-.orc .add span.on{background:var(--accent);color:#160D06;border-color:transparent;font-weight:700}
-.orc .ticket{background:var(--ink-3);border:1px solid var(--line-2);border-radius:14px;padding:var(--s-lg);font-family:var(--font-body)}
-.orc .ticket .line{display:flex;justify-content:space-between;padding:.35rem 0;border-bottom:1px dashed var(--line);font-size:.92rem}
-.orc .ticket .line span:last-child{color:var(--accent);font-weight:700}
-.orc .ticket .total{display:flex;justify-content:space-between;padding-top:.8rem;font-size:1.5rem;font-weight:800;font-family:var(--font-display)}
-.orc .ticket .total span:last-child{color:var(--accent)}
-.orc .wa{margin-top:1rem;width:100%;justify-content:center}
-/* CARDÁPIO (dark editorial) */
-.menu .head{text-align:center;margin-bottom:var(--s-2xl)}
-.prato-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--s-lg)}
-.prato{position:relative;background:var(--ink-2);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s}
-.prato:hover{transform:translateY(-6px);box-shadow:0 26px 60px -30px color-mix(in srgb,var(--accent) 55%,transparent);border-color:var(--line-2)}
-.prato img{width:100%;height:200px;object-fit:cover;object-position:center 45%;display:block;transition:transform .7s var(--ease)}
-.prato:hover img{transform:scale(1.1)}
-.prato .body{padding:var(--s-md) var(--s-lg) var(--s-lg)}
-.prato h4{font-family:var(--font-display);font-size:1.25rem;margin-bottom:.2rem}
-.prato .desc{color:var(--muted);font-size:.88rem;min-height:38px}
-.prato .row{display:flex;align-items:center;justify-content:space-between;margin-top:.8rem}
-.prato .price{font-family:var(--font-display);font-weight:600;font-size:1.35rem;color:var(--accent)}
-.prato .sz{font-size:.76rem;color:var(--faint)}
-.prato .tag{position:absolute;top:12px;right:12px;background:var(--grad);color:#160D06;font-size:.72rem;font-weight:800;padding:.3rem .7rem;border-radius:999px;opacity:0;transform:translateY(-6px);transition:.3s var(--ease)}
-.prato:hover .tag{opacity:1;transform:none}
-/* PROCESSO (editorial numerado) */
-.processo{background:var(--ink-2)}
-.processo .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:var(--s-lg)}
-.passo{background:var(--ink-3);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .35s var(--ease),border-color .35s}
-.passo:hover{transform:translateY(-6px);border-color:var(--line-2)}
-.passo .img{width:100%;height:170px;overflow:hidden}
-.passo .img img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
-.passo:hover .img img{transform:scale(1.07)}
-.passo .body{padding:var(--s-md) var(--s-lg) var(--s-lg)}
-.passo .num{font-family:var(--font-display);font-style:italic;font-size:2rem;color:var(--accent)}
-.passo h4{font-family:var(--font-display);font-size:1.15rem;margin:.1rem 0}
-.passo p{color:var(--muted);font-size:.88rem}
-/* PERKS */
-.perks .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--s-lg)}
-.perk{background:var(--ink-2);border:1px solid var(--line);border-radius:16px;padding:var(--s-lg);transition:border-color .3s}
-.perk:hover{border-color:var(--line-2)}
-.perk .ico{font-size:1.9rem;margin-bottom:.4rem}
-.perk h3{font-family:var(--font-display);font-size:1.1rem;margin-bottom:.3rem;font-weight:600}
-.perk p{color:var(--muted);font-size:.88rem}
-/* FAQ */
-.faq .head{text-align:center;margin-bottom:var(--s-xl)}
-.faq details{background:var(--ink-2);border:1px solid var(--line);border-radius:14px;padding:var(--s-md) var(--s-lg);margin-bottom:var(--s-sm);max-width:760px;margin-inline:auto}
-.faq summary{font-weight:700;cursor:pointer;color:var(--paper)}
-.faq p{color:var(--muted);margin-top:.6rem;font-size:.94rem}
-/* CONTATO */
-.contato{text-align:center}
-.contato form{max-width:480px;margin:var(--s-xl) auto 0;display:flex;flex-direction:column;gap:.8rem}
-.contato input,.contato textarea{background:var(--ink-3);border:1px solid var(--line-2);border-radius:10px;padding:12px 14px;font-family:var(--font-body);font-size:14px;color:var(--paper)}
-.contato input::placeholder,.contato textarea::placeholder{color:var(--faint)}
-/* END CTA */
-.endcta{background:radial-gradient(80% 120% at 50% 0%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 70%),var(--ink-2);border-top:1px solid var(--line);padding-block:var(--s-3xl)}
-footer{background:var(--ink-2);border-top:1px solid var(--line);padding-block:var(--s-lg);text-align:center;color:var(--faint);font-size:.88rem}
-@media(max-width:820px){
-  .hero{min-height:auto;padding-block:var(--s-3xl)}
-  .hero-bg{position:absolute;inset:0}
-  .prato-grid{grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:80%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:var(--s-sm)}
-  .prato{scroll-snap-align:start}
-  .orc{grid-template-columns:1fr}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip}
+body{background:var(--tinta);color:var(--giz);font-family:var(--sans);font-size:1.0625rem;line-height:1.55;transition:background .6s, color .6s}
+h1,h2{font-family:var(--serif);font-weight:400;line-height:.98;letter-spacing:-.02em}
+em{font-style:italic}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.tab{font-variant-numeric:tabular-nums}
+.reveal{clip-path:inset(100% 0 0 0);opacity:.001;transition:clip-path .52s var(--ease),opacity .52s var(--ease)}
+.reveal.on{clip-path:inset(0);opacity:1}
+/* RÉGUA */
+.regua{position:fixed;top:0;left:0;right:0;z-index:40;background:color-mix(in oklab, var(--tinta) 88%,transparent);backdrop-filter:blur(8px)}
+.regua-in{display:flex;align-items:center;gap:24px;padding:10px 24px}
+.trilho{position:relative;flex:1;height:34px}
+.trilho ol{position:absolute;inset:0;display:flex;list-style:none;align-items:center}
+.trilho li{flex:1;position:relative}
+.trilho a{font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.02em;color:var(--fumaca);text-decoration:none;padding:2px 0;white-space:nowrap}
+.trilho::after{content:'';position:absolute;bottom:6px;left:0;right:0;height:1px;background:var(--linha)}
+.agulha{position:absolute;bottom:2px;width:9px;height:9px;border-radius:999px;background:var(--fumaca);transition:left .8s var(--ease)}
+.relogio{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:500}
+.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--linha);border-radius:999px;padding:3px 10px;font-size:.74rem;font-weight:600}
+.ponto{width:7px;height:7px;border-radius:999px}
+.tema{background:none;border:1px solid var(--linha);border-radius:999px;color:var(--fumaca);width:32px;height:32px;cursor:pointer;font-size:.9rem;line-height:1;display:grid;place-items:center}
+/* HERO */
+.hero{min-height:100dvh;display:flex;flex-direction:column;justify-content:center;padding:64px 24px}
+.hero-grid{display:grid;grid-template-columns:1fr 1.02fr;gap:40px;align-items:center}
+.marca{font-family:var(--serif);font-size:1.05rem;margin-bottom:24px}
+.hora-secao{font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.hero h1{font-size:clamp(2.75rem,7vw,5.5rem);margin-bottom:16px}
+.hero h1 em{color:var(--brasa)}
+.local{max-width:34ch;margin-bottom:32px}
+.local b{font-weight:500}
+.estado{border:1px solid var(--linha);border-radius:2px;padding:24px;max-width:430px;background:var(--tinta2)}
+.estado-nome{font-family:var(--serif);font-size:1.5rem}
+.estado-sub{color:var(--fumaca);font-size:.9rem}
+.estado-espera{font-size:.9rem;color:var(--fumaca);margin-top:8px}
+.estado-espera b{color:var(--giz);font-weight:500}
+.wa-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--wa);color:#0B1F13;font-family:var(--sans);font-weight:600;font-size:.95rem;padding:.72rem 1.15rem;border-radius:999px;text-decoration:none;box-shadow:0 10px 24px -12px color-mix(in oklab,var(--wa) 70%,transparent);margin-top:16px}
+.wa-btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px color-mix(in oklab,var(--wa) 80%,transparent)}
+/* FORNO (SVG simples) */
+.forno{width:100%;height:auto;display:block}
+.forno .tijolo{fill:none;stroke:var(--linha);stroke-width:1.1}
+.forno .arco{fill:var(--tinta2);stroke:var(--linha);stroke-width:1.5}
+.forno .boca{fill:var(--carvao)}
+.forno .piso{fill:var(--tinta2)}
+.forno .lenha{fill:var(--tinta2)}
+.forno .massa{fill:var(--giz);opacity:.8}
+.forno .crosta{fill:none;stroke:var(--brasa);stroke-width:2;opacity:calc(.3+var(--calor,.5)*.55)}
+.forno .cobertura{fill:var(--brasa);opacity:calc(.35+var(--calor,.5)*.55)}
+.forno .chama{opacity:var(--calor,.5);animation:brasa 4.7s infinite}
+@keyframes brasa{0%{filter:brightness(1)}17%{filter:brightness(1.22)}23%{filter:brightness(.93)}61%{filter:brightness(1.14)}79%{filter:brightness(.97)}100%{filter:brightness(1)}}
+.forma{transform-box:fill-box;transform-origin:center;animation:gira 26s linear infinite}
+.forno:hover .forma{animation-play-state:paused}
+@keyframes gira{to{rotate:360deg}}
+/* SEÇÕES */
+.secao{padding:80px 0;border-top:1px solid var(--linha)}
+.hora-secao{display:block;text-align:center;margin-bottom:24px}
+.secao h2{font-size:clamp(1.9rem,4vw,3rem);max-width:22ch;margin:0 auto 40px;text-align:center}
+.fita{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--linha)}
+.prova{padding:24px;border-left:1px solid var(--linha)}
+.prova:first-child{border-left:0}
+.prova .quando{font-size:.78rem;font-weight:600;letter-spacing:.12em;color:var(--fumaca);margin-bottom:8px}
+.prova h3{font-size:1.35rem;margin-bottom:8px}
+.prova p{color:var(--fumaca);font-size:.94rem;max-width:28ch}
+.prova svg{margin-bottom:16px}
+.prova circle{fill:none;stroke:var(--fumaca);stroke-width:1.2}
+/* PAINEL DE FORNO */
+.painel{border-top:1px solid var(--linha)}
+.painel .fita{border:0}
+.linha-pizza{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--linha);font-family:var(--sans)}
+.linha-pizza:last-child{border-bottom:0}
+.linha-pizza .tempo{font-variant-numeric:tabular-nums;font-weight:600}
+.linha-pizza .nome{font-family:var(--serif)}
+.linha-pizza .preco{font-variant-numeric:tabular-nums}
+.linha-pizza .add{background:none;border:1px solid var(--linha);border-radius:999px;padding:4px 10px;cursor:pointer;font-size:.8rem}
+/* COMANDA */
+.comanda{position:fixed;bottom:0;left:0;right:0;background:var(--carvao);border-top:1px solid var(--linha);transform:translateY(100%);transition:transform .3s var(--ease)}
+.comanda.ativa{transform:translateY(0)}
+.comanda-in{display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+.comanda-total{font-family:var(--serif);font-size:1.25rem}
+.comanda-enviar{background:var(--wa);color:#0B1F13;border:none;border-radius:999px;padding:8px 16px;font-weight:600;cursor:pointer}
+/* RODAPÉ */
+footer{border-top:1px solid var(--linha);padding:24px;text-align:center;font-size:.85rem}
+@media(max-width:860px){
+  .hero{min-height:auto;padding:40px 16px}
+  .hero-grid{grid-template-columns:1fr}
+  .fita{grid-template-columns:1fr}
+  .prova{border-left:0;border-top:1px solid var(--linha}
+  .prova:first-child{border-top:0}
 }
 @media(prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important}
-  .reveal{clip-path:none;opacity:1}
   html{scroll-behavior:auto}
-  .prato:hover img,.passo:hover .img img{transform:none}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{clip-path:none;opacity:1}
+  .forma{animation:none}
 }
-
-/* ═══ NAV HEADER FIXO (Plus UX) ═══ */
-.nav-header{position:fixed;top:0;left:0;right:0;z-index:100;background:color-mix(in srgb,var(--ink) 75%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);transition:transform .3s ease,background .3s}
-.nav-header.scrolled{background:color-mix(in srgb,var(--ink) 90%,transparent);border-bottom-color:color-mix(in srgb,var(--line) 60%,transparent)}
-.nav-wrap{max-width:1120px;margin-inline:auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between}
-.nav-brand{font-family:var(--font-display);font-weight:700;font-size:1.15rem;color:var(--accent);text-decoration:none}
-.nav-toggle{display:none;flex-direction:column;gap:4px;width:32px;height:28px;background:none;border:none;cursor:pointer;z-index:101}
-.nav-toggle span{display:block;width:24px;height:2.5px;background:var(--paper);border-radius:2px;transition:all .3s}
-.nav-menu{display:flex;gap:var(--s-sm);align-items:center}
-.nav-link{color:var(--muted);text-decoration:none;font-size:.92rem;font-weight:500;transition:color .2s;position:relative}
-.nav-link:hover{color:var(--accent)}
-.nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width .3s}
-.nav-link:hover::after{width:100%}
-@media(max-width:860px){
-  .nav-toggle{display:flex}
-  .nav-menu{position:fixed;top:0;right:-100%;flex-direction:column;background:color-mix(in srgb,var(--ink) 95%,transparent);backdrop-filter:blur(12px);width:min(280px,90vw);height:100vh;padding-top:80px;gap:var(--s-md);padding-inline:28px;transition:right .3s ease;border-left:1px solid var(--line)}
-  .nav-menu.open{right:0}
-  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:rotate(45deg) translate(6px,6px)}
-  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
-  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:-rotate(45deg) translate(6px,-6px)}
-}
-@media(prefers-reduced-motion:reduce){.nav-header,.nav-menu{transition:none}}
-
-
-/* SERVICOS GRID (Plus UX) */
-.servicos{padding-block:var(--s-3xl)}
-.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--s-lg)}
-.svc-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:transform .25s,box-shadow .25s}
-.svc-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px -20px color-mix(in srgb,var(--accent) 40%,transparent)}
-.svc-card img{width:100%;height:160px;object-fit:cover;object-position:center 30%}
-.svc-info{padding:var(--s-lg)}
-.svc-info h3{font-family:var(--font-display);font-size:1.1rem;margin-bottom:.3rem}
-.svc-info p{color:var(--muted);font-size:.88rem}
-@media(max-width:860px){.svc-grid{grid-template-columns:1fr}}
-
 </style>
-
-<style>/* gera-nicho.js override */:root{--primary:#7a2e1d;--p:#7a2e1d;--accent:#e8b04b;--ac:#e8b04b;}</style>
 </head>
 <body>
-<header class="nav-header">
-  <div class="nav-wrap">
-    <a href="#top" class="nav-brand">Vitrine Certa</a>
-    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-        <nav class="nav-menu">
-      <a href="#top" class="nav-link">Início</a>
-      <a href="#monte" class="nav-link">Montar prato</a>
-      <a href="#cardapio" class="nav-link">Cardápio</a>
-      <a href="#contato" class="nav-link">Contato</a>
+
+<header class="regua">
+  <div class="regua-in">
+    <nav class="trilho" aria-label="A noite">
+      <ol>
+        <li><a href="#h18">18</a></li>
+        <li><a href="#h19">19</a></li>
+        <li><a href="#h20">20</a></li>
+        <li><a href="#h21">21</a></li>
+        <li><a href="#h22">22</a></li>
+        <li><a href="#h23">23</a></li>
+      </ol>
+      <span class="agulha" id="agulha" style="left:0%"></span>
     </nav>
+    <p class="relogio tab">
+      <span id="relogio">00:00</span>
+      <span class="pill" id="pill"><span class="ponto"></span><span id="pill-txt">—</span></span>
+    </p>
+    <button class="tema" id="tema" type="button" aria-label="Alternar dia e noite">☾</button>
   </div>
 </header>
-<div class="progress"><i id="bar"></i></div>
 
-<header class="hero">
-  <div class="hero-bg"><img src="assets/banner.jpg" alt="Prato executivo da Cantina do Porto" loading="lazy"></div>
-  <div class="wrap">
-    <span class="eyebrow reveal">Restaurante em São Vicente</span>
-    <h1 class="reveal d1">Cantina do Porto <em>· São Vicente</em></h1>
-    <p class="lede reveal d2">Comida caseira com sabor de domingo. Pratos executivos, PF e marmitex caprichados, feitos na hora. Entrega quentinha em até 40 min.</p>
-    <div class="cta reveal d3">
-      <a class="btn btn-solid" href="#cardapio">Ver cardápio</a>
-      <a class="btn btn-outline" href="https://wa.me/5511970776856?text=Quero%20pedir%20um%20prato" target="_blank" rel="noopener">Pedir no Whats</a>
+<main>
+
+<section class="hero" id="h18">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="marca"><b>Forno da Vila</b> — pizza a lenha</p>
+      <p class="hora-secao tab">18:00</p>
+      <h1>A noite<br><em>inteira.</em></h1>
+      <p class="local">Massa de <b>48 horas</b>, forno a lenha desde 2014.<br>
+         Av. Exemplo, 000 — Itararé, São Vicente.</p>
+      <div class="estado" id="estado">
+        <p><span class="estado-nome" id="estado-nome">—</span><br>
+           <span class="estado-sub" id="estado-sub"></span></p>
+        <p class="estado-espera" id="estado-espera"></p>
+        <a class="wa-btn" id="cta" href="#" target="_blank" rel="noopener">
+          <span id="cta-txt">Pedir no WhatsApp</span>
+        </a>
+      </div>
+    </div>
+    <div class="hero-arte">
+      <!-- SVG do forno — versão simplificada -->
+      <svg class="forno" viewBox="0 0 440 340" aria-hidden="true" focusable="false">
+        <defs>
+          <radialGradient id="g-brasa" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FFF1E6" stop-opacity=".9"/>
+            <stop offset="38%" stop-color="#FF5A1F" stop-opacity=".6"/>
+            <stop offset="100%" stop-color="#FF5A1F" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <path class="arco" d="M44 302 L44 208 A176 148 0 0 1 396 208 L396 302 Z"/>
+        <g class="tijolo">
+          <path d="M70 302 L70 210 A150 126 0 0 1 370 210 L370 302"/>
+          <path d="M89 302 L89 212 A131 110 0 0 1 351 212 L351 302"/>
+        </g>
+        <path class="boca" d="M108 300 L108 214 A112 96 0 0 1 332 214 L332 300 Z"/>
+        <ellipse class="piso" cx="220" cy="298" rx="112" ry="26"/>
+        <g class="chama"><ellipse cx="220" cy="296" rx="118" ry="34" fill="url(#g-brasa)"/></g>
+        <g class="lenha">
+          <rect x="272" y="272" width="52" height="9" rx="4.5" transform="rotate(-7 298 276)"/>
+          <rect x="282" y="282" width="44" height="9" rx="4.5" transform="rotate(5 304 286)"/>
+        </g>
+        <g transform="translate(198 284) scale(1 .4)">
+          <g class="forma">
+            <circle class="massa" r="66"/>
+            <circle class="crosta" r="66"/>
+            <circle class="crosta" r="53"/>
+            <g class="cobertura">
+              <circle cx="-19" cy="-22" r="7"/><circle cx="20" cy="-13" r="6"/>
+              <circle cx="-4" cy="16" r="7.5"/><circle cx="26" cy="19" r="5.5"/>
+            </g>
+          </g>
+        </g>
+        <path class="bancada" d="M28 302 H412 a6 6 0 0 1 6 6 v14 a6 6 0 0 1-6 6 H28 a6 6 0 0 1-6-6 v-14 a6 6 0 0 1 6-6 z"/>
+      </svg>
     </div>
   </div>
-</header>
+</section>
 
-<div class="marquee">
-  <span>★ 4.8 no Google · +2.000 pratos servidos · comida caseira · entrega em 40 min · marmitex quentinha · </span>
-  <span>★ 4.8 no Google · +2.000 pratos servidos · comida caseira · entrega em 40 min · marmitex quentinha · </span>
+<section class="secao" id="h19">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">18:40</p>
+    <h2 class="reveal">Começa 48 horas antes de você ter fome.</h2>
+    <div class="fita">
+      <article class="prova reveal">
+        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="8"/></svg>
+        <p class="quando tab">48H ANTES</p>
+        <h3>Descanso</h3>
+        <p>A massa dorme na câmara fria. Sem pressa e sem fermento a mais.</p>
+      </article>
+      <article class="prova reveal">
+        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="14"/></svg>
+        <p class="quando tab">ONTEM</p>
+        <h3>Sova</h3>
+        <p>Trabalhada à mão, uma vez só. É o que deixa a borda leve.</p>
+      </article>
+      <article class="prova reveal">
+        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="21"/></svg>
+        <p class="quando tab">HOJE, 16H</p>
+        <h3>Bolas</h3>
+        <p>Porcionada e coberta. Às 18h em ponto, a primeira entra no forno.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="secao painel" id="h20">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">19:30</p>
+    <h2 class="reveal">Saindo do forno</h2>
+    <div class="fita reveal">
+      <div class="linha-pizza">
+        <span class="tempo tab">~9 min</span>
+        <span class="nome">Margherita</span>
+        <span class="preco tab">R$ 45</span>
+        <button class="add" data-sabor="Margherita" data-preco="45">+</button>
+      </div>
+      <div class="linha-pizza">
+        <span class="tempo tab">~11 min</span>
+        <span class="nome">Calabresa</span>
+        <span class="preco tab">R$ 48</span>
+        <button class="add" data-sabor="Calabresa" data-preco="48">+</button>
+      </div>
+      <div class="linha-pizza">
+        <span class="tempo tab">~13 min</span>
+        <span class="nome">Portuguesa</span>
+        <span class="preco tab">R$ 52</span>
+        <button class="add" data-sabor="Portuguesa" data-preco="52">+</button>
+      </div>
+      <div class="linha-pizza">
+        <span class="tempo tab">~16 min</span>
+        <span class="nome">Quatro Queijos</span>
+        <span class="preco tab">R$ 58</span>
+        <button class="add" data-sabor="Quatro Queijos" data-preco="58">+</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="secao" id="h21">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">21:00</p>
+    <h2 class="reveal">O horário em que o forno não descansa.</h2>
+    <div class="fita reveal">
+      <div style="padding:24px;border-bottom:1px solid var(--linha)">
+        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">180 pizzas no sábado</p>
+        <p style="color:var(--fumaca)">Cada uma assada na hora certa.</p>
+      </div>
+      <div style="padding:24px;border-bottom:1px solid var(--linha)">
+        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">48h de massa</p>
+        <p style="color:var(--fumaca)">Fermentação natural, sem pressa.</p>
+      </div>
+      <div style="padding:24px">
+        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">12 anos de forno</p>
+        <p style="color:var(--fumaca)">Lenha de carvalho desde 2014.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="secao" id="h22">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">22:15</p>
+    <h2 class="reveal">Onde a gente chega</h2>
+    <div class="fita reveal">
+      <div style="padding:24px">
+        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">Centro — 25 min</p>
+        <p style="color:var(--fumaca)">Itararé — 30 min · Pq. Bitaru — 35 min · Jd. Rio Branco — 40 min</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="secao" id="h23">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">23:30</p>
+    <h2 class="reveal">Depois disso, o forno apaga.</h2>
+    <div class="fita reveal">
+      <div style="padding:24px">
+        <p style="font-family:var(--sans);font-size:1.1rem;letter-spacing:.02em">
+          Última rodada às 23:30. Depois, o forno apaga.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="comanda" id="comanda">
+  <div class="comanda-in">
+    <span class="comanda-total" id="comanda-total">0 itens · R$ 0</span>
+    <button class="comanda-enviar" id="comanda-enviar">Enviar comanda →</button>
+  </div>
 </div>
 
-<section id="monte">
-  <div class="wrap">
-    <div style="text-align:center;margin-bottom:var(--s-2xl)">
-      <span class="eyebrow reveal">Monte seu prato</span>
-      <h2 class="reveal">Quanto custa o seu?</h2>
-      <p class="reveal" style="color:var(--muted)">Escolha a modalidade e os pratos — o total atualiza na hora. (Cardápio completo e combos família é do plano Premium.)</p>
-    </div>
-    <div class="orc reveal">
-      <div>
-        <div class="grp"><label>Modalidade</label>
-          <div class="add" id="tam">
-            <span data-k="Executivo">Executivo</span>
-            <span data-k="PF (Prato Feito)" class="on">PF · Prato Feito</span>
-            <span data-k="Marmitex P">Marmitex P</span>
-            <span data-k="Marmitex G">Marmitex G</span>
-          </div>
-        </div>
-        <div class="grp"><label>Pratos (pode escolher mais de um)</label>
-          <div class="add" id="sab">
-            <span data-k="Carne acebolada">Carne acebolada</span>
-            <span data-k="Frango grelhado">Frango grelhado</span>
-            <span data-k="Peixe à milanesa">Peixe à milanesa</span>
-            <span data-k="Strogonoff">Strogonoff</span>
-            <span data-k="Bife à parmegiana">Bife à parmegiana</span>
-          </div>
-        </div>
-      </div>
-      <div class="ticket">
-        <div id="lines"></div>
-        <div class="total"><span>Total</span><span id="pTot">R$ 0</span></div>
-        <a class="btn btn-solid wa" id="pWa" href="https://wa.me/5511970776856" target="_blank" rel="noopener">Enviar pedido no WhatsApp →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="cardapio" class="menu">
-  <div class="wrap">
-    <div class="head">
-      <span class="eyebrow reveal">Cardápio</span>
-      <h2 class="reveal">Os mais pedidos</h2>
-    </div>
-    <div class="prato-grid">
-      <div class="prato reveal"><span class="tag">Pedir</span><img src="assets/p1.jpg" alt="Executivo carne acebolada"><div class="body"><h4>Executivo Carne Acebolada</h4><p class="desc">Bife bovino acebolado, arroz, feijão, batata frita e salada.</p><div class="row"><span class="price">R$ 28</span><span class="sz">executivo · serve 1</span></div></div></div>
-      <div class="prato reveal"><span class="tag">Pedir</span><img src="assets/p2.jpg" alt="Frango grelhado"><div class="body"><h4>Frango Grelhado</h4><p class="desc">Coxa e sobrecoxa na brasa, arroz, feijão e farofa.</p><div class="row"><span class="price">R$ 25</span><span class="sz">executivo · serve 1</span></div></div></div>
-      <div class="prato reveal"><span class="tag">Pedir</span><img src="assets/p3.jpg" alt="PF strogonoff"><div class="body"><h4>PF de Strogonoff</h4><p class="desc">Frango ao molho cremoso, arroz, batata palha e salada.</p><div class="row"><span class="price">R$ 26</span><span class="sz">PF · serve 1</span></div></div></div>
-      <div class="prato reveal"><span class="tag">Pedir</span><img src="assets/banner.jpg" alt="Bife à parmegiana"><div class="body"><h4>Bife à Parmegiana</h4><p class="desc">Bife empanado ao molho de tomate e queijo, arroz e fritas.</p><div class="row"><span class="price">R$ 32</span><span class="sz">executivo · serve 1</span></div></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="processo">
-  <div class="wrap">
-    <div class="head" style="text-align:center;margin-bottom:var(--s-2xl)">
-      <span class="eyebrow reveal">O preparo</span>
-      <h2 class="reveal">Cada etapa, caprichada</h2>
-    </div>
-    <div class="grid">
-      <div class="passo reveal"><div class="img"><img src="assets/p1.jpg" alt="Seleção de ingredientes"></div><div class="body"><div class="num">01</div><h4>Feira do dia</h4><p>Legumes, verduras e temperos fresquinhos, escolhidos na feira de manhã.</p></div></div>
-      <div class="passo reveal"><div class="img"><img src="assets/p2.jpg" alt="Preparo"></div><div class="body"><div class="num">02</div><h4>Tempero de casa</h4><p>Receitas de família, arroz e feijão cozidos na hora, nada de industrializado.</p></div></div>
-      <div class="passo reveal"><div class="img"><img src="assets/p3.jpg" alt="Cozinha"></div><div class="body"><div class="num">03</div><h4>Bem servido</h4><p>Prato farto, montado na hora pra chegar caprichado na sua mesa.</p></div></div>
-      <div class="passo reveal"><div class="img"><img src="assets/banner.jpg" alt="Embalagem"></div><div class="body"><div class="num">04</div><h4>Quentinho até você</h4><p>Marmitex embalada pra preservar o calor e o sabor do começo ao fim.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="perks">
-  <div class="wrap">
-    <div class="head" style="text-align:center;margin-bottom:var(--s-2xl)">
-      <span class="eyebrow reveal">Por que a gente</span>
-      <h2 class="reveal">Comida como tem que ser</h2>
-    </div>
-    <div class="grid">
-      <div class="perk reveal"><div class="ico">🍲</div><h3>Comida caseira</h3><p>Receita de família, tempero na medida e arroz com feijão de verdade.</p></div>
-      <div class="perk reveal"><div class="ico">🔥</div><h3>Feito na hora</h3><p>Pedido sai da cozinha caprichado e quentinho — nada requentado.</p></div>
-      <div class="perk reveal"><div class="ico">🛵</div><h3>Entrega em 40 min</h3><p>Da cozinha pra sua casa, embalado pra chegar quentinho.</p></div>
-      <div class="perk reveal"><div class="ico">🥬</div><h3>Ingredientes frescos</h3><p>Feira do dia, carne escolhida a dedo e legumes sempre fresquinhos.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="servicos" class="servicos">
-  <div class="wrap">
-    <div class="head" style="text-align:center;margin-bottom:var(--s-2xl)">
-      <span class="eyebrow reveal">Nossos serviços</span>
-      <h2 class="reveal">Qualidade em cada detalhe</h2>
-    </div>
-    <div class="svc-grid">
-    <div class="svc-card reveal">
-      <img src="assets/p1.jpg" alt="Prato executivo" loading="lazy">
-      <div class="svc-info">
-        <h3>Prato Executivo</h3>
-        <p>Refeição completa com carne, arroz, feijão e salada.</p>
-      </div>
-    </div>
-    <div class="svc-card reveal">
-      <img src="assets/p2.jpg" alt="PF e marmitex" loading="lazy">
-      <div class="svc-info">
-        <h3>PF e Marmitex</h3>
-        <p>Prato feito e marmitex nos tamanhos P e G, pra levar ou entregar.</p>
-      </div>
-    </div>
-    <div class="svc-card reveal">
-      <img src="assets/p3.jpg" alt="Entrega quentinha" loading="lazy">
-      <div class="svc-info">
-        <h3>Entrega</h3>
-        <p>Delivery quentinho em São Vicente e região, em até 40 min.</p>
-      </div>
-    </div>
-    </div>
-  </div>
-</section>
-
-<section class="faq">
-  <div class="wrap">
-    <div class="head">
-      <span class="eyebrow reveal">Dúvidas</span>
-      <h2 class="reveal">Perguntas frequentes</h2>
-    </div>
-    <details class="reveal"><summary>Faz delivery?</summary><p>Sim, em São Vicente e região. Pede pelo WhatsApp ou pelo site.</p></details>
-    <details class="reveal"><summary>Tem opção sem glúten?</summary><p>Sim, sob encomenda. Avise no pedido que a gente prepara separado.</p></details>
-    <details class="reveal"><summary>Posso retirar na loja?</summary><p>Pode. Fica pronto em 20 min após o pedido.</p></details>
-    <details class="reveal"><summary>Aceita qual pagamento?</summary><p>Pix, cartão na entrega ou no app. Tudo tranquilo.</p></details>
-  </div>
-</section>
-
-<section id="contato" class="contato">
-  <div class="wrap">
-    <span class="eyebrow reveal">Fala com a gente</span>
-    <h2 class="reveal">Pede a sua agora</h2>
-    <p class="reveal" style="color:var(--muted);margin:var(--s-md) 0 var(--s-xl)">Deixa seu contato e a gente confirma o pedido no WhatsApp.</p>
-    <form class="reveal" onsubmit="return vcLead(this)">
-      <input name="nome" placeholder="Seu nome" required>
-      <input name="whatsapp" placeholder="Seu WhatsApp" required>
-      <input name="endereco" placeholder="Endereço de entrega">
-      <textarea name="mensagem" rows="3" placeholder="Qual prato? (modalidade, item, quantidade)"></textarea>
-      <button class="btn btn-solid" type="submit" style="justify-content:center">Enviar pedido</button>
-    </form>
-  </div>
-</section>
-
-<section id="queroassim" class="endcta">
-  <div class="wrap" style="text-align:center;max-width:680px;margin-inline:auto">
-    <span class="eyebrow reveal">Este é um site-exemplo</span>
-    <h2 class="reveal">Quer um site assim pro seu negócio?</h2>
-    <p class="reveal" style="color:var(--muted);margin-bottom:var(--s-xl)">A gente monta o seu em até 48h, com fotos do seu nicho e pedido integrado. Sem mensalidade escondida.</p>
-    <div class="reveal" style="display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center">
-      <a class="btn btn-solid" href="../vitrine-certa/#planos">Ver planos e preços</a>
-      <a class="btn btn-outline" href="../vitrine-certa/dashboard.html">Ver portfólio de exemplos</a>
-    </div>
-  </div>
-</section>
-
 <footer>
-  <div class="wrap">Cantina do Porto · restaurante em São Vicente · © 2026</div>
+  <div class="wrap">
+    <p>Forno da Vila · pizza a lenha em São Vicente · aberto 18h–23:30 · © 2026</p>
+    <p style="margin-top:8px"><a href="../../receita-zero/#planos" style="color:var(--fumaca)">Quer um site assim pro seu negócio?</a></p>
+  </div>
 </footer>
 
 <script>
-var _rv=document.querySelectorAll('.reveal');
-_rv.forEach((el,i)=>{el.style.transitionDelay=(i%4*60)+'ms';});
-if('IntersectionObserver' in window){
-  var io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
-  _rv.forEach(el=>io.observe(el));
-  setTimeout(function(){_rv.forEach(el=>el.classList.add('in'));},1600);
-} else {
-  _rv.forEach(el=>el.classList.add('in'));
+/* Configuração fictícia de portfólio — trocar pelos dados reais */
+const CASA = {
+  abre:18, aquecendoAte:18.34, ultimoPedido:23.5, fecha:24,
+  picoDe:20, picoAte:22,
+  esperaBase:25, esperaPico:45,
+  whats:'5511970776856'
+};
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const clamp = (v,a,b) => Math.min(b, Math.max(a, v));
+
+function horaAgora(){
+  const forcada = new URLSearchParams(location.search).get('h');
+  if(forcada !== null && forcada !== '') return clamp(parseFloat(forcada), 0, 23.999);
+  const agora = new Date();
+  const h = agora.getHours();
+  const m = agora.getMinutes();
+  return h + m/60;
 }
 
-// progress bar + hero parallax (cinematic, passive)
-var bar=document.getElementById('bar'),heroBg=document.querySelector('.hero-bg');
-function onScroll(){
-  var h=document.documentElement;
-  var max=h.scrollHeight-innerHeight;
-  var p=max>0?scrollY/max:0; bar.style.width=(p*100)+'%';
-  if(heroBg){ heroBg.style.transform='translateY('+(scrollY*0.18)+'px)'; }
+function estadoDe(h){
+  if(h >= CASA.ultimoPedido && h < CASA.fecha)
+    return {id:'ultima', nome:'Última rodada', sub:'pedidos até 23:30', calor:1, espera:CASA.esperaPico, cta:'Última rodada — faltam ' + Math.round((CASA.fecha-h)*60) + ' min', msg:'Oi! Dá tempo da última rodada?'};
+  if(h >= CASA.picoDe && h < CASA.picoAte)
+    return {id:'pico', nome:'Pico', sub:'o forno não descansa', calor:1, espera:CASA.esperaPico, cta:'Pedir agora (~'+CASA.esperaPico+' min)', msg:'Oi! Pedido (sei que tá no pico):'};
+  if(h >= CASA.aquecendoAte && h < CASA.ultimoPedido)
+    return {id:'aberto', nome:'Aberto', sub:'saindo do forno', calor:.72, espera:CASA.esperaBase, cta:'Pedir agora', msg:'Oi! Pedido:'};
+  if(h >= CASA.abre && h < CASA.aquecendoAte)
+    return {id:'aquecendo', nome:'Aquecendo', sub:'primeiras saem 18:20', calor:.38, espera:null, cta:'Entrar na primeira fornada', msg:'Oi! Pego a primeira fornada?'};
+  return {id:'fechado', nome:'Fechado', sub:'abre 18:00', calor:0, espera:null, cta:'Programar pedido pras 18h', msg:'Oi! Queria deixar um pedido pra hoje às 18h:'};
 }
-addEventListener('scroll',onScroll,{passive:true}); onScroll();
 
-// MONTE SEU PRATO (Plus — mecânica leve, espelha o orçamento do restaurante)
-const preco={'Executivo':{'Carne acebolada':28,'Frango grelhado':25,'Peixe à milanesa':30,'Strogonoff':26,'Bife à parmegiana':32},
-  'PF (Prato Feito)':{'Carne acebolada':22,'Frango grelhado':20,'Peixe à milanesa':24,'Strogonoff':21,'Bife à parmegiana':27},
-  'Marmitex P':{'Carne acebolada':18,'Frango grelhado':18,'Peixe à milanesa':20,'Strogonoff':18,'Bife à parmegiana':22},
-  'Marmitex G':{'Carne acebolada':25,'Frango grelhado':24,'Peixe à milanesa':27,'Strogonoff':24,'Bife à parmegiana':30}};
-const stp={tam:'PF (Prato Feito)',sab:new Set()};
-const pLines=document.getElementById('lines'),pTot=document.getElementById('pTot'),pWa=document.getElementById('pWa');
-function fmtP(v){return 'R$ '+v.toFixed(0);}
-function calcP(){
-  const t=stp.tam, base=t;
-  let tot=0;
-  const rows=[...stp.sab].map(s=>{const v=preco[t][s];tot+=v;return '<div class="line"><span>'+s+' · '+base+'</span><span>'+fmtP(v)+'</span></div>';}).join('');
-  pLines.innerHTML = stp.sab.size ? rows : '<div class="line"><span>Escolha um prato</span><span>—</span></div>';
-  pTot.textContent=fmtP(tot);
-  const itens = stp.sab.size ? [...stp.sab].map(s=>s+' ('+base+')').join(', ') : 'um prato';
-  pWa.href='https://wa.me/5511970776856?text='+encodeURIComponent('Quero pedir '+itens+' — total '+fmtP(tot));
+function diaDe(h){
+  if(h < 6) return 0;
+  if(h < 17) return 1;
+  if(h < 18) return 1 - (h - 17);
+  return 0;
 }
-document.querySelectorAll('#tam span').forEach(s=>s.addEventListener('click',()=>{document.querySelectorAll('#tam span').forEach(x=>x.classList.remove('on'));s.classList.add('on');stp.tam=s.dataset.k;calcP();}));
-document.querySelectorAll('#sab span').forEach(s=>s.addEventListener('click',()=>{const k=s.dataset.k;s.classList.toggle('on');if(s.classList.contains('on'))stp.sab.add(k);else stp.sab.delete(k);calcP();}));
-calcP();
 
-function vcLead(f){var d={};new FormData(f).forEach(function(v,k){d[k]=v});if(d.nome||d.whatsapp){captureLead({nome:d.nome,whatsapp:d.whatsapp,cidade:(d.endereco||''),nicho:location.pathname.split('/')[2],origem:'contato',mensagem:(d.mensagem||'')});}var d={};new FormData(f).forEach(function(v,k){d[k]=v});var m='Lead Vitrine Certa - '+location.pathname.split("/")[1]+'\n';for(var k in d){if(d[k])m+=k+': '+d[k]+'\n';}window.open('https://wa.me/5511970776856?text='+encodeURIComponent(m),'_blank');return false;}
-</script>
-<!-- PARAMS VC -->
-<script>
-(function(){
-  const p=new URLSearchParams(location.search);
-  const nome=p.get('nome'), cid=p.get('cidade');
-  if(!nome && !cid) return;
-  const nn=nome||'Cantina do Porto', cc=cid||'São Vicente';
-  const full=nn+' em '+cc;
-  const map={'Restaurante em São Vicente':full,'em São Vicente':'em '+cc,'Em São Vicente':'Em '+cc,'São Vicente':cc};
-  document.querySelectorAll('.eyebrow,title,meta[name=description],.hero p.lede,.perk p,.faq p,footer').forEach(el=>{
-    if(el.tagName==='META'){ el.setAttribute('content', el.getAttribute('content').replace(/São Vicente/g, cc)); }
-    else { let t=el.textContent; for(const k in map){ if(t.includes(k)) t=t.replace(new RegExp(k,'g'),map[k]); } el.textContent=t; }
+function formataHora(h){
+  const hh = String(Math.floor(h)).padStart(2,'0');
+  const mm = String(Math.floor((h % 1) * 60)).padStart(2,'0');
+  return hh + ':' + mm;
+}
+
+let temaManual = null;
+let comanda = [];
+
+function pinta(){
+  const h = horaAgora();
+  const e = estadoDe(h);
+  const dia = temaManual === null ? diaDe(h) : temaManual;
+  document.documentElement.style.setProperty('--calor', e.calor);
+  document.documentElement.style.setProperty('--dia', dia.toFixed(3));
+  $('#relogio').textContent = formataHora(h);
+  $('#relogio').className = 'tab';
+  $('#pill').style.background = e.calor > 0 ? 'var(--brasa)' : 'transparent';
+  $('#pill-txt').textContent = e.espera ? e.nome + ' · ~' + e.espera + ' min' : e.nome;
+  $('#estado-nome').textContent = e.nome;
+  $('#estado-sub').textContent = e.sub;
+  $('#estado-espera').innerHTML = e.espera ? 'Saindo do forno em <b>~' + e.espera + ' minutos</b>.' : (e.id === 'fechado' ? 'O forno acende às 18h. Deixa o pedido programado.' : 'As primeiras saem às 18:20.');
+  $('#cta-txt').textContent = e.cta;
+  $('#cta').href = 'https://wa.me/' + CASA.whats + '?text=' + encodeURIComponent(e.msg);
+  $('#tema').textContent = dia > .5 ? '☀' : '☾';
+  const ag = $('#agulha');
+  const dentro = h >= CASA.abre && h < CASA.fecha;
+  ag.style.opacity = dentro ? '1' : '0';
+  ag.style.left = clamp((h - CASA.abre) / 6, 0, 1) * 100 + '%';
+  $$('.trilho a').forEach(a => a.style.fontWeight = (+a.textContent === Math.floor(h)) ? '600' : '500');
+}
+
+$('#tema').addEventListener('click', () => {
+  const atual = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--dia')) || 0;
+  temaManual = atual > .5 ? 0 : 1;
+  pinta();
+});
+
+/* Reveal por máscara — ativa ao rolar ou no carregamento */
+function checkReveal(){
+  $$('.reveal:not(.on)').forEach(el=>{
+    const r=el.getBoundingClientRect();
+    if(r.top < innerHeight*0.8) el.classList.add('on');
   });
-  const h1=document.querySelector('.hero h1');
-  if(h1){ h1.innerHTML=full.replace(/(\w+)\s+(\w+)/, '$1 <em>$2</em>'); }
-  document.title=full;
-})();
-</script>
-  <script src="../../../references/leads.js"></script>
+}
+addEventListener('scroll', checkReveal, {passive:true});
+/* ativa todos no carregamento (site de portfólio: prioriza acessibilidade) */
+setTimeout(() => $$('.reveal').forEach(el => el.classList.add('on')), 100);
 
-<script>
-// NAV TOGGLE (Plus UX)
-(function(){
-  var toggle=document.querySelector(".nav-toggle");
-  var menu=document.querySelector(".nav-menu");
-  if(!toggle||!menu) return;
-  toggle.addEventListener("click",function(){
-    var expanded=toggle.getAttribute("aria-expanded")==="true";
-    toggle.setAttribute("aria-expanded",!expanded);
-    menu.classList.toggle("open");
+/* Comanda */
+$$('.add').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const sabor = btn.dataset.sabor;
+    const preco = +btn.dataset.preco;
+    comanda.push({sabor, preco});
+    atualizaComanda();
   });
-  var header=document.querySelector(".nav-header");
-  function onScroll(){if(header){header.classList.toggle("scrolled",scrollY>40);}}
-  addEventListener("scroll",onScroll,{passive:true}); onScroll();
-  var links=document.querySelectorAll(".nav-link");
-  links.forEach(function(l){l.addEventListener("click",function(){menu.classList.remove("open");toggle.setAttribute("aria-expanded","false");});});
-})();
-</script>
+});
 
-  
+function atualizaComanda(){
+  const total = comanda.reduce((s, i) => s + i.preco, 0);
+  $('#comanda-total').textContent = comanda.length + ' itens · R$ ' + total;
+  $('#comanda').classList.toggle('ativa', comanda.length > 0);
+}
 
-  <!-- Vitrine Certa Exit-Intent -->
-<style>
-#vc-exit{position:fixed;inset:0;background:rgba(11,7,20,.82);z-index:9998;display:none;
-  align-items:center;justify-content:center;padding:1.4rem;font-family:system-ui,sans-serif}
-#vc-exit.show{display:flex;animation:vcFade .25s ease}
-@keyframes vcFade{from{opacity:0}to{opacity:1}}
-#vc-exit .box{background:#0B0714;color:#EFE9FF;border:1px solid rgba(45,212,191,.4);
-  border-radius:16px;max-width:420px;width:100%;padding:1.8rem;text-align:center;
-  box-shadow:0 24px 70px rgba(0,0,0,.6)}
-#vc-exit h3{margin:0 0 .5rem;color:#2DD4BF;font-size:1.35rem;line-height:1.25}
-#vc-exit p{margin:0 0 1.2rem;opacity:.85;font-size:.98rem;line-height:1.5}
-#vc-exit .cta{display:inline-block;background:#C6FF00;color:#0B0714;font-weight:800;
-  text-decoration:none;padding:.85rem 1.4rem;border-radius:99px;font-size:1rem}
-#vc-exit .close{display:block;margin:.9rem auto 0;background:none;border:0;color:rgba(239,233,255,.5);
-  font-size:.82rem;cursor:pointer}
-</style>
-<div id="vc-exit" role="dialog" aria-modal="true" aria-label="Antes de sair">
-  <div class="box">
-    <h3>Espera aí! ;)</h3>
-    <p>Antes de ir: quer receber <b>promoções e novidades</b> do <span id="vc-biz">nosso comércio</span> direto no seu WhatsApp? É rapidinho.</p>
-    <a class="cta" id="vc-exit-wa" href="https://wa.me/5511970776856?text=Quero%20receber%20promoções%20no%20WhatsApp">Receber no WhatsApp</a>
-    <button class="close" id="vc-exit-x">Agora não, obrigado</button>
-  </div>
-</div>
-<script>
-(function(){
-  var shown=false;
-  function show(){
-    if(shown||sessionStorage.getItem('vc_exit_done'))return;
-    shown=true;sessionStorage.setItem('vc_exit_done','1');
-    document.getElementById('vc-exit').classList.add('show');
-  }
-  function hide(){document.getElementById('vc-exit').classList.remove('show');}
-  document.addEventListener('visibilitychange',function(){if(document.hidden)show();});
-  window.addEventListener('beforeunload',function(e){if(!sessionStorage.getItem('vc_exit_done')){e.preventDefault();e.returnValue='';}});
-  document.addEventListener('click',function(e){
-    if(e.target&&e.target.id==='vc-exit-x')hide();
-    if(e.target&&e.target.id==='vc-exit')hide();
-  });
-})();
+$('#comanda-enviar').addEventListener('click', () => {
+  const total = comanda.reduce((s, i) => s + i.preco, 0);
+  const itens = comanda.map(i => '• ' + i.sabor + ' — R$' + i.preco).join('\n');
+  const msg = 'Pedido — ' + formataHora(horaAgora()) + '\n' + itens + '\nTotal R$' + total;
+  window.open('https://wa.me/' + CASA.whats + '?text=' + encodeURIComponent(msg), '_blank');
+});
+
+/* Scroll-driven: o scroll é a noite passando */
+if(!CSS.supports('animation-timeline','scroll()')){
+  let alvo = 0, cur = 0, rodando = false;
+  const passo = () => {
+    cur += (alvo - cur) * 0.06;
+    document.documentElement.style.setProperty('--noite', cur.toFixed(4));
+    if(Math.abs(alvo - cur) > 0.0008) requestAnimationFrame(passo); else rodando = false;
+  };
+  addEventListener('scroll', () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    alvo = max > 0 ? clamp(scrollY / max, 0, 1) : 0;
+    if(!rodando){ rodando = true; requestAnimationFrame(passo); }
+  }, {passive:true});
+}
+
+pinta();
+setInterval(pinta, 20000);
 </script>
 </body>
 </html>

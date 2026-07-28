@@ -1,714 +1,468 @@
-<!doctype html>
-<html lang="pt-BR" data-tema="concreto">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Imóveis Vértice — o preço inteiro, antes da visita</title>
-  <!-- Vitrine Certa Analytics -->
-<meta name="google-site-verification" content="rnYREYB-JR9uyXWd7UwSkGJn4kyjyVpHakO6lgSxJ-w">
-<script type="text/javascript">
-(function(c,l,a,r,i,t,y){
-  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-})(window,document,"clarity","script","xrpcs8vw2o");
-</script>
-  
-
-
-  
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Imóveis Vértice — o preço inteiro, antes da visita",
-  "description": "O anúncio diz um valor, o boleto diz outro. Aqui a conta do mês vem somada e aberta: aluguel, condomínio, IPTU, seguro — e quanto você precisa ter para entrar. Imobiliária em São Vicente.",
-  "url": ""
-}
-</script>
-<meta name="description" content="O anúncio diz um valor, o boleto diz outro. Aqui a conta do mês vem somada e aberta: aluguel, condomínio, IPTU, seguro — e quanto você precisa ter para entrar. Imobiliária em São Vicente.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forno da Vila — pizza a lenha em São Vicente</title>
+<meta name="description" content="Forno a lenha em São Vicente. Massa de 48 horas. Aberto das 18h às 23h30.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-/* Hallmark · macrostructure: 04 Stat-Led · Vitrine Certa / Imobiliária Premium
-   governado por=orçamento mensal (dinheiro) · objeto=uma conta de mês
-   display=Newsreader · dados=Space Grotesk tabular
-   pre-emit critique: P5 H5 E4 S4 R5 V5
-   Braço isolado da AAPSON: nenhum token, cor, fonte ou link da marca-mãe. */
-
+/* PARALELO — redesign alternativo da pizzaria premium
+   Conceito: "A NOITE INTEIRA" — mesmo plano, execução diferente
+   Diferença: motion CSS pura, sem JS de relógio odômetro, sem SVG complexo */
 :root{
-  /* segunda via de um contrato — cinza frio, não creme, não bege */
-  --papel:#EDEFF2;
-  --via:#FFFFFF;          /* a conta é uma folha; contraste se mede AQUI */
-  --papel2:#E2E7ED;
-  --linha:#C6CDD6;
-  --linha2:#7F8B9B;      /* borda de campo é componente: precisa de 3:1 sobre --via */
-  --tinta:#141C27;
-  --fumo:#5B6675;
-  --cofre:#0F5A4A;        /* único acento. só o número que importa. */
+  /* NOITE */
+  --n-tinta:#141A2A; --n-carvao:#0C1120; --n-tinta2:#1C2438; --n-linha:#2B3450;
+  --n-giz:#EDEFF5; --n-fumaca:#98A0B8; --n-brasa:#FF5A1F; --n-nucleo:#FFF1E6;
+  /* DIA */
+  --d-tinta:#ECEDF1; --d-carvao:#DDDFE7; --d-tinta2:#F7F8FB; --d-linha:#D3D7E2;
+  --d-giz:#141A2A; --d-fumaca:#5C6478; --d-brasa:#D6410E; --d-nucleo:#8A2B06;
+  /* resolvidos */
+  --tinta:color-mix(in oklab, var(--n-tinta), var(--d-tinta) calc(var(--dia,0)*100%));
+  --carvao:color-mix(in oklab, var(--n-carvao), var(--d-carvao) calc(var(--dia,0)*100%));
+  --tinta2:color-mix(in oklab, var(--n-tinta2), var(--d-tinta2) calc(var(--dia,0)*100%));
+  --linha:color-mix(in oklab, var(--n-linha), var(--d-linha) calc(var(--dia,0)*100%));
+  --giz:color-mix(in oklab, var(--n-giz), var(--d-giz) calc(var(--dia,0)*100%));
+  --fumaca:color-mix(in oklab, var(--n-fumaca), var(--d-fumaca) calc(var(--dia,0)*100%));
+  --brasa:color-mix(in oklab, var(--n-brasa), var(--d-brasa) calc(var(--dia,0)*100%));
   --wa:#25D366;
-
-  --serif:'Newsreader',Georgia,serif;
-  --grot:'Space Grotesk',system-ui,sans-serif;
-
-  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:40px;--s7:64px;--s8:104px;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Instrument Sans',system-ui,sans-serif;
   --ease:cubic-bezier(.22,1,.36,1);
-  --r:2px;
 }
-
-/* ═══ PERFIS DE COR — arquitetos brasileiros ═══
-   Só a COR muda entre perfis. Fontes (Newsreader + Space Grotesk), escala e forma
-   são fixas: é a MESMA conta em papéis diferentes. Cada perfil passa pelos mesmos
-   pisos de contraste medidos — --fumo e --cofre ≥ 4,5:1 sobre --via e sobre --papel,
-   --linha2 ≥ 3:1 sobre --via. Um acento só por perfil, nunca dois. O default Concreto
-   (Paulo Mendes da Rocha, brutalista) vive no :root acima. */
-[data-tema="niemeyer"]{
-  --papel:#F1EEE8; --via:#FDFCF9; --papel2:#E7E2D8; --linha:#D6CFC1; --linha2:#8A8172;
-  --tinta:#181410; --fumo:#5E574B; --cofre:#17439B;   /* cobalto de Niemeyer */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip}
+body{background:var(--tinta);color:var(--giz);font-family:var(--sans);font-size:1.0625rem;line-height:1.55;transition:background .6s, color .6s}
+h1,h2{font-family:var(--serif);font-weight:400;line-height:.98;letter-spacing:-.02em}
+em{font-style:italic}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.tab{font-variant-numeric:tabular-nums}
+.reveal{clip-path:inset(100% 0 0 0);opacity:.001;transition:clip-path .52s var(--ease),opacity .52s var(--ease)}
+.reveal.on{clip-path:inset(0);opacity:1}
+/* RÉGUA */
+.regua{position:fixed;top:0;left:0;right:0;z-index:40;background:color-mix(in oklab, var(--tinta) 88%,transparent);backdrop-filter:blur(8px)}
+.regua-in{display:flex;align-items:center;gap:24px;padding:10px 24px}
+.trilho{position:relative;flex:1;height:34px}
+.trilho ol{position:absolute;inset:0;display:flex;list-style:none;align-items:center}
+.trilho li{flex:1;position:relative}
+.trilho a{font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.02em;color:var(--fumaca);text-decoration:none;padding:2px 0;white-space:nowrap}
+.trilho::after{content:'';position:absolute;bottom:6px;left:0;right:0;height:1px;background:var(--linha)}
+.agulha{position:absolute;bottom:2px;width:9px;height:9px;border-radius:999px;background:var(--fumaca);transition:left .8s var(--ease)}
+.relogio{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:500}
+.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--linha);border-radius:999px;padding:3px 10px;font-size:.74rem;font-weight:600}
+.ponto{width:7px;height:7px;border-radius:999px}
+.tema{background:none;border:1px solid var(--linha);border-radius:999px;color:var(--fumaca);width:32px;height:32px;cursor:pointer;font-size:.9rem;line-height:1;display:grid;place-items:center}
+/* HERO */
+.hero{min-height:100dvh;display:flex;flex-direction:column;justify-content:center;padding:64px 24px}
+.hero-grid{display:grid;grid-template-columns:1fr 1.02fr;gap:40px;align-items:center}
+.marca{font-family:var(--serif);font-size:1.05rem;margin-bottom:24px}
+.hora-secao{font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.hero h1{font-size:clamp(2.75rem,7vw,5.5rem);margin-bottom:16px}
+.hero h1 em{color:var(--brasa)}
+.local{max-width:34ch;margin-bottom:32px}
+.local b{font-weight:500}
+.estado{border:1px solid var(--linha);border-radius:2px;padding:24px;max-width:430px;background:var(--tinta2)}
+.estado-nome{font-family:var(--serif);font-size:1.5rem}
+.estado-sub{color:var(--fumaca);font-size:.9rem}
+.estado-espera{font-size:.9rem;color:var(--fumaca);margin-top:8px}
+.estado-espera b{color:var(--giz);font-weight:500}
+.wa-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--wa);color:#0B1F13;font-family:var(--sans);font-weight:600;font-size:.95rem;padding:.72rem 1.15rem;border-radius:999px;text-decoration:none;box-shadow:0 10px 24px -12px color-mix(in oklab,var(--wa) 70%,transparent);margin-top:16px}
+.wa-btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px color-mix(in oklab,var(--wa) 80%,transparent)}
+/* FORNO (SVG simples) */
+.forno{width:100%;height:auto;display:block}
+.forno .tijolo{fill:none;stroke:var(--linha);stroke-width:1.1}
+.forno .arco{fill:var(--tinta2);stroke:var(--linha);stroke-width:1.5}
+.forno .boca{fill:var(--carvao)}
+.forno .piso{fill:var(--tinta2)}
+.forno .lenha{fill:var(--tinta2)}
+.forno .massa{fill:var(--giz);opacity:.8}
+.forno .crosta{fill:none;stroke:var(--brasa);stroke-width:2;opacity:calc(.3+var(--calor,.5)*.55)}
+.forno .cobertura{fill:var(--brasa);opacity:calc(.35+var(--calor,.5)*.55)}
+.forno .chama{opacity:var(--calor,.5);animation:brasa 4.7s infinite}
+@keyframes brasa{0%{filter:brightness(1)}17%{filter:brightness(1.22)}23%{filter:brightness(.93)}61%{filter:brightness(1.14)}79%{filter:brightness(.97)}100%{filter:brightness(1)}}
+.forma{transform-box:fill-box;transform-origin:center;animation:gira 26s linear infinite}
+.forno:hover .forma{animation-play-state:paused}
+@keyframes gira{to{rotate:360deg}}
+/* SEÇÕES */
+.secao{padding:80px 0;border-top:1px solid var(--linha)}
+.hora-secao{display:block;text-align:center;margin-bottom:24px}
+.secao h2{font-size:clamp(1.9rem,4vw,3rem);max-width:22ch;margin:0 auto 40px;text-align:center}
+.fita{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--linha)}
+.prova{padding:24px;border-left:1px solid var(--linha)}
+.prova:first-child{border-left:0}
+.prova .quando{font-size:.78rem;font-weight:600;letter-spacing:.12em;color:var(--fumaca);margin-bottom:8px}
+.prova h3{font-size:1.35rem;margin-bottom:8px}
+.prova p{color:var(--fumaca);font-size:.94rem;max-width:28ch}
+.prova svg{margin-bottom:16px}
+.prova circle{fill:none;stroke:var(--fumaca);stroke-width:1.2}
+/* PAINEL DE FORNO */
+.painel{border-top:1px solid var(--linha)}
+.painel .fita{border:0}
+.linha-pizza{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--linha);font-family:var(--sans)}
+.linha-pizza:last-child{border-bottom:0}
+.linha-pizza .tempo{font-variant-numeric:tabular-nums;font-weight:600}
+.linha-pizza .nome{font-family:var(--serif)}
+.linha-pizza .preco{font-variant-numeric:tabular-nums}
+.linha-pizza .add{background:none;border:1px solid var(--linha);border-radius:999px;padding:4px 10px;cursor:pointer;font-size:.8rem}
+/* COMANDA */
+.comanda{position:fixed;bottom:0;left:0;right:0;background:var(--carvao);border-top:1px solid var(--linha);transform:translateY(100%);transition:transform .3s var(--ease)}
+.comanda.ativa{transform:translateY(0)}
+.comanda-in{display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+.comanda-total{font-family:var(--serif);font-size:1.25rem}
+.comanda-enviar{background:var(--wa);color:#0B1F13;border:none;border-radius:999px;padding:8px 16px;font-weight:600;cursor:pointer}
+/* RODAPÉ */
+footer{border-top:1px solid var(--linha);padding:24px;text-align:center;font-size:.85rem}
+@media(max-width:860px){
+  .hero{min-height:auto;padding:40px 16px}
+  .hero-grid{grid-template-columns:1fr}
+  .fita{grid-template-columns:1fr}
+  .prova{border-left:0;border-top:1px solid var(--linha}
+  .prova:first-child{border-top:0}
 }
-[data-tema="artacho"]{
-  --papel:#F3E9DC; --via:#FBF6EF; --papel2:#EADCC9; --linha:#DBC8B2; --linha2:#8F7A5E;
-  --tinta:#241A12; --fumo:#6B5540; --cofre:#0C665C;   /* teal de granilite */
-}
-[data-tema="lina"]{
-  --papel:#E8E6E2; --via:#F6F5F3; --papel2:#DCDAD5; --linha:#C9C6C0; --linha2:#7C7A74;
-  --tinta:#1A1917; --fumo:#59574F; --cofre:#B4122B;   /* vermelho do MASP */
-}
-[data-tema="burle"]{
-  --papel:#EFF1EC; --via:#FFFFFF; --papel2:#E2E5DC; --linha:#C7CABF; --linha2:#7B8174;
-  --tinta:#12140F; --fumo:#565A4E; --cofre:#1E6B34;   /* verde tropical */
-}
-
-*,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{
-  margin:0;background:var(--papel);color:var(--tinta);
-  font-family:var(--grot);font-size:16px;line-height:1.55;
-  font-variant-numeric:tabular-nums;
-  -webkit-font-smoothing:antialiased;
-}
-h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.12;margin:0;letter-spacing:-.01em}
-p{margin:0}
-button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-img{max-width:100%;display:block}
-:focus-visible{outline:2px solid var(--cofre);outline-offset:3px}
-.wrap{width:min(1080px,100% - var(--s5));margin-inline:auto}
-.dinheiro{font-family:var(--grot);font-variant-numeric:tabular-nums;font-feature-settings:'tnum' 1}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-
-/* ─────────────────── seletor de perfil de cor (arquitetos) ─────────────────── */
-.perfis{background:var(--papel2);border-block-end:1px solid var(--linha)}
-.perfis .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2);padding-block:var(--s2)}
-.perfis .rot{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fumo)}
-.perfis button{font-family:var(--grot);font-size:.78rem;line-height:1.12;text-align:start;
-  padding:6px 11px;border:1px solid var(--linha2);border-radius:var(--r);color:var(--fumo);
-  transition:color .12s,border-color .12s,background-color .12s}
-.perfis button b{display:block;font-weight:600;color:var(--tinta)}
-.perfis button:hover{border-color:var(--tinta)}
-.perfis [aria-pressed="true"]{background:var(--tinta);border-color:var(--tinta);color:var(--via)}
-.perfis [aria-pressed="true"] b{color:var(--via)}
-@media(max-width:620px){.perfis .rot{width:100%}}
-
-/* ─────────────────────────── barra de estado ─────────────────────────── */
-.barra{
-  background:var(--tinta);color:var(--via);
-  font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;
-}
-.barra .wrap{
-  display:flex;flex-wrap:wrap;gap:var(--s2) var(--s5);
-  align-items:center;padding-block:10px;
-}
-.barra b{font-weight:500}
-.barra .marca{margin-inline-start:auto;font-family:var(--serif);
-  text-transform:none;letter-spacing:0;font-size:.9rem}
-
-/* ─────────────────────────── hero: um número ─────────────────────────── */
-.hero{padding-block:var(--s7) var(--s6);border-block-end:1px solid var(--linha)}
-.olho{
-  font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--fumo);
-  display:flex;align-items:center;gap:var(--s3);margin-block-end:var(--s5);
-}
-.olho::after{content:'';flex:1;height:1px;background:var(--linha)}
-.numerao{
-  font-family:var(--grot);font-weight:700;
-  font-size:clamp(3.6rem,15vw,9rem);line-height:.86;letter-spacing:-.045em;
-  color:var(--cofre);
-}
-.numerao small{font-size:.32em;font-weight:500;letter-spacing:-.01em;vertical-align:.55em;margin-inline-end:.12em}
-.hero .diz{
-  font-family:var(--serif);font-size:clamp(1.25rem,3.1vw,1.9rem);
-  max-width:30ch;margin-block-start:var(--s4);
-}
-.hero .sub{color:var(--fumo);max-width:52ch;margin-block-start:var(--s4);font-size:.95rem}
-.risco{text-decoration:line-through;text-decoration-thickness:1.5px;color:var(--fumo)}
-.hero-in{display:grid;gap:var(--s6);align-items:end}
-@media(min-width:960px){.hero-in{grid-template-columns:1.15fr .85fr}}
-/* de que os R$ 390 são feitos — o sistema de fios já aparece aqui, no hero. */
-.donde{background:var(--via);border:1px solid var(--linha);border-radius:var(--r);
-  padding:var(--s5) var(--s5) var(--s4)}
-.donde h2{font-size:1.05rem;margin-block-end:var(--s3)}
-.donde .faixa{font-size:.82rem;color:var(--fumo);margin-block-start:var(--s3);
-  border-block-start:1px dotted var(--linha);padding-block-start:var(--s3)}
-
-/* ─────────────────────────── controle: o orçamento ───────────────────── */
-.controle{
-  background:var(--via);border-block-end:1px solid var(--linha);
-  padding-block:var(--s5);position:sticky;top:0;z-index:5;
-}
-.ctrl-in{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s3) var(--s5)}
-.ctrl-in label{font-family:var(--serif);font-size:1.15rem}
-.campo{display:flex;align-items:baseline;gap:2px;
-  border:1px solid var(--linha2);border-radius:var(--r);padding:6px 12px;background:var(--via)}
-.campo span{color:var(--fumo);font-size:.85rem}
-.campo input{
-  font:inherit;font-weight:700;font-size:1.15rem;font-variant-numeric:tabular-nums;
-  border:0;background:none;width:6ch;padding:0;color:var(--tinta);
-}
-.campo input:focus{outline:none}
-.campo:focus-within{border-color:var(--cofre);box-shadow:0 0 0 2px rgba(15,90,74,.14)}
-.atalhos{display:flex;gap:var(--s2);flex-wrap:wrap}
-.atalho{
-  border:1px solid var(--linha);border-radius:999px;padding:5px 13px;
-  font-size:.85rem;color:var(--fumo);transition:.18s var(--ease);
-}
-.atalho:hover{border-color:var(--linha2);color:var(--tinta)}
-.atalho[aria-pressed="true"]{background:var(--tinta);border-color:var(--tinta);color:var(--via)}
-.dica{
-  flex-basis:100%;font-size:.9rem;color:var(--fumo);
-  border-block-start:1px dotted var(--linha);padding-block-start:var(--s3);margin-block-start:var(--s1);
-}
-.dica b{color:var(--tinta);font-weight:700}
-
-/* ─────────────────────────── a lista ─────────────────────────── */
-/* a barra de controle é sticky: sem esta margem a âncora #lista para embaixo dela
-   e o primeiro imóvel da lista nasce escondido. */
-.lista{padding-block:var(--s6) var(--s7);scroll-margin-block-start:132px}
-.placar{
-  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fumo);
-  margin-block-end:var(--s4);
-}
-.item{border-block-start:1px solid var(--linha)}
-.item:last-of-type{border-block-end:1px solid var(--linha)}
-.cab{
-  display:grid;grid-template-columns:1fr auto auto;gap:var(--s3) var(--s5);
-  align-items:center;width:100%;text-align:start;padding-block:var(--s5);
-  transition:opacity .22s var(--ease);
-}
-.cab:hover .tit{text-decoration:underline;text-underline-offset:3px}
-.tit{font-family:var(--serif);font-size:clamp(1.15rem,2.4vw,1.5rem)}
-.onde{display:block;color:var(--fumo);font-size:.85rem;margin-block-start:2px}
-.precos{text-align:end;line-height:1.2}
-.anunciado{font-size:.85rem}
-.real{font-weight:700;font-size:clamp(1.3rem,3vw,1.75rem);letter-spacing:-.02em}
-.real small{font-size:.5em;font-weight:500;color:var(--fumo);letter-spacing:0}
-.selo{
-  font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
-  border:1px solid currentColor;border-radius:999px;padding:3px 10px;white-space:nowrap;
-}
-.item[data-cabe="1"] .real{color:var(--cofre)}
-.item[data-cabe="1"] .selo{color:var(--cofre)}
-/* Não cabe não ganha vermelho — perde a cor. Perde com TOKEN, nunca com opacity:
-   a .55 o texto caía para 3,70:1, e é justamente a linha que explica por que
-   não vale a visita. */
-.item[data-cabe="0"] .tit,
-.item[data-cabe="0"] .onde,
-.item[data-cabe="0"] .anunciado{color:var(--fumo)}
-.item[data-cabe="0"] .cab:hover .tit,
-.item[data-cabe="0"] .cab:focus-visible .tit{color:var(--tinta)}
-.item[data-cabe="0"] .real{color:var(--fumo);text-decoration:line-through;text-decoration-thickness:1.5px}
-.item[data-cabe="0"] .selo{color:var(--fumo)}
-.motivo{grid-column:1/-1;font-size:.88rem;color:var(--fumo);margin-block-start:-6px}
-.motivo b{color:var(--tinta);font-weight:700}
-
-/* ─────────────────────────── a conta ─────────────────────────── */
-.gaveta{padding-block-end:var(--s6)}
-.conta{
-  background:var(--via);border:1px solid var(--linha);border-radius:var(--r);
-  padding:var(--s5) clamp(var(--s4),4vw,var(--s6)) var(--s5);
-}
-.conta h3{font-size:1.05rem;margin-block-end:var(--s4)}
-.linhas{list-style:none;margin:0;padding:0}
-.linhas li{
-  display:flex;align-items:baseline;gap:var(--s2);
-  padding-block:9px;
-  animation:imprime .26s var(--ease) both;
-}
-.linhas li:nth-child(1){animation-delay:.00s}
-.linhas li:nth-child(2){animation-delay:.05s}
-.linhas li:nth-child(3){animation-delay:.10s}
-.linhas li:nth-child(4){animation-delay:.15s}
-.linhas li:nth-child(5){animation-delay:.20s}
-.linhas li:nth-child(6){animation-delay:.25s}
-@keyframes imprime{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
-.rot{font-size:.95rem}
-.rot em{
-  display:block;font-style:normal;font-size:.76rem;color:var(--fumo);
-  letter-spacing:.02em;margin-block-start:1px;
-}
-.pontos{flex:1;min-width:var(--s5);border-block-end:1px dotted var(--linha2);transform:translateY(-5px)}
-.val{font-weight:500;white-space:nowrap}
-.linhas .total{
-  border-block-start:3px double var(--tinta);margin-block-start:var(--s3);
-  padding-block-start:var(--s4);animation-delay:.31s;
-}
-.linhas .total .rot{font-family:var(--serif);font-size:1.15rem}
-.linhas .total .val{font-weight:700;font-size:1.5rem;letter-spacing:-.02em;color:var(--cofre)}
-.item[data-cabe="0"] .linhas .total .val{color:var(--tinta)}
-
-.dupla{display:grid;grid-template-columns:1fr;gap:var(--s5);margin-block-start:var(--s5)}
-@media(min-width:820px){.dupla{grid-template-columns:1.1fr .9fr;align-items:start}}
-/* a foto vem DEPOIS do preço. é o que todo concorrente mostra primeiro. */
-.foto{border:1px solid var(--linha);border-radius:var(--r);overflow:hidden;background:var(--papel2)}
-/* height:auto é obrigatório: os atributos width/height do <img> viram altura
-   definida na folha do navegador e o aspect-ratio é ignorado — a foto saía retrato. */
-.foto img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
-.foto figcaption{font-size:.78rem;color:var(--fumo);padding:8px 10px;border-block-start:1px solid var(--linha)}
-
-.entrada{border:1px solid var(--linha2);border-radius:var(--r);padding:var(--s4);background:var(--papel)}
-.entrada h4{margin:0 0 var(--s3);font-family:var(--serif);font-weight:500;font-size:1.05rem}
-.entrada .linhas li{padding-block:6px;animation:none}
-.entrada .linhas .total{border-block-start:1px solid var(--tinta);padding-block-start:var(--s3);margin-block-start:var(--s2)}
-.entrada .linhas .total .val{font-size:1.2rem;color:var(--tinta)}
-.entrada .linhas .total .rot{font-size:1rem}
-.nota{font-size:.8rem;color:var(--fumo);margin-block-start:var(--s3);line-height:1.5}
-
-.wa-btn{
-  display:inline-flex;align-items:center;gap:var(--s2);margin-block-start:var(--s5);
-  background:var(--tinta);color:var(--via);border-radius:999px;
-  padding:12px 22px;font-size:.95rem;font-weight:500;text-decoration:none;
-  transition:.2s var(--ease);
-}
-.wa-btn:hover{background:var(--cofre)}
-.wa-btn .pt{width:9px;height:9px;border-radius:50%;background:var(--wa);flex:none}
-
-/* ─────────────────────────── nada cabe ─────────────────────────── */
-.nada{
-  background:var(--via);border:1px solid var(--linha);border-radius:var(--r);
-  padding:var(--s6) clamp(var(--s4),4vw,var(--s6));
-}
-.nada h2{font-size:clamp(1.3rem,3.4vw,1.85rem);max-width:26ch}
-.nada p{color:var(--fumo);margin-block-start:var(--s4);max-width:54ch}
-
-/* ─────────────────────────── letra miúda ─────────────────────────── */
-.miuda{background:var(--via);border-block:1px solid var(--linha);padding-block:var(--s6)}
-.miuda h2{font-size:1.35rem;margin-block-end:var(--s5)}
-.miuda dl{margin:0;display:grid;gap:var(--s4)}
-@media(min-width:760px){.miuda dl{grid-template-columns:repeat(3,1fr);gap:var(--s5)}}
-.miuda dt{font-weight:700;font-size:.95rem;margin-block-end:var(--s1)}
-.miuda dd{margin:0;color:var(--fumo);font-size:.88rem;line-height:1.55}
-
-/* ─────────────────────────── rodapé + venda ─────────────────────────── */
-.pe{padding-block:var(--s6);color:var(--fumo);font-size:.85rem}
-.pe strong{font-family:var(--serif);font-size:1.15rem;color:var(--tinta);font-weight:500;display:block;margin-block-end:var(--s2)}
-.venda{background:var(--tinta);color:var(--via);padding-block:var(--s6)}
-.venda p{max-width:56ch;font-size:.95rem;opacity:.82}
-.venda h2{font-size:clamp(1.2rem,3vw,1.6rem);margin-block-end:var(--s3)}
-.venda a{color:var(--via);text-underline-offset:4px}
-
-@media(max-width:620px){
-  .cab{grid-template-columns:1fr;gap:var(--s2)}
-  .precos{text-align:start}
-  .selo{justify-self:start}
-  .controle{position:static}
-  .lista{scroll-margin-block-start:0}   /* barra deixou de ser sticky: nada a descontar */
-}
-
 @media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{clip-path:none;opacity:1}
+  .forma{animation:none}
 }
 </style>
 </head>
 <body>
 
-<div class="barra">
-  <div class="wrap">
-    <b id="b-qtd">6 imóveis com a conta aberta</b>
-    <span>São Vicente · SP</span>
-    <span class="marca">Imóveis Vértice</span>
-  </div>
-</div>
-
-<nav class="perfis" aria-label="Perfil de cor do site">
-  <div class="wrap">
-    <span class="rot">Perfil de cor</span>
-    <button type="button" data-tema="concreto" aria-pressed="true"><b>Concreto</b>Paulo Mendes</button>
-    <button type="button" data-tema="niemeyer" aria-pressed="false"><b>Curvas</b>Niemeyer</button>
-    <button type="button" data-tema="artacho" aria-pressed="false"><b>Granilite</b>Artacho Jurado</button>
-    <button type="button" data-tema="lina" aria-pressed="false"><b>MASP</b>Lina Bo Bardi</button>
-    <button type="button" data-tema="burle" aria-pressed="false"><b>Calçada</b>Burle Marx</button>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="wrap hero-in">
-    <div>
-      <p class="olho">O preço inteiro</p>
-      <p class="numerao dinheiro"><small>R$</small><span id="b-media">0</span></p>
-      <h1 class="diz">é quanto o anúncio esconde, por mês, em média.</h1>
-      <p class="sub">O anúncio mostra o aluguel. O boleto traz condomínio, IPTU e seguro
-        incêndio junto. Aqui a conta vem somada antes da visita — e a gente diz quais
-        imóveis você <em>não</em> deve perder tempo visitando.</p>
-    </div>
-    <aside class="donde">
-      <h2>De que esse valor é feito</h2>
-      <ul class="linhas" id="donde"></ul>
-      <p class="faixa">Faixa dos seis imóveis do acervo, por mês. Zero de condomínio
-        é casa de rua — não é promoção, é que não existe condomínio.</p>
-    </aside>
+<header class="regua">
+  <div class="regua-in">
+    <nav class="trilho" aria-label="A noite">
+      <ol>
+        <li><a href="#h18">18</a></li>
+        <li><a href="#h19">19</a></li>
+        <li><a href="#h20">20</a></li>
+        <li><a href="#h21">21</a></li>
+        <li><a href="#h22">22</a></li>
+        <li><a href="#h23">23</a></li>
+      </ol>
+      <span class="agulha" id="agulha" style="left:0%"></span>
+    </nav>
+    <p class="relogio tab">
+      <span id="relogio">00:00</span>
+      <span class="pill" id="pill"><span class="ponto"></span><span id="pill-txt">—</span></span>
+    </p>
+    <button class="tema" id="tema" type="button" aria-label="Alternar dia e noite">☾</button>
   </div>
 </header>
 
-<section class="controle" aria-label="Seu orçamento">
-  <div class="wrap ctrl-in">
-    <label for="orc">Quanto cabe no seu mês?</label>
-    <span class="campo">
-      <span>R$</span><input id="orc" type="text" inputmode="numeric" value="1800" aria-describedby="dica">
-    </span>
-    <span class="atalhos" id="atalhos"></span>
-    <p class="dica" id="dica"></p>
+<main>
+
+<section class="hero" id="h18">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="marca"><b>Forno da Vila</b> — pizza a lenha</p>
+      <p class="hora-secao tab">18:00</p>
+      <h1>A noite<br><em>inteira.</em></h1>
+      <p class="local">Massa de <b>48 horas</b>, forno a lenha desde 2014.<br>
+         Av. Exemplo, 000 — Itararé, São Vicente.</p>
+      <div class="estado" id="estado">
+        <p><span class="estado-nome" id="estado-nome">—</span><br>
+           <span class="estado-sub" id="estado-sub"></span></p>
+        <p class="estado-espera" id="estado-espera"></p>
+        <a class="wa-btn" id="cta" href="#" target="_blank" rel="noopener">
+          <span id="cta-txt">Pedir no WhatsApp</span>
+        </a>
+      </div>
+    </div>
+    <div class="hero-arte">
+      <!-- SVG do forno — versão simplificada -->
+      <svg class="forno" viewBox="0 0 440 340" aria-hidden="true" focusable="false">
+        <defs>
+          <radialGradient id="g-brasa" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FFF1E6" stop-opacity=".9"/>
+            <stop offset="38%" stop-color="#FF5A1F" stop-opacity=".6"/>
+            <stop offset="100%" stop-color="#FF5A1F" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <path class="arco" d="M44 302 L44 208 A176 148 0 0 1 396 208 L396 302 Z"/>
+        <g class="tijolo">
+          <path d="M70 302 L70 210 A150 126 0 0 1 370 210 L370 302"/>
+          <path d="M89 302 L89 212 A131 110 0 0 1 351 212 L351 302"/>
+        </g>
+        <path class="boca" d="M108 300 L108 214 A112 96 0 0 1 332 214 L332 300 Z"/>
+        <ellipse class="piso" cx="220" cy="298" rx="112" ry="26"/>
+        <g class="chama"><ellipse cx="220" cy="296" rx="118" ry="34" fill="url(#g-brasa)"/></g>
+        <g class="lenha">
+          <rect x="272" y="272" width="52" height="9" rx="4.5" transform="rotate(-7 298 276)"/>
+          <rect x="282" y="282" width="44" height="9" rx="4.5" transform="rotate(5 304 286)"/>
+        </g>
+        <g transform="translate(198 284) scale(1 .4)">
+          <g class="forma">
+            <circle class="massa" r="66"/>
+            <circle class="crosta" r="66"/>
+            <circle class="crosta" r="53"/>
+            <g class="cobertura">
+              <circle cx="-19" cy="-22" r="7"/><circle cx="20" cy="-13" r="6"/>
+              <circle cx="-4" cy="16" r="7.5"/><circle cx="26" cy="19" r="5.5"/>
+            </g>
+          </g>
+        </g>
+        <path class="bancada" d="M28 302 H412 a6 6 0 0 1 6 6 v14 a6 6 0 0 1-6 6 H28 a6 6 0 0 1-6-6 v-14 a6 6 0 0 1 6-6 z"/>
+      </svg>
+    </div>
   </div>
 </section>
 
-<main class="lista" id="lista">
+<section class="secao" id="h19">
   <div class="wrap">
-    <p class="placar" id="placar"></p>
-    <div id="itens"></div>
+    <p class="hora-secao tab reveal">18:40</p>
+    <h2 class="reveal">Começa 48 horas antes de você ter fome.</h2>
+    <div class="fita">
+      <article class="prova reveal">
+        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="8"/></svg>
+        <p class="quando tab">48H ANTES</p>
+        <h3>Descanso</h3>
+        <p>A massa dorme na câmara fria. Sem pressa e sem fermento a mais.</p>
+      </article>
+      <article class="prova reveal">
+        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="14"/></svg>
+        <p class="quando tab">ONTEM</p>
+        <h3>Sova</h3>
+        <p>Trabalhada à mão, uma vez só. É o que deixa a borda leve.</p>
+      </article>
+      <article class="prova reveal">
+        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="21"/></svg>
+        <p class="quando tab">HOJE, 16H</p>
+        <h3>Bolas</h3>
+        <p>Porcionada e coberta. Às 18h em ponto, a primeira entra no forno.</p>
+      </article>
+    </div>
   </div>
+</section>
+
+<section class="secao painel" id="h20">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">19:30</p>
+    <h2 class="reveal">Saindo do forno</h2>
+    <div class="fita reveal">
+      <div class="linha-pizza">
+        <span class="tempo tab">~9 min</span>
+        <span class="nome">Margherita</span>
+        <span class="preco tab">R$ 45</span>
+        <button class="add" data-sabor="Margherita" data-preco="45">+</button>
+      </div>
+      <div class="linha-pizza">
+        <span class="tempo tab">~11 min</span>
+        <span class="nome">Calabresa</span>
+        <span class="preco tab">R$ 48</span>
+        <button class="add" data-sabor="Calabresa" data-preco="48">+</button>
+      </div>
+      <div class="linha-pizza">
+        <span class="tempo tab">~13 min</span>
+        <span class="nome">Portuguesa</span>
+        <span class="preco tab">R$ 52</span>
+        <button class="add" data-sabor="Portuguesa" data-preco="52">+</button>
+      </div>
+      <div class="linha-pizza">
+        <span class="tempo tab">~16 min</span>
+        <span class="nome">Quatro Queijos</span>
+        <span class="preco tab">R$ 58</span>
+        <button class="add" data-sabor="Quatro Queijos" data-preco="58">+</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="secao" id="h21">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">21:00</p>
+    <h2 class="reveal">O horário em que o forno não descansa.</h2>
+    <div class="fita reveal">
+      <div style="padding:24px;border-bottom:1px solid var(--linha)">
+        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">180 pizzas no sábado</p>
+        <p style="color:var(--fumaca)">Cada uma assada na hora certa.</p>
+      </div>
+      <div style="padding:24px;border-bottom:1px solid var(--linha)">
+        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">48h de massa</p>
+        <p style="color:var(--fumaca)">Fermentação natural, sem pressa.</p>
+      </div>
+      <div style="padding:24px">
+        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">12 anos de forno</p>
+        <p style="color:var(--fumaca)">Lenha de carvalho desde 2014.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="secao" id="h22">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">22:15</p>
+    <h2 class="reveal">Onde a gente chega</h2>
+    <div class="fita reveal">
+      <div style="padding:24px">
+        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">Centro — 25 min</p>
+        <p style="color:var(--fumaca)">Itararé — 30 min · Pq. Bitaru — 35 min · Jd. Rio Branco — 40 min</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="secao" id="h23">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">23:30</p>
+    <h2 class="reveal">Depois disso, o forno apaga.</h2>
+    <div class="fita reveal">
+      <div style="padding:24px">
+        <p style="font-family:var(--sans);font-size:1.1rem;letter-spacing:.02em">
+          Última rodada às 23:30. Depois, o forno apaga.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
 
-<section class="miuda">
-  <div class="wrap">
-    <h2>O que a gente acha que você tem o direito de saber</h2>
-    <dl>
-      <div>
-        <dt>IPTU e seguro incêndio são do proprietário.</dt>
-        <dd>A Lei do Inquilinato (art. 22, VIII) põe os dois na conta de quem é dono.
-          Eles chegam até você porque quase todo contrato tem cláusula de repasse —
-          é legal, é o padrão do mercado, e ainda assim é bom você saber antes de assinar.</dd>
-      </div>
-      <div>
-        <dt>A caução vai até três aluguéis.</dt>
-        <dd>É o teto da lei. E ela volta para você no fim do contrato, corrigida —
-          não é taxa, é depósito. Nas contas abaixo usamos o teto, para você
-          não ser surpreendida para cima.</dd>
-      </div>
-      <div>
-        <dt>Só podem pedir uma garantia.</dt>
-        <dd>Caução <em>ou</em> fiador <em>ou</em> seguro-fiança (art. 37, parágrafo único).
-          Se alguém pedir caução <em>e</em> fiador no mesmo contrato, é irregular —
-          aqui ou em qualquer imobiliária.</dd>
-      </div>
-    </dl>
+<div class="comanda" id="comanda">
+  <div class="comanda-in">
+    <span class="comanda-total" id="comanda-total">0 itens · R$ 0</span>
+    <button class="comanda-enviar" id="comanda-enviar">Enviar comanda →</button>
   </div>
-</section>
+</div>
 
-<footer class="pe">
+<footer>
   <div class="wrap">
-    <strong>Imóveis Vértice</strong>
-    São Vicente · SP · atendimento de segunda a sábado.<br>
-    Valores de condomínio e IPTU conferidos no mês corrente; reajuste anual segue o
-    índice do contrato. Vistoria e taxa de contrato: R$ 0 — a vistoria é nossa.
+    <p>Forno da Vila · pizza a lenha em São Vicente · aberto 18h–23:30 · © 2026</p>
+    <p style="margin-top:8px"><a href="../../receita-zero/#planos" style="color:var(--fumaca)">Quer um site assim pro seu negócio?</a></p>
   </div>
 </footer>
 
-<section class="venda">
-  <div class="wrap">
-    <h2>Este site é um exemplo.</h2>
-    <p>Fizemos ele para mostrar o que um site de imobiliária pode fazer quando para de
-      ser catálogo e vira conta aberta. Se você tem um negócio em São Vicente e quer um
-      assim, fale com a gente: <a href="https://wa.me/5511970776856">WhatsApp</a>.</p>
-  </div>
-</section>
-
 <script>
-/* ══════════════ dados ══════════════
-   ⚠️ DEMO — acervo fictício de portfólio. Valores de mercado plausíveis para
-   São Vicente/SP, não são imóveis reais. */
-const IMOB = {
-  whats:'5511970776856',
-  imoveis:[
-    { id:'itarare-2q',   tipo:'Apartamento de 2 quartos', bairro:'Itararé', m2:58, vaga:1,
-      aluguel:1200, cond:480, iptu:112, seguro:29, foto:'assets/i1.jpg',
-      obs:'Condomínio alto porque o prédio tem portaria 24h e dois elevadores.' },
-    { id:'catiapoa-casa', tipo:'Casa de 2 quartos', bairro:'Catiapoã', m2:72, vaga:1,
-      aluguel:1450, cond:0, iptu:96, seguro:31, foto:'assets/i2.jpg',
-      obs:'Casa de rua, sem condomínio — é o acervo com menos encargo escondido.' },
-    { id:'centro-kit',   tipo:'Kitnet mobiliada', bairro:'Centro', m2:28, vaga:0,
-      aluguel:850, cond:210, iptu:48, seguro:18, foto:'assets/i3.jpg',
-      obs:'Condomínio inclui água. Sem vaga de garagem.' },
-    { id:'bitaru-3q',    tipo:'Apartamento de 3 quartos', bairro:'Parque Bitaru', m2:96, vaga:2,
-      aluguel:1900, cond:390, iptu:168, seguro:42, foto:'assets/i1.jpg',
-      obs:'Duas vagas cobertas. Condomínio com piscina e salão.' },
-    { id:'japui-casa',   tipo:'Casa de 3 quartos com quintal', bairro:'Japuí', m2:130, vaga:2,
-      aluguel:2600, cond:0, iptu:245, seguro:55, foto:'assets/banner.jpg',
-      obs:'IPTU pesado: o terreno é grande e o bairro tem a maior planta da cidade.' },
-    { id:'gonzaguinha-1q', tipo:'Apartamento de 1 quarto', bairro:'Gonzaguinha', m2:41, vaga:1,
-      aluguel:1100, cond:320, iptu:74, seguro:24, foto:'assets/i2.jpg',
-      obs:'Duas quadras da praia. Condomínio inclui água e gás.' }
-  ]
+/* Configuração fictícia de portfólio — trocar pelos dados reais */
+const CASA = {
+  abre:18, aquecendoAte:18.34, ultimoPedido:23.5, fecha:24,
+  picoDe:20, picoAte:22,
+  esperaBase:25, esperaPico:45,
+  whats:'5511970776856'
 };
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const clamp = (v,a,b) => Math.min(b, Math.max(a, v));
 
-/* ══════════════ dinheiro ══════════════ */
-const BRL = new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
-const rs  = n => BRL.format(Math.round(n));
-const num = n => new Intl.NumberFormat('pt-BR',{maximumFractionDigits:0}).format(Math.round(n));
-const $   = s => document.querySelector(s);
-
-const im2 = im => `${im.tipo.toLowerCase()} no ${im.bairro}`;
-const encargos = im => im.cond + im.iptu + im.seguro;
-const total    = im => im.aluguel + encargos(im);
-/* caução no TETO legal de 3 aluguéis — para o número nunca surpreender para cima. */
-const entrada  = im => total(im) + im.aluguel * 3;
-
-const ATALHOS = [1200, 1800, 2500, 3500];
-let ORC = 1800;
-let ABERTO = null;
-
-/* ══════════════ o número do hero ══════════════
-   calculado do acervo, não digitado à mão: se um imóvel mudar, o hero muda junto. */
-const mediaEscondida = IMOB.imoveis.reduce((a,im) => a + encargos(im), 0) / IMOB.imoveis.length;
-$('#b-media').textContent = num(mediaEscondida);
-$('#b-qtd').textContent = IMOB.imoveis.length + ' imóveis com a conta aberta';
-
-/* de que os R$ X são feitos — faixa real do acervo, não número redondo inventado */
-$('#donde').innerHTML = [
-  ['Condomínio',      'do inquilino',                     im => im.cond],
-  ['IPTU',            'por lei, do proprietário',         im => im.iptu],
-  ['Seguro incêndio', 'por lei, do proprietário',         im => im.seguro]
-].map(([rot, lei, f]) => {
-  const v = IMOB.imoveis.map(f);
-  return `<li><span class="rot">${rot}<em>${lei}</em></span><i class="pontos"></i>`
-       + `<b class="val dinheiro">${rs(Math.min(...v))} – ${rs(Math.max(...v))}</b></li>`;
-}).join('');
-
-/* mediana dos encargos: é o desconto honesto para traduzir orçamento → aluguel de busca */
-const medianaEncargos = (() => {
-  const v = IMOB.imoveis.map(encargos).sort((a,b) => a - b), m = v.length >> 1;
-  return v.length % 2 ? v[m] : (v[m-1] + v[m]) / 2;
-})();
-
-/* ══════════════ atalhos de orçamento ══════════════ */
-$('#atalhos').innerHTML = ATALHOS.map(v =>
-  `<button class="atalho" type="button" data-v="${v}" aria-pressed="false">${rs(v)}</button>`).join('');
-$('#atalhos').addEventListener('click', e => {
-  const b = e.target.closest('.atalho'); if (!b) return;
-  ORC = +b.dataset.v; $('#orc').value = num(ORC); pintar();
-});
-$('#orc').addEventListener('input', e => {
-  const n = parseInt(e.target.value.replace(/\D/g,''), 10);
-  ORC = Number.isFinite(n) ? n : 0;
-  pintar();
-});
-
-/* ══════════════ montar uma conta ══════════════ */
-function linha(rot, lei, val){
-  return `<li><span class="rot">${rot}${lei ? `<em>${lei}</em>` : ''}</span>`
-       + `<i class="pontos"></i><b class="val dinheiro">${rs(val)}</b></li>`;
+function horaAgora(){
+  const forcada = new URLSearchParams(location.search).get('h');
+  if(forcada !== null && forcada !== '') return clamp(parseFloat(forcada), 0, 23.999);
+  const agora = new Date();
+  const h = agora.getHours();
+  const m = agora.getMinutes();
+  return h + m/60;
 }
 
-function conta(im){
-  const l = [ linha('Aluguel', 'do inquilino', im.aluguel) ];
-  if (im.cond) l.push(linha('Condomínio', 'do inquilino (a parte ordinária)', im.cond));
-  l.push(linha('IPTU', 'por lei é do proprietário — repassado por cláusula', im.iptu));
-  l.push(linha('Seguro incêndio', 'por lei é do proprietário — repassado por cláusula', im.seguro));
-  if (!im.cond) l.push(linha('Condomínio', 'não tem — é casa de rua', 0));
-
-  const ent = [
-    linha('1º mês, tudo incluído', '', total(im)),
-    linha('Caução', 'teto legal: 3 aluguéis · devolvida corrigida no fim', im.aluguel * 3),
-    linha('Vistoria e taxa de contrato', 'por nossa conta', 0)
-  ];
-
-  const msg = `Oi! Vi no site a conta inteira do ${im.tipo.toLowerCase()} no ${im.bairro}: `
-    + `${rs(total(im))} por mês (aluguel ${rs(im.aluguel)}`
-    + (im.cond ? ` + condomínio ${rs(im.cond)}` : '')
-    + ` + IPTU ${rs(im.iptu)} + seguro ${rs(im.seguro)}) e ${rs(entrada(im))} para entrar. `
-    + `Quero agendar uma visita.`;
-
-  return `<div class="gaveta"><div class="conta">
-    <h3>A conta do mês, linha por linha</h3>
-    <ul class="linhas">
-      ${l.join('')}
-      <li class="total"><span class="rot">Sai por mês</span><i class="pontos"></i>
-        <b class="val dinheiro">${rs(total(im))}</b></li>
-    </ul>
-    <div class="dupla">
-      <div class="entrada">
-        <h4>Para entrar, você precisa ter</h4>
-        <ul class="linhas">
-          ${ent.join('')}
-          <li class="total"><span class="rot">No bolso, no dia</span><i class="pontos"></i>
-            <b class="val dinheiro">${rs(entrada(im))}</b></li>
-        </ul>
-        <p class="nota">${im.obs}</p>
-      </div>
-      <figure class="foto">
-        <img src="${im.foto}" alt="${im.tipo} no ${im.bairro}" loading="lazy" width="800" height="600">
-        <figcaption>${im.m2} m² · ${im.vaga ? im.vaga + (im.vaga > 1 ? ' vagas' : ' vaga') : 'sem vaga'} · ${im.bairro}</figcaption>
-      </figure>
-    </div>
-    <a class="wa-btn" href="https://wa.me/${IMOB.whats}?text=${encodeURIComponent(msg)}"
-       target="_blank" rel="noopener"><i class="pt"></i>Agendar visita com a conta na mão</a>
-  </div></div>`;
+function estadoDe(h){
+  if(h >= CASA.ultimoPedido && h < CASA.fecha)
+    return {id:'ultima', nome:'Última rodada', sub:'pedidos até 23:30', calor:1, espera:CASA.esperaPico, cta:'Última rodada — faltam ' + Math.round((CASA.fecha-h)*60) + ' min', msg:'Oi! Dá tempo da última rodada?'};
+  if(h >= CASA.picoDe && h < CASA.picoAte)
+    return {id:'pico', nome:'Pico', sub:'o forno não descansa', calor:1, espera:CASA.esperaPico, cta:'Pedir agora (~'+CASA.esperaPico+' min)', msg:'Oi! Pedido (sei que tá no pico):'};
+  if(h >= CASA.aquecendoAte && h < CASA.ultimoPedido)
+    return {id:'aberto', nome:'Aberto', sub:'saindo do forno', calor:.72, espera:CASA.esperaBase, cta:'Pedir agora', msg:'Oi! Pedido:'};
+  if(h >= CASA.abre && h < CASA.aquecendoAte)
+    return {id:'aquecendo', nome:'Aquecendo', sub:'primeiras saem 18:20', calor:.38, espera:null, cta:'Entrar na primeira fornada', msg:'Oi! Pego a primeira fornada?'};
+  return {id:'fechado', nome:'Fechado', sub:'abre 18:00', calor:0, espera:null, cta:'Programar pedido pras 18h', msg:'Oi! Queria deixar um pedido pra hoje às 18h:'};
 }
 
-/* ══════════════ por que estourou ══════════════
-   a frase mais útil não é "estoura R$ 21" — é dizer QUAL linha estourou. */
-function porque(im){
-  const e = total(im) - ORC;
-  if (im.cond && (total(im) - im.cond) <= ORC)
-    return `Cabe no aluguel, <b>não cabe no condomínio</b>: ${rs(im.cond)} por mês, todo mês.`;
-  return `Passa <b>${rs(e)}</b> do que você disse que cabe.`;
+function diaDe(h){
+  if(h < 6) return 0;
+  if(h < 17) return 1;
+  if(h < 18) return 1 - (h - 17);
+  return 0;
 }
 
-/* ══════════════ pintar ══════════════ */
-function pintar(){
-  const cabem = IMOB.imoveis.filter(im => total(im) <= ORC);
-
-  /* as pessoas orçam o ALUGUEL, não o total. traduzir é o serviço. */
-  const alvo = Math.max(0, Math.floor((ORC - medianaEncargos) / 50) * 50);
-  $('#dica').innerHTML = ORC > 0
-    ? `Nos nossos imóveis os encargos vão de <b>${rs(Math.min(...IMOB.imoveis.map(encargos)))}</b> a `
-      + `<b>${rs(Math.max(...IMOB.imoveis.map(encargos)))}</b> por mês. Com ${rs(ORC)} no total, `
-      + `procure aluguel anunciado até <b>${rs(alvo)}</b>.`
-    : `Escreva um valor para a gente separar o que cabe do que não cabe.`;
-
-  [...document.querySelectorAll('.atalho')].forEach(b =>
-    b.setAttribute('aria-pressed', String(+b.dataset.v === ORC)));
-
-  $('#placar').textContent = ORC > 0
-    ? `${cabem.length} de ${IMOB.imoveis.length} cabem em ${rs(ORC)} por mês`
-    : `${IMOB.imoveis.length} imóveis`;
-
-  const ordem = [...IMOB.imoveis].sort((a,b) =>
-    (total(a) <= ORC ? 0 : 1) - (total(b) <= ORC ? 0 : 1) || total(a) - total(b));
-
-  $('#itens').innerHTML = ordem.map(im => {
-    const cabe = total(im) <= ORC;
-    const sobra = ORC - total(im);
-    return `<article class="item" data-cabe="${cabe ? 1 : 0}" data-id="${im.id}">
-      <button class="cab" type="button" aria-expanded="${ABERTO === im.id}" aria-controls="c-${im.id}">
-        <span>
-          <span class="tit">${im.tipo}</span>
-          <span class="onde">${im.bairro} · ${im.m2} m²</span>
-        </span>
-        <span class="precos">
-          <span class="anunciado">anunciado <span class="risco dinheiro">${rs(im.aluguel)}</span></span><br>
-          <span class="real dinheiro">${rs(total(im))}<small> /mês</small></span>
-        </span>
-        <span class="selo">${cabe ? (sobra >= 1 ? 'sobram ' + rs(sobra) : 'cabe justo') : 'estoura'}</span>
-        ${cabe ? '' : `<span class="motivo">${porque(im)}</span>`}
-      </button>
-      <div id="c-${im.id}" ${ABERTO === im.id ? '' : 'hidden'}>${ABERTO === im.id ? conta(im) : ''}</div>
-    </article>`;
-  }).join('');
-
-  if (!cabem.length && ORC > 0){
-    const maisBarato = ordem[0];
-    $('#itens').insertAdjacentHTML('afterbegin', `<div class="gaveta"><div class="nada">
-      <h2>Com ${rs(ORC)} por mês, hoje não temos nada que caiba.</h2>
-      <p>O mais barato do acervo sai por <b>${rs(total(maisBarato))}</b> — a ${im2(maisBarato)}.
-        Faltam ${rs(total(maisBarato) - ORC)}. Deixamos a lista aberta abaixo mesmo assim,
-        com a conta de cada um, para você ver de onde vem a diferença.</p>
-    </div></div>`);
-  }
+function formataHora(h){
+  const hh = String(Math.floor(h)).padStart(2,'0');
+  const mm = String(Math.floor((h % 1) * 60)).padStart(2,'0');
+  return hh + ':' + mm;
 }
 
-/* ══════════════ abrir/fechar uma conta ══════════════ */
-$('#itens').addEventListener('click', e => {
-  const b = e.target.closest('.cab'); if (!b) return;
-  const id = b.closest('.item').dataset.id;
-  ABERTO = (ABERTO === id) ? null : id;
-  pintar();
-  if (ABERTO) document.querySelector(`.item[data-id="${ABERTO}"] .cab`).focus();
+let temaManual = null;
+let comanda = [];
+
+function pinta(){
+  const h = horaAgora();
+  const e = estadoDe(h);
+  const dia = temaManual === null ? diaDe(h) : temaManual;
+  document.documentElement.style.setProperty('--calor', e.calor);
+  document.documentElement.style.setProperty('--dia', dia.toFixed(3));
+  $('#relogio').textContent = formataHora(h);
+  $('#relogio').className = 'tab';
+  $('#pill').style.background = e.calor > 0 ? 'var(--brasa)' : 'transparent';
+  $('#pill-txt').textContent = e.espera ? e.nome + ' · ~' + e.espera + ' min' : e.nome;
+  $('#estado-nome').textContent = e.nome;
+  $('#estado-sub').textContent = e.sub;
+  $('#estado-espera').innerHTML = e.espera ? 'Saindo do forno em <b>~' + e.espera + ' minutos</b>.' : (e.id === 'fechado' ? 'O forno acende às 18h. Deixa o pedido programado.' : 'As primeiras saem às 18:20.');
+  $('#cta-txt').textContent = e.cta;
+  $('#cta').href = 'https://wa.me/' + CASA.whats + '?text=' + encodeURIComponent(e.msg);
+  $('#tema').textContent = dia > .5 ? '☀' : '☾';
+  const ag = $('#agulha');
+  const dentro = h >= CASA.abre && h < CASA.fecha;
+  ag.style.opacity = dentro ? '1' : '0';
+  ag.style.left = clamp((h - CASA.abre) / 6, 0, 1) * 100 + '%';
+  $$('.trilho a').forEach(a => a.style.fontWeight = (+a.textContent === Math.floor(h)) ? '600' : '500');
+}
+
+$('#tema').addEventListener('click', () => {
+  const atual = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--dia')) || 0;
+  temaManual = atual > .5 ? 0 : 1;
+  pinta();
 });
 
-/* ══════════════ estado por URL ══════════════
-   ?ate=1800 e ?im=itarare-2q. Serve ao painel de demonstração e ao link que o
-   corretor manda no WhatsApp já com a conta daquele imóvel aberta. */
-const qs = new URLSearchParams(location.search);
-const qAte = parseInt((qs.get('ate') || '').replace(/\D/g,''), 10);
-if (Number.isFinite(qAte) && qAte > 0){ ORC = qAte; $('#orc').value = num(ORC); }
-const qIm = qs.get('im');
-if (qIm && IMOB.imoveis.some(im => im.id === qIm)) ABERTO = qIm;
-
-/* ══════════════ perfil de cor (arquitetos brasileiros) ══════════════
-   Só troca tokens de cor via data-tema. Fontes, escala e forma ficam fixas: é a
-   MESMA conta em papéis diferentes. ?tema= deixa o corretor mandar o site já no
-   perfil que ele escolheu — mesma lógica de ?ate=/?im=. */
-const TEMAS = ['concreto','niemeyer','artacho','lina','burle'];
-function setTema(t){
-  if (!TEMAS.includes(t)) t = 'concreto';
-  document.documentElement.dataset.tema = t;
-  document.querySelectorAll('.perfis button').forEach(b =>
-    b.setAttribute('aria-pressed', String(b.dataset.tema === t)));
-  const u = new URL(location.href);
-  if (t === 'concreto') u.searchParams.delete('tema'); else u.searchParams.set('tema', t);
-  history.replaceState(null, '', u);
-}
-document.querySelector('.perfis').addEventListener('click', e => {
-  const b = e.target.closest('button[data-tema]');
-  if (b) setTema(b.dataset.tema);
-});
-setTema(qs.get('tema') || 'concreto');
-
-pintar();
-
-/* Quem chega por ?im= pediu AQUELE imóvel — cair no topo da página obriga a
-   procurar de novo. Desce até a conta, descontando a barra de controle grudada. */
-if (ABERTO){
-  const alvo = document.querySelector(`.item[data-id="${ABERTO}"]`);
-  if (alvo){
-    alvo.scrollIntoView({ block:'start' });
-    const barra = document.querySelector('.controle');
-    if (getComputedStyle(barra).position === 'sticky') scrollBy(0, -(barra.offsetHeight + 12));
-  }
-}
-</script>
-
-  
-
-  <!-- Vitrine Certa Exit-Intent -->
-<style>
-#vc-exit{position:fixed;inset:0;background:rgba(11,7,20,.82);z-index:9998;display:none;
-  align-items:center;justify-content:center;padding:1.4rem;font-family:system-ui,sans-serif}
-#vc-exit.show{display:flex;animation:vcFade .25s ease}
-@keyframes vcFade{from{opacity:0}to{opacity:1}}
-#vc-exit .box{background:#0B0714;color:#EFE9FF;border:1px solid rgba(45,212,191,.4);
-  border-radius:16px;max-width:420px;width:100%;padding:1.8rem;text-align:center;
-  box-shadow:0 24px 70px rgba(0,0,0,.6)}
-#vc-exit h3{margin:0 0 .5rem;color:#2DD4BF;font-size:1.35rem;line-height:1.25}
-#vc-exit p{margin:0 0 1.2rem;opacity:.85;font-size:.98rem;line-height:1.5}
-#vc-exit .cta{display:inline-block;background:#C6FF00;color:#0B0714;font-weight:800;
-  text-decoration:none;padding:.85rem 1.4rem;border-radius:99px;font-size:1rem}
-#vc-exit .close{display:block;margin:.9rem auto 0;background:none;border:0;color:rgba(239,233,255,.5);
-  font-size:.82rem;cursor:pointer}
-</style>
-<div id="vc-exit" role="dialog" aria-modal="true" aria-label="Antes de sair">
-  <div class="box">
-    <h3>Espera aí! ;)</h3>
-    <p>Antes de ir: quer receber <b>promoções e novidades</b> do <span id="vc-biz">nosso comércio</span> direto no seu WhatsApp? É rapidinho.</p>
-    <a class="cta" id="vc-exit-wa" href="https://wa.me/5511970776856?text=Quero%20receber%20promoções%20no%20WhatsApp">Receber no WhatsApp</a>
-    <button class="close" id="vc-exit-x">Agora não, obrigado</button>
-  </div>
-</div>
-<script>
-(function(){
-  var shown=false;
-  function show(){
-    if(shown||sessionStorage.getItem('vc_exit_done'))return;
-    shown=true;sessionStorage.setItem('vc_exit_done','1');
-    document.getElementById('vc-exit').classList.add('show');
-  }
-  function hide(){document.getElementById('vc-exit').classList.remove('show');}
-  document.addEventListener('visibilitychange',function(){if(document.hidden)show();});
-  window.addEventListener('beforeunload',function(e){if(!sessionStorage.getItem('vc_exit_done')){e.preventDefault();e.returnValue='';}});
-  document.addEventListener('click',function(e){
-    if(e.target&&e.target.id==='vc-exit-x')hide();
-    if(e.target&&e.target.id==='vc-exit')hide();
+/* Reveal por máscara — ativa ao rolar ou no carregamento */
+function checkReveal(){
+  $$('.reveal:not(.on)').forEach(el=>{
+    const r=el.getBoundingClientRect();
+    if(r.top < innerHeight*0.8) el.classList.add('on');
   });
-})();
+}
+addEventListener('scroll', checkReveal, {passive:true});
+/* ativa todos no carregamento (site de portfólio: prioriza acessibilidade) */
+setTimeout(() => $$('.reveal').forEach(el => el.classList.add('on')), 100);
+
+/* Comanda */
+$$('.add').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const sabor = btn.dataset.sabor;
+    const preco = +btn.dataset.preco;
+    comanda.push({sabor, preco});
+    atualizaComanda();
+  });
+});
+
+function atualizaComanda(){
+  const total = comanda.reduce((s, i) => s + i.preco, 0);
+  $('#comanda-total').textContent = comanda.length + ' itens · R$ ' + total;
+  $('#comanda').classList.toggle('ativa', comanda.length > 0);
+}
+
+$('#comanda-enviar').addEventListener('click', () => {
+  const total = comanda.reduce((s, i) => s + i.preco, 0);
+  const itens = comanda.map(i => '• ' + i.sabor + ' — R$' + i.preco).join('\n');
+  const msg = 'Pedido — ' + formataHora(horaAgora()) + '\n' + itens + '\nTotal R$' + total;
+  window.open('https://wa.me/' + CASA.whats + '?text=' + encodeURIComponent(msg), '_blank');
+});
+
+/* Scroll-driven: o scroll é a noite passando */
+if(!CSS.supports('animation-timeline','scroll()')){
+  let alvo = 0, cur = 0, rodando = false;
+  const passo = () => {
+    cur += (alvo - cur) * 0.06;
+    document.documentElement.style.setProperty('--noite', cur.toFixed(4));
+    if(Math.abs(alvo - cur) > 0.0008) requestAnimationFrame(passo); else rodando = false;
+  };
+  addEventListener('scroll', () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    alvo = max > 0 ? clamp(scrollY / max, 0, 1) : 0;
+    if(!rodando){ rodando = true; requestAnimationFrame(passo); }
+  }, {passive:true});
+}
+
+pinta();
+setInterval(pinta, 20000);
 </script>
 </body>
 </html>
