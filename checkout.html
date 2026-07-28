@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vitrine Certa — Fechar contrato</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Vitrine Certa brand: green-petroleum + sand */
+  --green:#1C6E6A;   /* green-petroleum */
+  --sand:#E0922F;    /* sand */
+  --bg:#ffffff;
+  --surface:#F9FAFB;
+  --text:#1F2937;
+  --muted:#6B7280;
+  --border:#E5E7EB;
+  --shadow:0 1px 3px rgba(28,110,106,.08),0 1px 2px rgba(28,110,106,.04);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;min-height:100vh;padding:6vh 6vw;line-height:1.55}
+.wrap{max-width:680px;margin:0 auto}
+.kick{color:var(--sand);text-transform:uppercase;letter-spacing:.2em;font-size:.72rem;font-weight:700;margin-bottom:1rem}
+h1{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;line-height:1.05;margin-bottom:1.4rem;font-family:'Fraunces',serif}
+h1 em{color:var(--green);font-style:normal}
+.timer{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;margin:1.4rem 0;text-align:center;box-shadow:var(--shadow)}
+.timer .lbl{font-size:.8rem;color:var(--green);letter-spacing:.04em;font-weight:600}
+.timer .clock{font-size:1.6rem;font-weight:900;color:var(--green);font-variant-numeric:tabular-nums;margin-top:.3rem}
+.timer .off{font-size:.95rem;color:var(--text);margin-top:.4rem}
+.plan{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.4rem;margin:1rem 0;box-shadow:var(--shadow)}
+.plan.destaque{border-color:var(--sand);box-shadow:0 0 0 1px rgba(224,146,47,.25)}
+.plan .badge{display:inline-block;background:var(--sand);color:var(--bg);font-size:.68rem;font-weight:900;letter-spacing:.06em;padding:.15rem .6rem;border-radius:99px;margin-bottom:.5rem}
+.plan h3{font-size:1.3rem;color:var(--green);margin-bottom:.3rem}
+.plan .preco{font-size:2rem;font-weight:900;color:var(--text)}
+.plan .preco small{font-size:.9rem;color:var(--muted);font-weight:400}
+.plan .ancora{font-size:.85rem;color:var(--muted);text-decoration:line-through;margin-left:.4rem}
+.plan ul{list-style:none;margin:.8rem 0}
+.plan li{padding:.25rem 0;color:var(--muted);font-size:.95rem}
+.plan li::before{content:"✓ ";color:var(--green)}
+.upsell{background:rgba(28,110,106,.03);border:1px dashed var(--border);border-radius:14px;padding:1.2rem;margin:1.2rem 0}
+.upsell h4{color:var(--green);font-size:1.05rem;margin-bottom:.4rem}
+.upsell .preco{font-weight:900;color:var(--text)}
+.upsell .ancora{text-decoration:line-through;color:var(--muted);font-size:.85rem;margin-left:.4rem}
+.upsell .bonus{font-size:.85rem;color:var(--sand);margin-top:.4rem;font-weight:600}
+/* Seletor de método */
+.metodo-seletor{margin:1.4rem 0}
+.metodo-seletor .label{font-size:.85rem;font-weight:600;color:var(--text);margin-bottom:.6rem}
+.metodo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem}
+.metodo-opt{
+  border:2px solid var(--border);border-radius:10px;padding:.8rem;cursor:pointer;
+  background:var(--bg);transition:all .15s;box-shadow:var(--shadow);
+}
+.metodo-opt:hover{border-color:var(--green);background:rgba(28,110,106,.02)}
+.metodo-opt.selected{border-color:var(--green);background:rgba(28,110,106,.04);box-shadow:0 0 0 2px rgba(28,110,106,.1)}
+.metodo-opt .nome{font-size:.85rem;font-weight:600;color:var(--text);margin-bottom:.2rem}
+.metodo-opt .desc{font-size:.72rem;color:var(--muted)}
+.metodo-opt .icon{font-size:1.1rem;margin-bottom:.3rem}
+/* Status */
+.status-msg{margin:1rem 0;padding:.8rem;border-radius:8px;font-size:.85rem;display:none}
+.status-msg.ok{background:rgba(28,110,106,.08);color:var(--green);border:1px solid rgba(28,110,106,.2)}
+.status-msg.err{background:rgba(224,146,47,.08);color:#7a4e00;border:1px solid rgba(224,146,47,.3)}
+.status-msg.loading{background:rgba(28,110,106,.05);color:var(--green);border:1px solid rgba(28,110,106,.15)}
+/* CTA */
+.cta{display:block;width:100%;background:var(--green);color:var(--bg);text-align:center;font-weight:900;font-size:1.1rem;padding:1rem;border-radius:12px;text-decoration:none;margin-top:1rem;font-family:inherit;border:none;cursor:pointer;transition:background .15s}
+.cta:hover{background:#15554d}
+.cta.ghost{background:transparent;color:var(--green);border:1px solid var(--border)}
+.cta:disabled{opacity:.6;cursor:not-allowed}
+.note{font-size:.75rem;color:var(--muted);text-align:center;margin-top:1.2rem}
+.faq{margin:1.4rem 0;font-size:.9rem;color:var(--muted)}
+.faq details{padding:.5rem 0;border-bottom:1px solid rgba(0,0,0,.04)}
+.faq summary{cursor:pointer;color:var(--text);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="kick">Último passo</span>
+  <h1>Seu site <em>pronto em 48h</em>. É só confirmar.</h1>
+
+  <div class="timer" id="timer">
+    <div class="lbl">OFERTA DE LANÇAMENTO — acaba em</div>
+    <div class="clock" id="clock">07 : 00 : 00 : 00</div>
+    <div class="off">15% de desconto na <b>primeira fatura</b> de qualquer plano</div>
+  </div>
+
+  <div class="plan" id="card"></div>
+
+  <div class="upsell" id="upsell"></div>
+
+  <!-- Seletor de método de pagamento -->
+  <div class="metodo-seletor">
+    <div class="label">Como você quer pagar?</div>
+    <div class="metodo-grid" id="metodo-grid"></div>
+  </div>
+
+  <div class="status-msg" id="status-msg"></div>
+
+  <button class="cta" id="pagar" disabled>Escolha um método de pagamento →</button>
+  <a class="cta ghost" id="wa" href="#">Mais dúvidas? Falo no WhatsApp</a>
+
+  <div class="faq">
+    <details open><summary>Preciso de cartão de crédito?</summary><p>Não. Cobramos via <b>Pix recorrente</b> (Mercado Pago). Todo mês vem o link no seu WhatsApp.</p></details>
+    <details><summary>Tem fidelidade ou contrato?</summary><p>Não. Você paga mês a mês e cancela quando quiser, sem multa.</p></details>
+    <details><summary>O site já aparece no Google?</summary><p>Sim. Todo plano é indexado no Google logo após publicado. O pacote "Aparecer no Google PRO" sobe ainda mais sua posição e coloca sua ficha no mapa.</p></details>
+    <details><summary>Posso parcelar?</summary><p>O plano é mensal (R$49 a R$149). Sem juros porque é Pix recorrente, não financiamento.</p></details>
+  </div>
+
+  <p class="note">Vitrine Certa — sites que vendem para o comércio local. Valores sujeitos a confirmação em proposta.</p>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+// ===== Configuração =====
+// Avança API URL — configurável via data attribute ou URL param.
+// Em produção, este endpoint deve ser um proxy server-side que usa
+// references/cobranca-avanca.js (evita expor token/CORS no browser).
+var API_BASE = document.getElementById('vc-api')?.dataset.apiUrl
+  || new URLSearchParams(location.search).get('api_url')
+  || '/api/v1/subscriptions';
+
+// ===== Planos (matriz canônica — docs/COBRANCA-AVANCA.md §1) =====
+var PLANOS = {
+  basico:  { nome:'Básico',  valor:49,  pop:false, itens:['Site da sua empresa, no ar em 48h','Botão de WhatsApp direto','Já aparece na busca do Google local','Resumo mensal de quem visitou — grátis'] },
+  plus:    { nome:'Plus',    valor:99,  pop:false, itens:['Tudo do Básico','Acabamento premium + motion suave','Seção "como funciona"'] },
+  premium: { nome:'Premium', valor:149, pop:true,  itens:['Tudo do Plus','Mecânica única do seu nicho','Pedido/agenda montados no site','Suporte prioritário'] },
+};
+
+// ===== Métodos de pagamento (Avança API contract) =====
+var METODOS = [
+  { id:'pix_auto',   label:'Pix Automático',  icon:'⚡', desc:'Cobrança recorrente via Pix. Sem cartão.' },
+  { id:'credit_card',label:'Cartão de Crédito',icon:'💳', desc:'Cartão recorrente (até 12x sem juros).' },
+  { id:'boleto',     label:'Boleto Bancário',  icon:'📄', desc:'Boleto mensal. Pagamento manual.' },
+  { id:'pix_qr',     label:'PIX QR',          icon:'📱', desc:'QR Code estático para pagamento único.' },
+];
+
+// ===== Leitura de parâmetros =====
+var params = new URLSearchParams(location.search);
+var chave = params.get('plano') || 'premium';
+var pmeId = params.get('pme_id') || '';
+var p = PLANOS[chave] || PLANOS.premium;
+
+// ===== Render plano =====
+function renderPlano(){
+  var card = document.getElementById('card');
+  card.className = 'plan' + (p.pop ? ' destaque' : '');
+  card.innerHTML = (p.pop ? '<span class="badge">MAIS PROCURADO</span>' : '')
+    + '<h3>'+p.nome+'</h3>'
+    + '<div class="preco">R$'+p.valor+'<small>/mês</small></div>'
+    + '<ul>'+p.itens.map(function(i){return '<li>'+i+'</li>'}).join('')+'</ul>';
+}
+
+// ===== Render upsell =====
+function renderUpsell(){
+  var upsell = document.getElementById('upsell');
+  upsell.innerHTML = '<h4>Quer subir no Google?</h4>'
+    + '<div><span class="preco">R$297/mês</span><span class="ancora">de R$347</span></div>'
+    + '<p style="color:var(--muted);font-size:.9rem;margin-top:.3rem">Seu .com.br + ficha no mapa + SEO local + relatório completo de quem chegou.</p>'
+    + '<div class="bonus">🎁 12 meses = 1 mês grátis (fidelidade, não urgência)</div>';
+}
+
+// ===== Render seletor de método =====
+function renderMetodos(){
+  var grid = document.getElementById('metodo-grid');
+  grid.innerHTML = METODOS.map(function(m){
+    return '<div class="metodo-opt" data-id="'+m.id+'" onclick="vcSelectMetodo(this)">'
+      + '<div class="icon">'+m.icon+'</div>'
+      + '<div class="nome">'+m.label+'</div>'
+      + '<div class="desc">'+m.desc+'</div>'
+      + '</div>';
+  }).join('');
+}
+
+// ===== Timer de lançamento =====
+var FIM = Date.now() + 7*24*3600*1000;
+function tick(){
+  var s = Math.max(0, Math.floor((FIM - Date.now())/1000));
+  var d = Math.floor(s/86400); s -= d*86400;
+  var h = Math.floor(s/3600); s -= h*3600;
+  var m = Math.floor(s/60); s -= m*60;
+  document.getElementById('clock').textContent =
+    String(d).padStart(2,'0')+' : '+String(h).padStart(2,'0')+' : '+String(m).padStart(2,'0')+' : '+String(s).padStart(2,'0');
+}
+tick(); setInterval(tick, 1000);
+
+// ===== Seleção de método =====
+var metodoSelecionado = null;
+window.vcSelectMetodo = function(el){
+  // remove selected de todos
+  var opts = document.querySelectorAll('.metodo-opt');
+  opts.forEach(function(o){ o.classList.remove('selected'); });
+  el.classList.add('selected');
+  metodoSelecionado = el.getAttribute('data-id');
+  var btn = document.getElementById('pagar');
+  btn.disabled = false;
+  btn.textContent = 'Pagar R$'+p.valor+' via '+METODOS.find(function(m){return m.id===metodoSelecionado}).label+' →';
+};
+
+// ===== Status message =====
+function showStatus(msg, type){
+  var el = document.getElementById('status-msg');
+  el.textContent = msg;
+  el.className = 'status-msg '+(type||'ok');
+  el.style.display = 'block';
+}
+function hideStatus(){
+  document.getElementById('status-msg').style.display = 'none';
+}
+
+// ===== Envio para Avança API =====
+// Vitrine Certa NUNCA toca MP diretamente — sempre via Avança API.
+document.getElementById('pagar').addEventListener('click', function(){
+  if(!metodoSelecionado){ showStatus('Selecione um método de pagamento.','err'); return; }
+  var btn = this;
+  btn.disabled = true;
+  btn.textContent = 'Processando...';
+  hideStatus();
+
+  var payload = {
+    plano: chave,
+    pme_id: pmeId,
+    payment_method: metodoSelecionado
+  };
+
+  fetch(API_BASE, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(function(r){ return r.json().then(function(b){ return {ok:r.ok, status:r.status, body:b}; }); })
+  .then(function(res){
+    if(res.ok){
+      showStatus('Assinatura criada com sucesso! Redirecionando...','ok');
+      // Se a API retornar um link de pagamento, redireciona
+      if(res.body.redirect_url){ window.location.href = res.body.redirect_url; }
+      else if(res.body.checkout_url){ window.location.href = res.body.checkout_url; }
+      else { btn.textContent = 'Pronto! Verifique seu WhatsApp.'; }
+    } else {
+      showStatus('Erro: '+(res.body.error||res.body.message||'Falha na criação da assinatura. Tente novamente.'),'err');
+      btn.disabled = false;
+      btn.textContent = 'Tentar novamente →';
+    }
+  })
+  .catch(function(e){
+    showStatus('Erro de conexão: '+e.message,'err');
+    btn.disabled = false;
+    btn.textContent = 'Tentar novamente →';
+  });
+});
+
+// ===== WhatsApp =====
+var wa = 'https://wa.me/5511970776856?text=' + encodeURIComponent('Quero o plano '+p.nome+' (R$'+p.valor+'/mês)');
+document.getElementById('wa').href = wa;
+
+// ===== Init =====
+renderPlano();
+renderUpsell();
+renderMetodos();
+})();
+</script>
+</body>
+</html>

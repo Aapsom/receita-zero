@@ -333,6 +333,24 @@ function createPartidaAberta(
   });
 }
 
+// ─── Helper: marcar partida como paga ───────────────────────────────────────
+
+async function marcarPartidaComoPagaI(subscriptionId: string): Promise<void> {
+  const { data: partida } = await supabase
+    .from('partidas_abertas')
+    .select('*')
+    .eq('subscription_id', subscriptionId)
+    .eq('status', 'aberta')
+    .maybeSingle();
+
+  if (partida) {
+    await supabase
+      .from('partidas_abertas')
+      .update({ status: 'paga', updated_at: new Date().toISOString() })
+      .eq('id', partida.id);
+  }
+}
+
 // ─── Helper: create livro-razão entry ─────────────────────────────────────
 
 function createLivroRazao(
@@ -583,6 +601,9 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
           `Pagamento confirmado - ${subscription.plano}`,
           subscription.tenant_id as string
         );
+
+        // Mark partida as paid
+        await marcarPartidaComoPagaI(subscription.id);
       }
     }
 

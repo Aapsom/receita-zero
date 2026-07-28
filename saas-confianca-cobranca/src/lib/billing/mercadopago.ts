@@ -653,4 +653,84 @@ export class MercadoPagoBillingProvider implements BillingProvider {
       return false;
     }
   }
+
+  /**
+   * Renova uma cobrança mensal para boleto/PIX QR Code.
+   *
+   * 10 dias antes do vencimento, o cron chama este método para gerar
+   * uma nova cobrança via createMpCobranca(). O MP não tem débito
+   * automático para boleto/QR — então precisamos renovar manualmente.
+   *
+   * Ref: PLANO CONJUNTO §7.1.2b.7.4 (regra de dunning 10 dias antes)
+   */
+  async renovarCobranca(assinatura: Assinatura): Promise<{
+    success: boolean;
+    status: SubscriptionStatus;
+    boleto_url?: string | null;
+    qr_code?: string | null;
+    prox_cobranca?: string | null;
+    message: string;
+  }> {
+    if (!MP_TOKEN) {
+      return {
+        success: false,
+        status: 'failed',
+        message: 'MP_ACCESS_TOKEN não configurado',
+      };
+    }
+
+    // Só aplica para boleto e pix_qr (não para pix_auto/credit_card)
+    if (assinatura.payment_method !== 'boleto' && assinatura.payment_method !== 'pix_qr') {
+      return {
+        success: false,
+        status: assinatura.status,
+        message: `Renovação não aplicável para payment_method: ${assinatura.payment_method}`,
+      };
+    }
+
+    // Só renova se status for active
+    if (assinatura.status !== 'active') {
+      return {
+        success: false,
+        status: assinatura.status,
+        message: `Assinatura não está ativa (status: ${assinatura.status})`,
+      };
+    }
+
+    try {
+      // Busca ou cria customer no MP
+      const customer = await createMpCustomer(assinatura.pme_id);
+
+      // Cria nova cobrança via /v1/payments
+      const mpResponse = await createMpCobranca(
+        customer.id,
+        assinatura.plano,
+        assinatura.payment_method,
+        assinatura.pme_id
+      );
+
+      // Extrai boleto_url / qr_code da resposta do MP
+      const boletoUrl = mpResponse.boleto_url || mpResponse.boleto?.url || null;
+      const qrCode = mpResponse.qr_code || mpResponse.point_of_interaction?.qr?.content || null;
+      const vencimento = mpResponse.vencimento || mpResponse.date_of_expiration || null;
+
+      // Calcula nova data de vencimento (30 dias a partir de hoje)
+      const novaDataVencimento = vencimento || new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
+
+      return {
+        success: true,
+        status: 'active',
+        boleto_url: boletoUrl,
+        qr_code: qrCode,
+        prox_cobranca: novaDataVencimento,
+        message: `Cobrança renovada com sucesso (${assinatura.payment_method})`,
+      };
+    } catch (err) {
+      return {
+        success: false,
+        status: 'failed',
+        message: `Falha na renovação: ${err instanceof Error ? err.message : String(err)}`,
+      };
+    }
+  }
 }
