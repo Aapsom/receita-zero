@@ -8,7 +8,7 @@
 - **Tier Premium** — nível de site com mecânica-assinatura + assinatura estética (ver abaixo).
 - **Mecânica-assinatura** — elemento INTERATIVO exclusivo do site premium (a marca registrada funcional do site).
 - **Assinatura estética** — elemento visual PASSIVO recorrente do premium; NUNCA cruza texto (regra do CEO).
-- **Pacote de add-on** — agrupamento de serviços recorrentes com nome de resultado. Confirmado no repo: **"Aparecer no Google PRO"**. [AMBIGUO: nomes canônicos dos outros pacotes ("Site Sempre Novinho" etc.) não encontrados no repo — confirmar com CEO]
+- **Pacote de add-on** — agrupamento de serviços recorrentes com nome de resultado. Canônicos (decisão CEO 28/jul/2026): **"Site Sempre Novinho"** e **"Aparecer no Google PRO"**; 3º pacote a definir depois.
 - **Porta avulsa** — item vendido isoladamente fora dos pacotes. [AMBIGUO: composição exata a confirmar com CEO]
 - **Bundle** — combinação dos pacotes com desconto.
 - **Lead** — PME prospectada para receber vitrine/oferta (fluxo em `lead-engine/`).
