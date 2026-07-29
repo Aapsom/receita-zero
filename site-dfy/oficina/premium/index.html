@@ -1,468 +1,783 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forno da Vila — pizza a lenha em São Vicente</title>
-<meta name="description" content="Forno a lenha em São Vicente. Massa de 48 horas. Aberto das 18h às 23h30.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Auto Center Vila — consulte seu carro pela placa</title>
+  <!-- Vitrine Certa Analytics -->
+<meta name="google-site-verification" content="rnYREYB-JR9uyXWd7UwSkGJn4kyjyVpHakO6lgSxJ-w">
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){
+  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window,document,"clarity","script","xrpcs8vw2o");
+</script>
+  
+
+
+  
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Auto Center Vila — consulte seu carro pela placa",
+  "description": "Oficina em São Vicente. Consulte a placa e veja em que etapa está o seu carro, quem está trabalhando nele e a previsão de entrega.",
+  "url": ""
+}
+</script>
+<meta name="description" content="Oficina em São Vicente. Consulte a placa e veja em que etapa está o seu carro, quem está trabalhando nele e a previsão de entrega.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
 <style>
-/* PARALELO — redesign alternativo da pizzaria premium
-   Conceito: "A NOITE INTEIRA" — mesmo plano, execução diferente
-   Diferença: motion CSS pura, sem JS de relógio odômetro, sem SVG complexo */
+/* Hallmark · macrostructure: 05 Workbench · Vitrine Certa / Oficina Premium
+   governado por=input(placa) · cor=codigo de status, sem cor de marca
+   display=Archivo Expanded · dados=IBM Plex Mono
+   pre-emit critique: P5 H4 E4 S5 R4 V5
+   Tokens: ./DESIGN.md — nenhum hex solto fora do :root (gate 48) */
+
 :root{
-  /* NOITE */
-  --n-tinta:#141A2A; --n-carvao:#0C1120; --n-tinta2:#1C2438; --n-linha:#2B3450;
-  --n-giz:#EDEFF5; --n-fumaca:#98A0B8; --n-brasa:#FF5A1F; --n-nucleo:#FFF1E6;
-  /* DIA */
-  --d-tinta:#ECEDF1; --d-carvao:#DDDFE7; --d-tinta2:#F7F8FB; --d-linha:#D3D7E2;
-  --d-giz:#141A2A; --d-fumaca:#5C6478; --d-brasa:#D6410E; --d-nucleo:#8A2B06;
-  /* resolvidos */
-  --tinta:color-mix(in oklab, var(--n-tinta), var(--d-tinta) calc(var(--dia,0)*100%));
-  --carvao:color-mix(in oklab, var(--n-carvao), var(--d-carvao) calc(var(--dia,0)*100%));
-  --tinta2:color-mix(in oklab, var(--n-tinta2), var(--d-tinta2) calc(var(--dia,0)*100%));
-  --linha:color-mix(in oklab, var(--n-linha), var(--d-linha) calc(var(--dia,0)*100%));
-  --giz:color-mix(in oklab, var(--n-giz), var(--d-giz) calc(var(--dia,0)*100%));
-  --fumaca:color-mix(in oklab, var(--n-fumaca), var(--d-fumaca) calc(var(--dia,0)*100%));
-  --brasa:color-mix(in oklab, var(--n-brasa), var(--d-brasa) calc(var(--dia,0)*100%));
+  --concreto:#E9E7E2; --concreto2:#DCD9D2; --risco:#C9C6BF;
+  --grafite:#191C21;  --fumo:#5E646E;      --giz:#F5F4F1;
+  /* código de status — a ÚNICA cor da página */
+  /* #B06E05 dava 4,6:1 sobre --concreto mas só 3,76:1 sobre --giz, que é a
+     superfície da ficha e do laudo. Aferido em pixel: escurecido até passar lá. */
+  --aguardando:#8F5A05; --exec:#2A6288; --pronto:#256B44; --urgente:#A3372A;
   --wa:#25D366;
-  --serif:'Instrument Serif',Georgia,serif;
-  --sans:'Instrument Sans',system-ui,sans-serif;
+  --sans:'Archivo',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:40px;--s7:64px;--s8:104px;
   --ease:cubic-bezier(.22,1,.36,1);
 }
-*{box-sizing:border-box;margin:0;padding:0}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{overflow-x:clip}
-body{background:var(--tinta);color:var(--giz);font-family:var(--sans);font-size:1.0625rem;line-height:1.55;transition:background .6s, color .6s}
-h1,h2{font-family:var(--serif);font-weight:400;line-height:.98;letter-spacing:-.02em}
-em{font-style:italic}
-.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
-.tab{font-variant-numeric:tabular-nums}
-.reveal{clip-path:inset(100% 0 0 0);opacity:.001;transition:clip-path .52s var(--ease),opacity .52s var(--ease)}
-.reveal.on{clip-path:inset(0);opacity:1}
-/* RÉGUA */
-.regua{position:fixed;top:0;left:0;right:0;z-index:40;background:color-mix(in oklab, var(--tinta) 88%,transparent);backdrop-filter:blur(8px)}
-.regua-in{display:flex;align-items:center;gap:24px;padding:10px 24px}
-.trilho{position:relative;flex:1;height:34px}
-.trilho ol{position:absolute;inset:0;display:flex;list-style:none;align-items:center}
-.trilho li{flex:1;position:relative}
-.trilho a{font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.02em;color:var(--fumaca);text-decoration:none;padding:2px 0;white-space:nowrap}
-.trilho::after{content:'';position:absolute;bottom:6px;left:0;right:0;height:1px;background:var(--linha)}
-.agulha{position:absolute;bottom:2px;width:9px;height:9px;border-radius:999px;background:var(--fumaca);transition:left .8s var(--ease)}
-.relogio{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:500}
-.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--linha);border-radius:999px;padding:3px 10px;font-size:.74rem;font-weight:600}
-.ponto{width:7px;height:7px;border-radius:999px}
-.tema{background:none;border:1px solid var(--linha);border-radius:999px;color:var(--fumaca);width:32px;height:32px;cursor:pointer;font-size:.9rem;line-height:1;display:grid;place-items:center}
-/* HERO */
-.hero{min-height:100dvh;display:flex;flex-direction:column;justify-content:center;padding:64px 24px}
-.hero-grid{display:grid;grid-template-columns:1fr 1.02fr;gap:40px;align-items:center}
-.marca{font-family:var(--serif);font-size:1.05rem;margin-bottom:24px}
-.hora-secao{font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
-.hero h1{font-size:clamp(2.75rem,7vw,5.5rem);margin-bottom:16px}
-.hero h1 em{color:var(--brasa)}
-.local{max-width:34ch;margin-bottom:32px}
-.local b{font-weight:500}
-.estado{border:1px solid var(--linha);border-radius:2px;padding:24px;max-width:430px;background:var(--tinta2)}
-.estado-nome{font-family:var(--serif);font-size:1.5rem}
-.estado-sub{color:var(--fumaca);font-size:.9rem}
-.estado-espera{font-size:.9rem;color:var(--fumaca);margin-top:8px}
-.estado-espera b{color:var(--giz);font-weight:500}
-.wa-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--wa);color:#0B1F13;font-family:var(--sans);font-weight:600;font-size:.95rem;padding:.72rem 1.15rem;border-radius:999px;text-decoration:none;box-shadow:0 10px 24px -12px color-mix(in oklab,var(--wa) 70%,transparent);margin-top:16px}
-.wa-btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px color-mix(in oklab,var(--wa) 80%,transparent)}
-/* FORNO (SVG simples) */
-.forno{width:100%;height:auto;display:block}
-.forno .tijolo{fill:none;stroke:var(--linha);stroke-width:1.1}
-.forno .arco{fill:var(--tinta2);stroke:var(--linha);stroke-width:1.5}
-.forno .boca{fill:var(--carvao)}
-.forno .piso{fill:var(--tinta2)}
-.forno .lenha{fill:var(--tinta2)}
-.forno .massa{fill:var(--giz);opacity:.8}
-.forno .crosta{fill:none;stroke:var(--brasa);stroke-width:2;opacity:calc(.3+var(--calor,.5)*.55)}
-.forno .cobertura{fill:var(--brasa);opacity:calc(.35+var(--calor,.5)*.55)}
-.forno .chama{opacity:var(--calor,.5);animation:brasa 4.7s infinite}
-@keyframes brasa{0%{filter:brightness(1)}17%{filter:brightness(1.22)}23%{filter:brightness(.93)}61%{filter:brightness(1.14)}79%{filter:brightness(.97)}100%{filter:brightness(1)}}
-.forma{transform-box:fill-box;transform-origin:center;animation:gira 26s linear infinite}
-.forno:hover .forma{animation-play-state:paused}
-@keyframes gira{to{rotate:360deg}}
-/* SEÇÕES */
-.secao{padding:80px 0;border-top:1px solid var(--linha)}
-.hora-secao{display:block;text-align:center;margin-bottom:24px}
-.secao h2{font-size:clamp(1.9rem,4vw,3rem);max-width:22ch;margin:0 auto 40px;text-align:center}
-.fita{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--linha)}
-.prova{padding:24px;border-left:1px solid var(--linha)}
-.prova:first-child{border-left:0}
-.prova .quando{font-size:.78rem;font-weight:600;letter-spacing:.12em;color:var(--fumaca);margin-bottom:8px}
-.prova h3{font-size:1.35rem;margin-bottom:8px}
-.prova p{color:var(--fumaca);font-size:.94rem;max-width:28ch}
-.prova svg{margin-bottom:16px}
-.prova circle{fill:none;stroke:var(--fumaca);stroke-width:1.2}
-/* PAINEL DE FORNO */
-.painel{border-top:1px solid var(--linha)}
-.painel .fita{border:0}
-.linha-pizza{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--linha);font-family:var(--sans)}
-.linha-pizza:last-child{border-bottom:0}
-.linha-pizza .tempo{font-variant-numeric:tabular-nums;font-weight:600}
-.linha-pizza .nome{font-family:var(--serif)}
-.linha-pizza .preco{font-variant-numeric:tabular-nums}
-.linha-pizza .add{background:none;border:1px solid var(--linha);border-radius:999px;padding:4px 10px;cursor:pointer;font-size:.8rem}
-/* COMANDA */
-.comanda{position:fixed;bottom:0;left:0;right:0;background:var(--carvao);border-top:1px solid var(--linha);transform:translateY(100%);transition:transform .3s var(--ease)}
-.comanda.ativa{transform:translateY(0)}
-.comanda-in{display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
-.comanda-total{font-family:var(--serif);font-size:1.25rem}
-.comanda-enviar{background:var(--wa);color:#0B1F13;border:none;border-radius:999px;padding:8px 16px;font-weight:600;cursor:pointer}
-/* RODAPÉ */
-footer{border-top:1px solid var(--linha);padding:24px;text-align:center;font-size:.85rem}
-@media(max-width:860px){
-  .hero{min-height:auto;padding:40px 16px}
-  .hero-grid{grid-template-columns:1fr}
-  .fita{grid-template-columns:1fr}
-  .prova{border-left:0;border-top:1px solid var(--linha}
-  .prova:first-child{border-top:0}
+body{
+  background:var(--concreto);color:var(--grafite);
+  font-family:var(--sans);font-size:1rem;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  /* grade de blueprint — ambiente, nunca protagonista */
+  background-image:linear-gradient(var(--risco) 1px,transparent 1px),
+                   linear-gradient(90deg,var(--risco) 1px,transparent 1px);
+  background-size:32px 32px;
+  background-position:-1px -1px;
 }
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *,*::before,*::after{animation:none!important;transition:none!important}
-  .reveal{clip-path:none;opacity:1}
-  .forma{animation:none}
+body::before{content:'';position:fixed;inset:0;z-index:-1;
+  background:var(--concreto);opacity:.65;pointer-events:none}
+h1,h2,h3{font-family:var(--sans);font-variation-settings:'wdth' 112;
+  line-height:.98;letter-spacing:-.03em;text-transform:uppercase;font-weight:700}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.wrap{inline-size:100%;max-inline-size:1200px;margin-inline:auto;padding-inline:var(--s5)}
+:focus-visible{outline:2px solid var(--grafite);outline-offset:2px}
+button,input{font:inherit;color:inherit}
+
+/* ── BARRA DE ESTADO (gate 42: nem nav de links, nem a régua da pizzaria) ── */
+.barra{position:sticky;inset-block-start:0;z-index:40;
+  background:var(--grafite);color:var(--giz);border-block-end:1px solid var(--grafite)}
+.barra-in{display:flex;align-items:center;gap:var(--s5);
+  max-inline-size:1200px;margin-inline:auto;padding:9px var(--s5);
+  font-family:var(--mono);font-size:.76rem;letter-spacing:.02em}
+.barra .marca{margin-inline-start:auto;font-family:var(--sans);font-weight:600;
+  text-transform:uppercase;letter-spacing:.08em;font-size:.74rem;
+  font-variation-settings:'wdth' 108}
+.contagem{display:inline-flex;align-items:center;gap:7px}
+.led{inline-size:7px;block-size:7px;background:currentColor;flex:none}
+.c-exec{color:#7FB2D6} .c-pronto{color:#7BC49A}
+
+/* ── HERO = CONSOLE ────────────────────────────────────────────── */
+.hero{padding-block:var(--s8) var(--s7)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+  gap:var(--s7);align-items:start}
+.rotulo{font-family:var(--mono);font-size:.74rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--fumo);margin-block-end:var(--s4)}
+.hero h1{font-size:clamp(2.4rem,5.5vw,4.4rem);margin-block-end:var(--s5)}
+.lede{color:var(--fumo);max-inline-size:46ch;margin-block-end:var(--s6)}
+
+.console{border:1px solid var(--grafite);background:var(--giz);padding:var(--s5)}
+.console legend, .console .titulo{font-family:var(--mono);font-size:.74rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--fumo);
+  margin-block-end:var(--s3);display:block}
+.campo{display:flex;gap:0;border:2px solid var(--grafite)}
+.campo input{flex:1;min-inline-size:0;border:0;background:transparent;
+  font-family:var(--mono);font-size:1.6rem;font-weight:500;letter-spacing:.22em;
+  padding:12px 14px;text-transform:uppercase}
+.campo input::placeholder{color:var(--risco);letter-spacing:.22em}
+.campo button{border:0;border-inline-start:2px solid var(--grafite);
+  background:var(--grafite);color:var(--giz);padding-inline:var(--s5);cursor:pointer;
+  font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:.82rem;
+  transition:background-color .18s}
+.campo button:hover{background:#2B313A}
+.dica{font-family:var(--mono);font-size:.76rem;color:var(--fumo);margin-block-start:var(--s3)}
+.dica b{font-weight:400;color:var(--grafite);cursor:pointer;
+  border-block-end:1px dotted var(--fumo)}
+.erro{font-family:var(--mono);font-size:.8rem;color:var(--urgente);
+  margin-block-start:var(--s3);display:none}
+.erro[data-on="1"]{display:block}
+
+/* ── PLANTA DA OFICINA (SVG autoral, vista de cima) ─────────────── */
+.planta{inline-size:100%;block-size:auto;display:block}
+.planta .parede{fill:none;stroke:var(--grafite);stroke-width:2}
+.planta .piso{fill:var(--concreto2);opacity:.5}
+.planta .divisa{stroke:var(--risco);stroke-width:1;stroke-dasharray:5 5}
+.planta .cota{stroke:var(--fumo);stroke-width:.8}
+.planta .cota-txt{font-family:var(--mono);font-size:9px;fill:var(--fumo)}
+.planta .bancada-n{font-family:var(--mono);font-size:11px;fill:var(--fumo);
+  letter-spacing:.08em}
+.planta .carro{fill:var(--concreto2);stroke:var(--fumo);stroke-width:1.2}
+.planta .vidro{fill:var(--risco);opacity:.7}
+.planta .vazio{font-family:var(--mono);font-size:9px;fill:var(--risco)}
+.planta .destaque{fill:var(--cor-status,var(--exec));opacity:0;transition:opacity .5s var(--ease)}
+.planta .bancada[data-aqui="1"] .destaque{opacity:.14}
+.planta .bancada[data-aqui="1"] .carro{stroke:var(--cor-status,var(--exec));stroke-width:2}
+.planta .bancada[data-aqui="1"] .bancada-n{fill:var(--cor-status,var(--exec))}
+
+/* ── FICHA DA OS ───────────────────────────────────────────────── */
+.ficha{border:1px solid var(--grafite);background:var(--giz);margin-block-start:var(--s5)}
+.ficha[hidden]{display:none}
+.ficha-topo{display:flex;flex-wrap:wrap;gap:var(--s5);align-items:baseline;
+  padding:var(--s5);border-block-end:1px solid var(--risco);background:var(--concreto2)}
+.placa-sel{font-family:var(--mono);font-size:1.35rem;font-weight:500;letter-spacing:.16em;
+  border:2px solid var(--grafite);padding:2px 10px}
+.ficha-topo .modelo{font-weight:600;text-transform:uppercase;letter-spacing:.04em;
+  font-variation-settings:'wdth' 108}
+.ficha-topo .os{margin-inline-start:auto;font-family:var(--mono);font-size:.8rem;color:var(--fumo)}
+.selo{display:inline-flex;align-items:center;gap:7px;border-radius:999px;
+  border:1px solid currentColor;padding:3px 11px;font-family:var(--mono);
+  font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
+.selo .led{border-radius:999px}
+
+/* números grandes e isolados — lição da Mærsk, no lugar de gráfico */
+.numeros{display:grid;grid-template-columns:repeat(3,1fr);border-block-end:1px solid var(--risco)}
+.numeros div{padding:var(--s5);border-inline-start:1px solid var(--risco)}
+.numeros div:first-child{border-inline-start:0}
+.numeros b{display:block;font-family:var(--mono);font-weight:500;
+  font-size:clamp(1.5rem,3.2vw,2.3rem);letter-spacing:-.03em;line-height:1}
+.numeros span{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--fumo)}
+/* "qua 17:00" não é número puro: no tamanho dos outros dois ele quebra em duas
+   linhas e desalinha a régua da linha. Um degrau abaixo e sem quebra. */
+#f-previsao{font-size:clamp(1.15rem,2.3vw,1.65rem);white-space:nowrap}
+
+/* trilho de estágios */
+.trilho{padding:var(--s6) var(--s5) var(--s5)}
+.trilho ol{list-style:none;display:grid;grid-template-columns:repeat(6,1fr);
+  position:relative}
+.trilho .fio{position:absolute;inset-block-start:7px;inset-inline:8%;
+  block-size:2px;background:var(--risco)}
+.trilho .fio i{display:block;block-size:100%;inline-size:0;
+  background:var(--cor-status,var(--exec));transition:inline-size .7s var(--ease)}
+.trilho li{position:relative;padding-block-start:22px;text-align:center;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--risco)}
+.trilho li::before{content:'';position:absolute;inset-block-start:2px;inset-inline-start:50%;
+  translate:-50% 0;inline-size:12px;block-size:12px;background:var(--concreto);
+  border:2px solid var(--risco)}
+.trilho li[data-feito="1"]{color:var(--fumo)}
+.trilho li[data-feito="1"]::before{border-color:var(--cor-status,var(--exec));
+  background:var(--cor-status,var(--exec))}
+.trilho li[data-aqui="1"]{color:var(--grafite);font-weight:500}
+.trilho li[data-aqui="1"]::before{inline-size:16px;block-size:16px;inset-block-start:0;
+  background:var(--concreto);border-width:4px}
+
+.linha-ficha{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s5);align-items:baseline;
+  padding:var(--s4) var(--s5);border-block-start:1px solid var(--risco);
+  font-family:var(--mono);font-size:.86rem}
+.linha-ficha dt{color:var(--fumo);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
+.linha-ficha dd{font-weight:500}
+.acao{padding:var(--s5);border-block-start:1px solid var(--risco);
+  display:flex;gap:var(--s4);align-items:center;flex-wrap:wrap}
+/* frase = alguém falando com o cliente → grotesk. Mono aqui era enfeite "tech",
+   exatamente o que a regra semântica do DESIGN.md proíbe. */
+.acao p{font-size:.95rem;line-height:1.5;color:var(--fumo);max-inline-size:44ch}
+.wa-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--wa);color:#0B1F13;
+  font-weight:600;font-size:.9rem;padding:.7rem 1.15rem;border-radius:999px;
+  text-decoration:none;transition:transform .18s var(--ease)}
+.wa-btn:hover{transform:translateY(-2px)}
+.wa-btn svg{inline-size:17px;block-size:17px;fill:currentColor}
+
+/* monta linha a linha: é a OS sendo impressa */
+.js .ficha .monta{clip-path:inset(0 100% 0 0);opacity:.001}
+.ficha.impressa .monta{clip-path:inset(0 0 0 0);opacity:1;
+  transition:clip-path .42s var(--ease),opacity .42s var(--ease)}
+
+/* ── seções ────────────────────────────────────────────────────── */
+.sec{border-block-start:1px solid var(--risco);padding-block:var(--s7)}
+.sec-cab{display:flex;justify-content:space-between;align-items:baseline;
+  gap:var(--s5);flex-wrap:wrap;margin-block-end:var(--s6)}
+.sec h2{font-size:clamp(1.6rem,3.4vw,2.4rem);font-stretch:112%;line-height:1;
+  text-transform:uppercase;letter-spacing:-.02em}
+.sec-cab p{font-family:var(--mono);font-size:.76rem;letter-spacing:.08em;color:var(--fumo)}
+
+/* ── LAUDO: cada achado é uma linha com decisão ─────────────────── */
+.laudo{border:1px solid var(--risco);background:var(--giz)}
+.item{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;
+  gap:var(--s4);align-items:center;padding:var(--s4) var(--s5);
+  border-block-start:1px solid var(--risco)}
+.item:first-child{border-block-start:0}
+.item input{appearance:none;inline-size:20px;block-size:20px;flex:none;cursor:pointer;
+  border:1px solid var(--grafite);background:var(--giz);display:grid;place-content:center}
+.item input:checked{background:var(--grafite)}
+.item input:checked::after{content:"";inline-size:9px;block-size:5px;
+  border-inline-start:2px solid var(--giz);border-block-end:2px solid var(--giz);
+  transform:rotate(-45deg) translate(1px,-1px)}
+.item input:focus-visible{outline:2px solid var(--exec);outline-offset:2px}
+.item b{display:block;font-weight:600}
+.item small{color:var(--fumo);font-size:.85rem;line-height:1.45}
+.tag{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid currentColor;padding:.2rem .5rem;white-space:nowrap}
+.preco{font-family:var(--mono);font-size:1rem;text-align:end;min-inline-size:7ch}
+.item[data-ok="1"]{color:var(--fumo)}
+.item[data-ok="1"] b{font-weight:500}
+.vazio{inline-size:20px}   /* o "ok" não tem o que aprovar: mantém a coluna */
+
+/* a barra de decisão gruda no rodapé DA SEÇÃO, não flutua na página inteira */
+.decisao{position:sticky;bottom:0;display:flex;align-items:center;gap:var(--s4);
+  flex-wrap:wrap;background:var(--grafite);color:var(--giz);padding:var(--s4) var(--s5)}
+.decisao .soma{font-family:var(--mono);font-size:1.35rem;letter-spacing:-.02em}
+.decisao .quantos{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;color:#A8AEB8}
+.decisao .wa-btn{margin-inline-start:auto}
+.decisao .wa-btn[aria-disabled="true"]{background:#39404A;color:#8E96A2;pointer-events:none}
+
+/* ── TABELA ABERTA ─────────────────────────────────────────────── */
+.tab-wrap{overflow-x:auto}          /* a tabela rola dentro dela, o body nunca */
+.tab{inline-size:100%;min-inline-size:600px;border-collapse:collapse;border:1px solid var(--risco)}
+.tab th,.tab td{padding:var(--s4) var(--s5);text-align:start;vertical-align:top;
+  border-block-start:1px solid var(--risco)}
+.tab thead th{background:var(--concreto2);border-block-start:0;color:var(--fumo);
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase}
+.tab td.v{font-family:var(--mono);white-space:nowrap}
+.tab td.fora{color:var(--fumo);font-size:.88rem}
+.nota-tab{font-family:var(--mono);font-size:.76rem;color:var(--fumo);
+  margin-block-start:var(--s4);max-inline-size:70ch;line-height:1.6}
+
+/* ── EQUIPE ────────────────────────────────────────────────────── */
+.equipe{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--risco);border:1px solid var(--risco)}
+.pessoa{background:var(--concreto);padding:var(--s5)}
+.sigla{font-family:var(--mono);font-size:1.4rem;border:1px solid var(--grafite);
+  inline-size:3rem;block-size:3rem;display:grid;place-content:center;margin-block-end:var(--s4)}
+.pessoa h3{font-size:1.05rem}
+.pessoa dl{display:grid;grid-template-columns:auto minmax(0,1fr);
+  gap:.3rem var(--s4);margin-block-start:var(--s4)}
+.pessoa dt{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--fumo);padding-block-start:.15rem}
+.pessoa dd{font-size:.92rem}
+
+/* ── E SE… ─────────────────────────────────────────────────────── */
+.esse{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+  background:var(--risco);border:1px solid var(--risco)}
+.esse > div{background:var(--concreto);padding:var(--s5)}
+.esse h3{font-size:1.05rem;margin-block-end:var(--s3)}
+.esse p{color:var(--fumo);font-size:.94rem;line-height:1.55}
+
+/* ── GARANTIA ──────────────────────────────────────────────────── */
+.garantia{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--s6);
+  align-items:center;background:var(--grafite);color:var(--giz);padding:var(--s6)}
+.garantia .n{font-family:var(--mono);font-size:clamp(2.6rem,6vw,4.4rem);
+  letter-spacing:-.04em;line-height:.9}
+.garantia .n span{display:block;font-size:.74rem;letter-spacing:.16em;
+  text-transform:uppercase;color:#A8AEB8;margin-block-start:var(--s3)}
+.garantia ul{list-style:none;display:grid;gap:.55rem}
+.garantia li{font-size:.94rem;line-height:1.5;padding-inline-start:1.3rem;position:relative}
+.garantia li::before{content:"—";position:absolute;inset-inline-start:0;color:#8E96A2}
+
+/* ── RODAPÉ = CARIMBO DE OS ────────────────────────────────────── */
+.os-rodape{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;
+  background:var(--risco);border:1px solid var(--grafite)}
+.os-rodape > div{background:var(--concreto);padding:var(--s5)}
+.os-rodape .campo-os{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--fumo);margin-block-end:var(--s3)}
+.os-rodape .valor-os{font-size:.95rem;line-height:1.45}
+.assina{display:flex;justify-content:space-between;gap:var(--s5);flex-wrap:wrap;
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--fumo);
+  margin-block-start:var(--s4)}
+
+/* venda própria só aqui — regra de isolamento do braço Vitrine Certa */
+.vc{border-block-start:1px solid var(--risco);padding-block:var(--s6);
+  font-family:var(--mono);font-size:.78rem;color:var(--fumo);text-align:center}
+.vc a{color:var(--grafite)}
+
+@media (max-width:900px){
+  .hero{padding-block:var(--s7) var(--s6)}
+  .hero-grid{grid-template-columns:1fr;gap:var(--s6)}
+  .hero-arte{order:-1}
+  .numeros{grid-template-columns:1fr}
+  .numeros div{border-inline-start:0;border-block-start:1px solid var(--risco)}
+  .numeros div:first-child{border-block-start:0}
+  .trilho ol{grid-template-columns:repeat(3,1fr);row-gap:var(--s5)}
+  .trilho .fio{display:none}
+  .campo input{font-size:1.25rem;letter-spacing:.16em}
+  .barra-in{gap:var(--s4);font-size:.7rem}
+  .equipe,.esse,.os-rodape{grid-template-columns:1fr}
+  .garantia{grid-template-columns:1fr;gap:var(--s5)}
+}
+@media (max-width:640px){
+  /* tag e preço descem para baixo da descrição em vez de espremer 4 colunas */
+  .item{grid-template-columns:auto minmax(0,1fr);row-gap:var(--s3)}
+  .item .tag{grid-column:2;justify-self:start}
+  .item .preco{grid-column:2;text-align:start;min-inline-size:0}
+  .decisao .wa-btn{margin-inline-start:0;inline-size:100%;justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  .js .ficha .monta{clip-path:none;opacity:1}
 }
 </style>
 </head>
 <body>
 
-<header class="regua">
-  <div class="regua-in">
-    <nav class="trilho" aria-label="A noite">
-      <ol>
-        <li><a href="#h18">18</a></li>
-        <li><a href="#h19">19</a></li>
-        <li><a href="#h20">20</a></li>
-        <li><a href="#h21">21</a></li>
-        <li><a href="#h22">22</a></li>
-        <li><a href="#h23">23</a></li>
-      </ol>
-      <span class="agulha" id="agulha" style="left:0%"></span>
-    </nav>
-    <p class="relogio tab">
-      <span id="relogio">00:00</span>
-      <span class="pill" id="pill"><span class="ponto"></span><span id="pill-txt">—</span></span>
-    </p>
-    <button class="tema" id="tema" type="button" aria-label="Alternar dia e noite">☾</button>
+<!-- ⚠️ DEMO — oficina, placas, mecânicos e horários são fictícios (site de portfólio).
+     Trocar TUDO pelo dado real do cliente antes de entregar. -->
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="ico-wa" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2m0 18.15c-1.53 0-3.03-.41-4.34-1.19l-.31-.18-3.12.82.83-3.04-.2-.32a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 4.54 0 8.23 3.69 8.23 8.23 0 4.54-3.69 8.23-8.23 8.23m4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.98-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.65-1.23-1.46-1.38-1.71-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.22-.16-.47-.29"/></symbol></svg>
+
+<header class="barra">
+  <div class="barra-in">
+    <span class="contagem c-exec"><i class="led"></i><b id="n-oficina">—</b>&nbsp;na oficina</span>
+    <span class="contagem c-pronto"><i class="led"></i><b id="n-pronto">—</b>&nbsp;prontos p/ retirada</span>
+    <span class="marca">Auto Center Vila</span>
   </div>
 </header>
 
 <main>
-
-<section class="hero" id="h18">
+<section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <p class="marca"><b>Forno da Vila</b> — pizza a lenha</p>
-      <p class="hora-secao tab">18:00</p>
-      <h1>A noite<br><em>inteira.</em></h1>
-      <p class="local">Massa de <b>48 horas</b>, forno a lenha desde 2014.<br>
-         Av. Exemplo, 000 — Itararé, São Vicente.</p>
-      <div class="estado" id="estado">
-        <p><span class="estado-nome" id="estado-nome">—</span><br>
-           <span class="estado-sub" id="estado-sub"></span></p>
-        <p class="estado-espera" id="estado-espera"></p>
-        <a class="wa-btn" id="cta" href="#" target="_blank" rel="noopener">
-          <span id="cta-txt">Pedir no WhatsApp</span>
-        </a>
+      <p class="rotulo">Oficina mecânica · São Vicente</p>
+      <h1>Você vê<br>o que a<br>gente vê</h1>
+      <p class="lede">Digite a placa e veja em que etapa está o seu carro, quem está
+        trabalhando nele e a previsão de entrega. Sem ligar, sem esperar retorno.</p>
+
+      <div class="console">
+        <span class="titulo">Consulta de ordem de serviço</span>
+        <div class="campo">
+          <input id="placa" type="text" inputmode="latin" maxlength="8" spellcheck="false"
+                 placeholder="ABC1D23" aria-label="Placa do veículo" autocomplete="off">
+          <button id="consultar" type="button">Consultar</button>
+        </div>
+        <p class="dica">experimente:
+          <b data-p="ABC1D23">ABC1D23</b> ·
+          <b data-p="XYZ4B56">XYZ4B56</b> ·
+          <b data-p="QRS7C89">QRS7C89</b></p>
+        <p class="erro" id="erro">Placa não encontrada nesta oficina.</p>
       </div>
     </div>
+
     <div class="hero-arte">
-      <!-- SVG do forno — versão simplificada -->
-      <svg class="forno" viewBox="0 0 440 340" aria-hidden="true" focusable="false">
-        <defs>
-          <radialGradient id="g-brasa" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#FFF1E6" stop-opacity=".9"/>
-            <stop offset="38%" stop-color="#FF5A1F" stop-opacity=".6"/>
-            <stop offset="100%" stop-color="#FF5A1F" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-        <path class="arco" d="M44 302 L44 208 A176 148 0 0 1 396 208 L396 302 Z"/>
-        <g class="tijolo">
-          <path d="M70 302 L70 210 A150 126 0 0 1 370 210 L370 302"/>
-          <path d="M89 302 L89 212 A131 110 0 0 1 351 212 L351 302"/>
+      <!-- Planta da oficina em vista de cima. Decorativa (gate 33).
+           Sem fantasia de galpão (lição da Vestre): é desenho técnico, não textura. -->
+      <svg class="planta" id="planta" viewBox="0 0 460 330" aria-hidden="true" focusable="false">
+        <rect class="piso" x="22" y="26" width="416" height="256"/>
+        <rect class="parede" x="22" y="26" width="416" height="256"/>
+
+        <g class="divisa">
+          <path d="M126 26 V282 M230 26 V282 M334 26 V282"/>
         </g>
-        <path class="boca" d="M108 300 L108 214 A112 96 0 0 1 332 214 L332 300 Z"/>
-        <ellipse class="piso" cx="220" cy="298" rx="112" ry="26"/>
-        <g class="chama"><ellipse cx="220" cy="296" rx="118" ry="34" fill="url(#g-brasa)"/></g>
-        <g class="lenha">
-          <rect x="272" y="272" width="52" height="9" rx="4.5" transform="rotate(-7 298 276)"/>
-          <rect x="282" y="282" width="44" height="9" rx="4.5" transform="rotate(5 304 286)"/>
-        </g>
-        <g transform="translate(198 284) scale(1 .4)">
-          <g class="forma">
-            <circle class="massa" r="66"/>
-            <circle class="crosta" r="66"/>
-            <circle class="crosta" r="53"/>
-            <g class="cobertura">
-              <circle cx="-19" cy="-22" r="7"/><circle cx="20" cy="-13" r="6"/>
-              <circle cx="-4" cy="16" r="7.5"/><circle cx="26" cy="19" r="5.5"/>
-            </g>
+
+        <!-- 4 bancadas; a do carro consultado acende -->
+        <g class="bancada" data-bancada="1">
+          <rect class="destaque" x="23" y="27" width="102" height="254"/>
+          <text class="bancada-n" x="34" y="48">01</text>
+          <g transform="translate(74 165)">
+            <rect class="carro" x="-27" y="-56" width="54" height="112" rx="7"/>
+            <rect class="vidro" x="-19" y="-40" width="38" height="22" rx="3"/>
+            <rect class="vidro" x="-19" y="20" width="38" height="20" rx="3"/>
           </g>
         </g>
-        <path class="bancada" d="M28 302 H412 a6 6 0 0 1 6 6 v14 a6 6 0 0 1-6 6 H28 a6 6 0 0 1-6-6 v-14 a6 6 0 0 1 6-6 z"/>
+        <g class="bancada" data-bancada="2">
+          <rect class="destaque" x="127" y="27" width="102" height="254"/>
+          <text class="bancada-n" x="138" y="48">02</text>
+          <g transform="translate(178 165)">
+            <rect class="carro" x="-27" y="-56" width="54" height="112" rx="7"/>
+            <rect class="vidro" x="-19" y="-40" width="38" height="22" rx="3"/>
+            <rect class="vidro" x="-19" y="20" width="38" height="20" rx="3"/>
+          </g>
+        </g>
+        <g class="bancada" data-bancada="3">
+          <rect class="destaque" x="231" y="27" width="102" height="254"/>
+          <text class="bancada-n" x="242" y="48">03</text>
+          <g transform="translate(282 165)">
+            <rect class="carro" x="-27" y="-56" width="54" height="112" rx="7"/>
+            <rect class="vidro" x="-19" y="-40" width="38" height="22" rx="3"/>
+            <rect class="vidro" x="-19" y="20" width="38" height="20" rx="3"/>
+          </g>
+        </g>
+        <g class="bancada" data-bancada="4">
+          <rect class="destaque" x="335" y="27" width="102" height="254"/>
+          <text class="bancada-n" x="346" y="48">04</text>
+          <text class="vazio" x="360" y="170">livre</text>
+        </g>
+
+        <!-- cota, como em desenho técnico -->
+        <g class="cota">
+          <path d="M22 302 H438 M22 297 V307 M438 297 V307"/>
+        </g>
+        <text class="cota-txt" x="215" y="318">12,40 m</text>
+        <g class="cota">
+          <path d="M14 26 V282 M9 26 H19 M9 282 H19"/>
+        </g>
+        <text class="cota-txt" x="0" y="160" transform="rotate(-90 8 160)">7,60 m</text>
       </svg>
-    </div>
-  </div>
-</section>
 
-<section class="secao" id="h19">
-  <div class="wrap">
-    <p class="hora-secao tab reveal">18:40</p>
-    <h2 class="reveal">Começa 48 horas antes de você ter fome.</h2>
-    <div class="fita">
-      <article class="prova reveal">
-        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="8"/></svg>
-        <p class="quando tab">48H ANTES</p>
-        <h3>Descanso</h3>
-        <p>A massa dorme na câmara fria. Sem pressa e sem fermento a mais.</p>
+      <!-- FICHA: aparece na consulta, no lugar de abrir modal -->
+      <article class="ficha" id="ficha" hidden>
+        <div class="ficha-topo monta">
+          <span class="placa-sel" id="f-placa">—</span>
+          <span class="modelo" id="f-modelo">—</span>
+          <span class="selo" id="f-selo"><i class="led"></i><span id="f-selo-txt">—</span></span>
+          <span class="os mono" id="f-os">—</span>
+        </div>
+
+        <div class="numeros monta">
+          <div><b class="mono" id="f-etapa">—</b><span>etapa atual</span></div>
+          <div><b class="mono" id="f-previsao">—</b><span>previsão de entrega</span></div>
+          <div><b class="mono" id="f-bancada">—</b><span>bancada</span></div>
+        </div>
+
+        <div class="trilho monta">
+          <ol id="f-trilho"><span class="fio"><i id="f-fio"></i></span></ol>
+        </div>
+
+        <dl class="linha-ficha monta">
+          <dt>Quem está no carro</dt><dd id="f-mecanico">—</dd>
+          <dt>Entrada</dt><dd id="f-entrada">—</dd>
+        </dl>
+
+        <div class="acao monta">
+          <p id="f-nota">—</p>
+          <a class="wa-btn" id="f-cta" href="#" target="_blank" rel="noopener" style="margin-inline-start:auto">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>
+            <span id="f-cta-txt">Falar com a oficina</span>
+          </a>
+        </div>
       </article>
-      <article class="prova reveal">
-        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="14"/></svg>
-        <p class="quando tab">ONTEM</p>
-        <h3>Sova</h3>
-        <p>Trabalhada à mão, uma vez só. É o que deixa a borda leve.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── LAUDO: o Simples calcula um preço; este mostra um diagnóstico e pede decisão ── -->
+<section class="sec" id="laudo-sec">
+  <div class="wrap">
+    <div class="sec-cab">
+      <h2>O laudo,<br>item a item</h2>
+      <p id="laudo-ref">—</p>
+    </div>
+    <p class="lede">Cada coisa que a gente encontrou vira uma linha, com o motivo e o preço.
+      Você marca o que autoriza — o resto não é feito. Sem pacote fechado.</p>
+    <div class="laudo" id="laudo"></div>
+    <div class="decisao">
+      <span class="soma" id="soma">R$ 0,00</span>
+      <span class="quantos" id="quantos">nenhum item marcado</span>
+      <a class="wa-btn" id="aprovar" href="#" target="_blank" rel="noopener" aria-disabled="true">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>
+        <span id="aprovar-txt">Marque o que autoriza</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── TABELA ABERTA: o oposto do "consulte-nos" ── -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-cab">
+      <h2>Preço tabelado</h2>
+      <p>o que está incluso · e o que não está</p>
+    </div>
+    <div class="tab-wrap">
+      <table class="tab">
+        <thead><tr><th>Serviço</th><th>Mão de obra</th><th>Está incluso</th><th>Não está incluso</th></tr></thead>
+        <tbody>
+          <tr><td>Troca de óleo e filtro</td><td class="v">R$ 90,00</td>
+              <td>Descarte do óleo velho e conferência de níveis</td>
+              <td class="fora">Óleo e filtro (você pode trazer os seus)</td></tr>
+          <tr><td>Pastilhas de freio · eixo dianteiro</td><td class="v">R$ 120,00</td>
+              <td>Limpeza da pinça e sangria do fluido</td>
+              <td class="fora">Pastilhas, disco e fluido</td></tr>
+          <tr><td>Alinhamento e balanceamento</td><td class="v">R$ 140,00</td>
+              <td>4 rodas, com relatório antes e depois</td>
+              <td class="fora">Peça de suspensão trocada durante o serviço</td></tr>
+          <tr><td>Diagnóstico eletrônico</td><td class="v">R$ 150,00</td>
+              <td>Leitura de falhas e teste em rodagem</td>
+              <td class="fora">Nada — e abatemos os R$ 150 se o serviço for aprovado</td></tr>
+          <tr><td>Revisão de 20 itens</td><td class="v">R$ 180,00</td>
+              <td>Laudo escrito com foto de cada item reprovado</td>
+              <td class="fora">Qualquer peça ou fluido reposto</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nota-tab">Peça sempre orçada à parte, com a nota do fornecedor junto.
+      Serviço fora da tabela sai por hora: R$ 130,00/h, medido no apontamento da OS.</p>
+  </div>
+</section>
+
+<!-- ── EQUIPE ── -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-cab">
+      <h2>Quem mexe<br>no seu carro</h2>
+      <p>3 mecânicos · 4 bancadas</p>
+    </div>
+    <div class="equipe">
+      <article class="pessoa">
+        <div class="sigla">ER</div>
+        <h3>Everton R.</h3>
+        <dl><dt>Casa</dt><dd>11 anos</dd>
+            <dt>Faz</dt><dd>Motor, injeção eletrônica e diagnóstico</dd>
+            <dt>Bancada</dt><dd class="v">02</dd></dl>
       </article>
-      <article class="prova reveal">
-        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="21"/></svg>
-        <p class="quando tab">HOJE, 16H</p>
-        <h3>Bolas</h3>
-        <p>Porcionada e coberta. Às 18h em ponto, a primeira entra no forno.</p>
+      <article class="pessoa">
+        <div class="sigla">SM</div>
+        <h3>Silvana M.</h3>
+        <dl><dt>Casa</dt><dd>6 anos</dd>
+            <dt>Faz</dt><dd>Suspensão, freio e alinhamento</dd>
+            <dt>Bancada</dt><dd class="v">01</dd></dl>
+      </article>
+      <article class="pessoa">
+        <div class="sigla">JB</div>
+        <h3>Jonas B.</h3>
+        <dl><dt>Casa</dt><dd>3 anos</dd>
+            <dt>Faz</dt><dd>Elétrica, ar-condicionado e revisão</dd>
+            <dt>Bancada</dt><dd class="v">03</dd></dl>
       </article>
     </div>
   </div>
 </section>
 
-<section class="secao painel" id="h20">
+<!-- ── E SE… ── -->
+<section class="sec">
   <div class="wrap">
-    <p class="hora-secao tab reveal">19:30</p>
-    <h2 class="reveal">Saindo do forno</h2>
-    <div class="fita reveal">
-      <div class="linha-pizza">
-        <span class="tempo tab">~9 min</span>
-        <span class="nome">Margherita</span>
-        <span class="preco tab">R$ 45</span>
-        <button class="add" data-sabor="Margherita" data-preco="45">+</button>
-      </div>
-      <div class="linha-pizza">
-        <span class="tempo tab">~11 min</span>
-        <span class="nome">Calabresa</span>
-        <span class="preco tab">R$ 48</span>
-        <button class="add" data-sabor="Calabresa" data-preco="48">+</button>
-      </div>
-      <div class="linha-pizza">
-        <span class="tempo tab">~13 min</span>
-        <span class="nome">Portuguesa</span>
-        <span class="preco tab">R$ 52</span>
-        <button class="add" data-sabor="Portuguesa" data-preco="52">+</button>
-      </div>
-      <div class="linha-pizza">
-        <span class="tempo tab">~16 min</span>
-        <span class="nome">Quatro Queijos</span>
-        <span class="preco tab">R$ 58</span>
-        <button class="add" data-sabor="Quatro Queijos" data-preco="58">+</button>
-      </div>
+    <div class="sec-cab">
+      <h2>E se…</h2>
+      <p>as perguntas que todo mundo faz no balcão</p>
+    </div>
+    <div class="esse">
+      <div><h3>E se eu não aprovar nada?</h3>
+        <p>Você paga só o diagnóstico e leva o carro com o laudo na mão — inclusive
+           para consultar outra oficina. O laudo é seu.</p></div>
+      <div><h3>E se aparecer serviço novo no meio?</h3>
+        <p>O serviço para e entra uma linha nova no laudo, com preço, antes de continuar.
+           Nada é feito e cobrado depois.</p></div>
+      <div><h3>E se o preço passar do orçado?</h3>
+        <p>Não passa. O que está aprovado na OS é o que é cobrado; diferença de peça
+           vem com a nota do fornecedor anexada.</p></div>
+      <div><h3>E se eu não puder buscar hoje?</h3>
+        <p>O carro fica guardado dentro do galpão, sem diária, por até 7 dias
+           depois de ficar pronto.</p></div>
     </div>
   </div>
 </section>
 
-<section class="secao" id="h21">
+<!-- ── GARANTIA: número explícito com as condições ── -->
+<section class="sec">
   <div class="wrap">
-    <p class="hora-secao tab reveal">21:00</p>
-    <h2 class="reveal">O horário em que o forno não descansa.</h2>
-    <div class="fita reveal">
-      <div style="padding:24px;border-bottom:1px solid var(--linha)">
-        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">180 pizzas no sábado</p>
-        <p style="color:var(--fumaca)">Cada uma assada na hora certa.</p>
-      </div>
-      <div style="padding:24px;border-bottom:1px solid var(--linha)">
-        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">48h de massa</p>
-        <p style="color:var(--fumaca)">Fermentação natural, sem pressa.</p>
-      </div>
-      <div style="padding:24px">
-        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">12 anos de forno</p>
-        <p style="color:var(--fumaca)">Lenha de carvalho desde 2014.</p>
-      </div>
+    <div class="sec-cab">
+      <h2>Garantia</h2>
+      <p>com as condições escritas, não só a palavra</p>
+    </div>
+    <div class="garantia">
+      <p class="n">90<span>dias de garantia</span></p>
+      <ul>
+        <li>Vale para a mão de obra de todo serviço apontado na OS.</li>
+        <li>Peça vendida por nós segue a garantia do fabricante, que vem escrita na nota.</li>
+        <li>Peça trazida por você: a garantia é da mão de obra, não da peça.</li>
+        <li>Voltou com o mesmo defeito dentro do prazo? Refazemos sem cobrar a revisão.</li>
+        <li>Perde a garantia serviço mexido por terceiro depois da entrega.</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<section class="secao" id="h22">
+<!-- ── RODAPÉ = CARIMBO DE OS ── -->
+<footer class="sec">
   <div class="wrap">
-    <p class="hora-secao tab reveal">22:15</p>
-    <h2 class="reveal">Onde a gente chega</h2>
-    <div class="fita reveal">
-      <div style="padding:24px">
-        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">Centro — 25 min</p>
-        <p style="color:var(--fumaca)">Itararé — 30 min · Pq. Bitaru — 35 min · Jd. Rio Branco — 40 min</p>
-      </div>
+    <div class="os-rodape">
+      <div><p class="campo-os">Oficina</p><p class="valor-os">Auto Center Vila<br>CNPJ 00.000.000/0001-00</p></div>
+      <div><p class="campo-os">Endereço</p><p class="valor-os">Rua Frei Gaspar, 000<br>Centro · São Vicente / SP</p></div>
+      <div><p class="campo-os">Horário</p><p class="valor-os">Seg a sex 08:00–18:00<br>Sáb 08:00–12:00</p></div>
+      <div><p class="campo-os">Contato</p><p class="valor-os">(13) 0000-0000<br>WhatsApp (13) 90000-0000</p></div>
     </div>
-  </div>
-</section>
-
-<section class="secao" id="h23">
-  <div class="wrap">
-    <p class="hora-secao tab reveal">23:30</p>
-    <h2 class="reveal">Depois disso, o forno apaga.</h2>
-    <div class="fita reveal">
-      <div style="padding:24px">
-        <p style="font-family:var(--sans);font-size:1.1rem;letter-spacing:.02em">
-          Última rodada às 23:30. Depois, o forno apaga.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<div class="comanda" id="comanda">
-  <div class="comanda-in">
-    <span class="comanda-total" id="comanda-total">0 itens · R$ 0</span>
-    <button class="comanda-enviar" id="comanda-enviar">Enviar comanda →</button>
-  </div>
-</div>
-
-<footer>
-  <div class="wrap">
-    <p>Forno da Vila · pizza a lenha em São Vicente · aberto 18h–23:30 · © 2026</p>
-    <p style="margin-top:8px"><a href="../../receita-zero/#planos" style="color:var(--fumaca)">Quer um site assim pro seu negócio?</a></p>
+    <p class="assina"><span>Auto Center Vila · São Vicente / SP</span>
+      <span>site demonstrativo · dados fictícios</span></p>
   </div>
 </footer>
+</main>
+
+<section class="vc"><div class="wrap">
+  Site feito pela <a href="#">Vitrine Certa</a> — sites prontos para negócio de bairro.
+</div></section>
 
 <script>
-/* Configuração fictícia de portfólio — trocar pelos dados reais */
-const CASA = {
-  abre:18, aquecendoAte:18.34, ultimoPedido:23.5, fecha:24,
-  picoDe:20, picoAte:22,
-  esperaBase:25, esperaPico:45,
-  whats:'5511970776856'
+/* ⚠️ DEMO — dados fictícios de portfólio. Trocar pelos reais antes de entregar. */
+const OFICINA = {
+  whats:'5511970776856',
+  etapas:['recebido','diagnóstico','orçamento','execução','teste','pronto'],
+  carros:{
+    ABC1D23:{modelo:'Gol 1.6 · 2019 · prata', os:2418, bancada:2, etapa:2,
+             mecanico:'Everton R.', entrada:'seg 14:20', previsao:'qua 17:00'},
+    XYZ4B56:{modelo:'Onix 1.0 · 2021 · branco', os:2422, bancada:1, etapa:3,
+             mecanico:'Silvana M.', entrada:'ter 08:05', previsao:'qua 12:00'},
+    QRS7C89:{modelo:'Strada 1.4 · 2017 · vermelha', os:2409, bancada:3, etapa:5,
+             mecanico:'Everton R.', entrada:'sex 16:40', previsao:'pronto'}
+  }
 };
+
+/* cada etapa tem cor, texto e CTA próprios — o motor é o mesmo da pizzaria,
+   mas disparado por PLACA, não por hora */
+const ETAPA = [
+  {cor:'--exec',       selo:'recebido',              nota:'Carro recebido. O diagnóstico começa em seguida.',
+   cta:'Falar com a oficina',      msg:p=>`Oi! Queria saber do meu carro, placa ${p}.`},
+  {cor:'--exec',       selo:'em diagnóstico',        nota:'Estamos levantando o que o carro precisa. Você recebe o laudo antes de qualquer serviço.',
+   cta:'Falar com a oficina',      msg:p=>`Oi! Como está o diagnóstico do carro placa ${p}?`},
+  {cor:'--aguardando', selo:'aguardando você',       nota:'O laudo está pronto e nada é feito sem a sua aprovação.',
+   cta:'Ver o laudo e aprovar',    msg:p=>`Oi! Quero aprovar o orçamento do carro placa ${p}.`},
+  {cor:'--exec',       selo:'em execução',           nota:'Serviço aprovado, em execução na bancada.',
+   cta:'Falar com a oficina',      msg:p=>`Oi! Como está o serviço do carro placa ${p}?`},
+  {cor:'--exec',       selo:'em teste',              nota:'Serviço concluído. Rodando para conferir antes de liberar.',
+   cta:'Falar com a oficina',      msg:p=>`Oi! O carro placa ${p} já saiu do teste?`},
+  {cor:'--pronto',     selo:'pronto p/ retirada',    nota:'Pode buscar. Guardamos o carro sem custo de diária.',
+   cta:'Avisar que vou buscar',    msg:p=>`Oi! Vou buscar o carro placa ${p}.`}
+];
+
 const $ = s => document.querySelector(s);
-const $$ = s => document.querySelectorAll(s);
-const clamp = (v,a,b) => Math.min(b, Math.max(a, v));
+const norm = v => v.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,7);
 
-function horaAgora(){
-  const forcada = new URLSearchParams(location.search).get('h');
-  if(forcada !== null && forcada !== '') return clamp(parseFloat(forcada), 0, 23.999);
-  const agora = new Date();
-  const h = agora.getHours();
-  const m = agora.getMinutes();
-  return h + m/60;
-}
+/* contagem da barra: sai dos dados, não é número inventado solto */
+const todos = Object.values(OFICINA.carros);
+$('#n-oficina').textContent = String(todos.filter(c => c.etapa < 5).length).padStart(2,'0');
+$('#n-pronto').textContent  = String(todos.filter(c => c.etapa === 5).length).padStart(2,'0');
 
-function estadoDe(h){
-  if(h >= CASA.ultimoPedido && h < CASA.fecha)
-    return {id:'ultima', nome:'Última rodada', sub:'pedidos até 23:30', calor:1, espera:CASA.esperaPico, cta:'Última rodada — faltam ' + Math.round((CASA.fecha-h)*60) + ' min', msg:'Oi! Dá tempo da última rodada?'};
-  if(h >= CASA.picoDe && h < CASA.picoAte)
-    return {id:'pico', nome:'Pico', sub:'o forno não descansa', calor:1, espera:CASA.esperaPico, cta:'Pedir agora (~'+CASA.esperaPico+' min)', msg:'Oi! Pedido (sei que tá no pico):'};
-  if(h >= CASA.aquecendoAte && h < CASA.ultimoPedido)
-    return {id:'aberto', nome:'Aberto', sub:'saindo do forno', calor:.72, espera:CASA.esperaBase, cta:'Pedir agora', msg:'Oi! Pedido:'};
-  if(h >= CASA.abre && h < CASA.aquecendoAte)
-    return {id:'aquecendo', nome:'Aquecendo', sub:'primeiras saem 18:20', calor:.38, espera:null, cta:'Entrar na primeira fornada', msg:'Oi! Pego a primeira fornada?'};
-  return {id:'fechado', nome:'Fechado', sub:'abre 18:00', calor:0, espera:null, cta:'Programar pedido pras 18h', msg:'Oi! Queria deixar um pedido pra hoje às 18h:'};
-}
+/* trilho: 6 etapas montadas do config, não escritas na mão */
+$('#f-trilho').insertAdjacentHTML('beforeend',
+  OFICINA.etapas.map(e => `<li>${e}</li>`).join(''));
 
-function diaDe(h){
-  if(h < 6) return 0;
-  if(h < 17) return 1;
-  if(h < 18) return 1 - (h - 17);
-  return 0;
-}
+const campo = $('#placa'), ficha = $('#ficha'), planta = $('#planta');
 
-function formataHora(h){
-  const hh = String(Math.floor(h)).padStart(2,'0');
-  const mm = String(Math.floor((h % 1) * 60)).padStart(2,'0');
-  return hh + ':' + mm;
-}
-
-let temaManual = null;
-let comanda = [];
-
-function pinta(){
-  const h = horaAgora();
-  const e = estadoDe(h);
-  const dia = temaManual === null ? diaDe(h) : temaManual;
-  document.documentElement.style.setProperty('--calor', e.calor);
-  document.documentElement.style.setProperty('--dia', dia.toFixed(3));
-  $('#relogio').textContent = formataHora(h);
-  $('#relogio').className = 'tab';
-  $('#pill').style.background = e.calor > 0 ? 'var(--brasa)' : 'transparent';
-  $('#pill-txt').textContent = e.espera ? e.nome + ' · ~' + e.espera + ' min' : e.nome;
-  $('#estado-nome').textContent = e.nome;
-  $('#estado-sub').textContent = e.sub;
-  $('#estado-espera').innerHTML = e.espera ? 'Saindo do forno em <b>~' + e.espera + ' minutos</b>.' : (e.id === 'fechado' ? 'O forno acende às 18h. Deixa o pedido programado.' : 'As primeiras saem às 18:20.');
-  $('#cta-txt').textContent = e.cta;
-  $('#cta').href = 'https://wa.me/' + CASA.whats + '?text=' + encodeURIComponent(e.msg);
-  $('#tema').textContent = dia > .5 ? '☀' : '☾';
-  const ag = $('#agulha');
-  const dentro = h >= CASA.abre && h < CASA.fecha;
-  ag.style.opacity = dentro ? '1' : '0';
-  ag.style.left = clamp((h - CASA.abre) / 6, 0, 1) * 100 + '%';
-  $$('.trilho a').forEach(a => a.style.fontWeight = (+a.textContent === Math.floor(h)) ? '600' : '500');
-}
-
-$('#tema').addEventListener('click', () => {
-  const atual = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--dia')) || 0;
-  temaManual = atual > .5 ? 0 : 1;
-  pinta();
+/* máscara AAA0A00 enquanto digita */
+campo.addEventListener('input', () => {
+  campo.value = norm(campo.value);
+  $('#erro').dataset.on = '0';
 });
+campo.addEventListener('keydown', e => { if (e.key === 'Enter') consultar(); });
+$('#consultar').addEventListener('click', consultar);
+document.querySelectorAll('.dica b').forEach(b =>
+  b.addEventListener('click', () => { campo.value = b.dataset.p; consultar(); }));
 
-/* Reveal por máscara — ativa ao rolar ou no carregamento */
-function checkReveal(){
-  $$('.reveal:not(.on)').forEach(el=>{
-    const r=el.getBoundingClientRect();
-    if(r.top < innerHeight*0.8) el.classList.add('on');
+function consultar(){
+  const p = norm(campo.value);
+  const c = OFICINA.carros[p];
+  if (!c){ $('#erro').dataset.on = '1'; ficha.hidden = true;
+           planta.querySelectorAll('.bancada').forEach(b => b.dataset.aqui = '0'); return; }
+  $('#erro').dataset.on = '0';
+  const e = ETAPA[c.etapa];
+
+  /* a cor de status governa ficha e planta ao mesmo tempo */
+  const cor = `var(${e.cor})`;
+  ficha.style.setProperty('--cor-status', cor);
+  planta.style.setProperty('--cor-status', cor);
+  $('#f-selo').style.color = cor;
+
+  $('#f-placa').textContent    = p;
+  $('#f-modelo').textContent   = c.modelo;
+  $('#f-selo-txt').textContent = e.selo;
+  $('#f-os').textContent       = 'OS ' + c.os;
+  $('#f-etapa').textContent    = (c.etapa + 1) + '/6';
+  $('#f-previsao').textContent = c.previsao;
+  $('#f-bancada').textContent  = String(c.bancada).padStart(2,'0');
+  $('#f-mecanico').textContent = c.mecanico;
+  $('#f-entrada').textContent  = c.entrada;
+  $('#f-nota').textContent     = e.nota;
+  $('#f-cta-txt').textContent  = e.cta;
+  $('#f-cta').href = 'https://wa.me/' + OFICINA.whats + '?text=' +
+                     encodeURIComponent(e.msg(p));
+
+  [...$('#f-trilho').querySelectorAll('li')].forEach((li,i) => {
+    li.dataset.feito = i <= c.etapa ? '1' : '0';
+    li.dataset.aqui  = i === c.etapa ? '1' : '0';
   });
-}
-addEventListener('scroll', checkReveal, {passive:true});
-/* ativa todos no carregamento (site de portfólio: prioriza acessibilidade) */
-setTimeout(() => $$('.reveal').forEach(el => el.classList.add('on')), 100);
 
-/* Comanda */
-$$('.add').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const sabor = btn.dataset.sabor;
-    const preco = +btn.dataset.preco;
-    comanda.push({sabor, preco});
-    atualizaComanda();
-  });
-});
+  planta.querySelectorAll('.bancada').forEach(b =>
+    b.dataset.aqui = (+b.dataset.bancada === c.bancada) ? '1' : '0');
 
-function atualizaComanda(){
-  const total = comanda.reduce((s, i) => s + i.preco, 0);
-  $('#comanda-total').textContent = comanda.length + ' itens · R$ ' + total;
-  $('#comanda').classList.toggle('ativa', comanda.length > 0);
+  ficha.hidden = false;
+  ficha.classList.remove('impressa');
+  /* a OS "imprime" linha a linha */
+  [...ficha.querySelectorAll('.monta')].forEach((el,i) =>
+    el.style.transitionDelay = (i * 45) + 'ms');
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    ficha.classList.add('impressa');
+    $('#f-fio').style.inlineSize = (c.etapa / (OFICINA.etapas.length - 1) * 100) + '%';
+  }));
 }
 
-$('#comanda-enviar').addEventListener('click', () => {
-  const total = comanda.reduce((s, i) => s + i.preco, 0);
-  const itens = comanda.map(i => '• ' + i.sabor + ' — R$' + i.preco).join('\n');
-  const msg = 'Pedido — ' + formataHora(horaAgora()) + '\n' + itens + '\nTotal R$' + total;
-  window.open('https://wa.me/' + CASA.whats + '?text=' + encodeURIComponent(msg), '_blank');
-});
+/* ?placa=ABC1D23 já abre consultada. Serve ao painel de demonstração e,
+   na vida real, ao link que a oficina manda no WhatsApp do cliente. */
+const doURL = norm(new URLSearchParams(location.search).get('placa') || '');
+if (doURL){ campo.value = doURL; consultar(); }
 
-/* Scroll-driven: o scroll é a noite passando */
-if(!CSS.supports('animation-timeline','scroll()')){
-  let alvo = 0, cur = 0, rodando = false;
-  const passo = () => {
-    cur += (alvo - cur) * 0.06;
-    document.documentElement.style.setProperty('--noite', cur.toFixed(4));
-    if(Math.abs(alvo - cur) > 0.0008) requestAnimationFrame(passo); else rodando = false;
-  };
-  addEventListener('scroll', () => {
-    const max = document.documentElement.scrollHeight - innerHeight;
-    alvo = max > 0 ? clamp(scrollY / max, 0, 1) : 0;
-    if(!rodando){ rodando = true; requestAnimationFrame(passo); }
-  }, {passive:true});
+/* ── LAUDO ────────────────────────────────────────────────────────
+   O premium do concorrente CALCULA um preço. Este mostra o diagnóstico
+   e pede uma decisão — é a diferença de espécie contra o R$49.        */
+const LAUDO = {
+  placa:'ABC1D23', os:2418, carro:'Gol 1.6 · 2019',
+  itens:[
+    {t:'Pastilha de freio dianteira', s:'urgente', v:320,
+     d:'2 mm de material. O limite de segurança é 3 mm — já está raspando o disco.'},
+    {t:'Correia do alternador', s:'atencao', v:240,
+     d:'Microfissuras no dorso. Ainda funciona, mas arrebenta sem aviso e para o carro.'},
+    {t:'Filtro de ar', s:'recomendado', v:90,
+     d:'Saturado. Não é risco, mas aumenta o consumo em estrada.'},
+    {t:'Óleo e filtro de óleo', s:'ok', v:0,
+     d:'Trocados há 4.100 km. Dentro do prazo — não mexemos.'},
+    {t:'Pneus e alinhamento', s:'ok', v:0,
+     d:'Desgaste uniforme, sulco de 5,2 mm. Nada a fazer agora.'}
+  ]
+};
+const SEV = { urgente:{r:'urgente',c:'--urgente'}, atencao:{r:'atenção',c:'--aguardando'},
+              recomendado:{r:'recomendado',c:'--exec'}, ok:{r:'ok',c:'--pronto'} };
+
+/* toFixed(2) sempre: "R$ 410" em vez de "R$ 410,00" foi bug real na pizzaria */
+const din = v => 'R$ ' + v.toFixed(2).replace('.', ',');
+
+$('#laudo-ref').textContent = `OS ${LAUDO.os} · ${LAUDO.carro} · placa ${LAUDO.placa}`;
+$('#laudo').insertAdjacentHTML('beforeend', LAUDO.itens.map((it,i) => {
+  const s = SEV[it.s], ok = it.s === 'ok';
+  return `<label class="item" data-ok="${ok?1:0}">
+    ${ok ? '<span class="vazio" aria-hidden="true"></span>'
+         : `<input type="checkbox" data-i="${i}" aria-label="Autorizar ${it.t}, ${din(it.v)}">`}
+    <span><b>${it.t}</b><small>${it.d}</small></span>
+    <span class="tag" style="color:var(${s.c})">${s.r}</span>
+    <span class="preco">${ok ? '—' : din(it.v)}</span>
+  </label>`;
+}).join(''));
+
+const btn = $('#aprovar');
+const APROVAVEIS = LAUDO.itens.filter(it => it.s !== 'ok').length;  /* nunca na mão */
+function somar(){
+  const marcados = [...$('#laudo').querySelectorAll('input:checked')]
+                     .map(i => LAUDO.itens[+i.dataset.i]);
+  const total = marcados.reduce((a,it) => a + it.v, 0);
+  $('#soma').textContent = din(total);
+  $('#quantos').textContent = marcados.length === 0 ? 'nenhum item marcado'
+    : `${marcados.length} ${marcados.length === 1 ? 'item' : 'itens'} de ${APROVAVEIS}`;
+
+  if (!marcados.length){
+    btn.setAttribute('aria-disabled','true');
+    btn.removeAttribute('href');
+    $('#aprovar-txt').textContent = 'Marque o que autoriza';
+    return;
+  }
+  btn.removeAttribute('aria-disabled');
+  $('#aprovar-txt').textContent = 'Autorizar pelo WhatsApp';
+  const recusados = LAUDO.itens.filter(it => it.s !== 'ok' && !marcados.includes(it));
+  const txt = `Oi! Sobre a OS ${LAUDO.os} (${LAUDO.carro} · placa ${LAUDO.placa}), autorizo:\n`
+    + marcados.map(it => `• ${it.t} — ${din(it.v)}`).join('\n')
+    + `\nTotal: ${din(total)}.`
+    + (recusados.length ? `\nPor enquanto NÃO autorizo: ${recusados.map(it => it.t).join(', ')}.` : '');
+  btn.href = 'https://wa.me/' + OFICINA.whats + '?text=' + encodeURIComponent(txt);
 }
-
-pinta();
-setInterval(pinta, 20000);
+$('#laudo').addEventListener('change', somar);
+somar();
 </script>
 </body>
 </html>

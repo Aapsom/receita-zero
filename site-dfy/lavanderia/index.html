@@ -1,468 +1,287 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
 <meta charset="UTF-8">
+  <meta name="description" content="Lavanderia em Sao Vicente: por quilo, self-service, passadoria e entrega. Site da sua lavanderia em 48h.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forno da Vila — pizza a lenha em São Vicente</title>
-<meta name="description" content="Forno a lenha em São Vicente. Massa de 48 horas. Aberto das 18h às 23h30.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <!-- SEO Vitrine Certa -->
+<meta property="og:title" content="Lavanderia em São Vicente — site Essencial | Vitrine Certa">
+<meta property="og:description" content="Lavanderia com simulador de preços e agendamento no WhatsApp. Site Essencial da Vitrine Certa, pronto em 48h. A partir de R$49/mês.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://receitazero.github.io/receita-zero/site-dfy/lavanderia/index.html">
+<meta property="og:image" content="https://receitazero.github.io/receita-zero/site-dfy/lavanderia/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Lavanderia em São Vicente",
+  "description": "Lavanderia com simulador de preços e agendamento no WhatsApp. Site Essencial da Vitrine Certa, pronto em 48h. A partir de R$49/mês.",
+  "url": "https://receitazero.github.io/receita-zero/site-dfy/lavanderia/index.html",
+  "image": "https://receitazero.github.io/receita-zero/site-dfy/lavanderia/preview.png",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "São Vicente",
+    "addressRegion": "SP",
+    "addressCountry": "BR"
+  },
+  "telephone": "+555511970776856",
+  "priceRange": "R$49-R99",
+  "provider": {
+    "@type": "Organization",
+    "name": "Vitrine Certa",
+    "url": "https://receitazero.github.io/receita-zero/receita-zero/"
+  }
+}
+</script>
+<title>Lavanderia em Sao Vicente</title>
+  <!-- Vitrine Certa Analytics -->
+<meta name="google-site-verification" content="rnYREYB-JR9uyXWd7UwSkGJn4kyjyVpHakO6lgSxJ-w">
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){
+  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window,document,"clarity","script","xrpcs8vw2o");
+</script>
+  
+
+
+  
 <style>
-/* PARALELO — redesign alternativo da pizzaria premium
-   Conceito: "A NOITE INTEIRA" — mesmo plano, execução diferente
-   Diferença: motion CSS pura, sem JS de relógio odômetro, sem SVG complexo */
 :root{
-  /* NOITE */
-  --n-tinta:#141A2A; --n-carvao:#0C1120; --n-tinta2:#1C2438; --n-linha:#2B3450;
-  --n-giz:#EDEFF5; --n-fumaca:#98A0B8; --n-brasa:#FF5A1F; --n-nucleo:#FFF1E6;
-  /* DIA */
-  --d-tinta:#ECEDF1; --d-carvao:#DDDFE7; --d-tinta2:#F7F8FB; --d-linha:#D3D7E2;
-  --d-giz:#141A2A; --d-fumaca:#5C6478; --d-brasa:#D6410E; --d-nucleo:#8A2B06;
-  /* resolvidos */
-  --tinta:color-mix(in oklab, var(--n-tinta), var(--d-tinta) calc(var(--dia,0)*100%));
-  --carvao:color-mix(in oklab, var(--n-carvao), var(--d-carvao) calc(var(--dia,0)*100%));
-  --tinta2:color-mix(in oklab, var(--n-tinta2), var(--d-tinta2) calc(var(--dia,0)*100%));
-  --linha:color-mix(in oklab, var(--n-linha), var(--d-linha) calc(var(--dia,0)*100%));
-  --giz:color-mix(in oklab, var(--n-giz), var(--d-giz) calc(var(--dia,0)*100%));
-  --fumaca:color-mix(in oklab, var(--n-fumaca), var(--d-fumaca) calc(var(--dia,0)*100%));
-  --brasa:color-mix(in oklab, var(--n-brasa), var(--d-brasa) calc(var(--dia,0)*100%));
-  --wa:#25D366;
-  --serif:'Instrument Serif',Georgia,serif;
-  --sans:'Instrument Sans',system-ui,sans-serif;
-  --ease:cubic-bezier(.22,1,.36,1);
+  --bg:#EAF4F1;--bg2:#D8EDE8;--surface:#FFFFFF;--surface2:#E2F0EC;--line:#C3E0D8;--line2:#9FCDBF;
+  --fg:#0F2A24;--muted:#3F6157;--faint:#71968B;
+  --a1:#3FA66A;--a2:#2FB8B0;--a3:#5BC79B;--off:#0F2A24;
+  --s-xs:.4rem;--s-sm:.7rem;--s-md:1rem;--s-lg:1.5rem;--s-xl:2.2rem;--s-2xl:3rem;--s-3xl:4.5rem;
+  --font-body:'Plus Jakarta Sans','Segoe UI',system-ui,sans-serif;
+  --font-display:'Fraunces','Playfair Display',Georgia,serif;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{overflow-x:clip}
-body{background:var(--tinta);color:var(--giz);font-family:var(--sans);font-size:1.0625rem;line-height:1.55;transition:background .6s, color .6s}
-h1,h2{font-family:var(--serif);font-weight:400;line-height:.98;letter-spacing:-.02em}
-em{font-style:italic}
-.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
-.tab{font-variant-numeric:tabular-nums}
-.reveal{clip-path:inset(100% 0 0 0);opacity:.001;transition:clip-path .52s var(--ease),opacity .52s var(--ease)}
-.reveal.on{clip-path:inset(0);opacity:1}
-/* RÉGUA */
-.regua{position:fixed;top:0;left:0;right:0;z-index:40;background:color-mix(in oklab, var(--tinta) 88%,transparent);backdrop-filter:blur(8px)}
-.regua-in{display:flex;align-items:center;gap:24px;padding:10px 24px}
-.trilho{position:relative;flex:1;height:34px}
-.trilho ol{position:absolute;inset:0;display:flex;list-style:none;align-items:center}
-.trilho li{flex:1;position:relative}
-.trilho a{font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.02em;color:var(--fumaca);text-decoration:none;padding:2px 0;white-space:nowrap}
-.trilho::after{content:'';position:absolute;bottom:6px;left:0;right:0;height:1px;background:var(--linha)}
-.agulha{position:absolute;bottom:2px;width:9px;height:9px;border-radius:999px;background:var(--fumaca);transition:left .8s var(--ease)}
-.relogio{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:500}
-.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--linha);border-radius:999px;padding:3px 10px;font-size:.74rem;font-weight:600}
-.ponto{width:7px;height:7px;border-radius:999px}
-.tema{background:none;border:1px solid var(--linha);border-radius:999px;color:var(--fumaca);width:32px;height:32px;cursor:pointer;font-size:.9rem;line-height:1;display:grid;place-items:center}
-/* HERO */
-.hero{min-height:100dvh;display:flex;flex-direction:column;justify-content:center;padding:64px 24px}
-.hero-grid{display:grid;grid-template-columns:1fr 1.02fr;gap:40px;align-items:center}
-.marca{font-family:var(--serif);font-size:1.05rem;margin-bottom:24px}
-.hora-secao{font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
-.hero h1{font-size:clamp(2.75rem,7vw,5.5rem);margin-bottom:16px}
-.hero h1 em{color:var(--brasa)}
-.local{max-width:34ch;margin-bottom:32px}
-.local b{font-weight:500}
-.estado{border:1px solid var(--linha);border-radius:2px;padding:24px;max-width:430px;background:var(--tinta2)}
-.estado-nome{font-family:var(--serif);font-size:1.5rem}
-.estado-sub{color:var(--fumaca);font-size:.9rem}
-.estado-espera{font-size:.9rem;color:var(--fumaca);margin-top:8px}
-.estado-espera b{color:var(--giz);font-weight:500}
-.wa-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--wa);color:#0B1F13;font-family:var(--sans);font-weight:600;font-size:.95rem;padding:.72rem 1.15rem;border-radius:999px;text-decoration:none;box-shadow:0 10px 24px -12px color-mix(in oklab,var(--wa) 70%,transparent);margin-top:16px}
-.wa-btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px color-mix(in oklab,var(--wa) 80%,transparent)}
-/* FORNO (SVG simples) */
-.forno{width:100%;height:auto;display:block}
-.forno .tijolo{fill:none;stroke:var(--linha);stroke-width:1.1}
-.forno .arco{fill:var(--tinta2);stroke:var(--linha);stroke-width:1.5}
-.forno .boca{fill:var(--carvao)}
-.forno .piso{fill:var(--tinta2)}
-.forno .lenha{fill:var(--tinta2)}
-.forno .massa{fill:var(--giz);opacity:.8}
-.forno .crosta{fill:none;stroke:var(--brasa);stroke-width:2;opacity:calc(.3+var(--calor,.5)*.55)}
-.forno .cobertura{fill:var(--brasa);opacity:calc(.35+var(--calor,.5)*.55)}
-.forno .chama{opacity:var(--calor,.5);animation:brasa 4.7s infinite}
-@keyframes brasa{0%{filter:brightness(1)}17%{filter:brightness(1.22)}23%{filter:brightness(.93)}61%{filter:brightness(1.14)}79%{filter:brightness(.97)}100%{filter:brightness(1)}}
-.forma{transform-box:fill-box;transform-origin:center;animation:gira 26s linear infinite}
-.forno:hover .forma{animation-play-state:paused}
-@keyframes gira{to{rotate:360deg}}
-/* SEÇÕES */
-.secao{padding:80px 0;border-top:1px solid var(--linha)}
-.hora-secao{display:block;text-align:center;margin-bottom:24px}
-.secao h2{font-size:clamp(1.9rem,4vw,3rem);max-width:22ch;margin:0 auto 40px;text-align:center}
-.fita{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--linha)}
-.prova{padding:24px;border-left:1px solid var(--linha)}
-.prova:first-child{border-left:0}
-.prova .quando{font-size:.78rem;font-weight:600;letter-spacing:.12em;color:var(--fumaca);margin-bottom:8px}
-.prova h3{font-size:1.35rem;margin-bottom:8px}
-.prova p{color:var(--fumaca);font-size:.94rem;max-width:28ch}
-.prova svg{margin-bottom:16px}
-.prova circle{fill:none;stroke:var(--fumaca);stroke-width:1.2}
-/* PAINEL DE FORNO */
-.painel{border-top:1px solid var(--linha)}
-.painel .fita{border:0}
-.linha-pizza{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--linha);font-family:var(--sans)}
-.linha-pizza:last-child{border-bottom:0}
-.linha-pizza .tempo{font-variant-numeric:tabular-nums;font-weight:600}
-.linha-pizza .nome{font-family:var(--serif)}
-.linha-pizza .preco{font-variant-numeric:tabular-nums}
-.linha-pizza .add{background:none;border:1px solid var(--linha);border-radius:999px;padding:4px 10px;cursor:pointer;font-size:.8rem}
-/* COMANDA */
-.comanda{position:fixed;bottom:0;left:0;right:0;background:var(--carvao);border-top:1px solid var(--linha);transform:translateY(100%);transition:transform .3s var(--ease)}
-.comanda.ativa{transform:translateY(0)}
-.comanda-in{display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
-.comanda-total{font-family:var(--serif);font-size:1.25rem}
-.comanda-enviar{background:var(--wa);color:#0B1F13;border:none;border-radius:999px;padding:8px 16px;font-weight:600;cursor:pointer}
-/* RODAPÉ */
-footer{border-top:1px solid var(--linha);padding:24px;text-align:center;font-size:.85rem}
-@media(max-width:860px){
-  .hero{min-height:auto;padding:40px 16px}
-  .hero-grid{grid-template-columns:1fr}
-  .fita{grid-template-columns:1fr}
-  .prova{border-left:0;border-top:1px solid var(--linha}
-  .prova:first-child{border-top:0}
-}
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *,*::before,*::after{animation:none!important;transition:none!important}
-  .reveal{clip-path:none;opacity:1}
-  .forma{animation:none}
-}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
+.wrap{max-width:1080px;margin-inline:auto;padding-inline:24px}
+section{padding-block:var(--s-3xl)}
+h1,h2,h3{font-family:var(--font-display);line-height:1.1;color:var(--fg)}
+a{color:var(--a1);text-decoration:none}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.85rem 1.6rem;border-radius:999px;font-weight:700;font-size:1rem;cursor:pointer;border:1px solid transparent;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-solid{background:var(--a1);color:#fff;box-shadow:0 12px 30px -12px color-mix(in srgb,var(--a1) 70%,transparent)}
+.btn-outline{background:var(--surface);border-color:var(--line2);color:var(--fg)}
+.eyebrow{display:inline-block;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--a2);margin-bottom:var(--s-sm)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+.hero{position:relative;overflow:hidden;background:radial-gradient(60% 60% at 85% 0%,color-mix(in srgb,var(--a3) 18%,transparent),transparent 70%),var(--bg)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:var(--s-2xl);align-items:center;max-width:1100px;margin-inline:auto;padding-block:var(--s-3xl)}
+.hero h1{font-size:clamp(2.2rem,4.5vw,3.6rem);margin-bottom:var(--s-lg)}
+.hero h1 em{color:var(--a1);font-style:italic}
+.hero p.lede{color:var(--muted);font-size:1.1rem;max-width:46ch;margin:0 0 var(--s-xl)}
+.hero .cta{display:flex;gap:.8rem;flex-wrap:wrap}
+.hero-fig{position:relative;border-radius:24px;overflow:hidden;box-shadow:0 30px 80px -30px color-mix(in srgb,var(--a1) 50%,transparent);aspect-ratio:4/3}
+.hero-fig img{width:100%;height:100%;object-fit:cover;object-position:center 45%;display:block}
+.marquee{background:var(--a1);color:#fff;padding:14px 0;overflow:hidden;white-space:nowrap}
+.marquee span{display:inline-block;padding-inline:2rem;font-family:var(--font-display);font-weight:700;font-size:1.05rem;animation:scrollx 18s linear infinite}
+@keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.quiz{max-width:560px;margin:var(--s-xl) auto 0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:var(--s-xl);text-align:left;box-shadow:0 20px 60px -30px color-mix(in srgb,var(--a1) 35%,transparent)}
+.quiz h3{font-size:1.3rem;margin-bottom:var(--s-md)}
+.quiz label{font-size:.8rem;color:var(--faint);display:block;margin:.8rem 0 .3rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.quiz select{width:100%;background:var(--surface2);border:1px solid var(--line2);border-radius:10px;padding:11px 13px;color:var(--off);font-family:var(--font-body);font-size:14px}
+.quiz .sug{margin-top:1rem;font-size:1rem;color:var(--muted)}
+.quiz .sug b{color:var(--a1);font-family:var(--font-display);font-size:1.15rem}
+.wa-btn{display:inline-flex;align-items:center;gap:.45rem;margin-top:1rem;background:#25D366;color:#fff;font-weight:700;font-size:.95rem;padding:.7rem 1.2rem;border-radius:999px;text-decoration:none;box-shadow:0 10px 24px -10px rgba(37,211,102,.6);transition:transform .2s,box-shadow .2s}
+.wa-btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px -10px rgba(37,211,102,.7)}
+.wa-btn svg{width:18px;height:18px;fill:#fff}
+.serv .head{text-align:center;margin-bottom:var(--s-2xl)}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--s-lg)}
+.scard{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.scard:hover{transform:translateY(-5px);box-shadow:0 22px 55px -28px color-mix(in srgb,var(--a1) 45%,transparent)}
+.scard img{width:100%;height:190px;object-fit:cover;object-position:center 50%;display:block}
+.scard .body{padding:var(--s-md) var(--s-lg) var(--s-lg)}
+.scard h4{font-family:var(--font-display);font-size:1.2rem;margin-bottom:.2rem}
+.scard .desc{color:var(--muted);font-size:.88rem;min-height:38px}
+.scard .row{display:flex;align-items:center;justify-content:space-between;margin-top:.8rem}
+.scard .price{font-family:var(--font-display);font-weight:700;font-size:1.3rem;color:var(--a1)}
+.perks{background:var(--bg2)}
+.perks .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--s-lg)}
+.perk{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:var(--s-lg)}
+.perk .ico{font-size:1.8rem;margin-bottom:.4rem}
+.perk h3{font-size:1.05rem;margin-bottom:.3rem}
+.perk p{color:var(--muted);font-size:.88rem}
+.faq .head{text-align:center;margin-bottom:var(--s-xl)}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:var(--s-md) var(--s-lg);margin-bottom:var(--s-sm);max-width:760px;margin-inline:auto}
+.faq summary{font-weight:700;cursor:pointer}
+.faq p{color:var(--muted);margin-top:.6rem;font-size:.94rem}
+.contato{text-align:center}
+.contato form{max-width:480px;margin:var(--s-xl) auto 0;display:flex;flex-direction:column;gap:.8rem}
+.contato input,.contato textarea{background:var(--surface);border:1px solid var(--line2);border-radius:10px;padding:12px 14px;font-family:var(--font-body);font-size:14px;color:var(--off)}
+.endcta{background:color-mix(in srgb,var(--a1) 10%,var(--bg));border-top:1px solid var(--line);padding-block:var(--s-3xl)}
+footer{background:var(--fg);color:var(--surface2);padding-block:var(--s-lg);text-align:center;font-size:.9rem}
+@media(max-width:760px){.hero .wrap{grid-template-columns:1fr;padding-block:var(--s-2xl)}.hero-fig{order:-1;max-width:360px;margin-inline:auto}.hero p.lede{margin-inline:auto}}
 </style>
 </head>
 <body>
-
-<header class="regua">
-  <div class="regua-in">
-    <nav class="trilho" aria-label="A noite">
-      <ol>
-        <li><a href="#h18">18</a></li>
-        <li><a href="#h19">19</a></li>
-        <li><a href="#h20">20</a></li>
-        <li><a href="#h21">21</a></li>
-        <li><a href="#h22">22</a></li>
-        <li><a href="#h23">23</a></li>
-      </ol>
-      <span class="agulha" id="agulha" style="left:0%"></span>
-    </nav>
-    <p class="relogio tab">
-      <span id="relogio">00:00</span>
-      <span class="pill" id="pill"><span class="ponto"></span><span id="pill-txt">—</span></span>
-    </p>
-    <button class="tema" id="tema" type="button" aria-label="Alternar dia e noite">☾</button>
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-text">
+      <span class="eyebrow reveal">Lavanderia em São Vicente</span>
+      <h1 class="reveal d1">Suas roupas <em>limpas e cheirosas</em> sem perder tempo</h1>
+      <p class="lede reveal d2">Por quilo ou self-service, secagem rápida e passadoria. Você deixa, a gente entrega dobradinho na sua casa.</p>
+      <div class="cta reveal d3">
+        <a class="btn btn-solid" href="#servicos">Ver serviços</a>
+        <a class="btn btn-outline" href="https://wa.me/5511970776856?text=Quero%20solicitar%20lavanderia" target="_blank" rel="noopener">Pedir no Whats</a>
+      </div>
+    </div>
+    <div class="hero-fig reveal d2">
+      <img src="assets/banner.jpg" alt="Lavanderia" loading="lazy">
+    </div>
   </div>
 </header>
 
-<main>
-
-<section class="hero" id="h18">
-  <div class="wrap hero-grid">
-    <div>
-      <p class="marca"><b>Forno da Vila</b> — pizza a lenha</p>
-      <p class="hora-secao tab">18:00</p>
-      <h1>A noite<br><em>inteira.</em></h1>
-      <p class="local">Massa de <b>48 horas</b>, forno a lenha desde 2014.<br>
-         Av. Exemplo, 000 — Itararé, São Vicente.</p>
-      <div class="estado" id="estado">
-        <p><span class="estado-nome" id="estado-nome">—</span><br>
-           <span class="estado-sub" id="estado-sub"></span></p>
-        <p class="estado-espera" id="estado-espera"></p>
-        <a class="wa-btn" id="cta" href="#" target="_blank" rel="noopener">
-          <span id="cta-txt">Pedir no WhatsApp</span>
-        </a>
-      </div>
-    </div>
-    <div class="hero-arte">
-      <!-- SVG do forno — versão simplificada -->
-      <svg class="forno" viewBox="0 0 440 340" aria-hidden="true" focusable="false">
-        <defs>
-          <radialGradient id="g-brasa" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#FFF1E6" stop-opacity=".9"/>
-            <stop offset="38%" stop-color="#FF5A1F" stop-opacity=".6"/>
-            <stop offset="100%" stop-color="#FF5A1F" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-        <path class="arco" d="M44 302 L44 208 A176 148 0 0 1 396 208 L396 302 Z"/>
-        <g class="tijolo">
-          <path d="M70 302 L70 210 A150 126 0 0 1 370 210 L370 302"/>
-          <path d="M89 302 L89 212 A131 110 0 0 1 351 212 L351 302"/>
-        </g>
-        <path class="boca" d="M108 300 L108 214 A112 96 0 0 1 332 214 L332 300 Z"/>
-        <ellipse class="piso" cx="220" cy="298" rx="112" ry="26"/>
-        <g class="chama"><ellipse cx="220" cy="296" rx="118" ry="34" fill="url(#g-brasa)"/></g>
-        <g class="lenha">
-          <rect x="272" y="272" width="52" height="9" rx="4.5" transform="rotate(-7 298 276)"/>
-          <rect x="282" y="282" width="44" height="9" rx="4.5" transform="rotate(5 304 286)"/>
-        </g>
-        <g transform="translate(198 284) scale(1 .4)">
-          <g class="forma">
-            <circle class="massa" r="66"/>
-            <circle class="crosta" r="66"/>
-            <circle class="crosta" r="53"/>
-            <g class="cobertura">
-              <circle cx="-19" cy="-22" r="7"/><circle cx="20" cy="-13" r="6"/>
-              <circle cx="-4" cy="16" r="7.5"/><circle cx="26" cy="19" r="5.5"/>
-            </g>
-          </g>
-        </g>
-        <path class="bancada" d="M28 302 H412 a6 6 0 0 1 6 6 v14 a6 6 0 0 1-6 6 H28 a6 6 0 0 1-6-6 v-14 a6 6 0 0 1 6-6 z"/>
-      </svg>
-    </div>
-  </div>
-</section>
-
-<section class="secao" id="h19">
-  <div class="wrap">
-    <p class="hora-secao tab reveal">18:40</p>
-    <h2 class="reveal">Começa 48 horas antes de você ter fome.</h2>
-    <div class="fita">
-      <article class="prova reveal">
-        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="8"/></svg>
-        <p class="quando tab">48H ANTES</p>
-        <h3>Descanso</h3>
-        <p>A massa dorme na câmara fria. Sem pressa e sem fermento a mais.</p>
-      </article>
-      <article class="prova reveal">
-        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="14"/></svg>
-        <p class="quando tab">ONTEM</p>
-        <h3>Sova</h3>
-        <p>Trabalhada à mão, uma vez só. É o que deixa a borda leve.</p>
-      </article>
-      <article class="prova reveal">
-        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="21"/></svg>
-        <p class="quando tab">HOJE, 16H</p>
-        <h3>Bolas</h3>
-        <p>Porcionada e coberta. Às 18h em ponto, a primeira entra no forno.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="secao painel" id="h20">
-  <div class="wrap">
-    <p class="hora-secao tab reveal">19:30</p>
-    <h2 class="reveal">Saindo do forno</h2>
-    <div class="fita reveal">
-      <div class="linha-pizza">
-        <span class="tempo tab">~9 min</span>
-        <span class="nome">Margherita</span>
-        <span class="preco tab">R$ 45</span>
-        <button class="add" data-sabor="Margherita" data-preco="45">+</button>
-      </div>
-      <div class="linha-pizza">
-        <span class="tempo tab">~11 min</span>
-        <span class="nome">Calabresa</span>
-        <span class="preco tab">R$ 48</span>
-        <button class="add" data-sabor="Calabresa" data-preco="48">+</button>
-      </div>
-      <div class="linha-pizza">
-        <span class="tempo tab">~13 min</span>
-        <span class="nome">Portuguesa</span>
-        <span class="preco tab">R$ 52</span>
-        <button class="add" data-sabor="Portuguesa" data-preco="52">+</button>
-      </div>
-      <div class="linha-pizza">
-        <span class="tempo tab">~16 min</span>
-        <span class="nome">Quatro Queijos</span>
-        <span class="preco tab">R$ 58</span>
-        <button class="add" data-sabor="Quatro Queijos" data-preco="58">+</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="secao" id="h21">
-  <div class="wrap">
-    <p class="hora-secao tab reveal">21:00</p>
-    <h2 class="reveal">O horário em que o forno não descansa.</h2>
-    <div class="fita reveal">
-      <div style="padding:24px;border-bottom:1px solid var(--linha)">
-        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">180 pizzas no sábado</p>
-        <p style="color:var(--fumaca)">Cada uma assada na hora certa.</p>
-      </div>
-      <div style="padding:24px;border-bottom:1px solid var(--linha)">
-        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">48h de massa</p>
-        <p style="color:var(--fumaca)">Fermentação natural, sem pressa.</p>
-      </div>
-      <div style="padding:24px">
-        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">12 anos de forno</p>
-        <p style="color:var(--fumaca)">Lenha de carvalho desde 2014.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="secao" id="h22">
-  <div class="wrap">
-    <p class="hora-secao tab reveal">22:15</p>
-    <h2 class="reveal">Onde a gente chega</h2>
-    <div class="fita reveal">
-      <div style="padding:24px">
-        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">Centro — 25 min</p>
-        <p style="color:var(--fumaca)">Itararé — 30 min · Pq. Bitaru — 35 min · Jd. Rio Branco — 40 min</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="secao" id="h23">
-  <div class="wrap">
-    <p class="hora-secao tab reveal">23:30</p>
-    <h2 class="reveal">Depois disso, o forno apaga.</h2>
-    <div class="fita reveal">
-      <div style="padding:24px">
-        <p style="font-family:var(--sans);font-size:1.1rem;letter-spacing:.02em">
-          Última rodada às 23:30. Depois, o forno apaga.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<div class="comanda" id="comanda">
-  <div class="comanda-in">
-    <span class="comanda-total" id="comanda-total">0 itens · R$ 0</span>
-    <button class="comanda-enviar" id="comanda-enviar">Enviar comanda →</button>
-  </div>
+<div class="marquee">
+  <span>★ 4.8 no Google · +900 clientes · secagem em 40 min · entrega grátis · passadoria · </span>
+  <span>★ 4.8 no Google · +900 clientes · secagem em 40 min · entrega grátis · passadoria · </span>
 </div>
 
-<footer>
-  <div class="wrap">
-    <p>Forno da Vila · pizza a lenha em São Vicente · aberto 18h–23:30 · © 2026</p>
-    <p style="margin-top:8px"><a href="../../receita-zero/#planos" style="color:var(--fumaca)">Quer um site assim pro seu negócio?</a></p>
+<section id="simule">
+  <div class="wrap" style="text-align:center">
+    <span class="eyebrow reveal">Faça seu orçamento</span>
+    <h2 class="reveal">Quanto custa a lavagem?</h2>
+    <div class="quiz reveal">
+      <h3>Escolha o serviço e o peso</h3>
+      <label for="q-serv">Serviço</label>
+      <select id="q-serv">
+        <option>Por quilo</option><option>Self-service</option><option>Passadoria</option><option>Edredom</option>
+      </select>
+      <label for="q-peso">Peso/aprox</label>
+      <select id="q-peso">
+        <option>Até 5kg</option><option>Até 10kg</option><option>Até 20kg</option>
+      </select>
+      <div class="sug" id="q-sug">Veja o preço e peça em 1 clique →</div>
+    </div>
   </div>
+</section>
+
+<section id="servicos" class="serv">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow reveal">Serviços</span>
+      <h2 class="reveal">O que a gente lava</h2>
+    </div>
+    <div class="sgrid">
+      <div class="scard reveal"><img src="assets/l1.jpg" alt="Por quilo"><div class="body"><h4>Por quilo</h4><p class="desc">Lava, seca e dobra pra você.</p><div class="row"><span class="price">R$ 12</span><span class="sz">/kg</span></div></div></div>
+      <div class="scard reveal"><img src="assets/l2.jpg" alt="Self-service"><div class="body"><h4>Self-service</h4><p class="desc">Máquina e você opera.</p><div class="row"><span class="price">R$ 18</span><span class="sz">cesta</span></div></div></div>
+      <div class="scard reveal"><img src="assets/l3.jpg" alt="Passadoria"><div class="body"><h4>Passadoria</h4><p class="desc">Tudo passado e embalado.</p><div class="row"><span class="price">R$ 25</span><span class="sz">/kg</span></div></div></div>
+      <div class="scard reveal"><img src="assets/banner.jpg" alt="Edredom"><div class="body"><h4>Edredom</h4><p class="desc">Peças grandes e cortinas.</p><div class="row"><span class="price">R$ 40</span><span class="sz">peça</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="perks">
+  <div class="wrap">
+    <div class="head" style="text-align:center;margin-bottom:var(--s-2xl)">
+      <span class="eyebrow reveal">Por que a gente</span>
+      <h2 class="reveal">Lavanderia sem chatice</h2>
+    </div>
+    <div class="grid">
+      <div class="perk reveal"><div class="ico">🌀</div><h3>Secagem rápida</h3><p>Saias secas em 40 minutos, prontas pra dobrar.</p></div>
+      <div class="perk reveal"><div class="ico">📦</div><h3>Entrega grátis</h3><p>Busco e entrego suas roupas em São Vicente.</p></div>
+      <div class="perk reveal"><div class="ico">🌿</div><h3>Sabão neutro</h3><p>Opção hipoalergênica pra pele sensível.</p></div>
+      <div class="perk reveal"><div class="ico">⏱️</div><h3>Self-service 24h</h3><p>Máquinas disponíveis quando você precisar.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow reveal">Dúvidas</span>
+      <h2 class="reveal">Perguntas frequentes</h2>
+    </div>
+    <details class="reveal"><summary>Fazem lavagem de edredom?</summary><p>Sim, peças grandes e cortinas, à parte.</p></details>
+    <details class="reveal"><summary>Tem passadoria?</summary><p>Tudo passado e embalado a pedido.</p></details>
+    <details class="reveal"><summary>Vocês buscam?</summary><p>Sim, em São Vicente, sem taxa de entrega.</p></details>
+    <details class="reveal"><summary>Preciso levar sacola?</summary><p>Não, a gente fornece e pesa na hora.</p></details>
+  </div>
+</section>
+
+<section id="contato" class="contato">
+  <div class="wrap">
+    <span class="eyebrow reveal">Fala com a gente</span>
+    <h2 class="reveal">Solicite sua lavagem</h2>
+    <p class="reveal" style="color:var(--muted);margin:var(--s-md) 0 var(--s-xl)">Deixa o contato, a gente combina a busca no WhatsApp.</p>
+    <form class="reveal" onsubmit="return vcLead(this)">
+      <input name="nome" placeholder="Seu nome" required>
+      <input name="whatsapp" placeholder="Seu WhatsApp" required>
+      <input name="endereco" placeholder="Endereço de busca">
+      <textarea name="mensagem" rows="3" placeholder="O que precisa? (por quilo, passadoria, edredom...)"></textarea>
+      <button class="btn btn-solid" type="submit" style="justify-content:center">Enviar pedido</button>
+    </form>
+  </div>
+</section>
+
+<section id="queroassim" class="endcta">
+  <div class="wrap" style="text-align:center;max-width:680px;margin-inline:auto">
+    <span class="eyebrow reveal">Este é um site-exemplo</span>
+    <h2 class="reveal">Quer um site assim pro seu negócio?</h2>
+    <p class="reveal" style="color:var(--muted);margin-bottom:var(--s-xl)">A gente monta o seu em até 48h, com fotos do seu nicho e pedido integrado. Sem mensalidade escondida.</p>
+    <div class="reveal" style="display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center">
+      <a class="btn btn-solid" href="../vitrine-certa/#planos">Ver planos e preços</a>
+      <a class="btn btn-outline" href="../vitrine-certa/dashboard.html">Ver portfólio de exemplos</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Lava Rápido · lavanderia em São Vicente · © 2026</div>
 </footer>
 
 <script>
-/* Configuração fictícia de portfólio — trocar pelos dados reais */
-const CASA = {
-  abre:18, aquecendoAte:18.34, ultimoPedido:23.5, fecha:24,
-  picoDe:20, picoAte:22,
-  esperaBase:25, esperaPico:45,
-  whats:'5511970776856'
-};
-const $ = s => document.querySelector(s);
-const $$ = s => document.querySelectorAll(s);
-const clamp = (v,a,b) => Math.min(b, Math.max(a, v));
-
-function horaAgora(){
-  const forcada = new URLSearchParams(location.search).get('h');
-  if(forcada !== null && forcada !== '') return clamp(parseFloat(forcada), 0, 23.999);
-  const agora = new Date();
-  const h = agora.getHours();
-  const m = agora.getMinutes();
-  return h + m/60;
+var _rv=document.querySelectorAll('.reveal');
+_rv.forEach((el,i)=>{el.style.transitionDelay=(i%4*60)+'ms';});
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  _rv.forEach(el=>io.observe(el));
+  setTimeout(function(){_rv.forEach(el=>el.classList.add('in'));},1500);
+} else {
+  _rv.forEach(el=>el.classList.add('in'));
 }
 
-function estadoDe(h){
-  if(h >= CASA.ultimoPedido && h < CASA.fecha)
-    return {id:'ultima', nome:'Última rodada', sub:'pedidos até 23:30', calor:1, espera:CASA.esperaPico, cta:'Última rodada — faltam ' + Math.round((CASA.fecha-h)*60) + ' min', msg:'Oi! Dá tempo da última rodada?'};
-  if(h >= CASA.picoDe && h < CASA.picoAte)
-    return {id:'pico', nome:'Pico', sub:'o forno não descansa', calor:1, espera:CASA.esperaPico, cta:'Pedir agora (~'+CASA.esperaPico+' min)', msg:'Oi! Pedido (sei que tá no pico):'};
-  if(h >= CASA.aquecendoAte && h < CASA.ultimoPedido)
-    return {id:'aberto', nome:'Aberto', sub:'saindo do forno', calor:.72, espera:CASA.esperaBase, cta:'Pedir agora', msg:'Oi! Pedido:'};
-  if(h >= CASA.abre && h < CASA.aquecendoAte)
-    return {id:'aquecendo', nome:'Aquecendo', sub:'primeiras saem 18:20', calor:.38, espera:null, cta:'Entrar na primeira fornada', msg:'Oi! Pego a primeira fornada?'};
-  return {id:'fechado', nome:'Fechado', sub:'abre 18:00', calor:0, espera:null, cta:'Programar pedido pras 18h', msg:'Oi! Queria deixar um pedido pra hoje às 18h:'};
-}
+const qs=document.getElementById('q-serv'),qp=document.getElementById('q-peso'),qg=document.getElementById('q-sug');
+const preco={'Por quilo':12,'Self-service':18,'Passadoria':25,'Edredom':40};
+const mult={'Até 5kg':5,'Até 10kg':10,'Até 20kg':20};
+const fixo={'Self-service':1,'Edredom':1};
+function calc(){const s=qs.value,p=qp.value;const v=fixo[s]?preco[s]:preco[s]*mult[p];const un=fixo[s]?(s==='Edredom'?'peça':'cesta'):'/kg (≈'+mult[p]+'kg)';qg.innerHTML='<b>'+s+' — R$'+v+' ('+un+')</b><br><a class="wa-btn" href="https://wa.me/5511970776856?text='+encodeURIComponent('Quero '+s+' — R$'+v+' ('+un+')')+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.8 14.16c-.24.68-1.42 1.31-1.96 1.36-.5.05-1.05.27-3.55-.74-2.91-1.15-4.77-4.08-4.91-4.27-.14-.19-1.15-1.53-1.15-2.92 0-1.39.73-2.07 1-2.36.24-.29.53-.36.71-.36.18 0 .35 0 .51.01.16.01.39-.06.61.47.25.58.86 2 .94 2.14.08.14.13.31.03.5-.11.19-.16.31-.32.48-.16.17-.34.37-.48.5-.16.14-.33.29-.14.57.19.27.85 1.4 1.82 2.27 1.25 1.12 2.31 1.46 2.64 1.62.33.16.52.13.71-.08.2-.22.84-.98 1.06-1.31.22-.34.44-.28.74-.17.31.11 1.96.93 2.3 1.1.34.17.56.25.65.39.08.13.08.78-.16 1.46z"/></svg>Pedir no WhatsApp</a>';}
+qs.addEventListener('change',calc);qp.addEventListener('change',calc);calc();
 
-function diaDe(h){
-  if(h < 6) return 0;
-  if(h < 17) return 1;
-  if(h < 18) return 1 - (h - 17);
-  return 0;
-}
-
-function formataHora(h){
-  const hh = String(Math.floor(h)).padStart(2,'0');
-  const mm = String(Math.floor((h % 1) * 60)).padStart(2,'0');
-  return hh + ':' + mm;
-}
-
-let temaManual = null;
-let comanda = [];
-
-function pinta(){
-  const h = horaAgora();
-  const e = estadoDe(h);
-  const dia = temaManual === null ? diaDe(h) : temaManual;
-  document.documentElement.style.setProperty('--calor', e.calor);
-  document.documentElement.style.setProperty('--dia', dia.toFixed(3));
-  $('#relogio').textContent = formataHora(h);
-  $('#relogio').className = 'tab';
-  $('#pill').style.background = e.calor > 0 ? 'var(--brasa)' : 'transparent';
-  $('#pill-txt').textContent = e.espera ? e.nome + ' · ~' + e.espera + ' min' : e.nome;
-  $('#estado-nome').textContent = e.nome;
-  $('#estado-sub').textContent = e.sub;
-  $('#estado-espera').innerHTML = e.espera ? 'Saindo do forno em <b>~' + e.espera + ' minutos</b>.' : (e.id === 'fechado' ? 'O forno acende às 18h. Deixa o pedido programado.' : 'As primeiras saem às 18:20.');
-  $('#cta-txt').textContent = e.cta;
-  $('#cta').href = 'https://wa.me/' + CASA.whats + '?text=' + encodeURIComponent(e.msg);
-  $('#tema').textContent = dia > .5 ? '☀' : '☾';
-  const ag = $('#agulha');
-  const dentro = h >= CASA.abre && h < CASA.fecha;
-  ag.style.opacity = dentro ? '1' : '0';
-  ag.style.left = clamp((h - CASA.abre) / 6, 0, 1) * 100 + '%';
-  $$('.trilho a').forEach(a => a.style.fontWeight = (+a.textContent === Math.floor(h)) ? '600' : '500');
-}
-
-$('#tema').addEventListener('click', () => {
-  const atual = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--dia')) || 0;
-  temaManual = atual > .5 ? 0 : 1;
-  pinta();
-});
-
-/* Reveal por máscara — ativa ao rolar ou no carregamento */
-function checkReveal(){
-  $$('.reveal:not(.on)').forEach(el=>{
-    const r=el.getBoundingClientRect();
-    if(r.top < innerHeight*0.8) el.classList.add('on');
-  });
-}
-addEventListener('scroll', checkReveal, {passive:true});
-/* ativa todos no carregamento (site de portfólio: prioriza acessibilidade) */
-setTimeout(() => $$('.reveal').forEach(el => el.classList.add('on')), 100);
-
-/* Comanda */
-$$('.add').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const sabor = btn.dataset.sabor;
-    const preco = +btn.dataset.preco;
-    comanda.push({sabor, preco});
-    atualizaComanda();
-  });
-});
-
-function atualizaComanda(){
-  const total = comanda.reduce((s, i) => s + i.preco, 0);
-  $('#comanda-total').textContent = comanda.length + ' itens · R$ ' + total;
-  $('#comanda').classList.toggle('ativa', comanda.length > 0);
-}
-
-$('#comanda-enviar').addEventListener('click', () => {
-  const total = comanda.reduce((s, i) => s + i.preco, 0);
-  const itens = comanda.map(i => '• ' + i.sabor + ' — R$' + i.preco).join('\n');
-  const msg = 'Pedido — ' + formataHora(horaAgora()) + '\n' + itens + '\nTotal R$' + total;
-  window.open('https://wa.me/' + CASA.whats + '?text=' + encodeURIComponent(msg), '_blank');
-});
-
-/* Scroll-driven: o scroll é a noite passando */
-if(!CSS.supports('animation-timeline','scroll()')){
-  let alvo = 0, cur = 0, rodando = false;
-  const passo = () => {
-    cur += (alvo - cur) * 0.06;
-    document.documentElement.style.setProperty('--noite', cur.toFixed(4));
-    if(Math.abs(alvo - cur) > 0.0008) requestAnimationFrame(passo); else rodando = false;
-  };
-  addEventListener('scroll', () => {
-    const max = document.documentElement.scrollHeight - innerHeight;
-    alvo = max > 0 ? clamp(scrollY / max, 0, 1) : 0;
-    if(!rodando){ rodando = true; requestAnimationFrame(passo); }
-  }, {passive:true});
-}
-
-pinta();
-setInterval(pinta, 20000);
+function vcLead(f){var d={};new FormData(f).forEach(function(v,k){d[k]=v});if(d.nome||d.whatsapp){captureLead({nome:d.nome,whatsapp:d.whatsapp,cidade:(d.endereco||''),nicho:location.pathname.split('/')[2],origem:'contato',mensagem:(d.mensagem||'')});}var d={};new FormData(f).forEach(function(v,k){d[k]=v});var m='Lead Vitrine Certa - '+location.pathname.split("/")[1]+'\n';for(var k in d){if(d[k])m+=k+': '+d[k]+'\n';}window.open('https://wa.me/5511970776856?text='+encodeURIComponent(m),'_blank');return false;}
 </script>
+<!-- PARAMS VC -->
+<script>
+(function(){
+  const p=new URLSearchParams(location.search);
+  const nome=p.get('nome'), cid=p.get('cidade');
+  if(!nome && !cid) return;
+  const nn=nome||'Lavanderia', cc=cid||'São Vicente';
+  const full=nn+' em '+cc;
+  // troca ocorrências conhecidas
+  const map={
+    'Lavanderia em São Vicente': full,
+    'Lavanderia em São Vicente': full,
+    'em São Vicente': 'em '+cc,
+    'Em São Vicente': 'Em '+cc,
+    'São Vicente': cc
+  };
+  document.querySelectorAll('.eyebrow,title,meta[name=description],.hero p.lede,.perk p,.faq p,footer').forEach(el=>{
+    if(el.tagName==='META'){ el.setAttribute('content', el.getAttribute('content').replace(/São Vicente/g, cc)); }
+    else { let t=el.textContent; for(const k in map){ if(t.includes(k)) t=t.replace(new RegExp(k,'g'),map[k]); } el.textContent=t; }
+  });
+  // h1 do hero vira o nome do lugar (preview personalizado)
+  const h1=document.querySelector('.hero h1');
+  if(h1){ h1.innerHTML=full.replace(/(\w+)\s+(\w+)/, '$1 <em>$2</em>'); }
+  document.title=full;
+})();
+</script>
+  <script src="../../references/vc-photos.js"></script>
+  <script src="../../references/leads.js"></script>
 </body>
 </html>

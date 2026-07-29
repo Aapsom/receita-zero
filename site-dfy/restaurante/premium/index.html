@@ -1,135 +1,476 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forno da Vila — pizza a lenha em São Vicente</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- SEO Vitrine Certa -->
+<meta property="og:title" content="Restaurante em São Vicente — site Premium | Vitrine Certa">
+<meta property="og:description" content="Restaurante com forno a lenha, cardápio online e pedido no WhatsApp. Site Premium da Vitrine Certa, pronto em 48h. A partir de R<meta name="viewport" content="width=device-width, initial-scale=1">49/mês.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://receitazero.github.io/receita-zero/site-dfy/restaurante/premium/index.html">
+<meta property="og:image" content="https://receitazero.github.io/receita-zero/site-dfy/restaurante/premium/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Restaurante em São Vicente",
+  "description": "Restaurante com forno a lenha, cardápio online e pedido no WhatsApp. Site Premium da Vitrine Certa, pronto em 48h. A partir de R49/mês.",
+  "url": "https://receitazero.github.io/receita-zero/site-dfy/restaurante/premium/index.html",
+  "image": "https://receitazero.github.io/receita-zero/site-dfy/restaurante/premium/preview.png",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "São Vicente",
+    "addressRegion": "SP",
+    "addressCountry": "BR"
+  },
+  "telephone": "+555511970776856",
+  "priceRange": "R49-R99",
+  "provider": {
+    "@type": "Organization",
+    "name": "Vitrine Certa",
+    "url": "https://receitazero.github.io/receita-zero/receita-zero/"
+  }
+}
+</script>
+<title>Restaurante Sabor da Casa — Campinas</title>
+  <!-- Vitrine Certa Analytics -->
+<meta name="google-site-verification" content="rnYREYB-JR9uyXWd7UwSkGJn4kyjyVpHakO6lgSxJ-w">
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){
+  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window,document,"clarity","script","xrpcs8vw2o");
+</script>
+  
+
+
+  
 <meta name="description" content="Forno a lenha em São Vicente. Massa de 48 horas. Aberto das 18h às 23h30.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
 <style>
-/* PARALELO — redesign alternativo da pizzaria premium
-   Conceito: "A NOITE INTEIRA" — mesmo plano, execução diferente
-   Diferença: motion CSS pura, sem JS de relógio odômetro, sem SVG complexo */
+/* Hallmark · macrostructure: 14 Narrative Workflow · Vitrine Certa / Restaurante Premium
+   tema=hora-do-dia · acento=brasa (único) · display=Instrument Serif · dados=Instrument Sans tabular
+   pre-emit critique: P5 H4 E4 S5 R4 V5
+   Tokens: ./DESIGN.md — nenhum hex solto fora do :root (gate 48) */
+
+@property --dia   { syntax:'<number>'; inherits:true; initial-value:0 }
+@property --calor { syntax:'<number>'; inherits:true; initial-value:0 }
+@property --noite { syntax:'<number>'; inherits:true; initial-value:0 }
+
 :root{
-  /* NOITE */
+  /* conjunto NOITE */
   --n-tinta:#141A2A; --n-carvao:#0C1120; --n-tinta2:#1C2438; --n-linha:#2B3450;
-  --n-giz:#EDEFF5; --n-fumaca:#98A0B8; --n-brasa:#FF5A1F; --n-nucleo:#FFF1E6;
-  /* DIA */
+  --n-giz:#EDEFF5;   --n-fumaca:#98A0B8; --n-brasa:#FF5A1F;  --n-nucleo:#FFF1E6;
+  /* conjunto DIA — "cal e sol" */
   --d-tinta:#ECEDF1; --d-carvao:#DDDFE7; --d-tinta2:#F7F8FB; --d-linha:#D3D7E2;
-  --d-giz:#141A2A; --d-fumaca:#5C6478; --d-brasa:#D6410E; --d-nucleo:#8A2B06;
-  /* resolvidos */
-  --tinta:color-mix(in oklab, var(--n-tinta), var(--d-tinta) calc(var(--dia,0)*100%));
-  --carvao:color-mix(in oklab, var(--n-carvao), var(--d-carvao) calc(var(--dia,0)*100%));
-  --tinta2:color-mix(in oklab, var(--n-tinta2), var(--d-tinta2) calc(var(--dia,0)*100%));
-  --linha:color-mix(in oklab, var(--n-linha), var(--d-linha) calc(var(--dia,0)*100%));
-  --giz:color-mix(in oklab, var(--n-giz), var(--d-giz) calc(var(--dia,0)*100%));
-  --fumaca:color-mix(in oklab, var(--n-fumaca), var(--d-fumaca) calc(var(--dia,0)*100%));
-  --brasa:color-mix(in oklab, var(--n-brasa), var(--d-brasa) calc(var(--dia,0)*100%));
+  --d-giz:#141A2A;   --d-fumaca:#5C6478; --d-brasa:#D6410E;  --d-nucleo:#8A2B06;
+  /* resolvidos por --dia (0 = noite, 1 = dia) */
+  --tinta : color-mix(in oklab, var(--n-tinta),  var(--d-tinta)  calc(var(--dia)*100%));
+  --carvao: color-mix(in oklab, var(--n-carvao), var(--d-carvao) calc(var(--dia)*100%));
+  --tinta2: color-mix(in oklab, var(--n-tinta2), var(--d-tinta2) calc(var(--dia)*100%));
+  --linha : color-mix(in oklab, var(--n-linha),  var(--d-linha)  calc(var(--dia)*100%));
+  --giz   : color-mix(in oklab, var(--n-giz),    var(--d-giz)    calc(var(--dia)*100%));
+  --fumaca: color-mix(in oklab, var(--n-fumaca), var(--d-fumaca) calc(var(--dia)*100%));
+  --brasa : color-mix(in oklab, var(--n-brasa),  var(--d-brasa)  calc(var(--dia)*100%));
+  --nucleo: color-mix(in oklab, var(--n-nucleo), var(--d-nucleo) calc(var(--dia)*100%));
   --wa:#25D366;
+  /* escala do FOGO — só existe dentro do forno, nunca na página.
+     Não entra na paleta: é a temperatura da chama, do núcleo branco à borda. */
+  --fogo-nucleo:#FFE9C4; --fogo-alto:#FFA83D; --fogo-medio:#FF6A22; --fogo-borda:#C9330F;
+  --cinza:#C9BFAE;   /* cinzas do leito: pálidas, com a brasa aparecendo por baixo */
+
   --serif:'Instrument Serif',Georgia,serif;
   --sans:'Instrument Sans',system-ui,sans-serif;
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:40px; --s7:64px; --s8:104px;
   --ease:cubic-bezier(.22,1,.36,1);
+  /* fundo/bordas fazem crossfade; a COR DO TEXTO vira de uma vez no meio do
+     caminho (delay .25s, duração 0) — senão texto e fundo se encontram no
+     mesmo cinza e o contraste vai a 1:1 no meio da transição. */
+  --transicao:background-color .5s linear, border-color .5s linear, color 0s linear .25s;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{overflow-x:clip}
-body{background:var(--tinta);color:var(--giz);font-family:var(--sans);font-size:1.0625rem;line-height:1.55;transition:background .6s, color .6s}
-h1,h2{font-family:var(--serif);font-weight:400;line-height:.98;letter-spacing:-.02em}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip}                                  /* gate 34: clip, não hidden */
+html{scroll-behavior:smooth}
+/* --noite: rolar a página É a noite passando — o fundo vai fechando.
+   Nativo onde houver scroll(); o fallback em rAF no fim do arquivo cobre o resto.
+   Sem esta animação o --noite ficava parado em 0 no Chrome (o fallback JS só
+   roda quando scroll() NÃO existe) e a variável não fazia nada. */
+@keyframes anoitecer{from{--noite:0}to{--noite:1}}
+@supports (animation-timeline:scroll()){
+  html{animation:anoitecer 1s linear both;animation-timeline:scroll(root)}
+}
+body{
+  background:color-mix(in oklab, var(--tinta), var(--carvao) calc(var(--noite)*60%));
+  color:var(--giz);
+  font-family:var(--sans); font-size:1.0625rem; line-height:1.55;
+  -webkit-font-smoothing:antialiased; transition:var(--transicao);
+}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:.98;letter-spacing:-.02em}
 em{font-style:italic}
-.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
-.tab{font-variant-numeric:tabular-nums}
-.reveal{clip-path:inset(100% 0 0 0);opacity:.001;transition:clip-path .52s var(--ease),opacity .52s var(--ease)}
-.reveal.on{clip-path:inset(0);opacity:1}
-/* RÉGUA */
-.regua{position:fixed;top:0;left:0;right:0;z-index:40;background:color-mix(in oklab, var(--tinta) 88%,transparent);backdrop-filter:blur(8px)}
-.regua-in{display:flex;align-items:center;gap:24px;padding:10px 24px}
+.tab{font-variant-numeric:tabular-nums;font-feature-settings:'tnum'}
+/* inline-size:100% é obrigatório: dentro de um flex column, margin-inline:auto
+   cancela o stretch do cross-axis e o wrap encolhe pro tamanho do conteúdo. */
+.wrap{inline-size:100%;max-inline-size:1180px;margin-inline:auto;padding-inline:var(--s5)}
+:focus-visible{outline:2px solid var(--brasa);outline-offset:3px;border-radius:2px}
+
+/* ── RÉGUA DA NOITE (nav) ───────────────────────────────────────────────
+   gate 42: NÃO é wordmark-esquerda + links + botão-direita. É uma régua
+   horária; as marcas são as âncoras e o ponto é a hora real.            */
+.regua{position:fixed;inset-block-start:0;inset-inline:0;z-index:40;
+  background:color-mix(in oklab, var(--tinta) 88%, transparent);
+  backdrop-filter:blur(8px);transition:var(--transicao)}
+.regua-in{display:flex;align-items:center;gap:var(--s5);
+  padding:10px var(--s5);max-width:1180px;margin-inline:auto}
 .trilho{position:relative;flex:1;height:34px}
 .trilho ol{position:absolute;inset:0;display:flex;list-style:none;align-items:center}
-.trilho li{flex:1;position:relative}
-.trilho a{font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.02em;color:var(--fumaca);text-decoration:none;padding:2px 0;white-space:nowrap}
-.trilho::after{content:'';position:absolute;bottom:6px;left:0;right:0;height:1px;background:var(--linha)}
-.agulha{position:absolute;bottom:2px;width:9px;height:9px;border-radius:999px;background:var(--fumaca);transition:left .8s var(--ease)}
-.relogio{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:500}
-.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--linha);border-radius:999px;padding:3px 10px;font-size:.74rem;font-weight:600}
-.ponto{width:7px;height:7px;border-radius:999px}
-.tema{background:none;border:1px solid var(--linha);border-radius:999px;color:var(--fumaca);width:32px;height:32px;cursor:pointer;font-size:.9rem;line-height:1;display:grid;place-items:center}
-/* HERO */
-.hero{min-height:100dvh;display:flex;flex-direction:column;justify-content:center;padding:64px 24px}
-.hero-grid{display:grid;grid-template-columns:1fr 1.02fr;gap:40px;align-items:center}
-.marca{font-family:var(--serif);font-size:1.05rem;margin-bottom:24px}
-.hora-secao{font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
-.hero h1{font-size:clamp(2.75rem,7vw,5.5rem);margin-bottom:16px}
-.hero h1 em{color:var(--brasa)}
-.local{max-width:34ch;margin-bottom:32px}
-.local b{font-weight:500}
-.estado{border:1px solid var(--linha);border-radius:2px;padding:24px;max-width:430px;background:var(--tinta2)}
+.trilho li{flex:1;position:relative;display:flex;justify-content:flex-start}
+.trilho a{font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.02em;
+  color:var(--fumaca);text-decoration:none;padding:2px 0;white-space:nowrap;transition:color .25s}
+.trilho a:hover{color:var(--giz)}
+.trilho a[aria-current="true"]{color:var(--giz)}
+.trilho::after{content:'';position:absolute;inset-inline:0;inset-block-end:6px;
+  height:1px;background:var(--linha)}
+.agulha{position:absolute;inset-block-end:2px;inline-size:9px;block-size:9px;border-radius:999px;
+  background:color-mix(in oklab, var(--fumaca), var(--brasa) calc(var(--calor)*100%));
+  translate:-4px 0;transition:left .8s var(--ease), background-color .6s linear;
+  box-shadow:0 0 0 0 var(--brasa)}
+.agulha[data-quente="1"]{animation:pulso 4.7s infinite}
+@keyframes pulso{
+  0%{box-shadow:0 0 0 0 color-mix(in oklab,var(--brasa) 55%,transparent)}
+  17%{box-shadow:0 0 0 5px transparent}
+  23%{box-shadow:0 0 0 2px color-mix(in oklab,var(--brasa) 40%,transparent)}
+  61%{box-shadow:0 0 0 7px transparent}
+  79%{box-shadow:0 0 0 3px color-mix(in oklab,var(--brasa) 30%,transparent)}
+  100%{box-shadow:0 0 0 0 transparent}
+}
+.relogio{display:flex;align-items:center;gap:var(--s2);font-size:.82rem;font-weight:500;
+  color:var(--giz);white-space:nowrap}
+.hh{display:inline-flex;align-items:center;letter-spacing:-.02em;line-height:1.2}
+.dig{display:inline-block;block-size:1.2em;overflow:hidden;inline-size:1ch;text-align:center}
+.dig i{display:block;font-style:normal;line-height:1.2;transition:transform .45s var(--ease)}
+.dig i b{display:block;font-weight:inherit;line-height:1.2}
+.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--linha);
+  border-radius:999px;padding:3px 10px;font-size:.74rem;font-weight:600;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--fumaca);transition:var(--transicao)}
+.pill[data-on="1"]{color:var(--giz);border-color:color-mix(in oklab,var(--brasa) 45%,var(--linha))}
+.ponto{inline-size:7px;block-size:7px;border-radius:999px;background:currentColor}
+.pill[data-on="1"] .ponto{background:var(--brasa)}
+.tema{background:none;border:1px solid var(--linha);border-radius:999px;color:var(--fumaca);
+  inline-size:32px;block-size:32px;cursor:pointer;font-size:.9rem;line-height:1;
+  display:grid;place-items:center;transition:var(--transicao)}
+.tema:hover{color:var(--giz)}
+
+/* ── HERO ─────────────────────────────────────────────────────────────
+   gate 6: nada centralizado no mesmo eixo. Diptico assimétrico 55/45.  */
+.hero{min-block-size:100dvh;display:flex;flex-direction:column;justify-content:center;
+  padding-block:calc(var(--s7) + 24px) var(--s5);position:relative}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);
+  gap:var(--s6);align-items:center}
+.proxima-fx{position:absolute;inset-block-end:var(--s5);inset-inline:0}
+.proxima{display:inline-flex;align-items:baseline;gap:var(--s2);text-decoration:none;
+  font-size:.78rem;font-weight:600;letter-spacing:.12em;color:var(--fumaca);
+  transition:color .25s}
+.proxima:hover{color:var(--giz)}
+.proxima span{font-family:var(--serif);font-size:1rem;letter-spacing:0;font-weight:400}
+.marca{font-family:var(--serif);font-size:1.05rem;letter-spacing:.01em;color:var(--fumaca);
+  margin-block-end:var(--s6)}
+.marca b{color:var(--giz);font-weight:400}
+.hora-secao{font-size:.8rem;font-weight:600;letter-spacing:.14em;color:var(--fumaca);
+  margin-block-end:var(--s3)}                     /* gate 54: empilhado, nunca ao lado */
+.hero h1{font-size:clamp(2.75rem,7vw,5.5rem);margin-block-end:var(--s4)}
+.hero h1 em{color:color-mix(in oklab, var(--giz), var(--brasa) calc(var(--calor)*60%))}
+.local{color:var(--fumaca);max-inline-size:34ch;margin-block-end:var(--s6)}
+.local b{color:var(--giz);font-weight:500}
+
+.estado{border:1px solid var(--linha);border-radius:2px;padding:var(--s5);
+  max-inline-size:430px;background:var(--tinta2);transition:var(--transicao)}
+.estado-l1{display:flex;align-items:baseline;gap:var(--s3);margin-block-end:var(--s2)}
 .estado-nome{font-family:var(--serif);font-size:1.5rem}
 .estado-sub{color:var(--fumaca);font-size:.9rem}
-.estado-espera{font-size:.9rem;color:var(--fumaca);margin-top:8px}
+.estado-espera{font-size:.9rem;color:var(--fumaca);margin-block-end:var(--s4)}
 .estado-espera b{color:var(--giz);font-weight:500}
-.wa-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--wa);color:#0B1F13;font-family:var(--sans);font-weight:600;font-size:.95rem;padding:.72rem 1.15rem;border-radius:999px;text-decoration:none;box-shadow:0 10px 24px -12px color-mix(in oklab,var(--wa) 70%,transparent);margin-top:16px}
-.wa-btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px color-mix(in oklab,var(--wa) 80%,transparent)}
-/* FORNO (SVG simples) */
-.forno{width:100%;height:auto;display:block}
-.forno .tijolo{fill:none;stroke:var(--linha);stroke-width:1.1}
-.forno .arco{fill:var(--tinta2);stroke:var(--linha);stroke-width:1.5}
-.forno .boca{fill:var(--carvao)}
-.forno .piso{fill:var(--tinta2)}
-.forno .lenha{fill:var(--tinta2)}
-.forno .massa{fill:var(--giz);opacity:.8}
-.forno .crosta{fill:none;stroke:var(--brasa);stroke-width:2;opacity:calc(.3+var(--calor,.5)*.55)}
-.forno .cobertura{fill:var(--brasa);opacity:calc(.35+var(--calor,.5)*.55)}
-.forno .chama{opacity:var(--calor,.5);animation:brasa 4.7s infinite}
-@keyframes brasa{0%{filter:brightness(1)}17%{filter:brightness(1.22)}23%{filter:brightness(.93)}61%{filter:brightness(1.14)}79%{filter:brightness(.97)}100%{filter:brightness(1)}}
-.forma{transform-box:fill-box;transform-origin:center;animation:gira 26s linear infinite}
+.wa-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--wa);color:#0B1F13;
+  font-family:var(--sans);font-weight:600;font-size:.95rem;padding:.72rem 1.15rem;
+  border-radius:999px;text-decoration:none;
+  box-shadow:0 10px 24px -12px color-mix(in oklab,var(--wa) 70%,transparent);
+  transition:transform .2s var(--ease), box-shadow .2s}
+.wa-btn:hover{transform:translateY(-2px);
+  box-shadow:0 14px 30px -12px color-mix(in oklab,var(--wa) 80%,transparent)}
+.wa-btn svg{inline-size:17px;block-size:17px;fill:currentColor}
+
+/* ── FORNO (SVG autoral — sem foto de banco) ────────────────────────
+   O VÃO do forno é escuro nos dois temas: por dentro, forno é forno.  */
+.forno{inline-size:100%;block-size:auto;display:block}
+.forno .arco{fill:url(#g-domo);stroke:var(--linha);stroke-width:1.4}
+.forno .aduelas{fill:url(#g-alvenaria);stroke:var(--linha);stroke-width:1.2}
+.forno .junta-piso{fill:none;stroke-width:.9;opacity:.55;
+  stroke:color-mix(in oklab,var(--n-tinta2),var(--n-carvao) 45%)}
+.forno .fuligem{fill:url(#g-fuligem)}
+.forno .bancada{fill:url(#g-bancada);stroke:var(--linha);stroke-width:1.4}
+.forno .boca{fill:color-mix(in oklab, var(--n-carvao), var(--n-tinta2) calc(14% + var(--dia)*16%))}
+.forno .fundo{fill:url(#g-fundo)}
+.forno .piso{fill:url(#g-piso)}
+.forno .lenha{fill:color-mix(in oklab,var(--n-carvao),var(--fogo-borda) 26%)}
+.forno .lenha-topo{fill:color-mix(in oklab,var(--n-carvao),var(--fogo-alto) calc(20% + var(--calor)*35%))}
+.forno .brasinha{fill:var(--fogo-medio)}
+.forno .cinzas{fill:var(--cinza);opacity:calc(.25 + var(--calor)*.5)}
+.forno .oclusao{fill:var(--n-carvao);opacity:.55}   /* contato: nada flutua */
+.forno .rim{fill:none;stroke:var(--fogo-medio);stroke-width:2;
+  opacity:calc(var(--calor)*.5);filter:blur(1.5px)}
+.forno .grao{fill:url(#g-grao);opacity:.5;mix-blend-mode:overlay}
+/* forno apagado é forno VAZIO: a prato entra quando o fogo acende.
+   Estende a regra "a cor só existe quando o forno está aceso". */
+.forma{transform-box:fill-box;transform-origin:center;animation:gira 26s linear infinite;
+  opacity:var(--calor);transition:opacity .6s linear}
 .forno:hover .forma{animation-play-state:paused}
 @keyframes gira{to{rotate:360deg}}
-/* SEÇÕES */
-.secao{padding:80px 0;border-top:1px solid var(--linha)}
-.hora-secao{display:block;text-align:center;margin-bottom:24px}
-.secao h2{font-size:clamp(1.9rem,4vw,3rem);max-width:22ch;margin:0 auto 40px;text-align:center}
-.fita{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--linha)}
-.prova{padding:24px;border-left:1px solid var(--linha)}
-.prova:first-child{border-left:0}
-.prova .quando{font-size:.78rem;font-weight:600;letter-spacing:.12em;color:var(--fumaca);margin-bottom:8px}
-.prova h3{font-size:1.35rem;margin-bottom:8px}
-.prova p{color:var(--fumaca);font-size:.94rem;max-width:28ch}
-.prova svg{margin-bottom:16px}
-.prova circle{fill:none;stroke:var(--fumaca);stroke-width:1.2}
-/* PAINEL DE FORNO */
-.painel{border-top:1px solid var(--linha)}
-.painel .fita{border:0}
-.linha-pizza{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--linha);font-family:var(--sans)}
-.linha-pizza:last-child{border-bottom:0}
-.linha-pizza .tempo{font-variant-numeric:tabular-nums;font-weight:600}
-.linha-pizza .nome{font-family:var(--serif)}
-.linha-pizza .preco{font-variant-numeric:tabular-nums}
-.linha-pizza .add{background:none;border:1px solid var(--linha);border-radius:999px;padding:4px 10px;cursor:pointer;font-size:.8rem}
-/* COMANDA */
-.comanda{position:fixed;bottom:0;left:0;right:0;background:var(--carvao);border-top:1px solid var(--linha);transform:translateY(100%);transition:transform .3s var(--ease)}
-.comanda.ativa{transform:translateY(0)}
-.comanda-in{display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
-.comanda-total{font-family:var(--serif);font-size:1.25rem}
-.comanda-enviar{background:var(--wa);color:#0B1F13;border:none;border-radius:999px;padding:8px 16px;font-weight:600;cursor:pointer}
-/* RODAPÉ */
-footer{border-top:1px solid var(--linha);padding:24px;text-align:center;font-size:.85rem}
-@media(max-width:860px){
-  .hero{min-height:auto;padding:40px 16px}
-  .hero-grid{grid-template-columns:1fr}
-  .fita{grid-template-columns:1fr}
-  .prova{border-left:0;border-top:1px solid var(--linha}
-  .prova:first-child{border-top:0}
+/* prato: massa pálida, molho, mozarela em manchas, manjericão e o char do
+   cornicione (leopardagem) — é o que separa "disco laranja" de prato */
+.massa{fill:color-mix(in oklab,var(--n-giz),var(--fogo-alto) 58%)}
+.molho{fill:var(--fogo-borda);opacity:.72}
+.queijo{fill:color-mix(in oklab,var(--n-giz),var(--fogo-nucleo) 55%);opacity:.92}
+.manjericao{fill:#4E7A45;opacity:.9}
+.manjericao .veia{fill:none;stroke:#8FB07F;stroke-width:.8;opacity:.7}
+.pontinhos{fill:var(--n-carvao);opacity:.45}   /* orégano e pimenta sobre o queijo */
+/* profundidade da prato — as tres camadas ficam FORA do grupo que gira,
+   senao a luz e a espessura girariam junto com a massa */
+.massa-lado{fill:color-mix(in oklab,var(--n-carvao),var(--fogo-alto) 34%);
+  opacity:calc(var(--calor)*.9);transition:opacity .6s linear}  /* espessura do cornicione */
+.sombra-interna{fill:color-mix(in oklab,var(--n-carvao),var(--fogo-borda) 55%);opacity:.5} /* a borda projeta sombra no molho */
+.luz-prato{fill:url(#g-luz-prato)}               /* fogo esta a direita: la e mais claro */
+.contato-prato{fill:var(--n-carvao);opacity:calc(.55 * var(--calor));
+  transition:opacity .6s linear}
+.char{fill:color-mix(in oklab,var(--n-carvao),var(--fogo-borda) 30%);
+  opacity:calc(.45 + var(--calor)*.35)}
+.labareda{opacity:calc(var(--calor)*.92)}
+.labareda path{fill:url(#g-chama);transform-box:fill-box;transform-origin:bottom center}
+/* fagulhas: o que prova que o fogo está vivo e não é um adesivo */
+.faisca{fill:var(--fogo-nucleo);transform-box:fill-box;transform-origin:center}
+.faisca:nth-child(1){animation:subir 3.1s linear infinite}
+.faisca:nth-child(2){animation:subir 4.3s linear infinite -1.4s}
+.faisca:nth-child(3){animation:subir 2.6s linear infinite -.6s}
+.faisca:nth-child(4){animation:subir 3.7s linear infinite -2.2s}
+@keyframes subir{
+  0%  {transform:translateY(8px) scale(1);opacity:.9}
+  60% {opacity:.45}
+  100%{transform:translateY(-38px) scale(.4);opacity:0}
 }
-@media(prefers-reduced-motion:reduce){
+.labareda g:nth-child(1) path{animation:lamber 2.3s ease-in-out infinite}
+.labareda g:nth-child(2) path{animation:lamber 3.1s ease-in-out infinite -.7s}
+.labareda g:nth-child(3) path{animation:lamber 1.9s ease-in-out infinite -1.3s}
+.labareda g:nth-child(4) path{animation:lamber 2.7s ease-in-out infinite -.4s}
+.labareda g:nth-child(5) path{animation:lamber 3.7s ease-in-out infinite -2.1s}
+@keyframes lamber{                    /* durações primas entre si: nunca sincronizam */
+  0%,100%{transform:scaleY(1)   translateY(0)}
+  30%    {transform:scaleY(1.18) translateY(-2px)}
+  55%    {transform:scaleY(.9)  translateY(1px)}
+  78%    {transform:scaleY(1.1) translateY(-1px)}
+}
+.chama{opacity:var(--calor);animation:brasa 4.7s infinite}
+@keyframes brasa{                                  /* 4,7s = primo: não fecha loop óbvio */
+  0%{filter:brightness(1)}   17%{filter:brightness(1.22)}
+  23%{filter:brightness(.93)} 61%{filter:brightness(1.14)}
+  79%{filter:brightness(.97)} 100%{filter:brightness(1)}
+}
+
+/* ── SEÇÃO: A MASSA ───────────────────────────────────────────────── */
+.secao{padding-block:var(--s8);border-block-start:1px solid var(--linha);transition:var(--transicao)}
+.secao h2{font-size:clamp(1.9rem,4vw,3rem);max-inline-size:22ch;margin-block-end:var(--s6)}
+.fita{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-block:1px solid var(--linha)}
+.prova{padding:var(--s5) var(--s5) var(--s6);border-inline-start:1px solid var(--linha)}
+.prova:first-child{border-inline-start:0}
+.prova .quando{font-size:.78rem;font-weight:600;letter-spacing:.12em;color:var(--fumaca);
+  margin-block-end:var(--s3)}
+.prova h3{font-size:1.35rem;margin-block-end:var(--s2)}
+.prova p{color:var(--fumaca);font-size:.94rem;max-inline-size:28ch}
+.prova svg{margin-block-end:var(--s4);display:block}
+.prova circle{fill:none;stroke:var(--fumaca);stroke-width:1.2}
+
+/* reveal por MÁSCARA — o conteúdo sai do forno (não é fade+slide)
+   ATENÇÃO: o estado escondido NÃO pode ficar no próprio alvo do observer.
+   clip-path:inset(100%) zera a área visível do elemento e o IntersectionObserver
+   passa a medir intersectionRatio 0 pra sempre — a seção nunca aparecia.
+   Quem é observado é a SEÇÃO (nunca clipada); o clip mora nos filhos.
+   E o estado escondido só existe com JS ligado (html.js), senão um erro de
+   script deixaria a página inteira invisível. */
+.reveal{clip-path:inset(0 0 0 0);opacity:1;
+  transition:clip-path .52s var(--ease), opacity .52s var(--ease)}
+.js .observa:not(.visto) .reveal{clip-path:inset(100% 0 0 0);opacity:.001}
+
+/* ── PAINEL DE FORNO (19:30) ────────────────────────────────────────
+   gate 3: não é grid de 3 cards iguais. São LINHAS, tipo painel de
+   embarque, ordenadas por tempo de forno. A coluna de minutos alinhada
+   por dígito é o gráfico.                                            */
+.filtros{display:flex;gap:var(--s2);flex-wrap:wrap;margin-block-end:var(--s5)}
+.chip{background:none;border:1px solid var(--linha);border-radius:999px;
+  padding:6px 14px;font:500 .82rem/1 var(--sans);color:var(--fumaca);cursor:pointer;
+  transition:var(--transicao)}
+.chip:hover{color:var(--giz)}
+.chip[aria-pressed="true"]{color:var(--giz);
+  border-color:color-mix(in oklab,var(--brasa) 55%,var(--linha))}
+.painel{border-block:1px solid var(--linha)}
+.item{display:grid;grid-template-columns:92px minmax(0,1fr) auto 40px;
+  gap:var(--s4);align-items:baseline;padding:var(--s4) 0;
+  border-block-start:1px solid var(--linha)}
+.item:first-child{border-block-start:0}
+.item[hidden]{display:none}
+.item .t{font-variant-numeric:tabular-nums;font-weight:500;font-size:.92rem;
+  color:color-mix(in oklab,var(--fumaca),var(--brasa) calc(var(--calor)*45%))}
+.item .n{display:block;font-family:var(--serif);font-size:1.3rem;line-height:1.15}
+.item .d{display:block;color:var(--fumaca);font-size:.88rem;margin-block-start:3px}
+.item .p{font-variant-numeric:tabular-nums;font-weight:500;font-size:1rem}
+.add{inline-size:34px;block-size:34px;border-radius:999px;cursor:pointer;
+  background:none;border:1px solid var(--linha);color:var(--giz);
+  font:400 1.2rem/1 var(--sans);transition:var(--transicao),transform .18s var(--ease)}
+.add:hover{border-color:var(--brasa);transform:scale(1.08)}
+.vazio{padding-block:var(--s5);color:var(--fumaca);font-size:.92rem}
+
+/* ── COMANDAS PENDURADAS (21:00) ─────────────────────────────────── */
+.tickets{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s5);
+  margin-block-end:var(--s7)}
+.ticket{position:relative;background:var(--tinta2);border:1px solid var(--linha);
+  border-block-end-style:dashed;padding:var(--s5) var(--s4) var(--s4);
+  transition:var(--transicao)}
+.ticket:nth-child(1){rotate:-1.4deg}
+.ticket:nth-child(2){rotate:.7deg}
+.ticket:nth-child(3){rotate:-.5deg}
+.ticket::before{content:'';position:absolute;inset-block-start:9px;inset-inline-start:50%;
+  translate:-50% 0;inline-size:8px;block-size:8px;border-radius:999px;
+  background:var(--tinta);border:1px solid var(--linha)}
+.ticket .carimbo{font-variant-numeric:tabular-nums;font-size:.74rem;font-weight:600;
+  letter-spacing:.1em;color:var(--fumaca);margin-block-end:var(--s3)}
+.ticket p{font-family:var(--serif);font-size:1.16rem;line-height:1.3}
+.ticket .quem{display:block;margin-block-start:var(--s3);font-family:var(--sans);
+  font-size:.84rem;color:var(--fumaca)}
+.numeros{display:grid;grid-template-columns:repeat(3,1fr);border-block-start:1px solid var(--linha)}
+.numeros div{padding:var(--s5) var(--s4);border-inline-start:1px solid var(--linha)}
+.numeros div:first-child{border-inline-start:0;padding-inline-start:0}
+.numeros b{display:block;font:400 clamp(1.8rem,3.4vw,2.6rem)/1 var(--serif);
+  letter-spacing:-.02em;margin-block-end:4px}
+.numeros span{color:var(--fumaca);font-size:.88rem}
+
+/* ── LISTA-RECIBO (bairros 22:15 e horários 23:30) ──────────────── */
+.recibo{max-inline-size:620px}
+.recibo li{display:flex;align-items:baseline;gap:var(--s3);padding-block:11px;
+  list-style:none}
+.recibo .pontos{flex:1;border-block-end:1px dotted var(--linha);translate:0 -5px}
+.recibo .val{font-variant-numeric:tabular-nums;font-weight:500}
+.recibo .hoje .val{color:var(--brasa)}
+
+/* ── E SE… (bloco de objeção) ───────────────────────────────────── */
+.objecoes{display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border-block:1px solid var(--linha)}
+.objecoes div{padding:var(--s5) var(--s5) var(--s6);border-inline-start:1px solid var(--linha)}
+.objecoes div:first-child{border-inline-start:0;padding-inline-start:0}
+.objecoes h3{font-size:1.2rem;margin-block-end:var(--s2)}
+.objecoes p{color:var(--fumaca);font-size:.94rem}
+
+/* ── ÚLTIMA RODADA ──────────────────────────────────────────────── */
+.fecha{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--s7);align-items:start}
+.fecha .relogio-fim{font:500 clamp(3.4rem,9vw,6.5rem)/1 var(--sans);
+  font-variant-numeric:tabular-nums;letter-spacing:-.045em;
+  color:color-mix(in oklab,var(--giz),var(--brasa) calc(var(--calor)*45%))}
+
+/* ── RODAPÉ-RECIBO (gate 43: nada de 4 colunas + social + copyright) ─ */
+.rodape{background:var(--carvao);border-block-start:1px dashed var(--linha);
+  padding-block:var(--s7);transition:var(--transicao)}
+.cupom{max-inline-size:420px;margin-inline:auto;text-align:center;
+  font-variant-numeric:tabular-nums;font-size:.9rem;color:var(--fumaca)}
+.cupom .casa{font-family:var(--serif);font-size:1.35rem;color:var(--giz);
+  margin-block-end:var(--s4);font-variant-numeric:normal}
+.cupom hr{border:0;border-block-start:1px dashed var(--linha);margin-block:var(--s4)}
+.cupom .apagou{letter-spacing:.14em;font-size:.74rem;font-weight:600}
+
+/* ── CTA Vitrine Certa — SÓ no fim, nunca no miolo (regra de isolamento) ── */
+.queroassim{border-block-start:1px solid var(--linha);padding-block:var(--s7);
+  text-align:center;transition:var(--transicao)}
+.queroassim p{font-family:var(--serif);font-size:clamp(1.4rem,2.6vw,1.9rem);
+  margin-block-end:var(--s4)}
+.queroassim a{color:var(--giz);text-decoration:none;border-block-end:1px solid var(--brasa);
+  padding-block-end:3px;font-size:.95rem}
+
+/* ── COMANDA (barra fixa) ───────────────────────────────────────── */
+.comanda{position:fixed;inset-inline:0;inset-block-end:0;z-index:50;
+  background:var(--carvao);border-block-start:1px solid var(--linha);
+  translate:0 100%;transition:translate .34s cubic-bezier(.2,.9,.25,1.15),
+    background-color .5s linear,border-color .5s linear;
+  padding-block-end:env(safe-area-inset-bottom)}
+.comanda.ativa{translate:0 0}
+.comanda-in{display:flex;align-items:center;justify-content:space-between;gap:var(--s4);
+  max-inline-size:1180px;margin-inline:auto;padding:12px var(--s5)}
+.comanda-resumo{min-inline-size:0}
+.comanda-itens{font-size:.84rem;color:var(--fumaca);white-space:nowrap;overflow:hidden;
+  text-overflow:ellipsis}
+.comanda-total{font-family:var(--serif);font-size:1.3rem}
+.comanda-total b{font-family:var(--sans);font-variant-numeric:tabular-nums;font-weight:500;
+  font-size:.8em}
+.comanda-acoes{display:flex;align-items:center;gap:var(--s3);flex-shrink:0}
+.limpar{background:none;border:0;color:var(--fumaca);font:400 .84rem var(--sans);
+  cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.limpar:hover{color:var(--giz)}
+/* selo do modo demo — deixa explícito que a hora está acelerada */
+.demo-badge{position:fixed;inset-block-start:52px;inset-inline-start:var(--s5);z-index:60;
+  border:1px solid var(--linha);border-radius:999px;padding:5px 12px;
+  background:var(--tinta2);color:var(--fumaca);
+  font:600 .7rem/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+  transition:var(--transicao)}
+
+@keyframes pop{50%{scale:1.22}}
+.comanda-total.pulso{animation:pop .32s var(--ease)}
+
+@media (max-width:860px){
+  .hero{min-block-size:auto;padding-block:calc(var(--s7) + 24px) var(--s6)}
+  .hero-grid{grid-template-columns:1fr;gap:var(--s6)}
+  .hero-arte{order:-1;max-inline-size:300px;margin-inline:auto}
+  .marca{margin-block-end:var(--s5)}
+  .fita{grid-template-columns:1fr}
+  .prova{border-inline-start:0;border-block-start:1px solid var(--linha)}
+  .prova:first-child{border-block-start:0}
+  .regua-in{gap:var(--s3);padding-inline:var(--s4)}
+  .trilho{display:none}
+  .relogio{flex:1;min-inline-size:0}
+  .pill{font-size:.68rem;padding:3px 8px;min-inline-size:0}
+  #pill-txt{overflow:hidden;text-overflow:ellipsis}
+  .proxima-fx{display:none}                    /* no mobile a próxima seção já está logo abaixo */
+  .item{grid-template-columns:minmax(0,1fr) auto 40px;row-gap:2px}
+  .item .t{grid-column:1/-1;order:-1}
+  .tickets,.objecoes,.numeros{grid-template-columns:1fr}
+  .ticket{rotate:none}
+  .objecoes div,.numeros div{border-inline-start:0;padding-inline-start:0;
+    border-block-start:1px solid var(--linha)}
+  .objecoes div:first-child,.numeros div:first-child{border-block-start:0}
+  .fecha{grid-template-columns:1fr;gap:var(--s5)}
+  .comanda-in{padding:10px var(--s4)}
+  .comanda-total{font-size:1.1rem}
+  .limpar{display:none}
+  main{padding-block-end:76px}                 /* a comanda não cobre o rodapé */
+}
+
+@media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  *,*::before,*::after{animation:none!important;transition:none!important}
-  .reveal{clip-path:none;opacity:1}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important}
+  .js .observa:not(.visto) .reveal{clip-path:none;opacity:1}
   .forma{animation:none}
+  html{animation:none}      /* senão a regra global de duração .001ms joga --noite direto pro fim */
 }
 </style>
+
+<style>/* gera-nicho.js override */:root{--primary:#7a2e1d;--p:#7a2e1d;--accent:#e8b04b;--ac:#e8b04b;}</style>
 </head>
 <body>
+
+<!-- ⚠️ DEMO — nome, endereço, horários e números são fictícios (site de portfólio).
+     Trocar TUDO pelo dado real do cliente antes de entregar. -->
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="ico-wa" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2m0 18.15c-1.53 0-3.03-.41-4.34-1.19l-.31-.18-3.12.82.83-3.04-.2-.32a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 4.54 0 8.23 3.69 8.23 8.23 0 4.54-3.69 8.23-8.23 8.23m4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.98-.14.16-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.65-1.23-1.46-1.38-1.71-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.22-.16-.47-.29"/></symbol></svg>
 
 <header class="regua">
   <div class="regua-in">
@@ -142,10 +483,10 @@ footer{border-top:1px solid var(--linha);padding:24px;text-align:center;font-siz
         <li><a href="#h22">22</a></li>
         <li><a href="#h23">23</a></li>
       </ol>
-      <span class="agulha" id="agulha" style="left:0%"></span>
+      <span class="agulha" id="agulha" aria-hidden="true"></span>
     </nav>
     <p class="relogio tab">
-      <span id="relogio">00:00</span>
+      <span class="hh" id="relogio" aria-label="hora atual"></span>
       <span class="pill" id="pill"><span class="ponto"></span><span id="pill-txt">—</span></span>
     </p>
     <button class="tema" id="tema" type="button" aria-label="Alternar dia e noite">☾</button>
@@ -157,78 +498,247 @@ footer{border-top:1px solid var(--linha);padding:24px;text-align:center;font-siz
 <section class="hero" id="h18">
   <div class="wrap hero-grid">
     <div>
-      <p class="marca"><b>Forno da Vila</b> — pizza a lenha</p>
+      <p class="marca"><b>Forno da Vila</b> — prato a lenha</p>
       <p class="hora-secao tab">18:00</p>
-      <h1>A noite<br><em>inteira.</em></h1>
+      <h1>Restaurante Sabor da Casa <em>· Campinas</em></h1>
       <p class="local">Massa de <b>48 horas</b>, forno a lenha desde 2014.<br>
          Av. Exemplo, 000 — Itararé, São Vicente.</p>
+
       <div class="estado" id="estado">
-        <p><span class="estado-nome" id="estado-nome">—</span><br>
-           <span class="estado-sub" id="estado-sub"></span></p>
+        <p class="estado-l1">
+          <span class="estado-nome" id="estado-nome">—</span>
+          <span class="estado-sub" id="estado-sub"></span>
+        </p>
         <p class="estado-espera" id="estado-espera"></p>
         <a class="wa-btn" id="cta" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>
           <span id="cta-txt">Pedir no WhatsApp</span>
         </a>
       </div>
     </div>
+
     <div class="hero-arte">
-      <!-- SVG do forno — versão simplificada -->
-      <svg class="forno" viewBox="0 0 440 340" aria-hidden="true" focusable="false">
+      <!-- Boca do forno — SVG autoral. Decorativo (gate 33). -->
+      <!-- viewBox recortado: a cúpula abaulada ocupa de y=74 a y=332, então enquadrar
+           em 0 0 440 340 deixava uma faixa morta no topo e o forno parecia distante. -->
+      <svg class="forno" viewBox="6 62 428 278" aria-hidden="true" focusable="false">
         <defs>
-          <radialGradient id="g-brasa" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#FFF1E6" stop-opacity=".9"/>
-            <stop offset="38%" stop-color="#FF5A1F" stop-opacity=".6"/>
-            <stop offset="100%" stop-color="#FF5A1F" stop-opacity="0"/>
+          <!-- cúpula abaulada: luz do fogo por baixo, sombra no alto -->
+          <radialGradient id="g-domo" cx="42%" cy="72%" r="72%">
+            <stop offset="0%"   stop-color="color-mix(in oklab,var(--tinta2),var(--fogo-alto) calc(var(--calor)*26%))"/>
+            <stop offset="48%"  stop-color="var(--tinta2)"/>
+            <stop offset="100%" stop-color="color-mix(in oklab,var(--tinta2),var(--carvao) 62%)"/>
           </radialGradient>
+          <linearGradient id="g-alvenaria" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="color-mix(in oklab,var(--tinta2),var(--carvao) 55%)"/>
+            <stop offset="62%"  stop-color="var(--tinta2)"/>
+            <stop offset="100%" stop-color="color-mix(in oklab,var(--tinta2),var(--fogo-medio) calc(var(--calor)*22%))"/>
+          </linearGradient>
+          <linearGradient id="g-bancada" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="color-mix(in oklab,var(--tinta2),var(--fogo-alto) calc(var(--calor)*16%))"/>
+            <stop offset="100%" stop-color="color-mix(in oklab,var(--tinta2),var(--carvao) 45%)"/>
+          </linearGradient>
+          <radialGradient id="g-fuligem" cx="50%" cy="88%" r="52%">
+            <stop offset="0%"   stop-color="var(--n-carvao)" stop-opacity=".72"/>
+            <stop offset="55%"  stop-color="var(--n-carvao)" stop-opacity=".28"/>
+            <stop offset="100%" stop-color="var(--n-carvao)" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="g-fundo" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="var(--n-carvao)"/>
+            <stop offset="100%" stop-color="color-mix(in oklab,var(--n-carvao),var(--fogo-borda) calc(var(--calor)*34%))"/>
+          </linearGradient>
+          <linearGradient id="g-piso" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="color-mix(in oklab,var(--n-tinta2),var(--fogo-alto) calc(var(--calor)*30%))"/>
+            <stop offset="100%" stop-color="color-mix(in oklab,var(--n-tinta2),var(--n-giz) 10%)"/>
+          </linearGradient>
+          <radialGradient id="g-brasa" cx="50%" cy="52%" r="50%">
+            <stop offset="0%"   stop-color="var(--fogo-nucleo)" stop-opacity=".95"/>
+            <stop offset="22%"  stop-color="var(--fogo-alto)"   stop-opacity=".8"/>
+            <stop offset="52%"  stop-color="var(--fogo-medio)"  stop-opacity=".5"/>
+            <stop offset="100%" stop-color="var(--fogo-borda)"  stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="g-chama" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%"   stop-color="var(--fogo-nucleo)"/>
+            <stop offset="45%"  stop-color="var(--fogo-alto)"/>
+            <stop offset="100%" stop-color="var(--fogo-medio)" stop-opacity=".25"/>
+          </linearGradient>
+          <!-- bloom: fogo EMITE luz, não é forma chapada -->
+          <filter id="f-bloom" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="7" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <!-- ar quente subindo distorce o que está atrás -->
+          <filter id="f-tremor" x="-10%" y="-10%" width="120%" height="140%">
+            <feTurbulence type="fractalNoise" baseFrequency=".012 .045" numOctaves="2" seed="7" result="n">
+              <animate attributeName="baseFrequency" dur="9s"
+                       values=".012 .045;.016 .06;.012 .045" repeatCount="indefinite"/>
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="7"
+                               xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+          <linearGradient id="g-luz-prato" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%"   stop-color="var(--n-carvao)" stop-opacity=".42"/>
+            <stop offset="46%"  stop-color="var(--n-carvao)" stop-opacity="0"/>
+            <stop offset="78%"  stop-color="var(--fogo-alto)" stop-opacity="0"/>
+            <stop offset="100%" stop-color="var(--fogo-alto)" stop-opacity=".3"/>
+          </linearGradient>
+          <filter id="f-sombra" x="-30%" y="-60%" width="160%" height="220%">
+            <feGaussianBlur stdDeviation="3.5"/></filter>
+          <filter id="f-grao"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3"/>
+            <feColorMatrix values="0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .09 0"/></filter>
+          <pattern id="g-grao" width="440" height="340" patternUnits="userSpaceOnUse">
+            <rect width="440" height="340" filter="url(#f-grao)"/></pattern>
+          <clipPath id="cb-domo"><path d="M36 304 C36 150 118 74 220 74 C322 74 404 150 404 304 Z"/></clipPath>
+          <clipPath id="cb-boca"><path d="M126 300 L126 226 A94 84 0 0 1 314 226 L314 300 Z"/></clipPath>
         </defs>
-        <path class="arco" d="M44 302 L44 208 A176 148 0 0 1 396 208 L396 302 Z"/>
-        <g class="tijolo">
-          <path d="M70 302 L70 210 A150 126 0 0 1 370 210 L370 302"/>
-          <path d="M89 302 L89 212 A131 110 0 0 1 351 212 L351 302"/>
+
+        <!-- cúpula ABAULADA — a referência mostrou que não é arco chapado -->
+        <path class="arco" d="M36 304 C36 150 118 74 220 74 C322 74 404 150 404 304 Z"/>
+        <g clip-path="url(#cb-domo)">
+          <!-- fiadas que acompanham a curvatura da cúpula -->
+          <g fill="none" stroke="var(--linha)" stroke-width="1" opacity=".45">
+            <path d="M44 110 C110 92 330 92 396 110"/><path d="M38 140 C110 120 330 120 402 140"/>
+            <path d="M36 172 C110 150 330 150 404 172"/><path d="M36 206 C110 183 330 183 404 206"/>
+            <path d="M36 242 C110 218 330 218 404 242"/><path d="M36 276 C110 252 330 252 404 276"/>
+            <path d="M92 96 V304 M148 82 V304 M220 76 V304 M292 82 V304 M348 96 V304"/>
+          </g>
+          <rect class="fuligem" x="36" y="130" width="368" height="174"/>
         </g>
-        <path class="boca" d="M108 300 L108 214 A112 96 0 0 1 332 214 L332 300 Z"/>
-        <ellipse class="piso" cx="220" cy="298" rx="112" ry="26"/>
-        <g class="chama"><ellipse cx="220" cy="296" rx="118" ry="34" fill="url(#g-brasa)"/></g>
-        <g class="lenha">
-          <rect x="272" y="272" width="52" height="9" rx="4.5" transform="rotate(-7 298 276)"/>
-          <rect x="282" y="282" width="44" height="9" rx="4.5" transform="rotate(5 304 286)"/>
+        <!-- anel de aduelas saliente emoldurando a boca -->
+        <path class="aduelas"
+              d="M112 302 L112 224 A108 98 0 0 1 328 224 L328 302 L314 302 L314 226 A94 84 0 0 0 126 226 L126 302 Z"/>
+        <g fill="none" stroke="var(--linha)" stroke-width="1" opacity=".8">
+          <path d="M112 262 H126 M328 262 H314 M129.4 180.6 L141.5 189.9 M172.6 145.4 L179.2 157.7
+                   M220 134 V148 M267.4 145.4 L260.8 157.7 M310.6 180.6 L298.5 189.9"/>
         </g>
-        <g transform="translate(198 284) scale(1 .4)">
-          <g class="forma">
-            <circle class="massa" r="66"/>
-            <circle class="crosta" r="66"/>
-            <circle class="crosta" r="53"/>
-            <g class="cobertura">
-              <circle cx="-19" cy="-22" r="7"/><circle cx="20" cy="-13" r="6"/>
-              <circle cx="-4" cy="16" r="7.5"/><circle cx="26" cy="19" r="5.5"/>
-            </g>
+
+        <path class="boca" d="M126 300 L126 226 A94 84 0 0 1 314 226 L314 300 Z"/>
+        <g clip-path="url(#cb-boca)">
+          <rect class="fundo" x="126" y="190" width="188" height="112"/>
+          <ellipse class="piso" cx="220" cy="300" rx="96" ry="30"/>
+          <g class="junta-piso"><path d="M132 288 H308 M140 296 H300"/><path d="M186 282 V304 M254 282 V304"/></g>
+          <!-- fogo LÁ NO FUNDO, com bloom -->
+          <g class="chama" filter="url(#f-bloom)">
+            <ellipse cx="248" cy="284" rx="72" ry="22" fill="url(#g-brasa)"/>
+            <ellipse cx="250" cy="278" rx="40" ry="16" fill="url(#g-brasa)"/>
+          </g>
+          <!-- leito de cinzas pálidas com brasa aparecendo por baixo -->
+          <ellipse class="cinzas" cx="250" cy="286" rx="46" ry="10"/>
+          <g class="chama brasinha">
+            <circle cx="232" cy="286" r="2.4" opacity=".9"/><circle cx="243" cy="289" r="1.9" opacity=".75"/>
+            <circle cx="255" cy="285" r="2.6" opacity=".95"/><circle cx="266" cy="288" r="1.7" opacity=".7"/>
+            <circle cx="248" cy="283" r="1.6" opacity=".85"/><circle cx="274" cy="286" r="2.1" opacity=".8"/>
+          </g>
+          <ellipse class="oclusao" cx="250" cy="289" rx="44" ry="6"/>
+          <!-- toras cruzadas em V, encostadas uma na outra -->
+          <g>
+            <rect class="lenha" x="204" y="270" width="54" height="11" rx="5.5" transform="rotate(-30 231 275)"/>
+            <rect class="lenha-topo" x="206" y="270" width="52" height="3.2" rx="1.6" transform="rotate(-30 232 272)"/>
+            <rect class="lenha" x="250" y="270" width="54" height="11" rx="5.5" transform="rotate(28 277 275)"/>
+            <rect class="lenha-topo" x="252" y="270" width="52" height="3.2" rx="1.6" transform="rotate(28 278 272)"/>
+          </g>
+          <!-- 5 línguas subindo do meio das toras; durações primas entre si -->
+          <g class="labareda chama" filter="url(#f-bloom)">
+            <g transform="translate(252 274) scale(1.25)"><path d="M0 0 C-7 -11 -3 -24 2 -36 C4 -24 8 -20 7 -13 C10 -16 11 -21 11 -25 C16 -15 13 -5 8 0 Z"/></g>
+            <g transform="translate(236 278) scale(.85)"><path d="M0 0 C-7 -11 -3 -24 2 -36 C4 -24 8 -20 7 -13 C10 -16 11 -21 11 -25 C16 -15 13 -5 8 0 Z"/></g>
+            <g transform="translate(268 279) scale(.72)"><path d="M0 0 C-7 -11 -3 -24 2 -36 C4 -24 8 -20 7 -13 C10 -16 11 -21 11 -25 C16 -15 13 -5 8 0 Z"/></g>
+            <g transform="translate(224 282) scale(.55)"><path d="M0 0 C-7 -11 -3 -24 2 -36 C4 -24 8 -20 7 -13 C10 -16 11 -21 11 -25 C16 -15 13 -5 8 0 Z"/></g>
+            <g transform="translate(282 283) scale(.48)"><path d="M0 0 C-7 -11 -3 -24 2 -36 C4 -24 8 -20 7 -13 C10 -16 11 -21 11 -25 C16 -15 13 -5 8 0 Z"/></g>
+          </g>
+          <!-- fagulhas subindo: o que prova que o fogo está vivo -->
+          <g class="chama">
+            <circle class="faisca" cx="241" cy="262" r="1.4"/>
+            <circle class="faisca" cx="259" cy="258" r="1.1"/>
+            <circle class="faisca" cx="248" cy="255" r="1.6"/>
+            <circle class="faisca" cx="268" cy="263" r="1.2"/>
+          </g>
+          <g class="chama" filter="url(#f-tremor)" opacity=".45">
+            <rect x="200" y="196" width="110" height="80" fill="url(#g-brasa)" opacity=".2"/>
           </g>
         </g>
-        <path class="bancada" d="M28 302 H412 a6 6 0 0 1 6 6 v14 a6 6 0 0 1-6 6 H28 a6 6 0 0 1-6-6 v-14 a6 6 0 0 1 6-6 z"/>
+        <path class="rim" d="M128 300 L128 227 A92 82 0 0 1 312 227 L312 300"/>
+
+        <!-- bancada larga e saliente; a prato fica AQUI, como na referência -->
+        <path class="bancada" d="M14 300 H426 a8 8 0 0 1 8 8 v16 a8 8 0 0 1-8 8 H14 a8 8 0 0 1-8-8 v-16 a8 8 0 0 1 8-8 z"/>
+        <g class="chama"><ellipse cx="220" cy="304" rx="130" ry="14" fill="url(#g-brasa)" opacity=".55"/></g>
+        <ellipse class="contato-prato" cx="176" cy="314" rx="53" ry="8" filter="url(#f-sombra)"/>
+        <g transform="translate(172 306) scale(1 .34)">
+          <path class="massa-lado" d="M53.8 0 Q55.1 13.6 48.1 25.2 Q43.1 38.5 31.9 46.3 Q20.3 52.7 6.5 53.4 Q-6.9 56.5 -19.2 50.5 Q-32.5 47 -40.8 36.1 Q-49.4 26.2 -50.8 12.5 Q-55.6 -0.2 -52.5 -12.9 Q-49.6 -26.1 -40.9 -36.3 Q-32 -46.6 -19.7 -51.9 Q-7.2 -55.5 6.3 -51.5 Q19.3 -50.4 30.1 -43.6 Q40.5 -36 45.9 -24.1 Q53.1 -12.8 53.8 0 Z" transform="translate(0 15)"/>
+          <g class="forma">
+            <path class="massa" d="M53.8 0 Q55.1 13.6 48.1 25.2 Q43.1 38.5 31.9 46.3 Q20.3 52.7 6.5 53.4 Q-6.9 56.5 -19.2 50.5 Q-32.5 47 -40.8 36.1 Q-49.4 26.2 -50.8 12.5 Q-55.6 -0.2 -52.5 -12.9 Q-49.6 -26.1 -40.9 -36.3 Q-32 -46.6 -19.7 -51.9 Q-7.2 -55.5 6.3 -51.5 Q19.3 -50.4 30.1 -43.6 Q40.5 -36 45.9 -24.1 Q53.1 -12.8 53.8 0 Z"/>
+            <path class="sombra-interna" d="M42.7 0 Q42 12.4 36.1 23.2 Q28.3 32.6 17.7 38.7 Q6.5 40.1 -5.3 37 Q-17.2 36.6 -26.6 30.7 Q-34.5 22.4 -37.9 11.1 Q-41.1 -0.1 -38.6 -11.3 Q-34.2 -21.5 -24.6 -28.4 Q-16.1 -35.4 -5.4 -37.6 Q5.9 -39.1 16.5 -36.1 Q26.4 -30.7 32.1 -20.7 Q40.2 -11.1 42.7 0 Z" transform="scale(1.1)"/>
+            <path class="molho" d="M42.7 0 Q42 12.4 36.1 23.2 Q28.3 32.6 17.7 38.7 Q6.5 40.1 -5.3 37 Q-17.2 36.6 -26.6 30.7 Q-34.5 22.4 -37.9 11.1 Q-41.1 -0.1 -38.6 -11.3 Q-34.2 -21.5 -24.6 -28.4 Q-16.1 -35.4 -5.4 -37.6 Q5.9 -39.1 16.5 -36.1 Q26.4 -30.7 32.1 -20.7 Q40.2 -11.1 42.7 0 Z"/>
+            <g class="queijo">
+              <ellipse cx="13.5" cy="-1" rx="9.5" ry="6.5" transform="rotate(-19 13.5 -1)"/>
+              <ellipse cx="23.1" cy="19" rx="13.7" ry="10.1" transform="rotate(-4 23.1 19)"/>
+              <ellipse cx="-6.6" cy="23.7" rx="10.9" ry="8" transform="rotate(33 -6.6 23.7)"/>
+              <ellipse cx="-15.7" cy="6.9" rx="6.6" ry="4.6" transform="rotate(-38 -15.7 6.9)"/>
+              <ellipse cx="-18.1" cy="-12.2" rx="10" ry="6.7" transform="rotate(-21 -18.1 -12.2)"/>
+              <ellipse cx="-1.1" cy="-23.9" rx="14.3" ry="10.2" transform="rotate(-8 -1.1 -23.9)"/>
+              <ellipse cx="14.4" cy="-11.7" rx="11.7" ry="9.4" transform="rotate(-33 14.4 -11.7)"/>
+            </g>
+            <g class="pontinhos">
+              <circle cx="35" cy="-3" r=".9"/><circle cx="8.8" cy="5.9" r="1.4"/>
+              <circle cx="15.7" cy="24.7" r="1.5"/><circle cx="1.7" cy="10.1" r=".7"/>
+              <circle cx="-6.5" cy="19.1" r="1.4"/><circle cx="-17" cy="17.6" r="1.3"/>
+              <circle cx="-27.7" cy="10.6" r="1.2"/><circle cx="-28" cy="1.4" r=".7"/>
+              <circle cx="-28.2" cy="-19.1" r="1.4"/><circle cx="-6.6" cy="-10.9" r="1"/>
+              <circle cx="-5.9" cy="-32.3" r="1.3"/><circle cx="1.8" cy="-11.1" r="1.1"/>
+              <circle cx="17.2" cy="-18.4" r="1.3"/><circle cx="16.1" cy="-5" r="1.3"/>
+            </g>
+            <g class="manjericao">
+              <g transform="translate(-4 -29) rotate(-22) scale(1.15)">
+                <path d="M-9 0 C-5 -6.5 5 -7.5 9.5 -1 C5 5.5 -5 5 -9 0 Z"/><path class="veia" d="M-8 0 C-3 1.2 4 1.2 8.6 -.8"/></g>
+              <g transform="translate(28 -6) rotate(52)">
+                <path d="M-9 0 C-5 -6.5 5 -7.5 9.5 -1 C5 5.5 -5 5 -9 0 Z"/><path class="veia" d="M-8 0 C-3 1.2 4 1.2 8.6 -.8"/></g>
+              <g transform="translate(-21 27) rotate(14) scale(1.05)">
+                <path d="M-9 0 C-5 -6.5 5 -7.5 9.5 -1 C5 5.5 -5 5 -9 0 Z"/><path class="veia" d="M-8 0 C-3 1.2 4 1.2 8.6 -.8"/></g>
+            </g>
+            <g class="char">
+              <ellipse cx="48.7" cy="-3.1" rx="4.6" ry="2.3" transform="rotate(-4 48.7 -3.1)"/>
+              <ellipse cx="40.5" cy="26.5" rx="6" ry="2.9" transform="rotate(33 40.5 26.5)"/>
+              <ellipse cx="24.3" cy="43.5" rx="5.5" ry="3.2" transform="rotate(61 24.3 43.5)"/>
+              <ellipse cx="8.2" cy="49.9" rx="3.4" ry="2.1" transform="rotate(81 8.2 49.9)"/>
+              <ellipse cx="-17.4" cy="47.1" rx="3.4" ry="2" transform="rotate(110 -17.4 47.1)"/>
+              <ellipse cx="-37.6" cy="30.5" rx="3.5" ry="1.7" transform="rotate(141 -37.6 30.5)"/>
+              <ellipse cx="-52.1" cy="1.4" rx="5" ry="3.7" transform="rotate(178 -52.1 1.4)"/>
+              <ellipse cx="-45.5" cy="-18.5" rx="3.7" ry="2" transform="rotate(-158 -45.5 -18.5)"/>
+              <ellipse cx="-24.2" cy="-46.9" rx="5.9" ry="4.6" transform="rotate(-117 -24.2 -46.9)"/>
+              <ellipse cx="1.4" cy="-50" rx="5.7" ry="3.4" transform="rotate(-88 1.4 -50)"/>
+              <ellipse cx="31" cy="-36.9" rx="7.4" ry="3.5" transform="rotate(-50 31 -36.9)"/>
+              <ellipse cx="45.7" cy="-18.9" rx="6.9" ry="3.8" transform="rotate(-22 45.7 -18.9)"/>
+            </g>
+          </g>
+          <path class="luz-prato" d="M53.8 0 Q55.1 13.6 48.1 25.2 Q43.1 38.5 31.9 46.3 Q20.3 52.7 6.5 53.4 Q-6.9 56.5 -19.2 50.5 Q-32.5 47 -40.8 36.1 Q-49.4 26.2 -50.8 12.5 Q-55.6 -0.2 -52.5 -12.9 Q-49.6 -26.1 -40.9 -36.3 Q-32 -46.6 -19.7 -51.9 Q-7.2 -55.5 6.3 -51.5 Q19.3 -50.4 30.1 -43.6 Q40.5 -36 45.9 -24.1 Q53.1 -12.8 53.8 0 Z"/>
+        </g>
+        <rect class="grao" width="440" height="340"/>
       </svg>
     </div>
   </div>
+  <div class="proxima-fx"><div class="wrap">
+    <a class="proxima" href="#h19"><span>18:40</span> · a massa ↓</a>
+  </div></div>
 </section>
 
-<section class="secao" id="h19">
+<section class="secao observa" id="h19">
   <div class="wrap">
     <p class="hora-secao tab reveal">18:40</p>
     <h2 class="reveal">Começa 48 horas antes de você ter fome.</h2>
     <div class="fita">
       <article class="prova reveal">
-        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="8"/></svg>
+        <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true"><circle cx="23" cy="23" r="8"/></svg>
         <p class="quando tab">48H ANTES</p>
         <h3>Descanso</h3>
         <p>A massa dorme na câmara fria. Sem pressa e sem fermento a mais.</p>
       </article>
       <article class="prova reveal">
-        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="14"/></svg>
+        <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true"><circle cx="23" cy="23" r="14"/></svg>
         <p class="quando tab">ONTEM</p>
         <h3>Sova</h3>
         <p>Trabalhada à mão, uma vez só. É o que deixa a borda leve.</p>
       </article>
       <article class="prova reveal">
-        <svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="21"/></svg>
+        <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true"><circle cx="23" cy="23" r="21"/></svg>
         <p class="quando tab">HOJE, 16H</p>
         <h3>Bolas</h3>
         <p>Porcionada e coberta. Às 18h em ponto, a primeira entra no forno.</p>
@@ -237,173 +747,268 @@ footer{border-top:1px solid var(--linha);padding:24px;text-align:center;font-siz
   </div>
 </section>
 
-<section class="secao painel" id="h20">
+<section class="secao observa" id="h20">
   <div class="wrap">
     <p class="hora-secao tab reveal">19:30</p>
     <h2 class="reveal">Saindo do forno</h2>
-    <div class="fita reveal">
-      <div class="linha-pizza">
-        <span class="tempo tab">~9 min</span>
-        <span class="nome">Margherita</span>
-        <span class="preco tab">R$ 45</span>
-        <button class="add" data-sabor="Margherita" data-preco="45">+</button>
-      </div>
-      <div class="linha-pizza">
-        <span class="tempo tab">~11 min</span>
-        <span class="nome">Calabresa</span>
-        <span class="preco tab">R$ 48</span>
-        <button class="add" data-sabor="Calabresa" data-preco="48">+</button>
-      </div>
-      <div class="linha-pizza">
-        <span class="tempo tab">~13 min</span>
-        <span class="nome">Portuguesa</span>
-        <span class="preco tab">R$ 52</span>
-        <button class="add" data-sabor="Portuguesa" data-preco="52">+</button>
-      </div>
-      <div class="linha-pizza">
-        <span class="tempo tab">~16 min</span>
-        <span class="nome">Quatro Queijos</span>
-        <span class="preco tab">R$ 58</span>
-        <button class="add" data-sabor="Quatro Queijos" data-preco="58">+</button>
-      </div>
+    <div class="filtros reveal" role="group" aria-label="Filtrar cardápio">
+      <button class="chip" type="button" data-f="tudo" aria-pressed="true">tudo</button>
+      <button class="chip" type="button" data-f="rapida" aria-pressed="false">até 12 min</button>
+      <button class="chip" type="button" data-f="classica" aria-pressed="false">clássicas</button>
+      <button class="chip" type="button" data-f="especial" aria-pressed="false">especiais</button>
     </div>
+    <div class="painel reveal" id="painel"></div>
+    <p class="vazio" id="vazio" hidden>Nada nessa faixa agora.</p>
   </div>
 </section>
 
-<section class="secao" id="h21">
+<section class="secao observa" id="h21">
   <div class="wrap">
     <p class="hora-secao tab reveal">21:00</p>
     <h2 class="reveal">O horário em que o forno não descansa.</h2>
-    <div class="fita reveal">
-      <div style="padding:24px;border-bottom:1px solid var(--linha)">
-        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">180 pizzas no sábado</p>
-        <p style="color:var(--fumaca)">Cada uma assada na hora certa.</p>
-      </div>
-      <div style="padding:24px;border-bottom:1px solid var(--linha)">
-        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">48h de massa</p>
-        <p style="color:var(--fumaca)">Fermentação natural, sem pressa.</p>
-      </div>
-      <div style="padding:24px">
-        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">12 anos de forno</p>
-        <p style="color:var(--fumaca)">Lenha de carvalho desde 2014.</p>
-      </div>
+    <div class="tickets reveal">
+      <article class="ticket">
+        <p class="carimbo">21:14 · MESA 4</p>
+        <p>“Cheguei achando que ia esperar uma hora. Saiu em vinte minutos e ainda queimando a boca.”
+          <span class="quem">Rafael M. — Itararé</span></p>
+      </article>
+      <article class="ticket">
+        <p class="carimbo">21:38 · ENTREGA</p>
+        <p>“Peço todo sábado. A borda continua igual à da primeira vez, em 2019.”
+          <span class="quem">Cleide S. — Centro</span></p>
+      </article>
+      <article class="ticket">
+        <p class="carimbo">22:52 · BALCÃO</p>
+        <p>“Última rodada, pedi em cima da hora e ainda fizeram. Isso não se acha mais.”
+          <span class="quem">Douglas P. — Pq. Bitaru</span></p>
+      </article>
+    </div>
+    <div class="numeros reveal">
+      <div><b class="tab">180</b><span>pratos num sábado</span></div>
+      <div><b class="tab">48h</b><span>de fermentação</span></div>
+      <div><b class="tab">12</b><span>anos de forno aceso</span></div>
     </div>
   </div>
 </section>
 
-<section class="secao" id="h22">
+<section class="secao observa" id="h22">
   <div class="wrap">
     <p class="hora-secao tab reveal">22:15</p>
     <h2 class="reveal">Onde a gente chega</h2>
-    <div class="fita reveal">
-      <div style="padding:24px">
-        <p style="font-family:var(--serif);font-size:1.35rem;margin-bottom:8px">Centro — 25 min</p>
-        <p style="color:var(--fumaca)">Itararé — 30 min · Pq. Bitaru — 35 min · Jd. Rio Branco — 40 min</p>
+    <ul class="recibo reveal" id="bairros"></ul>
+    <p class="vazio reveal">Tempo médio contando do momento em que a prato entra no forno.</p>
+  </div>
+</section>
+
+<section class="secao observa" id="h22b">
+  <div class="wrap">
+    <p class="hora-secao tab reveal">22:40</p>
+    <h2 class="reveal">E se…</h2>
+    <div class="objecoes reveal">
+      <div>
+        <h3>…demorar mais?</h3>
+        <p>A gente avisa no WhatsApp antes de a prato entrar no forno, não depois.</p>
+      </div>
+      <div>
+        <h3>…eu pedir tarde?</h3>
+        <p>Aceitamos até 23:30. Depois disso o forno apaga de verdade — não fica ninguém.</p>
+      </div>
+      <div>
+        <h3>…eu quiser retirar?</h3>
+        <p>Dez minutos no balcão, sem taxa. É o jeito de comer mais quente.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="secao" id="h23">
-  <div class="wrap">
-    <p class="hora-secao tab reveal">23:30</p>
-    <h2 class="reveal">Depois disso, o forno apaga.</h2>
-    <div class="fita reveal">
-      <div style="padding:24px">
-        <p style="font-family:var(--sans);font-size:1.1rem;letter-spacing:.02em">
-          Última rodada às 23:30. Depois, o forno apaga.
-        </p>
-      </div>
+<section class="secao observa" id="h23">
+  <div class="wrap fecha">
+    <div>
+      <p class="hora-secao tab reveal">23:30</p>
+      <p class="relogio-fim tab reveal">23:30</p>
+    </div>
+    <div>
+      <h2 class="reveal">Depois disso, o forno apaga.</h2>
+      <ul class="recibo reveal" id="horarios"></ul>
     </div>
   </div>
 </section>
 
 </main>
 
-<div class="comanda" id="comanda">
-  <div class="comanda-in">
-    <span class="comanda-total" id="comanda-total">0 itens · R$ 0</span>
-    <button class="comanda-enviar" id="comanda-enviar">Enviar comanda →</button>
-  </div>
-</div>
-
-<footer>
+<footer class="rodape">
   <div class="wrap">
-    <p>Forno da Vila · pizza a lenha em São Vicente · aberto 18h–23:30 · © 2026</p>
-    <p style="margin-top:8px"><a href="../../receita-zero/#planos" style="color:var(--fumaca)">Quer um site assim pro seu negócio?</a></p>
+    <div class="cupom">
+      <p class="casa">Forno da Vila</p>
+      <p>Av. Exemplo, 000 — Itararé<br>São Vicente · SP</p>
+      <hr>
+      <p>forno aceso 18:00 · última rodada 23:30</p>
+      <p class="apagou" id="rodape-estado">—</p>
+      <hr>
+      <p>prato a lenha desde 2014</p>
+    </div>
   </div>
 </footer>
 
+<section class="queroassim">
+  <div class="wrap">
+    <p>Quer um site assim pro seu negócio?</p>
+    <a href="../../../receita-zero/index.html#planos">Ver como funciona →</a>
+  </div>
+</section>
+
+<div class="comanda" id="comanda" aria-live="polite">
+  <div class="comanda-in">
+    <div class="comanda-resumo">
+      <p class="comanda-total" id="comanda-total">R$ 0</p>
+      <p class="comanda-itens" id="comanda-itens"></p>
+    </div>
+    <div class="comanda-acoes">
+      <button class="limpar" type="button" id="comanda-limpar">limpar</button>
+      <a class="wa-btn" id="comanda-enviar" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-wa"/></svg>
+        Enviar comanda
+      </a>
+    </div>
+  </div>
+</div>
+
 <script>
-/* Configuração fictícia de portfólio — trocar pelos dados reais */
+/* ⚠️ DEMO — configuração fictícia de portfólio. Trocar pelos dados reais do cliente. */
 const CASA = {
+  tz:'America/Sao_Paulo',
   abre:18, aquecendoAte:18.34, ultimoPedido:23.5, fecha:24,
   picoDe:20, picoAte:22,
   esperaBase:25, esperaPico:45,
-  whats:'5511970776856'
+  amanhece:6, anoitece:17,          // faixa do tema claro -> escuro
+  whats:'5511970776856',
+  bairros:{'Centro':25,'Itararé':30,'Pq. Bitaru':35,'Jd. Rio Branco':40},
+  semana:{'Segunda':null,'Terça a quinta':'18:00 – 23:00','Sexta e sábado':'18:00 – 23:30',
+          'Domingo':'18:00 – 22:30'},
+  cardapio:[                        // ordenado por TEMPO DE FORNO, não por categoria
+    {n:'Marinara',        t:7,  p:38, c:'classica', d:'molho de tomate, alho, orégano — sem queijo'},
+    {n:'Margherita',      t:9,  p:45, c:'classica', d:'muçarela de búfala, manjericão do dia'},
+    {n:'Calabresa',       t:11, p:48, c:'classica', d:'calabresa fatiada na hora, cebola roxa'},
+    {n:'Burrata & Pesto', t:12, p:68, c:'especial', d:'burrata inteira, pesto de manjericão'},
+    {n:'Portuguesa',      t:13, p:52, c:'classica', d:'presunto, ovo, ervilha, cebola'},
+    {n:'Nduja & Mel',     t:14, p:62, c:'especial', d:"'nduja calabresa, mel de laranjeira"},
+    {n:'Quatro Queijos',  t:16, p:58, c:'especial', d:'gorgonzola, provolone, parmesão, muçarela'}
+  ]
 };
+
 const $ = s => document.querySelector(s);
-const $$ = s => document.querySelectorAll(s);
 const clamp = (v,a,b) => Math.min(b, Math.max(a, v));
 
+/* MODO DEMONSTRAÇÃO (?demo) — a noite inteira em ~40s, em loop.
+   Serve pra mostrar o forno acendendo numa reunião sem esperar as 18h.
+   16:30 (dia claro) → 00:30 (apagado), 12 minutos de casa por segundo real. */
+const PARAMS = new URLSearchParams(location.search);
+const DEMO = PARAMS.has('demo');
+const DEMO_INI = 16.5, DEMO_FIM = 24.5, DEMO_MIN_POR_SEG = 12;
+let demoT0 = 0;
+
+/* hora decimal: demo, forçada por ?h= ou real (timezone da casa) */
 function horaAgora(){
-  const forcada = new URLSearchParams(location.search).get('h');
-  if(forcada !== null && forcada !== '') return clamp(parseFloat(forcada), 0, 23.999);
-  const agora = new Date();
-  const h = agora.getHours();
-  const m = agora.getMinutes();
+  if (DEMO){
+    if (!demoT0) demoT0 = performance.now();
+    const horas = ((performance.now() - demoT0) / 1000) * DEMO_MIN_POR_SEG / 60;
+    return (DEMO_INI + (horas % (DEMO_FIM - DEMO_INI))) % 24;
+  }
+  const forcada = PARAMS.get('h');
+  if (forcada !== null && forcada !== '') return clamp(parseFloat(forcada), 0, 23.999);
+  const p = new Intl.DateTimeFormat('pt-BR', {
+    timeZone: CASA.tz, hour:'2-digit', minute:'2-digit', hour12:false
+  }).formatToParts(new Date());
+  const h = +p.find(x=>x.type==='hour').value;
+  const m = +p.find(x=>x.type==='minute').value;
   return h + m/60;
 }
 
 function estadoDe(h){
-  if(h >= CASA.ultimoPedido && h < CASA.fecha)
-    return {id:'ultima', nome:'Última rodada', sub:'pedidos até 23:30', calor:1, espera:CASA.esperaPico, cta:'Última rodada — faltam ' + Math.round((CASA.fecha-h)*60) + ' min', msg:'Oi! Dá tempo da última rodada?'};
-  if(h >= CASA.picoDe && h < CASA.picoAte)
-    return {id:'pico', nome:'Pico', sub:'o forno não descansa', calor:1, espera:CASA.esperaPico, cta:'Pedir agora (~'+CASA.esperaPico+' min)', msg:'Oi! Pedido (sei que tá no pico):'};
-  if(h >= CASA.aquecendoAte && h < CASA.ultimoPedido)
-    return {id:'aberto', nome:'Aberto', sub:'saindo do forno', calor:.72, espera:CASA.esperaBase, cta:'Pedir agora', msg:'Oi! Pedido:'};
-  if(h >= CASA.abre && h < CASA.aquecendoAte)
-    return {id:'aquecendo', nome:'Aquecendo', sub:'primeiras saem 18:20', calor:.38, espera:null, cta:'Entrar na primeira fornada', msg:'Oi! Pego a primeira fornada?'};
-  return {id:'fechado', nome:'Fechado', sub:'abre 18:00', calor:0, espera:null, cta:'Programar pedido pras 18h', msg:'Oi! Queria deixar um pedido pra hoje às 18h:'};
+  if (h >= CASA.ultimoPedido && h < CASA.fecha)
+    return {id:'ultima', nome:'Última rodada', sub:'pedidos até 23:30', calor:1,
+            espera:CASA.esperaPico, cta:h=>`Última rodada — faltam ${Math.round((CASA.fecha-h)*60)} min`,
+            msg:'Oi! Dá tempo da última rodada?'};
+  if (h >= CASA.picoDe && h < CASA.picoAte)
+    return {id:'pico', nome:'Pico', sub:'o forno não descansa', calor:1,
+            espera:CASA.esperaPico, cta:()=>`Pedir agora (~${CASA.esperaPico} min)`,
+            msg:'Oi! Pedido (sei que tá no pico):'};
+  if (h >= CASA.aquecendoAte && h < CASA.ultimoPedido)
+    return {id:'aberto', nome:'Aberto', sub:'saindo do forno', calor:.72,
+            espera:CASA.esperaBase, cta:()=>'Pedir agora',
+            msg:'Oi! Pedido:'};
+  if (h >= CASA.abre && h < CASA.aquecendoAte)
+    return {id:'aquecendo', nome:'Aquecendo', sub:'primeiras saem 18:20', calor:.38,
+            espera:null, cta:()=>'Entrar na primeira fornada',
+            msg:'Oi! Pego a primeira fornada?'};
+  return {id:'fechado', nome:'Fechado', sub:'abre 18:00', calor:0,
+          espera:null, cta:()=>'Programar pedido pras 18h',
+          msg:'Oi! Queria deixar um pedido pra hoje às 18h:'};
 }
 
-function diaDe(h){
-  if(h < 6) return 0;
-  if(h < 17) return 1;
-  if(h < 18) return 1 - (h - 17);
-  return 0;
+/* Tema pela hora — DEGRAU, nunca interpolado.
+   Um crepúsculo contínuo cruza fundo e texto no mesmo cinza médio:
+   medido em 22/07, o contraste caía a 1,02:1 (texto invisível) em --dia≈.5.
+   O virar do dia é instantâneo às 17:30; só o fundo faz crossfade. */
+function diaDe(h){ return (h >= CASA.amanhece && h < CASA.anoitece) ? 1 : 0; }
+
+/* relógio odômetro — cada dígito é uma fita que desliza */
+function montaRelogio(txt){
+  const el = $('#relogio');
+  if (el.childElementCount !== txt.length){
+    el.innerHTML = [...txt].map(c => /\d/.test(c)
+      ? `<span class="dig"><i>${[0,1,2,3,4,5,6,7,8,9].map(d=>`<b>${d}</b>`).join('')}</i></span>`
+      : `<span>${c}</span>`).join('');
+  }
+  [...txt].forEach((c,i) => {
+    const strip = el.children[i].querySelector('i');
+    if (strip) strip.style.transform = `translateY(${-c * 1.2}em)`;
+  });
 }
 
-function formataHora(h){
-  const hh = String(Math.floor(h)).padStart(2,'0');
-  const mm = String(Math.floor((h % 1) * 60)).padStart(2,'0');
-  return hh + ':' + mm;
-}
-
-let temaManual = null;
-let comanda = [];
+let temaManual = null;   // null = automático pela hora
+let horaTxt = '--:--';   /* NÃO ler a hora do DOM: cada dígito do odômetro contém
+                            a fita "0123456789" inteira e textContent devolve lixo */
 
 function pinta(){
   const h = horaAgora();
   const e = estadoDe(h);
   const dia = temaManual === null ? diaDe(h) : temaManual;
+
   document.documentElement.style.setProperty('--calor', e.calor);
   document.documentElement.style.setProperty('--dia', dia.toFixed(3));
-  $('#relogio').textContent = formataHora(h);
-  $('#relogio').className = 'tab';
-  $('#pill').style.background = e.calor > 0 ? 'var(--brasa)' : 'transparent';
-  $('#pill-txt').textContent = e.espera ? e.nome + ' · ~' + e.espera + ' min' : e.nome;
+
+  const hh = String(Math.floor(h)).padStart(2,'0');
+  const mm = String(Math.floor((h % 1) * 60)).padStart(2,'0');
+  horaTxt = `${hh}:${mm}`;
+  montaRelogio(horaTxt);
+
+  $('#pill').dataset.on = e.calor > 0 ? '1' : '0';
+  $('#pill-txt').textContent = e.espera ? `${e.nome} · ~${e.espera} min` : e.nome;
   $('#estado-nome').textContent = e.nome;
   $('#estado-sub').textContent = e.sub;
-  $('#estado-espera').innerHTML = e.espera ? 'Saindo do forno em <b>~' + e.espera + ' minutos</b>.' : (e.id === 'fechado' ? 'O forno acende às 18h. Deixa o pedido programado.' : 'As primeiras saem às 18:20.');
-  $('#cta-txt').textContent = e.cta;
-  $('#cta').href = 'https://wa.me/' + CASA.whats + '?text=' + encodeURIComponent(e.msg);
+  $('#estado-espera').innerHTML = e.espera
+    ? `Saindo do forno em <b>~${e.espera} minutos</b>.`
+    : (e.id === 'fechado' ? 'O forno acende às 18h. Deixa o pedido programado.'
+                          : 'As primeiras saem às 18:20.');
+  $('#cta-txt').textContent = e.cta(h);
+  $('#cta').href = `https://wa.me/${CASA.whats}?text=${encodeURIComponent(e.msg)}`;
   $('#tema').textContent = dia > .5 ? '☀' : '☾';
+
   const ag = $('#agulha');
-  const dentro = h >= CASA.abre && h < CASA.fecha;
+  const dentro = h >= CASA.abre && h < CASA.fecha;          /* fora do expediente, sem agulha */
   ag.style.opacity = dentro ? '1' : '0';
-  ag.style.left = clamp((h - CASA.abre) / 6, 0, 1) * 100 + '%';
-  $$('.trilho a').forEach(a => a.style.fontWeight = (+a.textContent === Math.floor(h)) ? '600' : '500');
+  ag.style.left = `${clamp((h - CASA.abre) / 6, 0, 1) * 100}%`;
+  ag.dataset.quente = e.calor >= 1 ? '1' : '0';
+
+  document.querySelectorAll('.trilho a').forEach(a => {
+    a.setAttribute('aria-current', String(+a.textContent === Math.floor(h)));
+  });
+
+  /* o cardápio inteiro atrasa junto com a casa */
+  atualizaTempos(e.espera ? e.espera - CASA.esperaBase : 0);
+  const rod = $('#rodape-estado');
+  if (rod) rod.textContent = e.calor > 0 ? 'FORNO ACESO AGORA' : 'FORNO APAGADO';
 }
 
 $('#tema').addEventListener('click', () => {
@@ -412,57 +1017,117 @@ $('#tema').addEventListener('click', () => {
   pinta();
 });
 
-/* Reveal por máscara — ativa ao rolar ou no carregamento */
-function checkReveal(){
-  $$('.reveal:not(.on)').forEach(el=>{
-    const r=el.getBoundingClientRect();
-    if(r.top < innerHeight*0.8) el.classList.add('on');
-  });
-}
-addEventListener('scroll', checkReveal, {passive:true});
-/* ativa todos no carregamento (site de portfólio: prioriza acessibilidade) */
-setTimeout(() => $$('.reveal').forEach(el => el.classList.add('on')), 100);
-
-/* Comanda */
-$$('.add').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const sabor = btn.dataset.sabor;
-    const preco = +btn.dataset.preco;
-    comanda.push({sabor, preco});
-    atualizaComanda();
-  });
-});
-
-function atualizaComanda(){
-  const total = comanda.reduce((s, i) => s + i.preco, 0);
-  $('#comanda-total').textContent = comanda.length + ' itens · R$ ' + total;
-  $('#comanda').classList.toggle('ativa', comanda.length > 0);
+pinta();
+if (DEMO){
+  document.body.insertAdjacentHTML('beforeend',
+    '<p class="demo-badge">modo demonstração · a noite inteira em 40s</p>');
+  setInterval(pinta, 200);          /* 5×/s basta: o CSS faz o crossfade */
+} else {
+  setInterval(pinta, 20000);
 }
 
-$('#comanda-enviar').addEventListener('click', () => {
-  const total = comanda.reduce((s, i) => s + i.preco, 0);
-  const itens = comanda.map(i => '• ' + i.sabor + ' — R$' + i.preco).join('\n');
-  const msg = 'Pedido — ' + formataHora(horaAgora()) + '\n' + itens + '\nTotal R$' + total;
-  window.open('https://wa.me/' + CASA.whats + '?text=' + encodeURIComponent(msg), '_blank');
-});
-
-/* Scroll-driven: o scroll é a noite passando */
-if(!CSS.supports('animation-timeline','scroll()')){
+/* --noite: o scroll é a noite passando. Scroll-driven nativo quando existir. */
+if (!CSS.supports('animation-timeline','scroll()')){
   let alvo = 0, cur = 0, rodando = false;
   const passo = () => {
-    cur += (alvo - cur) * 0.06;
+    cur += (alvo - cur) * 0.06;                    // spring validado (0.12 era rápido demais)
     document.documentElement.style.setProperty('--noite', cur.toFixed(4));
-    if(Math.abs(alvo - cur) > 0.0008) requestAnimationFrame(passo); else rodando = false;
+    if (Math.abs(alvo - cur) > 0.0008) requestAnimationFrame(passo); else rodando = false;
   };
   addEventListener('scroll', () => {
     const max = document.documentElement.scrollHeight - innerHeight;
     alvo = max > 0 ? clamp(scrollY / max, 0, 1) : 0;
-    if(!rodando){ rodando = true; requestAnimationFrame(passo); }
+    if (!rodando){ rodando = true; requestAnimationFrame(passo); }
   }, {passive:true});
 }
 
-pinta();
-setInterval(pinta, 20000);
+/* ── PAINEL DE FORNO ─────────────────────────────────────────────────
+   O tempo de cada prato é o tempo-base + o atraso do estado da noite.
+   Um cardápio que muda com o movimento da casa é o que o R$49 não faz. */
+const dinheiro = v => 'R$ ' + v.toFixed(2).replace('.', ',');
+
+$('#painel').innerHTML = CASA.cardapio.map((z,i) => `
+  <div class="item" data-i="${i}" data-c="${z.c}" data-t="${z.t}">
+    <span class="t" data-base="${z.t}">~${z.t} min</span>
+    <span><span class="n">${z.n}</span><span class="d">${z.d}</span></span>
+    <span class="p tab">${dinheiro(z.p)}</span>
+    <button class="add" type="button" data-i="${i}" aria-label="Adicionar ${z.n} à comanda">+</button>
+  </div>`).join('');
+
+function atualizaTempos(atraso){
+  document.querySelectorAll('#painel .t').forEach(el => {
+    el.textContent = `~${+el.dataset.base + atraso} min`;
+  });
+}
+
+let filtro = 'tudo';
+function aplicaFiltro(){
+  let visiveis = 0;
+  document.querySelectorAll('#painel .item').forEach(el => {
+    const ok = filtro === 'tudo' ? true
+             : filtro === 'rapida' ? +el.dataset.t <= 12
+             : el.dataset.c === filtro;
+    el.hidden = !ok; if (ok) visiveis++;
+  });
+  $('#vazio').hidden = visiveis > 0;
+}
+document.querySelector('.filtros').addEventListener('click', ev => {
+  const b = ev.target.closest('.chip'); if (!b) return;
+  filtro = b.dataset.f;
+  document.querySelectorAll('.chip').forEach(c =>
+    c.setAttribute('aria-pressed', String(c === b)));
+  aplicaFiltro();
+});
+
+/* ── COMANDA ────────────────────────────────────────────────────────
+   Sem carrinho falso e sem checkout falso: fecha no WhatsApp, que é
+   onde a PME realmente vende. Persiste pra sobreviver a um refresh.  */
+const CHAVE = 'fornodavila:comanda';
+let comanda = [];
+try { comanda = JSON.parse(localStorage.getItem(CHAVE)) || []; } catch(e){ comanda = []; }
+
+function pintaComanda(pulsa){
+  const total = comanda.reduce((s,x) => s + x.p * x.q, 0);
+  const qtd   = comanda.reduce((s,x) => s + x.q, 0);
+  const el = $('#comanda-total');
+  el.innerHTML = `${dinheiro(total)} <b>· ${qtd} ${qtd === 1 ? 'item' : 'itens'}</b>`;
+  $('#comanda-itens').textContent = comanda.map(x => `${x.q}× ${x.n}`).join(' · ');
+  $('#comanda').classList.toggle('ativa', qtd > 0);
+  if (pulsa){ el.classList.remove('pulso'); void el.offsetWidth; el.classList.add('pulso'); }
+
+  const linhas = comanda.map(x => `• ${x.q}x ${x.n} — ${dinheiro(x.p * x.q)}`).join('\n');
+  $('#comanda-enviar').href = 'https://wa.me/' + CASA.whats + '?text=' +
+    encodeURIComponent(`Pedido — ${horaTxt}\n${linhas}\nTotal ${dinheiro(total)}`);
+  try { localStorage.setItem(CHAVE, JSON.stringify(comanda)); } catch(e){}
+}
+
+$('#painel').addEventListener('click', ev => {
+  const b = ev.target.closest('.add'); if (!b) return;
+  const z = CASA.cardapio[+b.dataset.i];
+  const achou = comanda.find(x => x.n === z.n);
+  if (achou) achou.q++; else comanda.push({n:z.n, p:z.p, q:1});
+  pintaComanda(true);
+});
+$('#comanda-limpar').addEventListener('click', () => { comanda = []; pintaComanda(false); });
+
+/* ── LISTAS-RECIBO (bairros + horários da semana) ────────────────── */
+$('#bairros').innerHTML = Object.entries(CASA.bairros).map(([b,m]) =>
+  `<li><span>${b}</span><span class="pontos"></span><span class="val tab">~${m} min</span></li>`).join('');
+$('#horarios').innerHTML = Object.entries(CASA.semana).map(([d,h]) =>
+  `<li><span>${d}</span><span class="pontos"></span><span class="val tab">${h || 'fechado'}</span></li>`).join('');
+
+aplicaFiltro();
+pintaComanda(false);
+pinta();          /* de novo: a 1ª chamada rodou antes do painel existir */
+
+/* reveal por máscara — observa a SEÇÃO, escalona os filhos */
+document.querySelectorAll('.observa').forEach(sec => {
+  sec.querySelectorAll('.reveal').forEach((el,i) => { el.style.transitionDelay = `${i * 70}ms`; });
+});
+const io = new IntersectionObserver(es => {
+  es.forEach(en => { if (en.isIntersecting){ en.target.classList.add('visto'); io.unobserve(en.target); } });
+}, {threshold:.15});
+document.querySelectorAll('.observa').forEach(sec => io.observe(sec));
 </script>
 </body>
 </html>
