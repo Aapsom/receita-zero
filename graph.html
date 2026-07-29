@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codebase Graph - Receita Zero</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body { margin: 0; font-family: system-ui, sans-serif; background: #0a0a10; color: #e4e4ed; }
+    #graph { width: 100vw; height: 100vh; }
+    .node { cursor: pointer; }
+    .node circle { stroke: #fff; stroke-width: 2px; }
+    .link { stroke-opacity: 0.3; }
+    .legend { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <div id="graph"></div>
+  <div class="legend">
+    <div><strong>Nós:</strong> <span id="node-count">0</span></div>
+    <div><strong>Linguagens:</strong> <span id="lang-count">0</span></div>
+  </div>
+  <script>
+    fetch('graph.json')
+      .then(r => r.json())
+      .then(data => {
+        const width = document.getElementById('graph').clientWidth;
+        const height = document.getElementById('graph').clientHeight;
+        
+        const svg = d3.select('#graph')
+          .append('svg')
+          .attr('width', width)
+          .attr('height', height);
+        
+        const simulation = d3.forceSimulation(data.nodes || data.cluster_nodes || [])
+          .force('link', d3.forceLink(data.links || data.edges || []).id(d => d.name || d.id))
+          .force('charge', d3.forceManyBody().strength(-300))
+          .force('center', d3.forceCenter(width/2, height/2));
+        
+        document.getElementById('node-count').textContent = (data.nodes || data.cluster_nodes || []).length;
+      })
+      .catch(err => {
+        document.getElementById('graph').innerHTML = '<div style="padding:20px">Erro ao carregar gráfico: ' + err.message + '</div>';
+      });
+  </script>
+</body>
+</html>
