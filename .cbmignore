@@ -1,0 +1,51 @@
+# .cbmignore — padrão AAPSON para codebase-memory-mcp
+# Excluir artefatos, builds, dependências e arquivos grandes
+# Aplicar a todos os produtos: receita-zero, vybe, aapson-site, aapson-infra, saas-confianca-cobranca
+
+# Dependências
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+env/
+
+# Builds
+dist/
+build/
+out/
+.next/
+.nuxt/
+.vscode/
+.idea/
+
+# Arquivos grandes
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.ico
+*.pdf
+*.zip
+*.tar
+*.gz
+*.mp4
+*.mp3
+*.wav
+
+# Configuração de máquina
+.env
+.env.local
+.env.*.local
+*.log
+
+# Git
+.git/
+.gitignore
+
+# Sistema
+.DS_Store
+Thumbs.db

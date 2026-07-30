@@ -1,0 +1,46 @@
+name: Deploy Codebase Graph
+
+on:
+  push:
+    paths:
+      - "graph.json"
+      - "graph.html"
+      - ".github/workflows/deploy-graph.yml"
+  schedule:
+    - cron: "0 3 * * *"  # Diário às 3h
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  policy: one-concurrent-deployment
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Copy graph files to docs
+        run: |
+          mkdir -p docs/graph
+          cp graph.json docs/graph/ 2>/dev/null || true
+          cp graph.html docs/graph/ 2>/dev/null || true
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

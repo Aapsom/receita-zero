@@ -61,6 +61,13 @@
 - [ ] Responsivo (mobile first)
 - [ ] `prefers-reduced-motion` respeitado
 
+## 🔄 Adequação MIFB (UI polish)
+> Skill `make-interfaces-feel-better` (19 princípios). Receita Zero (index + checkout) concluído.
+> - ✅ `index.html` — font-smoothing, tabular-nums, scale-on-press (4 botões)
+> - ✅ `checkout.html` — font-smoothing, scale-on-press (2 botões), removed `transition:all`
+> - ⏳ `site-dfy/*` (7 landings) — fase 2 (font-smoothing, scale-on-press, hit areas)
+> - Ver `references/aapson-rollout-plan.md` no skill para detalhes completos
+
 ## Métricas de acompanhamento
 - **Velocity**: nichos completos por semana (meta: 2/semana)
 - **Quality**: % de gates Hallmark passando

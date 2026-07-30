@@ -380,3 +380,8 @@ Regra: **nada de `translateY` como camada de parallax, nada de aurora/blob/glow 
 ## 10. Nota de retratação
 
 Na rev.1 eu disse que as 5 skills do briefing "não estão instaladas". Estava errado: elas existem em `C:/Users/kauea/AppData/Local/hermes/skills/` — eu só olhei `~/.claude/skills/`. Ler as skills mudou 6 coisas do plano (paleta, nav, cardápio, tema dia/noite, macroestrutura, scroll-world descartada). A busca no vault valeu mais que o briefing.
+
+## Adequação MIFB (UI polish)
+> Skill `make-interfaces-feel-better` (19 princípios). Receita Zero (index + checkout) já adequado.
+> - ⏳ `site-dfy/pizzaria/index.html` — fase 2 (font-smoothing, tabular-nums, scale-on-press, hit areas)
+> - Ver `references/aapson-rollout-plan.md` no skill para detalhes completos

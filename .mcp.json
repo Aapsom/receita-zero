@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "codebase-memory-mcp": {
+      "command": "codebase-memory-mcp",
+      "args": [],
+      "env": {
+        "CBM_CACHE_DIR": "/c/Users/kauea/.cache/codebase-memory-mcp",
+        "CBM_LOG_LEVEL": "info"
+      }
+    }
+  }
+}

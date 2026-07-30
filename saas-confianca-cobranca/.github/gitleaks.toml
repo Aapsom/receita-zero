@@ -1,0 +1,235 @@
+# Gitleaks Configuration for AAPSON
+# Includes custom rules for MercadoPago, Pix, AAPSON crypto keys, etc.
+
+[allowlist]
+description = "AAPSON-specific allowlist"
+paths = [
+  "(?i)(.gitignore|.nojekyll|LICENSE|README\\.md|CHANGELOG\\.md)",
+  "(?i)package-lock\\.json",
+  "(?i)yarn\\.lock",
+  "(?i)pnpm-lock\\.yaml",
+]
+regexes = [
+  # Allow test/example keys
+  "TEST_KEY",
+  "EXAMPLE_KEY",
+  "DUMMY_KEY",
+  "FAKE_KEY",
+  "PLACEHOLDER",
+  "YOUR_KEY_HERE",
+  "INSERT_KEY_HERE",
+  # Allow obvious non-secrets
+  "^(0+)$",
+  "^(1+)$",
+  "^(x+)$",
+  # Allow common test patterns
+  "test.*secret",
+  "mock.*token",
+  "fake.*key",
+]
+
+# ============================================
+# AAPSON CUSTOM RULES
+# ============================================
+
+[[rules]]
+id = "aapson-mercadopago-access-token"
+description = "MercadoPago Access Token (APP_USR-XXXX-XXXX-XXXX-XXXX)"
+regex = '''(?i)(APP_USR-[A-Za-z0-9_-]{20,})'''
+tags = ["payment", "mercadopago", "financial"]
+entropy = 3.5
+
+[[rules]]
+id = "aapson-mercadopago-client-secret"
+description = "MercadoPago Client Secret"
+regex = '''(?i)(mercadopago[._-]?client[._-]?secret["'\\s:=]+[A-Za-z0-9_-]{20,})'''
+tags = ["payment", "mercadopago", "financial"]
+entropy = 3.5
+
+[[rules]]
+id = "aapson-pix-key"
+description = "PIX Key (32 hex chars or email/phone/CPF/CNPJ patterns)"
+regex = '''(?i)(pix[._-]?key["'\\s:=]+([A-Fa-f0-9]{32}|[\\w.-]+@[\\w.-]+\\.\\w+|\\+?\\d{10,14}|\\d{11}|\\d{14}))'''
+tags = ["payment", "pix", "financial", "brazil"]
+entropy = 4.0
+
+[[rules]]
+id = "aapson-pix-key-hex"
+description = "PIX Key (32 hex characters - EVP)"
+regex = '''\b[A-Fa-f0-9]{32}\b'''
+tags = ["payment", "pix", "financial", "brazil"]
+entropy = 4.5
+
+[[rules]]
+id = "aapson-data-kek"
+description = "Data Encryption Key (DATA_KEK env var value)"
+regex = '''(?i)(DATA_KEK["'\\s:=]+[A-Za-z0-9+/=]{44})'''
+tags = ["encryption", "key-management", "aapson"]
+entropy = 4.5
+
+[[rules]]
+id = "aapson-password-pepper"
+description = "Password Pepper (PASSWORD_PEPPER env var value)"
+regex = '''(?i)(PASSWORD_PEPPER["'\\s:=]+[A-Za-z0-9+/=]{32,})'''
+tags = ["encryption", "password", "key-management", "aapson"]
+entropy = 4.5
+
+[[rules]]
+id = "aapson-blind-index-key"
+description = "Blind Index Key (BLIND_INDEX_KEY env var value)"
+regex = '''(?i)(BLIND_INDEX_KEY["'\\s:=]+[A-Za-z0-9+/=]{44})'''
+tags = ["encryption", "searchable-encryption", "key-management", "aapson"]
+entropy = 4.5
+
+[[rules]]
+id = "aapson-stripe-key"
+description = "Stripe API Key (sk_live_, rk_live_, pk_live_)"
+regex = '''(?i)(sk_live_[A-Za-z0-9]{24,}|rk_live_[A-Za-z0-9]{24,}|pk_live_[A-Za-z0-9]{24,})'''
+tags = ["payment", "stripe", "financial"]
+entropy = 4.0
+
+[[rules]]
+id = "aapson-supabase-key"
+description = "Supabase Service Role / Anon Key"
+regex = '''(?i)(eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+)'''
+tags = ["database", "supabase", "backend"]
+entropy = 4.0
+
+[[rules]]
+id = "aapson-vercel-token"
+description = "Vercel Access Token"
+regex = '''(?i)(vercel[._-]?token["'\\s:=]+[A-Za-z0-9_-]{20,})'''
+tags = ["deployment", "vercel"]
+entropy = 3.5
+
+[[rules]]
+id = "aapson-github-token"
+description = "GitHub Personal Access Token (ghp_, gho_, ghu_, ghs_, ghr_)"
+regex = '''(gh[pousr]_[A-Za-z0-9_]{36,})'''
+tags = ["ci-cd", "github", "source-control"]
+entropy = 4.0
+
+[[rules]]
+id = "aapson-aws-access-key"
+description = "AWS Access Key ID"
+regex = '''(?i)(AKIA[0-9A-Z]{16})'''
+tags = ["cloud", "aws", "infrastructure"]
+entropy = 3.5
+
+[[rules]]
+id = "aapson-aws-secret-key"
+description = "AWS Secret Access Key"
+regex = '''(?i)(aws[._-]?secret[._-]?access[._-]?key["'\\s:=]+[A-Za-z0-9/+=]{40})'''
+tags = ["cloud", "aws", "infrastructure"]
+entropy = 4.0
+
+[[rules]]
+id = "aapson-gcp-key"
+description = "GCP Service Account Key (JSON)"
+regex = '''(?i)("type"\\s*:\\s*"service_account")'''
+tags = ["cloud", "gcp", "infrastructure"]
+entropy = 3.0
+
+[[rules]]
+id = "aapson-azure-secret"
+description = "Azure Client Secret"
+regex = '''(?i)(azure[._-]?client[._-]?secret["'\\s:=]+[A-Za-z0-9._~-]{20,})'''
+tags = ["cloud", "azure", "infrastructure"]
+entropy = 3.5
+
+[[rules]]
+id = "aapson-jwt-secret"
+description = "JWT Secret / Signing Key"
+regex = '''(?i)(jwt[._-]?secret["'\\s:=]+[A-Za-z0-9+/=_-]{32,})'''
+tags = ["auth", "jwt", "security"]
+entropy = 4.0
+
+[[rules]]
+id = "aapson-database-url"
+description = "Database Connection String with credentials"
+regex = '''(?i)(postgres(?:ql)?|mysql|mongodb|redis)://[^:\\s]+:[^@\\s]+@[^/\\s]+'''
+tags = ["database", "credentials"]
+entropy = 3.5
+
+[[rules]]
+id = "aapson-ssh-private-key"
+description = "SSH Private Key"
+regex = '''(-----BEGIN (?:RSA|DSA|EC|OPENSSH) PRIVATE KEY-----)'''
+tags = ["ssh", "infrastructure", "credentials"]
+entropy = 3.0
+
+[[rules]]
+id = "aapson-api-key-generic"
+description = "Generic API Key pattern"
+regex = '''(?i)(api[._-]?key["'\\s:=]+[A-Za-z0-9_-]{20,})'''
+tags = ["api", "credentials"]
+entropy = 3.0
+
+# ============================================
+# STANDARD GITLEAKS RULES (extended)
+# ============================================
+
+[[rules]]
+id = "slack-webhook"
+description = "Slack Webhook URL"
+regex = '''(?i)(https://hooks\\.slack\\.com/services/[A-Za-z0-9_/]+)'''
+tags = ["slack", "webhook"]
+
+[[rules]]
+id = "slack-token"
+description = "Slack Bot/User Token"
+regex = '''(?i)(xox[baprs]-[A-Za-z0-9-]+)'''
+tags = ["slack", "token"]
+
+[[rules]]
+id = "discord-token"
+description = "Discord Bot Token"
+regex = '''(?i)(discord[._-]?token["'\\s:=]+[A-Za-z0-9._-]{50,})'''
+tags = ["discord", "token"]
+
+[[rules]]
+id = "telegram-bot-token"
+description = "Telegram Bot Token"
+regex = '''\b\\d{8,10}:[A-Za-z0-9_-]{35}\b'''
+tags = ["telegram", "bot", "token"]
+
+[[rules]]
+id = "sendgrid-api-key"
+description = "SendGrid API Key"
+regex = '''(?i)(SG\\.[A-Za-z0-9_-]{22}\\.[A-Za-z0-9_-]{43})'''
+tags = ["sendgrid", "email", "api"]
+
+[[rules]]
+id = "github-oauth-token"
+description = "GitHub OAuth Token"
+regex = '''(?i)(gho_[A-Za-z0-9_]{36,})'''
+tags = ["github", "oauth", "token"]
+
+[[rules]]
+id = "npm-token"
+description = "NPM Token"
+regex = '''(?i)(npm_[A-Za-z0-9]{36,})'''
+tags = ["npm", "token"]
+
+[[rules]]
+id = "docker-config-json"
+description = "Docker Config JSON with auths"
+regex = '''(?i)("auths"\\s*:\\s*\\{)'''
+tags = ["docker", "registry", "credentials"]
+
+[[rules]]
+id = "kubernetes-config"
+description = "Kubernetes Config with credentials"
+regex = '''(?i)(users:\\s*-\\s*name:\\s*[\\w-]+\\s*user:\\s*\\{token:\\s*[A-Za-z0-9._-]+\\})'''
+tags = ["kubernetes", "k8s", "credentials"]
+
+# ============================================
+# ENTROPY-BASED DETECTION (for unknown patterns)
+# ============================================
+
+[[rules]]
+id = "high-entropy-string"
+description = "High entropy string (potential secret)"
+regex = '''(?i)(['"])[A-Za-z0-9+/=]{40,}\\1'''
+tags = ["generic", "high-entropy"]
+entropy = 4.5

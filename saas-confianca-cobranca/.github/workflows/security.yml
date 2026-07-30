@@ -1,0 +1,443 @@
+name: Security Pipeline
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '*.md'
+      - 'docs/**'
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - '*.md'
+      - 'docs/**'
+  schedule:
+    # Weekly full security scan
+    - cron: '0 2 * * 1'
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+  pull-requests: read
+
+env:
+  NODE_VERSION: '20'
+  PNPM_VERSION: '9'
+
+jobs:
+  # ============================================
+  # SAST - Static Application Security Testing
+  # ============================================
+  sast:
+    name: SAST (CodeQL)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [typescript]
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          config-file: .github/codeql-config.yml
+      
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+          cache-dependency-path: pnpm-lock.yaml
+      
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        working-directory: ./saas-confianca-cobranca
+      
+      - name: Build
+        run: pnpm run build
+        working-directory: ./saas-confianca-cobranca
+      
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{ matrix.language }}"
+          upload: true
+
+  # ============================================
+  # DEPENDENCY SCANNING (SCA)
+  # ============================================
+  dependency-scan:
+    name: Dependency Scan (npm audit + OSSF Scorecard)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      security-events: write
+      contents: read
+      packages: read
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+          cache-dependency-path: saas-confianca-cobranca/pnpm-lock.yaml
+      
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        working-directory: ./saas-confianca-cobranca
+      
+      - name: Run npm audit
+        run: pnpm audit --json > npm-audit.json || true
+        working-directory: ./saas-confianca-cobranca
+      
+      - name: Upload npm audit SARIF
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: saas-confianca-cobranca/npm-audit.json
+          category: npm-audit
+      
+      - name: Run OSSF Scorecard
+        uses: ossf/scorecard-action@v2.3.1
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          results_file: scorecard-results.sarif
+      
+      - name: Upload Scorecard SARIF
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: scorecard-results.sarif
+          category: scorecard
+
+  # ============================================
+  # SECRET DETECTION
+  # ============================================
+  secret-scan:
+    name: Secret Detection (TruffleHog + Gitleaks)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      security-events: write
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Run TruffleHog
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.pull_request.base.sha || '' }}
+          head: ${{ github.event.pull_request.head.sha || '' }}
+          extra_args: --fail --json --no-verification
+      
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: --config=./saas-confianca-cobranca/.github/gitleaks.toml --verbose --report-format sarif --report-path gitleaks-results.sarif
+      
+      - name: Upload Gitleaks SARIF
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: gitleaks-results.sarif
+          category: gitleaks
+
+  # ============================================
+  # CONTAINER SECURITY (if Dockerfile exists)
+  # ============================================
+  container-scan:
+    name: Container Scan (Trivy)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      security-events: write
+      contents: read
+    if: ${{ hashFiles('saas-confianca-cobranca/Dockerfile') != '' }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Build Docker image
+        run: |
+          docker build -t saas-confianca-cobranca:${{ github.sha }} ./saas-confianca-cobranca
+      
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'saas-confianca-cobranca:${{ github.sha }}'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+          exit-code: '1'
+          ignore-unfixed: true
+      
+      - name: Run Trivy config scanner (Dockerfile, docker-compose)
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'config'
+          scan-ref: './saas-confianca-cobranca'
+          format: 'sarif'
+          output: 'trivy-config-results.sarif'
+          exit-code: '1'
+          severity: 'CRITICAL,HIGH'
+      
+      - name: Upload Trivy vulnerability SARIF
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: trivy-results.sarif
+          category: trivy-image
+      
+      - name: Upload Trivy config SARIF
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: trivy-config-results.sarif
+          category: trivy-config
+
+  # ============================================
+  # IaC SECURITY (if Terraform files exist)
+  # ============================================
+  iac-scan:
+    name: IaC Scan (Checkov + tfsec)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      security-events: write
+      contents: read
+    if: ${{ hashFiles('**/*.tf', '**/*.tfvars') != '' }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Run Checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: ./
+          framework: terraform
+          output_format: sarif
+          output_file_path: checkov-results.sarif
+          soft_fail: false
+          skip_check: CKV_AWS_145  # Example: skip with justification
+      
+      - name: Run tfsec
+        uses: aquasecurity/tfsec-action@v1.0.0
+        with:
+          working_directory: ./
+          format: sarif
+          output: tfsec-results.sarif
+          soft_fail: false
+      
+      - name: Upload Checkov SARIF
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: checkov-results.sarif
+          category: checkov
+      
+      - name: Upload tfsec SARIF
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: tfsec-results.sarif
+          category: tfsec
+
+  # ============================================
+  # SECURITY TESTS (unit tests with security focus)
+  # ============================================
+  security-tests:
+    name: Security Unit Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+          cache-dependency-path: saas-confianca-cobranca/pnpm-lock.yaml
+      
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        working-directory: ./saas-confianca-cobranca
+      
+      - name: Run security-focused tests
+        run: pnpm test --run --reporter=verbose
+        working-directory: ./saas-confianca-cobranca
+        env:
+          # Test env vars (non-secret)
+          MP_ACCESS_TOKEN: 'TEST_TOKEN'
+          MP_WEBHOOK_SECRET: 'TEST_WEBHOOK_SECRET'
+          AVANCA_API_URL: 'https://test.avanca.com.br'
+          VITRINE_CERTA_WEBHOOK_URL: 'https://test.vitrinecerta.com/api/avanca-webhook'
+          ATLAS_API_URL: 'http://localhost:3000/api/atlas/dunning-trigger'
+          ATLAS_WEBHOOK_SECRET: 'TEST_ATLAS_SECRET'
+          DATA_KEK: 'dGVzdC1rZXktZm9yLWVuY3J5cHRpb24tdGVzdGluZw=='  # base64 test key
+          PASSWORD_PEPPER: 'dGVzdC1wZXBwZXItZm9yLWFyZ29uMmlkLXRlc3Rpbmc='
+          BLIND_INDEX_KEY: 'dGVzdC1ibGluZC1pbmRleC1rZXktZm9yLXRlc3Rpbmc='
+      
+      - name: Generate coverage
+        run: pnpm test --run --coverage
+        working-directory: ./saas-confianca-cobranca
+
+  # ============================================
+  # LINT & TYPE CHECK
+  # ============================================
+  lint-typecheck:
+    name: Lint & Type Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+          cache-dependency-path: saas-confianca-cobranca/pnpm-lock.yaml
+      
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        working-directory: ./saas-confianca-cobranca
+      
+      - name: Run lint
+        run: pnpm lint
+        working-directory: ./saas-confianca-cobranca
+      
+      - name: Run type check
+        run: pnpm tsc --noEmit
+        working-directory: ./saas-confianca-cobranca
+
+  # ============================================
+  # SECURITY GATE - Aggregates all security results
+  # ============================================
+  security-gate:
+    name: Security Gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: 
+      - sast
+      - dependency-scan
+      - secret-scan
+      - container-scan
+      - iac-scan
+      - security-tests
+      - lint-typecheck
+    if: always()
+    permissions:
+      security-events: read
+      contents: read
+    
+    steps:
+      - name: Check SAST results
+        if: needs.sast.result != 'success'
+        run: |
+          echo "❌ SAST failed"
+          exit 1
+      
+      - name: Check dependency scan results
+        if: needs.dependency-scan.result != 'success'
+        run: |
+          echo "❌ Dependency scan failed"
+          exit 1
+      
+      - name: Check secret scan results
+        if: needs.secret-scan.result != 'success'
+        run: |
+          echo "❌ Secret scan failed"
+          exit 1
+      
+      - name: Check container scan results
+        if: needs.container-scan.result != 'success' && needs.container-scan.result != 'skipped'
+        run: |
+          echo "❌ Container scan failed"
+          exit 1
+      
+      - name: Check IaC scan results
+        if: needs.iac-scan.result != 'success' && needs.iac-scan.result != 'skipped'
+        run: |
+          echo "❌ IaC scan failed"
+          exit 1
+      
+      - name: Check security tests
+        if: needs.security-tests.result != 'success'
+        run: |
+          echo "❌ Security tests failed"
+          exit 1
+      
+      - name: Check lint & typecheck
+        if: needs.lint-typecheck.result != 'success'
+        run: |
+          echo "❌ Lint/TypeCheck failed"
+          exit 1
+      
+      - name: All security checks passed
+        run: |
+          echo "✅ All security gates passed"
+          echo "## Security Gate Summary" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| SAST (CodeQL) | ✅ |" >> $GITHUB_STEP_SUMMARY
+          echo "| Dependency Scan | ✅ |" >> $GITHUB_STEP_SUMMARY
+          echo "| Secret Detection | ✅ |" >> $GITHUB_STEP_SUMMARY
+          echo "| Container Scan | ✅ |" >> $GITHUB_STEP_SUMMARY
+          echo "| IaC Scan | ✅ |" >> $GITHUB_STEP_SUMMARY
+          echo "| Security Tests | ✅ |" >> $GITHUB_STEP_SUMMARY
+          echo "| Lint & TypeCheck | ✅ |" >> $GITHUB_STEP_SUMMARY

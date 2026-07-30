@@ -1,0 +1,40 @@
+# SOPS Configuration for AAPSON Platform Secrets
+# 
+# Usage:
+# 1. Install: pip install sops (or download binary)
+# 2. Generate age key: age-keygen -o key.txt
+# 3. Add public key to .sops.yaml
+# 4. Encrypt: sops -e .env.local > .env.local.enc
+# 5. Decrypt: sops -d .env.local.enc > .env.local
+
+creation_rules:
+  # Platform secrets (our own tokens, webhook secrets, encryption keys)
+  - path_regex: \.env\.(local|prod|staging)$
+    age: >
+      age1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    encrypted_regex: '^(MP_|DATA_KEK|PASSWORD_PEPPER|BLIND_INDEX_KEY|WEBHOOK_)'
+
+  # GitHub Actions secrets (for CI/CD)
+  - path_regex: \.github/workflows/.*\.ya?ml$
+    age: >
+      age1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    encrypted_regex: '^(VERCEL_|NPM_|SNYK_|CODECOV_)'
+
+  # Vercel/Cloud provider configs
+  - path_regex: vercel\.json$
+    age: >
+      age1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# Key groups for team access
+keys:
+  - &platform-team age1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  - &security-team age1yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
+  - &infra-team age1zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+
+groups:
+  platform:
+    - *platform-team
+  security:
+    - *security-team
+  infra:
+    - *infra-team

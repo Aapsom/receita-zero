@@ -138,3 +138,18 @@ declarado aqui de propósito, porque o princípio está certo; o que não pode r
 - Todo estado do diagrama conferido: cabe / não cabe / nada cabe hoje.
 - Painel de demonstração `_checkpoint/painel-do-dia.html` com `?agora=` e `?servico=`.
 - Dados fictícios marcados `⚠️ DEMO`. Config num bloco só, no topo.
+
+### 6.1 Checklist UI polish (`make-interfaces-feel-better`)
+
+| # | Princípio | Aplicar em | Status |
+|---|---|---|---|
+| 8 | Font smoothing | `html,body` | ✅ Adicionar `-webkit-font-smoothing:antialiased` |
+| 9 | Tabular numbers | `.horario`, `.duracao`, `.preco` | ✅ Já no plano (DM Sans tabular) |
+| 10 | Text wrapping | headings, descrições | ✅ `text-wrap:balance` em h1/h2, `text-wrap:pretty` em body |
+| 12 | Scale on press | botões de slot, CTA WhatsApp | ✅ `active:scale(.96)` em todos os interativos |
+| 14 | Never `transition: all` | botões, slots | ✅ Especificar propriedades exatas |
+| 16 | Minimum hit area | slots de horário, botões | ✅ Slots ≥44×44px (touch); botões ≥40×40px |
+| 19 | Motion restraint | hover de slots, animação da barra-phantasma | ✅ Hover ≤150ms; barra-phantasma usa `prefers-reduced-motion` |
+| 1 | Concentric border-radius | cards de serviço dentro de slots | ✅ `outerRadius = innerRadius + padding` |
+| 3 | Shadows for elevation | cards, slots ocupados | ✅ `box-shadow` transparente, não border sólido |
+| 11 | Image outlines | fotos da equipe | ✅ `outline:1px solid oklch(0 0 0 / 0.1)` (light) / `oklch(1 0 0 / 0.1)` (dark)

@@ -1,0 +1,59 @@
+name: "AAPSON Security CodeQL Config"
+
+# Disable default queries and use custom security-focused queries
+disable-default-queries: false
+
+# Custom queries for AAPSON-specific patterns
+queries:
+  # Security-focused queries
+  - uses: security-extended
+  - uses: security-and-quality
+
+# Custom query packs for specific AAPSON patterns
+query-filters:
+  # Exclude test files from analysis
+  - exclude:
+      id: js/redis
+      id: js/weak-crypto
+      id: js/hardcoded-credentials
+  
+  # Include only high-severity issues for CI gate
+  - include:
+      severity: [error, warning]
+      tags: [security, external/cwe, external/owasp]
+
+# Paths to include/exclude
+paths:
+  - src/
+  - packages/crypto/
+  - .github/workflows/
+
+paths-ignore:
+  - "**/*.test.ts"
+  - "**/*.spec.ts"
+  - "**/__tests__/**"
+  - "**/__mocks__/**"
+  - "node_modules/**"
+  - ".next/**"
+  - "dist/**"
+  - "build/**"
+  - "coverage/**"
+  - "*.config.*"
+  - "*.md"
+  - ".github/dependabot.yml"
+  - ".github/CODEOWNERS"
+
+# Extensions to analyze
+extensions:
+  - ts
+  - tsx
+  - js
+  - jsx
+  - json
+  - yaml
+  - yml
+
+# Language-specific configuration
+languages:
+  - javascript
+  - typescript

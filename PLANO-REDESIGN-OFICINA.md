@@ -282,3 +282,8 @@ consulta a placa e vê. E aprova o orçamento sem você ter que insistir."*
 3. **Placa é dado pessoal.** Em cliente real, consulta por placa expõe informação de terceiro.
    Na versão de portfólio não importa; na entrega, exigir um segundo fator (últimos 4 dígitos do
    telefone) antes de mostrar a ficha. Anotado agora para não virar problema depois.
+
+## Adequação MIFB (UI polish)
+> Skill `make-interfaces-feel-better` (19 princípios). Receita Zero (index + checkout) já adequado.
+> - ⏳ `site-dfy/oficina/index.html` — fase 2 (font-smoothing, tabular-nums, scale-on-press, hit areas)
+> - Ver `references/aapson-rollout-plan.md` no skill para detalhes completos

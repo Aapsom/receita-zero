@@ -1,0 +1,98 @@
+version: 2
+updates:
+  # GitHub Actions - keep pinned SHAs updated
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "03:00"
+      timezone: "America/Sao_Paulo"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+        update-types:
+          - "version-update:semver-patch"
+          - "version-update:semver-minor"
+    open-pull-requests-limit: 10
+
+  # npm dependencies for saas-confianca-cobranca
+  - package-ecosystem: "npm"
+    directory: "/saas-confianca-cobranca"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "03:00"
+      timezone: "America/Sao_Paulo"
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "npm"
+    groups:
+      # Group dev dependencies together
+      dev-dependencies:
+        dependency-type: "development"
+        update-types:
+          - "version-update:semver-patch"
+          - "version-update:semver-minor"
+      # Group production dependencies by scope
+      production-dependencies:
+        dependency-type: "production"
+        update-types:
+          - "version-update:semver-patch"
+        exclude-patterns:
+          - "@types/*"
+          - "typescript"
+          - "vitest"
+    open-pull-requests-limit: 15
+    # Ignore major versions that might break things
+    ignore:
+      - dependency-name: "next"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@supabase/supabase-js"
+        update-types: ["version-update:semver-major"]
+
+  # npm dependencies for receita-zero root
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "03:00"
+      timezone: "America/Sao_Paulo"
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "npm"
+    open-pull-requests-limit: 5
+
+  # Docker base images
+  - package-ecosystem: "docker"
+    directory: "/saas-confianca-cobranca"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "03:00"
+      timezone: "America/Sao_Paulo"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "docker"
+    open-pull-requests-limit: 5

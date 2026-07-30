@@ -1,0 +1,54 @@
+# AAPSON CODEOWNERS
+# Changes to these files require review from security/platform teams
+
+# GitHub Actions workflows - require security team approval
+.github/workflows/ @aapson/security-team @aapson/platform-team
+
+# GitHub Actions reusable workflows
+.github/workflows/*.yml @aapson/security-team @aapson/platform-team
+
+# Dependabot configuration
+.github/dependabot.yml @aapson/security-team @aapson/platform-team
+
+# Security configuration
+.github/gitleaks.toml @aapson/security-team
+.github/codeql-config.yml @aapson/security-team
+.github/CODEOWNERS @aapson/security-team @aapson/platform-team
+
+# Crypto package - core security primitives
+packages/crypto/ @aapson/security-team @aapson/platform-team
+
+# Billing/payment code - financial security
+saas-confianca-cobranca/src/lib/billing/ @aapson/security-team @aapson/finance-team
+
+# Webhook handlers - security critical
+saas-confianca-cobranca/src/app/api/webhooks/ @aapson/security-team @aapson/platform-team
+
+# Auth/middleware - security critical
+saas-confianca-cobranca/src/middleware/ @aapson/security-team
+saas-confianca-cobranca/src/lib/auth/ @aapson/security-team
+
+# Environment files - secrets
+.env* @aapson/security-team
+*.env.local @aapson/security-team
+*.env.production @aapson/security-team
+
+# Infrastructure as Code (if exists)
+**/terraform/** @aapson/platform-team @aapson/security-team
+**/*.tf @aapson/platform-team @aapson/security-team
+**/*.tfvars @aapson/platform-team @aapson/security-team
+
+# Docker/container configs
+Dockerfile* @aapson/platform-team
+docker-compose*.yml @aapson/platform-team
+
+# CI/CD configuration
+.github/ @aapson/platform-team @aapson/security-team
+.gitlab-ci.yml @aapson/platform-team
+Jenkinsfile* @aapson/platform-team
+
+# Security tools config
+.trivy* @aapson/security-team
+.checkov* @aapson/security-team
+.sops* @aapson/security-team
+age-key* @aapson/security-team

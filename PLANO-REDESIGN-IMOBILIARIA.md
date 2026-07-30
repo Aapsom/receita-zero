@@ -111,3 +111,8 @@ Servem ao painel de demonstração **e** ao link que o corretor manda no WhatsAp
 - [ ] 0 pageerror · sem scroll-x em 1440 / 390 / 320
 - [ ] `prefers-reduced-motion` mantém os números
 - [ ] nenhum hex fora do `:root` · zero token AAPSON
+
+## Adequação MIFB (UI polish)
+> Skill `make-interfaces-feel-better` (19 princípios). Receita Zero (index + checkout) já adequado.
+> - ⏳ `site-dfy/imobiliaria/index.html` — fase 2 (font-smoothing, tabular-nums, scale-on-press, hit areas)
+> - Ver `references/aapson-rollout-plan.md` no skill para detalhes completos
