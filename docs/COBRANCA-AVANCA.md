@@ -159,19 +159,26 @@ Content-Type: application/json
 | Assinatura falhou | `subscription.failed` | INADIMPLENTE | F4 Dunning |
 | Assinatura suspensa | `subscription.suspended` | SUSPENSO | Site offline (503) |
 
-### 4.3 Payload
+### 4.3 Payload (Avança → VC, P9 implementado)
 
 ```json
 {
   "event": "subscription.activated",
-  "event_id": "evt_123456",
-  "subscription_id": "sub_abc123",
-  "pme_id": "pme-12345",
+  "event_id": "subscription.activated:cb-456",
+  "cobranca_id": "cb-456",
+  "pme_id": "pme-123",
   "plano": "premium",
-  "payment_method": "pix_auto",
-  "timestamp": "2026-07-26T12:00:00Z"
+  "timestamp": "2026-08-05T12:00:00Z"
 }
 ```
+
+- **Header de assinatura:** `x-vc-signature: <hmac_sha256(webhook_secret, corpo_cru)>`
+  (sem ts/v1 — HMAC direto sobre o corpo). O `webhook_secret` é o
+  `tenant.webhook_secret` (configurado por tenant no Avança, pronto p/ multi-tenant).
+- **Eventos emitidos:** `subscription.activated` (paga→libera site), `subscription.failed`
+  (inaDIMPLENTE → F4 Dunning). `subscription.suspended`/`payment.confirmed` previstos no receptor.
+- **Receptor:** `references/avanca-webhook.js` (VC) valida `x-vc-signature` e marca o status
+  na planilha LEADS-SHEETS. Idempotente por `event_id`.
 
 ### 4.4 Idempotência
 
