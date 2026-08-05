@@ -71,8 +71,10 @@ h1 em{color:var(--green);font-style:normal}
 </style>
 </head>
 <body>
-<!-- API_BASE do Avança (PRD/Produção) — isolado do HML -->
-<div id="vc-api" data-api-url="https://saas-confianca-cobranca.vercel.app/api/v1/subscriptions" style="display:none"></div>
+<!-- API_BASE do Avança via PROXY da VC (PRD/Produção) — isolado do HML.
+     O proxy (api/v1/vc-checkout no Avança) injeta o Bearer do tenant da VC,
+     então o checkout ESTÁTICO da VC NUNCA expõe token. -->
+<div id="vc-api" data-api-url="https://saas-confianca-cobranca.vercel.app/api/v1/vc-checkout" style="display:none"></div>
 <div class="wrap">
   <span class="kick">Último passo</span>
   <h1>Seu site <em>pronto em 48h</em>. É só confirmar.</h1>
@@ -91,6 +93,13 @@ h1 em{color:var(--green);font-style:normal}
   <div class="metodo-seletor">
     <div class="label">Como você quer pagar?</div>
     <div class="metodo-grid" id="metodo-grid"></div>
+  </div>
+
+  <!-- Dados do CLIENTE (PME) — a VC repassa ao Avança; cliente NÃO loga no Avança -->
+  <div class="metodo-seletor">
+    <div class="label">Seu e-mail (para a nota e o acesso)</div>
+    <input id="pme-email" type="email" placeholder="voce@suaempresa.com.br" required
+      style="width:100%;padding:.8rem;border:2px solid var(--border);border-radius:10px;font-size:.95rem;font-family:inherit" />
   </div>
 
   <div class="status-msg" id="status-msg"></div>
@@ -221,8 +230,17 @@ document.getElementById('pagar').addEventListener('click', function(){
   var payload = {
     plano: chave,
     pme_id: pmeId,
+    pme_email: document.getElementById('pme-email').value.trim(),
+    pme_nome: '',
     payment_method: metodoSelecionado
   };
+
+  if (!payload.pme_email || !/^[^@\s]+@[^@\s]+.[^@\s]+$/.test(payload.pme_email)) {
+    showStatus('Informe um e-mail válido para continuar.','err');
+    btn.disabled = false;
+    btn.textContent = 'Tentar novamente →';
+    return;
+  }
 
   fetch(API_BASE, {
     method: 'POST',
