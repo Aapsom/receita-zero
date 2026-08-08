@@ -14,13 +14,13 @@
 |---|--------|---------|:---:|:---:|---|
 | 1 | Checkout | `hml/checkout.html` | ✅ | vc-checkout (estável) | ENTREGUE (`e16100c`) |
 | 2 | Dashboard (assinaturas) | `hml/dashboard.html` | ✅ | subscriptions?demo=1 | ENTREGUE (`d0ca026`) |
-| 3 | Login | `hml/login.html` | ❌ pendente | demo e-mail | EXISTE — falta premium visual |
+| 3 | Login | `hml/login.html` | ✅ | demo e-mail | ENTREGUE (`e1de825`) |
 | 4 | Cadastro do cliente | — | ❌ | Supabase auth real | A FAZER |
-| 5 | Detalhe/edição da assinatura | `hml/site.html?cobranca_id=` | ❌ | subscriptions?cobranca_id= | A FAZER |
+| 5 | Detalhe/edição da assinatura | `hml/site.html?cobranca_id=` | ✅ | subscriptions?demo=1 | ENTREGUE (08/ago) |
 | 6 | Webhook receiver (P9) | `hml/webhook.html` | ❌ | vc-webhook-receiver (Avança) | A FAZER (backend pronto) |
 | 7 | Dashboard de Insights | — | ❌ | Looker/Clarity embed | A FAZER (só doc `DASHBOARD-INSIGHTS.md`) |
-| 8 | Política LGPD / Privacidade | `hml/lgpd.html` | ❌ | — | A FAZER (só doc `LGPD-VITRINE-CERTA.md`) |
-| 9 | Sucesso pós-pagamento | `hml/sucesso.html` | ❌ | — | A FAZER (hoje redireciona p/ 404) |
+| 8 | Política LGPD / Privacidade | `hml/lgpd.html` | ✅ | — | ENTREGUE (08/ago) |
+| 9 | Sucesso pós-pagamento | `hml/sucesso.html` | ✅ | — | ENTREGUE (08/ago) |
 | 10 | Recuperação de senha / conta | — | ❌ | auth real | A FAZER |
 
 ## Ordem de execução (definida 08/ago)

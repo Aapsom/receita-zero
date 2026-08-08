@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vitrine Certa — Detalhe da assinatura</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --vidro:#EDEFF4; --vidro2:#E3E7EF; --branco:#FBFCFE;
+  --linha:#CBD4E0; --linha2:#778799;
+  --tinta:#14161D; --fumaca:#525A6A; --fraco:#5A6373;
+  --lamp:#E8873A; --lamp-2:#9C4D15;
+  --accent:#E8873A; --accent-ink:#9C4D15;
+  --r:14px;
+  --disp:'Space Grotesk',Georgia,serif;
+  --sans:'Plus Jakarta Sans','Segoe UI',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --sombra:0 26px 64px -32px rgba(20,22,29,.34), 0 8px 22px -14px rgba(20,22,29,.16);
+  --sombra-sm:0 3px 14px -6px rgba(20,22,29,.22);
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--vidro);color:var(--tinta);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip;position:relative;min-height:100vh;padding:5vh 5vw}
+body::before{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;transition:background .8s ease;background:
+  radial-gradient(52% 40% at 84% -8%, color-mix(in srgb,var(--accent) 34%,transparent), transparent 62%),
+  radial-gradient(48% 36% at 10% 4%, color-mix(in srgb,var(--accent) 12%,transparent), transparent 60%)}
+#spot{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.9;mix-blend-mode:multiply;transition:opacity .4s;
+  background:radial-gradient(360px circle at var(--mx,80%) var(--my,10%), color-mix(in srgb,var(--accent) 22%,transparent), transparent 66%)}
+body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;mix-blend-mode:soft-light;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.wrap{max-width:680px;margin:0 auto}
+.kick{display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--accent-ink);margin-bottom:.8rem;transition:color .5s}
+h1{font-family:var(--disp);font-weight:300;font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.08;margin:.4rem 0 1.4rem;letter-spacing:-.02em}
+h1 b{font-weight:700}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1rem}
+.ghost{color:var(--accent-ink);text-decoration:none;font-weight:600;font-size:.85rem}
+.reveal{clip-path:inset(-80px -80px 100% -80px);opacity:0;transition:clip-path .6s cubic-bezier(.22,1,.36,1),opacity .6s cubic-bezier(.22,1,.36,1)}
+.reveal.in{clip-path:inset(-80px -80px -80px -80px);opacity:1}
+@media(prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;clip-path:none}#spot{display:none}}
+/* card de detalhe — vidro profundo (padrão landing) */
+.card{background:color-mix(in srgb,var(--branco) 50%,transparent);border:1px solid rgba(255,255,255,.6);border-radius:var(--r);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--sombra-sm),inset 0 1px 0 rgba(255,255,255,.7);padding:1.3rem 1.4rem;margin:.8rem 0;transition:border-color .2s,box-shadow .2s,transform .2s}
+.card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--lamp) 50%,var(--linha));box-shadow:var(--sombra)}
+.card .row{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.card .nome{font-family:var(--disp);font-weight:500;font-size:1.3rem;color:var(--tinta)}
+.card .plano{font-size:.82rem;color:var(--fumaca);margin-top:.15rem}
+.card .valor{font-family:var(--mono);font-weight:700;font-size:1.4rem;font-feature-settings:"tnum";text-align:right}
+.card .valor small{font-family:var(--sans);font-weight:400;font-size:.7rem;color:var(--fumaca)}
+.badge{font-size:.7rem;font-weight:700;padding:.25rem .65rem;border-radius:99px;letter-spacing:.04em;margin-top:.4rem;display:inline-block}
+.badge.pending{background:rgba(232,135,58,.14);color:var(--accent-ink)}
+.badge.paid{background:rgba(31,182,166,.14);color:#0f7d72}
+.badge.cancelled{background:rgba(90,97,114,.14);color:var(--fumaca)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:.4rem 1rem;margin:.9rem 0;font-size:.9rem}
+.kv dt{color:var(--fumaca);font-weight:600}
+.kv dd{color:var(--tinta);text-align:right}
+.acoes{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
+.btn{display:inline-block;padding:.7rem 1.3rem;border-radius:999px;font-family:var(--disp);font-weight:500;font-size:.92rem;text-decoration:none;cursor:pointer;border:1.5px solid transparent;transition:background-color .15s,transform .1s,box-shadow .15s}
+.btn-lamp{background:var(--lamp);color:#241202;box-shadow:0 14px 34px -14px rgba(232,135,58,.65)}
+.btn-lamp:hover{background:#F0913F;transform:translateY(-2px)}
+.btn-ghost{background:color-mix(in srgb,var(--branco) 55%,transparent);border-color:var(--linha2);color:var(--tinta)}
+.btn-ghost:hover{border-color:var(--tinta);background:var(--branco)}
+.btn-danger{background:rgba(199,90,38,.10);border-color:rgba(199,90,38,.3);color:var(--lamp-2)}
+.btn-danger:hover{background:rgba(199,90,38,.16)}
+.status-msg{margin:1rem 0;padding:.8rem;border-radius:10px;font-size:.85rem;display:none}
+.status-msg.err{background:rgba(156,77,21,.08);color:var(--accent-ink);border:1px solid rgba(156,77,21,.25)}
+.note{font-size:.72rem;color:var(--fumaca);text-align:center;margin-top:1.4rem}
+</style>
+</head>
+<body>
+<div id="spot"></div>
+<div class="wrap">
+  <div class="topbar">
+    <span class="kick">Detalhe da assinatura</span>
+    <a class="ghost" href="dashboard.html">← voltar</a>
+  </div>
+  <h1>Seu <b>site e assinatura</b></h1>
+  <div id="detalhe"></div>
+  <p class="note">Vitrine Certa — HML (modo demonstração).</p>
+</div>
+<script>
+(function(){
+'use strict';
+var API='https://saas-confianca-cobranca.vercel.app/api/v1/subscriptions';
+var params=new URLSearchParams(location.search);
+var id=params.get('cobranca_id');
+var box=document.getElementById('detalhe');
+var statusEl=null;
+function badge(st){
+  var map={pending:['pending','Pendente'],paid:['paid','Pago'],cancelled:['cancelled','Cancelado']};
+  var b=map[st]||['pending',st||'?'];
+  return '<span class="badge '+b[0]+'">'+b[1]+'</span>';
+}
+function fmt(v){return 'R$ '+(v||0);}
+function planoDe(c){if(!c)return '';var s=String(c).toLowerCase();
+  if(s.indexOf('premium')>=0)return 'Premium';if(s.indexOf('plus')>=0)return 'Plus';if(s.indexOf('basico')>=0)return 'Básico';return c;}
+
+fetch(API+'?demo=1',{headers:{'Content-Type':'application/json'}})
+  .then(function(r){return r.json().then(function(b){return{ok:r.ok,body:b};});})
+  .then(function(res){
+    if(!res.ok){box.innerHTML='<div class="status-msg err">Erro ao carregar assinatura.</div>';return;}
+    var cs=res.body.cobrancas||[];
+    var c = cs.find(function(x){return x.id===id;}) || cs[0];
+    if(!c){box.innerHTML='<div class="card reveal">Nenhuma assinatura encontrada. <a class="ghost" href="checkout.html">Contrate um site →</a></div>';return;}
+    box.innerHTML='<div class="card reveal">'
+      +'<div class="row"><div><div class="nome">'+planoDe(c.cliente)+'</div><div class="plano">'+(c.cliente||'')+'</div>'+badge(c.status)+'</div>'
+      +'<div class="valor">'+fmt(c.valor)+'<small style="font-size:.7rem;color:var(--fumaca)">/mês</small></div></div>'
+      +'<dl class="kv"><dt>Status</dt><dd>'+(c.status||'—')+'</dd><dt>Próxima cobrança</dt><dd>'+(c.vencimento||'—')+'</dd><dt>ID</dt><dd style="font-family:var(--mono);font-size:.78rem">'+c.id+'</dd></dl>'
+      +'<div class="acoes">'
+      +'<a class="btn btn-lamp" href="checkout.html">Trocar de plano</a>'
+      +'<a class="btn btn-ghost" href="dashboard.html">Voltar ao painel</a>'
+      +'<button class="btn btn-danger" onclick="alert(\'Cancelamento: em produção, aciona o Avança (tenant VC).\')">Cancelar assinatura</button>'
+      +'</div></div>';
+    if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.14});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});}
+    else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});}
+  })
+  .catch(function(e){box.innerHTML='<div class="status-msg err">Erro de conexão: '+e.message+'</div>';});
+
+/* spotlight que segue o cursor (padrão landing) */
+(function(){
+  var s=document.getElementById('spot'),raf=false,mx=80,my=10;
+  window.addEventListener('mousemove',function(e){
+    mx=(e.clientX/window.innerWidth*100);my=(e.clientY/window.innerHeight*100);
+    if(!raf){raf=true;requestAnimationFrame(function(){s.style.setProperty('--mx',mx+'%');s.style.setProperty('--my',my+'%');raf=false;});}
+  },{passive:true});
+})();
+})();
+</script>
+</body>
+</html>
