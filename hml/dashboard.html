@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vitrine Certa — Meus sites</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--vidro:#EEF0F4;--vidro2:#E3E7EE;--linha:#C9D2E0;--tinta:#16181F;--fumaca:#5A6172;--claro:#FBFCFE;--lamp:#E8743B;--lamp-2:#C75A26;--blur:blur(14px);--sombra:0 24px 60px -30px rgba(232,116,59,.18);--raio:16px}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
+body{background:var(--vidro);color:var(--tinta);font-family:'Plus Jakarta Sans',system-ui,sans-serif;min-height:100vh;padding:5vh 5vw;line-height:1.55}
+.wrap{max-width:760px;margin:0 auto}
+.kick{color:var(--lamp);text-transform:uppercase;letter-spacing:.18em;font-size:.7rem;font-weight:700}
+h1{font-family:'Space Grotesk',sans-serif;font-weight:300;font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.08;margin:.4rem 0 1.4rem}
+h1 b{font-weight:700}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1rem}
+.ghost{color:var(--lamp);text-decoration:none;font-weight:600;font-size:.85rem}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+.card{background:color-mix(in srgb,var(--vidro2) 70%,transparent);border:1px solid var(--linha);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);box-shadow:var(--sombra);border-radius:var(--raio);padding:1.1rem 1.2rem;margin:.7rem 0;transition:border-color .2s,box-shadow .2s}
+.card:hover{border-color:color-mix(in srgb,var(--lamp) 40%,var(--linha));box-shadow:0 0 0 1px rgba(232,116,59,.12),var(--sombra)}
+.card .linha{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.card .nome{font-weight:600;font-size:1.05rem}
+.card .plano{font-size:.8rem;color:var(--fumaca)}
+.card .valor{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.2rem;font-feature-settings:"tnum"}
+.badge{font-size:.7rem;font-weight:700;padding:.2rem .6rem;border-radius:99px;letter-spacing:.04em}
+.badge.pending{background:rgba(232,116,59,.14);color:var(--lamp-2)}
+.badge.paid{background:rgba(31,182,166,.14);color:#0f7d72}
+.badge.cancelled{background:rgba(90,97,114,.14);color:var(--fumaca)}
+.empty{color:var(--fumaca);text-align:center;padding:2rem;font-size:.95rem}
+.cta{display:inline-block;background:var(--lamp);color:var(--claro);text-align:center;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:.95rem;padding:.7rem 1.4rem;border-radius:999px;text-decoration:none;transition:background-color .15s,transform .1s;margin-top:.4rem}
+.cta:hover{background:var(--lamp-2)}
+.cta:active{transform:scale(.97)}
+.status-msg{margin:1rem 0;padding:.8rem;border-radius:10px;font-size:.85rem;display:none}
+.status-msg.err{background:rgba(199,90,38,.07);color:var(--lamp-2);border:1px solid rgba(199,90,38,.25)}
+.note{font-size:.72rem;color:var(--fumaca);text-align:center;margin-top:1.4rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <span class="kick">Área do cliente</span>
+    <a class="ghost" href="login.html">↻ trocar conta</a>
+  </div>
+  <h1>Seus <b>sites e assinaturas</b></h1>
+
+  <div class="status-msg" id="status"></div>
+  <div id="lista"></div>
+
+  <a class="cta" href="checkout.html" style="margin-top:1.4rem">+ Contratar novo site</a>
+  <p class="note">Vitrine Certa — HML (modo demonstração).</p>
+</div>
+
+<script>
+(function(){
+'use strict';
+var API='https://saas-confianca-cobranca-mz19187xh-aapson.vercel.app/api/v1/subscriptions';
+var lista=document.getElementById('lista');
+var statusEl=document.getElementById('status');
+function showErr(m){statusEl.textContent=m;statusEl.className='status-msg err';statusEl.style.display='block';}
+
+function badge(s){
+  var map={pending:['pending','Pendente'],paid:['paid','Pago'],cancelled:['cancelled','Cancelado']};
+  var b=map[s]||['pending',s||'?'];
+  return '<span class="badge '+b[0]+'">'+b[1]+'</span>';
+}
+function fmt(v){return 'R$ '+(v||0);}
+function planoDe(cliente){
+  if(!cliente) return '';
+  var c=String(cliente).toLowerCase();
+  if(c.indexOf('premium')>=0) return 'Premium';
+  if(c.indexOf('plus')>=0) return 'Plus';
+  if(c.indexOf('basico')>=0) return 'Básico';
+  return cliente;
+}
+
+fetch(API+'?demo=1',{headers:{'Content-Type':'application/json'}})
+  .then(function(r){return r.json().then(function(b){return{ok:r.ok,body:b};});})
+  .then(function(res){
+    if(!res.ok){showErr('Erro ao carregar: '+(res.body.erro||res.body.message||'desconhecido'));return;}
+    var cs=res.body.cobrancas||[];
+    if(!cs.length){lista.innerHTML='<div class="empty">Você ainda não tem assinaturas. <a class="ghost" href="checkout.html">Contrate seu primeiro site →</a></div>';return;}
+    lista.innerHTML=cs.map(function(c){
+      return '<div class="card reveal"><div class="linha">'
+        +'<div><div class="nome">'+planoDe(c.cliente)+'</div><div class="plano">'+(c.cliente||'')+'</div></div>'
+        +'<div style="text-align:right"><div class="valor">'+fmt(c.valor)+'<small style="font-size:.7rem;color:var(--fumaca)">/mês</small></div>'+badge(c.status)+'</div>'
+        +'</div></div>';
+    }).join('');
+    if('IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.12});
+      document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+    } else { document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');}); }
+  })
+  .catch(function(e){showErr('Erro de conexão: '+e.message);});
+})();
+</script>
+</body>
+</html>

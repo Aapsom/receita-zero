@@ -8,34 +8,34 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  /* Vitrine Certa — marca-mãe (DESIGN.md v3: vidro + lâmpada acesa) */
-  --vidro:#EEF0F4;        /* fundo lousa claro-azulado */
-  --vidro2:#E3E7EE;       /* superfície elevada */
-  --linha:#C9D2E0;        /* borda 1px translúcida */
-  --tinta:#16181F;        /* texto principal */
-  --fumaca:#5A6172;       /* texto secundário */
-  --claro:#FBFCFE;        /* texto sobre --tinta */
-  --lamp:#E8743B;         /* acento único (lâmpada acesa) */
-  --lamp-2:#C75A26;       /* hover do acento */
+  /* Vitrine Certa — marca própria (DESIGN.md v3: vidro + lâmpada acesa) */
+  --vidro:#EEF0F4; --vidro2:#E3E7EE; --linha:#C9D2E0;
+  --tinta:#16181F; --fumaca:#5A6172; --claro:#FBFCFE;
+  --lamp:#E8743B; --lamp-2:#C75A26;
   --blur:blur(14px);
   --sombra:0 24px 60px -30px rgba(232,116,59,.18), 0 8px 20px -12px rgba(22,24,31,.10);
   --raio:16px;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-body{background:var(--vidro);color:var(--tinta);font-family:'Plus Jakarta Sans',system-ui,sans-serif;min-height:100vh;padding:5vh 5vw;line-height:1.55}
+body{background:var(--vidro);color:var(--tinta);font-family:'Plus Jakarta Sans',system-ui,sans-serif;min-height:100vh;padding:5vh 5vw 120px;line-height:1.55}
 .wrap{max-width:720px;margin:0 auto}
 .kick{color:var(--lamp);text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;font-weight:700;margin-bottom:.8rem}
 h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.9rem,4.4vw,2.8rem);font-weight:300;line-height:1.06;letter-spacing:-.02em;margin-bottom:1.2rem}
 h1 b{font-weight:700}
 h1 em{font-style:normal;color:var(--lamp)}
+/* Reveal por scroll */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 /* Card de vitrine (vidro) */
 .vitrine{
   background:color-mix(in srgb,var(--vidro2) 70%,transparent);
-  border:1px solid var(--linha);
-  -webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);
+  border:1px solid var(--linha);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);
   box-shadow:var(--sombra);border-radius:var(--raio);padding:1rem;margin:1rem 0;
+  transition:border-color .2s ease-out,box-shadow .2s ease-out;
 }
-.section-label{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:.82rem;letter-spacing:.04em;color:var(--fumaca);margin:1.6rem 0 .6rem;text-transform:uppercase}
+.vitrine:hover{border-color:color-mix(in srgb,var(--lamp) 40%,var(--linha))}
+.section-label{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:.82rem;letter-spacing:.04em;color:var(--fumaca);margin:1.8rem 0 .7rem;text-transform:uppercase}
 /* Grade de planos */
 .planos{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}
 .plano{
@@ -43,21 +43,21 @@ h1 em{font-style:normal;color:var(--lamp)}
   background:color-mix(in srgb,var(--vidro2) 60%,transparent);
   transition:border-color .15s ease-out,box-shadow .15s ease-out,transform .12s ease-out;
 }
-.plano:hover{border-color:var(--lamp);transform:translateY(-2px)}
+.plano:hover{border-color:var(--lamp);transform:translateY(-2px);box-shadow:0 0 0 1px rgba(232,116,59,.12)}
 .plano.sel{border-color:var(--lamp);box-shadow:0 0 0 2px rgba(232,116,59,.18),var(--sombra)}
 .plano .tag{position:absolute;top:-.6rem;left:.9rem;background:var(--lamp);color:var(--claro);font-size:.6rem;font-weight:700;letter-spacing:.06em;padding:.15rem .5rem;border-radius:99px}
 .plano .pnome{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:.95rem;color:var(--fumaca)}
 .plano .ppreco{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.5rem;font-feature-settings:"tnum";margin-top:.3rem}
 .plano .ppreco small{font-family:'Plus Jakarta Sans';font-weight:400;font-size:.7rem;color:var(--fumaca)}
 .plano.sel .pnome{color:var(--tinta)}
-/* Add-ons (pacotes adicionais) */
+/* Add-ons */
 .addons{display:grid;gap:.6rem}
 .addon{
   display:flex;align-items:flex-start;gap:.8rem;cursor:pointer;
   border:1px solid var(--linha);border-radius:12px;padding:.9rem 1rem;
   background:color-mix(in srgb,var(--vidro2) 55%,transparent);transition:border-color .15s,box-shadow .15s;
 }
-.addon:hover{border-color:var(--lamp)}
+.addon:hover{border-color:var(--lamp);box-shadow:0 0 0 1px rgba(232,116,59,.1)}
 .addon.sel{border-color:var(--lamp);box-shadow:0 0 0 2px rgba(232,116,59,.15)}
 .addon .box{
   flex:0 0 auto;width:20px;height:20px;border-radius:6px;border:2px solid var(--linha);
@@ -71,7 +71,7 @@ h1 em{font-style:normal;color:var(--lamp)}
 /* Método */
 .metodo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem}
 .metodo-opt{border:1px solid var(--linha);border-radius:10px;padding:.8rem;cursor:pointer;background:color-mix(in srgb,var(--vidro2) 60%,transparent);transition:.12s}
-.metodo-opt:hover{border-color:var(--lamp)}
+.metodo-opt:hover{border-color:var(--lamp);box-shadow:0 0 0 1px rgba(232,116,59,.1)}
 .metodo-opt.sel{border-color:var(--lamp);box-shadow:0 0 0 2px rgba(232,116,59,.15)}
 .metodo-opt .nome{font-weight:600;font-size:.85rem}
 .metodo-opt .desc{font-size:.72rem;color:var(--fumaca)}
@@ -79,64 +79,73 @@ h1 em{font-style:normal;color:var(--lamp)}
 /* E-mail */
 input#pme-email{width:100%;padding:.85rem 1rem;border:1px solid var(--linha);border-radius:12px;font-size:.95rem;font-family:inherit;background:var(--claro)}
 input#pme-email:focus{outline:none;border-color:var(--lamp);box-shadow:0 0 0 3px rgba(232,116,59,.12)}
-/* Status + total */
+/* Status */
 .status-msg{margin:1rem 0;padding:.8rem;border-radius:10px;font-size:.85rem;display:none}
 .status-msg.ok{background:rgba(232,116,59,.08);color:var(--lamp-2);border:1px solid rgba(232,116,59,.25)}
 .status-msg.err{background:rgba(199,90,38,.07);color:var(--lamp-2);border:1px solid rgba(199,90,38,.25)}
-.total{display:flex;justify-content:space-between;align-items:baseline;margin:1.2rem 0 .4rem;padding:.6rem 0;border-top:1px dashed var(--linha)}
-.total .lbl{font-size:.9rem;color:var(--fumaca)}
-.total .val{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.6rem;font-feature-settings:"tnum"}
-/* CTA */
-.cta{display:block;width:100%;background:var(--lamp);color:var(--claro);text-align:center;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:1.1rem;padding:1rem 1.8rem;border-radius:999px;border:none;cursor:pointer;transition:background-color .15s,transform .1s;margin-top:.6rem}
-.cta:hover{background:var(--lamp-2)}
-.cta:active{transform:scale(.97)}
-.cta:disabled{opacity:.5;cursor:not-allowed}
-.cta.ghost{background:transparent;color:var(--lamp);border:1px solid var(--linha);margin-top:.6rem;text-decoration:none}
-.note{font-size:.72rem;color:var(--fumaca);text-align:center;margin-top:1.2rem}
 .faq{margin:1.4rem 0;font-size:.9rem;color:var(--fumaca)}
 .faq details{padding:.5rem 0;border-bottom:1px solid rgba(0,0,0,.05)}
 .faq summary{cursor:pointer;color:var(--tinta);font-weight:600}
-@media(max-width:560px){.planos{grid-template-columns:1fr}.metodo-grid{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+/* Rodapé fixo persistente (total) */
+.bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  background:color-mix(in srgb,var(--vidro2) 80%,transparent);
+  -webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);
+  border-top:1px solid var(--linha);box-shadow:0 -8px 30px -20px rgba(22,24,31,.25);
+  padding:.8rem 5vw;display:flex;align-items:center;gap:1rem;
+}
+.bar .b-info{flex:1;min-width:0}
+.bar .b-lbl{font-size:.72rem;color:var(--fumaca)}
+.bar .b-val{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.35rem;font-feature-settings:"tnum";color:var(--tinta)}
+.bar .b-val small{font-family:'Plus Jakarta Sans';font-weight:400;font-size:.7rem;color:var(--fumaca)}
+.bar .cta{
+  flex:0 0 auto;background:var(--lamp);color:var(--claro);font-family:'Space Grotesk',sans-serif;font-weight:500;
+  font-size:1rem;padding:.85rem 1.6rem;border-radius:999px;border:none;cursor:pointer;transition:background-color .15s,transform .1s;
+}
+.bar .cta:hover{background:var(--lamp-2)}
+.bar .cta:active{transform:scale(.97)}
+.bar .cta:disabled{opacity:.5;cursor:not-allowed}
+.note{font-size:.72rem;color:var(--fumaca);text-align:center;margin-top:1.2rem}
+@media(max-width:560px){.planos{grid-template-columns:1fr}.metodo-grid{grid-template-columns:1fr}.bar{flex-wrap:wrap}.bar .cta{width:100%}}
 </style>
 </head>
 <body>
-<!-- API via PROXY da VC (HML/Sandbox): o proxy injeta o token do tenant; o checkout
-     estático NÃO expõe segredo. Aponta para o preview sandbox do Avança. -->
-<div id="vc-api" data-api-url="https://saas-confianca-cobranca-pj9745s0a-aapson.vercel.app/api/v1/vc-checkout" style="display:none"></div>
+<!-- Proxy da VC (HML/Sandbox): injeta o token do tenant; checkout estático não expõe segredo. -->
+<div id="vc-api" data-api-url="https://saas-confianca-cobranca-mz19187xh-aapson.vercel.app/api/v1/vc-checkout" style="display:none"></div>
 <div class="wrap">
   <span class="kick">Último passo</span>
   <h1>Sua vitrine <b>pronta em 48h</b>.<br>É só <em>escolher o seu plano</em>.</h1>
 
-  <div class="section-label">1 · Plano mensal</div>
-  <div class="planos" id="planos"></div>
+  <div class="section-label reveal">1 · Plano mensal</div>
+  <div class="planos reveal" id="planos"></div>
 
-  <div class="section-label">2 · Pacotes adicionais <span style="text-transform:none;color:var(--fumaca)">(opcional)</span></div>
-  <div class="addons" id="addons"></div>
+  <div class="section-label reveal">2 · Pacotes adicionais <span style="text-transform:none;color:var(--fumaca)">(opcional)</span></div>
+  <div class="addons reveal" id="addons"></div>
 
-  <div class="section-label">3 · Como quer pagar</div>
-  <div class="metodo-grid" id="metodos"></div>
+  <div class="section-label reveal">3 · Como quer pagar</div>
+  <div class="metodo-grid reveal" id="metodos"></div>
 
-  <div class="section-label">4 · Seu e-mail (nota + acesso)</div>
-  <input id="pme-email" type="email" placeholder="voce@suaempresa.com.br" required>
-
-  <div class="total">
-    <span class="lbl">Total recorrente / mês</span>
-    <span class="val" id="total">R$149</span>
-  </div>
+  <div class="section-label reveal">4 · Seu e-mail (nota + acesso)</div>
+  <input class="reveal" id="pme-email" type="email" placeholder="voce@suaempresa.com.br" required>
 
   <div class="status-msg" id="status"></div>
-  <button class="cta" id="pagar" disabled>Escolha um plano e um método →</button>
-  <a class="cta ghost" id="wa" href="#">Mais dúvidas? Falo no WhatsApp</a>
 
-  <div class="faq">
+  <div class="faq reveal">
     <details open><summary>Preciso de cartão de crédito?</summary><p>Não. Cobramos via <b>Pix recorrente</b> (Mercado Pago). Todo mês o link chega no seu WhatsApp.</p></details>
     <details><summary>Tem fidelidade?</summary><p>Não. Você paga mês a mês e cancela quando quiser, sem multa.</p></details>
     <details><summary>Os pacotes adicionais são obrigatórios?</summary><p>Não. São melhorias opcionais — adicione só o que fizer sentido para o seu negócio.</p></details>
     <details><summary>Aparece no Google?</summary><p>Sim, todo plano já é indexado localmente. O pacote "Aparecer no Google PRO" sobe ainda mais sua posição e coloca sua ficha no mapa.</p></details>
   </div>
-
   <p class="note">Vitrine Certa — sites que vendem para o comércio local. Valores sujeitos a confirmação em proposta.</p>
+</div>
+
+<!-- Rodapé fixo: total recorrente persistente -->
+<div class="bar">
+  <div class="b-info">
+    <div class="b-lbl">Total recorrente / mês</div>
+    <div class="b-val" id="total">R$149<small>/mês</small></div>
+  </div>
+  <button class="cta" id="pagar" disabled>Escolha um plano e um método →</button>
 </div>
 
 <script>
@@ -144,21 +153,16 @@ input#pme-email:focus{outline:none;border-color:var(--lamp);box-shadow:0 0 0 3px
 'use strict';
 var API_BASE = document.getElementById('vc-api').dataset.apiUrl || '/api/v1/subscriptions';
 
-// ===== Planos (COBRANCA-AVANCA.md §1.1 + KIT-DE-VENDAS) =====
 var PLANOS = [
   { id:'basico',  nome:'Básico',  valor:49,  pop:false, itens:['Site + hospedagem + domínio','Botão de WhatsApp direto','Já aparece no Google local','Relatório de visitas'] },
   { id:'plus',    nome:'Plus',    valor:99,  pop:false, itens:['Tudo do Básico','Acabamento premium + motion','Seção "como funciona"'] },
   { id:'premium', nome:'Premium', valor:149, pop:true,  itens:['Tudo do Plus','Mecânica única do seu nicho','Pedido/agenda no site','Suporte prioritário'] },
 ];
-
-// ===== Pacotes adicionais (COBRANCA-AVANCA.md §1.3 + ADR-0003) =====
 var ADDONS = [
   { id:'sempre_novinho', nome:'Site Sempre Novinho', valor:99,  desc:'2 atualizações de fotos/cardápio por mês' },
   { id:'google_pro',     nome:'Aparecer no Google PRO', valor:297, desc:'Domínio .com.br + ficha no mapa + SEO local' },
   { id:'porta',          nome:'Cliente na Porta', valor:199, desc:'Gestão de Google/Meta Ads (verba à parte)' },
 ];
-
-// ===== Métodos (COBRANCA-AVANCA.md §1.2) =====
 var METODOS = [
   { id:'pix_auto',    label:'Pix Automático',  icon:'⚡', desc:'Recorrente via Pix. Sem cartão.' },
   { id:'credit_card', label:'Cartão de Crédito',icon:'💳', desc:'Recorrente (até 12x sem juros).' },
@@ -173,7 +177,6 @@ var metodoAtivo = null;
 
 function fmt(v){ return 'R$'+v; }
 
-// ===== Render planos =====
 function renderPlanos(){
   var box = document.getElementById('planos');
   box.innerHTML = PLANOS.map(function(p){
@@ -192,7 +195,6 @@ window.vcSelPlano = function(el){
   atualiza();
 };
 
-// ===== Render add-ons =====
 function renderAddons(){
   var box = document.getElementById('addons');
   box.innerHTML = ADDONS.map(function(a){
@@ -210,7 +212,6 @@ window.vcSelAddon = function(el){
   atualiza();
 };
 
-// ===== Render métodos =====
 function renderMetodos(){
   var box = document.getElementById('metodos');
   box.innerHTML = METODOS.map(function(m){
@@ -228,7 +229,6 @@ window.vcSelMetodo = function(el){
   atualiza();
 };
 
-// ===== Total =====
 function total(){
   var p = PLANOS.find(function(x){return x.id===planoAtivo;}) || PLANOS[2];
   var t = p.valor;
@@ -239,7 +239,7 @@ function total(){
   return t;
 }
 function atualiza(){
-  document.getElementById('total').textContent = fmt(total());
+  document.getElementById('total').innerHTML = fmt(total()) + '<small>/mês</small>';
   var btn = document.getElementById('pagar');
   var ok = planoAtivo && metodoAtivo;
   btn.disabled = !ok;
@@ -252,11 +252,9 @@ function atualiza(){
   }
 }
 
-// ===== Status =====
 function showStatus(msg,type){ var el=document.getElementById('status'); el.textContent=msg; el.className='status-msg '+(type||'ok'); el.style.display='block'; }
 function hideStatus(){ document.getElementById('status').style.display='none'; }
 
-// ===== Envio =====
 document.getElementById('pagar').addEventListener('click', function(){
   if(!planoAtivo || !metodoAtivo){ showStatus('Selecione plano e método.','err'); return; }
   var email = document.getElementById('pme-email').value.trim();
@@ -289,11 +287,16 @@ document.getElementById('pagar').addEventListener('click', function(){
     .catch(function(e){ showStatus('Erro de conexão: '+e.message,'err'); btn.disabled=false; atualiza(); });
 });
 
-// ===== WhatsApp =====
-document.getElementById('wa').href = 'https://wa.me/5511970776856?text='
-  + encodeURIComponent('Quero montar minha vitrine (a partir de R$49/mes)');
+document.getElementById('wa') && (document.getElementById('wa').href = 'https://wa.me/5511970776856?text=' + encodeURIComponent('Quero montar minha vitrine (a partir de R$49/mes)'));
 
-// ===== Init =====
+// Reveal por scroll
+if('IntersectionObserver' in window){
+  var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('in'); }); },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+} else {
+  document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+}
+
 renderPlanos(); renderAddons(); renderMetodos(); atualiza();
 })();
 </script>

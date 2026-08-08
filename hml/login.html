@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vitrine Certa — Entrar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--vidro:#EEF0F4;--vidro2:#E3E7EE;--linha:#C9D2E0;--tinta:#16181F;--fumaca:#5A6172;--claro:#FBFCFE;--lamp:#E8743B;--lamp-2:#C75A26;--blur:blur(14px);--sombra:0 24px 60px -30px rgba(232,116,59,.18);--raio:16px}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
+body{background:var(--vidro);color:var(--tinta);font-family:'Plus Jakarta Sans',system-ui,sans-serif;min-height:100vh;display:grid;place-items:center;padding:5vh 5vw}
+.card{width:100%;max-width:420px;background:color-mix(in srgb,var(--vidro2) 70%,transparent);border:1px solid var(--linha);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);box-shadow:var(--sombra);border-radius:var(--raio);padding:2rem}
+.kick{color:var(--lamp);text-transform:uppercase;letter-spacing:.18em;font-size:.7rem;font-weight:700;margin-bottom:.6rem}
+h1{font-family:'Space Grotesk',sans-serif;font-weight:300;font-size:1.8rem;line-height:1.1;margin-bottom:.4rem}
+h1 b{font-weight:700}
+p.sub{color:var(--fumaca);font-size:.9rem;margin-bottom:1.4rem}
+label{display:block;font-size:.78rem;color:var(--fumaca);margin-bottom:.4rem;font-weight:600}
+input{width:100%;padding:.85rem 1rem;border:1px solid var(--linha);border-radius:12px;font-size:.95rem;font-family:inherit;background:var(--claro);margin-bottom:.2rem}
+input:focus{outline:none;border-color:var(--lamp);box-shadow:0 0 0 3px rgba(232,116,59,.12)}
+.cta{display:block;width:100%;background:var(--lamp);color:var(--claro);text-align:center;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:1rem;padding:.9rem 1.8rem;border-radius:999px;border:none;cursor:pointer;transition:background-color .15s,transform .1s;margin-top:1rem}
+.cta:hover{background:var(--lamp-2)}
+.cta:active{transform:scale(.97)}
+.cta:disabled{opacity:.5;cursor:not-allowed}
+.msg{margin-top:1rem;font-size:.85rem;padding:.7rem;border-radius:10px;display:none}
+.msg.ok{background:rgba(232,116,59,.08);color:var(--lamp-2);border:1px solid rgba(232,116,59,.25)}
+.msg.err{background:rgba(199,90,38,.07);color:var(--lamp-2);border:1px solid rgba(199,90,38,.25)}
+.note{font-size:.72rem;color:var(--fumaca);text-align:center;margin-top:1.2rem}
+a{color:var(--lamp);text-decoration:none;font-weight:600}
+</style>
+</head>
+<body>
+<div class="card">
+  <span class="kick">Área do cliente</span>
+  <h1>Entrar na <b>Vitrine Certa</b></h1>
+  <p class="sub">HML: informe o e-mail para acessar suas assinaturas (modo demonstração).</p>
+  <label for="email">Seu e-mail</label>
+  <input id="email" type="email" placeholder="voce@suaempresa.com.br" autocomplete="email">
+  <button class="cta" id="entrar">Entrar →</button>
+  <div class="msg" id="msg"></div>
+  <p class="note"><a href="checkout.html">← Voltar ao contrato</a></p>
+</div>
+
+<script>
+(function(){
+'use strict';
+var msg=document.getElementById('msg');
+function show(t,type){msg.textContent=t;msg.className='msg '+(type||'info');msg.style.display='block';}
+document.getElementById('entrar').addEventListener('click',function(){
+  var email=document.getElementById('email').value.trim();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){show('Informe um e-mail válido.','err');return;}
+  localStorage.setItem('vc_email',email);
+  location.href='dashboard.html';
+});
+})();
+</script>
+</body>
+</html>
