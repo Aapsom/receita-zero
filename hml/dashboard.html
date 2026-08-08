@@ -45,6 +45,7 @@ h1 b{font-weight:700}
     <a class="ghost" href="login.html">↻ trocar conta</a>
   </div>
   <h1>Seus <b>sites e assinaturas</b></h1>
+  <p class="sub" id="saudacao" style="color:var(--fumaca);font-size:.9rem;margin-bottom:1rem"></p>
 
   <div class="status-msg" id="status"></div>
   <div id="lista"></div>
@@ -56,7 +57,9 @@ h1 b{font-weight:700}
 <script>
 (function(){
 'use strict';
-var API='https://saas-confianca-cobranca-mz19187xh-aapson.vercel.app/api/v1/subscriptions';
+var API='https://saas-confianca-cobranca.vercel.app/api/v1/subscriptions';
+var email=localStorage.getItem('vc_email');
+if(email){ var s=document.getElementById('saudacao'); if(s) s.textContent='Olá, '+email+' — estas são suas assinaturas:'; }
 var lista=document.getElementById('lista');
 var statusEl=document.getElementById('status');
 function showErr(m){statusEl.textContent=m;statusEl.className='status-msg err';statusEl.style.display='block';}
