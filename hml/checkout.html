@@ -5,299 +5,248 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Vitrine Certa — Fechar contrato</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+/* Tokens da landing mãe (Vitrine Certa) — vidro + lâmpada */
 :root{
-  /* Vitrine Certa — marca própria (DESIGN.md v3: vidro + lâmpada acesa) */
-  --vidro:#EEF0F4; --vidro2:#E3E7EE; --linha:#C9D2E0;
-  --tinta:#16181F; --fumaca:#5A6172; --claro:#FBFCFE;
-  --lamp:#E8743B; --lamp-2:#C75A26;
-  --blur:blur(14px);
-  --sombra:0 24px 60px -30px rgba(232,116,59,.18), 0 8px 20px -12px rgba(22,24,31,.10);
-  --raio:16px;
+  --vidro:#EDEFF4; --vidro2:#E3E7EF; --branco:#FBFCFE;
+  --linha:#CBD4E0; --linha2:#778799;
+  --tinta:#14161D; --fumaca:#525A6A; --fraco:#5A6373; --claro2:#C3CBD6;
+  --lamp:#E8873A; --lamp-2:#9C4D15;
+  --accent:#E8873A; --accent-ink:#9C4D15;
+  --r:14px;
+  --disp:'Space Grotesk',Georgia,serif;
+  --sans:'Plus Jakarta Sans','Segoe UI',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --sombra:0 26px 64px -32px rgba(20,22,29,.34), 0 8px 22px -14px rgba(20,22,29,.16);
+  --sombra-sm:0 3px 14px -6px rgba(20,22,29,.22);
 }
-*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-body{background:var(--vidro);color:var(--tinta);font-family:'Plus Jakarta Sans',system-ui,sans-serif;min-height:100vh;padding:5vh 5vw 120px;line-height:1.55}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--vidro);color:var(--tinta);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip;position:relative;padding:5vh 5vw 120px}
+/* camada 1: halo de luz da cor ativa, fixo no topo */
+body::before{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;transition:background .8s ease;background:
+  radial-gradient(52% 40% at 84% -8%, color-mix(in srgb,var(--accent) 34%,transparent), transparent 62%),
+  radial-gradient(48% 36% at 10% 4%, color-mix(in srgb,var(--accent) 12%,transparent), transparent 60%)}
+/* camada 2: spotlight que segue o cursor */
+#spot{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.9;mix-blend-mode:multiply;transition:opacity .4s;
+  background:radial-gradient(360px circle at var(--mx,80%) var(--my,10%), color-mix(in srgb,var(--accent) 22%,transparent), transparent 66%)}
+/* camada 3: grão premium */
+body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;mix-blend-mode:soft-light;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .wrap{max-width:720px;margin:0 auto}
-.kick{color:var(--lamp);text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;font-weight:700;margin-bottom:.8rem}
-h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.9rem,4.4vw,2.8rem);font-weight:300;line-height:1.06;letter-spacing:-.02em;margin-bottom:1.2rem}
+.kick{display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--accent-ink);margin-bottom:.8rem;transition:color .5s}
+h1{font-family:var(--disp);font-weight:300;font-size:clamp(1.9rem,4.4vw,2.8rem);line-height:1.06;letter-spacing:-.02em;margin-bottom:1.2rem}
 h1 b{font-weight:700}
-h1 em{font-style:normal;color:var(--lamp)}
-/* Reveal por scroll */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1)}
-.reveal.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
-/* Card de vitrine (vidro) */
-.vitrine{
-  background:color-mix(in srgb,var(--vidro2) 70%,transparent);
-  border:1px solid var(--linha);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);
-  box-shadow:var(--sombra);border-radius:var(--raio);padding:1rem;margin:1rem 0;
-  transition:border-color .2s ease-out,box-shadow .2s ease-out;
-}
-.vitrine:hover{border-color:color-mix(in srgb,var(--lamp) 40%,var(--linha))}
-.section-label{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:.82rem;letter-spacing:.04em;color:var(--fumaca);margin:1.8rem 0 .7rem;text-transform:uppercase}
-/* Grade de planos */
+h1 em{font-style:normal;color:var(--accent-ink)}
+.section-label{font-family:var(--mono);font-weight:500;font-size:.8rem;letter-spacing:.06em;color:var(--fumaca);margin:1.8rem 0 .7rem;text-transform:uppercase}
+/* vidro profundo (padrão landing) */
+.vidro{background:color-mix(in srgb,var(--branco) 46%,transparent);border:1px solid rgba(255,255,255,.6);border-radius:var(--r);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:var(--sombra-sm),inset 0 1px 0 rgba(255,255,255,.7)}
+/* reveal por clip-path (padrão landing) */
+.reveal{clip-path:inset(-80px -80px 100% -80px);opacity:0;transition:clip-path .6s cubic-bezier(.22,1,.36,1),opacity .6s cubic-bezier(.22,1,.36,1)}
+.reveal.in{clip-path:inset(-80px -80px -80px -80px);opacity:1}
+@media(prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;clip-path:none}}
+/* planos */
 .planos{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}
-.plano{
-  position:relative;cursor:pointer;border:1px solid var(--linha);border-radius:14px;padding:1rem .9rem;
-  background:color-mix(in srgb,var(--vidro2) 60%,transparent);
-  transition:border-color .15s ease-out,box-shadow .15s ease-out,transform .12s ease-out;
-}
-.plano:hover{border-color:var(--lamp);transform:translateY(-2px);box-shadow:0 0 0 1px rgba(232,116,59,.12)}
-.plano.sel{border-color:var(--lamp);box-shadow:0 0 0 2px rgba(232,116,59,.18),var(--sombra)}
-.plano .tag{position:absolute;top:-.6rem;left:.9rem;background:var(--lamp);color:var(--claro);font-size:.6rem;font-weight:700;letter-spacing:.06em;padding:.15rem .5rem;border-radius:99px}
-.plano .pnome{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:.95rem;color:var(--fumaca)}
-.plano .ppreco{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.5rem;font-feature-settings:"tnum";margin-top:.3rem}
-.plano .ppreco small{font-family:'Plus Jakarta Sans';font-weight:400;font-size:.7rem;color:var(--fumaca)}
+.plano{position:relative;cursor:pointer;border:1px solid rgba(255,255,255,.6);border-radius:14px;padding:1rem .9rem;background:color-mix(in srgb,var(--branco) 52%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--sombra-sm),inset 0 1px 0 rgba(255,255,255,.7);transition:transform .18s,box-shadow .18s,border-color .18s}
+.plano:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--lamp) 50%,var(--linha))}
+.plano.sel{border-color:color-mix(in srgb,var(--lamp) 70%,var(--linha));box-shadow:0 22px 50px -28px rgba(232,135,58,.55)}
+.plano .tag{position:absolute;top:-.6rem;left:.9rem;background:var(--lamp);color:#241202;font-size:.6rem;font-weight:700;letter-spacing:.06em;padding:.15rem .5rem;border-radius:99px;font-family:var(--mono)}
+.plano .pnome{font-family:var(--disp);font-weight:500;font-size:.95rem;color:var(--fumaca)}
+.plano .ppreco{font-family:var(--disp);font-weight:700;font-size:1.5rem;font-feature-settings:"ss01","tnum";margin-top:.3rem}
+.plano .ppreco small{font-family:var(--sans);font-weight:400;font-size:.7rem;color:var(--fumaca)}
 .plano.sel .pnome{color:var(--tinta)}
-/* Add-ons */
+/* add-ons */
 .addons{display:grid;gap:.6rem}
-.addon{
-  display:flex;align-items:flex-start;gap:.8rem;cursor:pointer;
-  border:1px solid var(--linha);border-radius:12px;padding:.9rem 1rem;
-  background:color-mix(in srgb,var(--vidro2) 55%,transparent);transition:border-color .15s,box-shadow .15s;
-}
-.addon:hover{border-color:var(--lamp);box-shadow:0 0 0 1px rgba(232,116,59,.1)}
-.addon.sel{border-color:var(--lamp);box-shadow:0 0 0 2px rgba(232,116,59,.15)}
-.addon .box{
-  flex:0 0 auto;width:20px;height:20px;border-radius:6px;border:2px solid var(--linha);
-  display:grid;place-items:center;margin-top:.1rem;transition:.12s;color:var(--claro);font-size:.7rem;
-}
+.addon{display:flex;align-items:flex-start;gap:.8rem;cursor:pointer;border:1px solid rgba(255,255,255,.6);border-radius:12px;padding:.9rem 1rem;background:color-mix(in srgb,var(--branco) 50%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:var(--sombra-sm),inset 0 1px 0 rgba(255,255,255,.7);transition:border-color .15s,box-shadow .15s}
+.addon:hover{border-color:color-mix(in srgb,var(--lamp) 45%,var(--linha));box-shadow:0 0 0 1px rgba(232,135,58,.12)}
+.addon.sel{border-color:color-mix(in srgb,var(--lamp) 70%,var(--linha));box-shadow:0 0 0 2px rgba(232,135,58,.16)}
+.addon .box{flex:0 0 auto;width:20px;height:20px;border-radius:6px;border:2px solid var(--linha2);display:grid;place-items:center;margin-top:.1rem;transition:.12s;color:#241202;font-size:.7rem}
 .addon.sel .box{background:var(--lamp);border-color:var(--lamp)}
 .addon .info{flex:1}
 .addon .anome{font-weight:600;font-size:.95rem}
 .addon .adesc{font-size:.82rem;color:var(--fumaca);margin-top:.1rem}
-.addon .apreco{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.95rem;white-space:nowrap}
-/* Método */
+.addon .apreco{font-family:var(--mono);font-weight:700;font-size:.95rem;white-space:nowrap}
+/* métodos */
 .metodo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem}
-.metodo-opt{border:1px solid var(--linha);border-radius:10px;padding:.8rem;cursor:pointer;background:color-mix(in srgb,var(--vidro2) 60%,transparent);transition:.12s}
-.metodo-opt:hover{border-color:var(--lamp);box-shadow:0 0 0 1px rgba(232,116,59,.1)}
-.metodo-opt.sel{border-color:var(--lamp);box-shadow:0 0 0 2px rgba(232,116,59,.15)}
+.metodo-opt{border:1px solid rgba(255,255,255,.6);border-radius:10px;padding:.8rem;cursor:pointer;background:color-mix(in srgb,var(--branco) 52%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:var(--sombra-sm);transition:.12s}
+.metodo-opt:hover{border-color:color-mix(in srgb,var(--lamp) 45%,var(--linha));box-shadow:0 0 0 1px rgba(232,135,58,.12)}
+.metodo-opt.sel{border-color:color-mix(in srgb,var(--lamp) 70%,var(--linha));box-shadow:0 0 0 2px rgba(232,135,58,.16)}
 .metodo-opt .nome{font-weight:600;font-size:.85rem}
 .metodo-opt .desc{font-size:.72rem;color:var(--fumaca)}
 .metodo-opt .icon{font-size:1.1rem;margin-bottom:.25rem}
-/* E-mail */
-input#pme-email{width:100%;padding:.85rem 1rem;border:1px solid var(--linha);border-radius:12px;font-size:.95rem;font-family:inherit;background:var(--claro)}
-input#pme-email:focus{outline:none;border-color:var(--lamp);box-shadow:0 0 0 3px rgba(232,116,59,.12)}
-/* Status */
+/* e-mail */
+input#pme-email{width:100%;padding:.85rem 1rem;border:1.5px solid var(--linha2);border-radius:12px;font-size:.95rem;font-family:inherit;background:var(--branco)}
+input#pme-email:focus{outline:none;border-color:var(--lamp);box-shadow:0 0 0 3px rgba(232,135,58,.14)}
+/* status */
 .status-msg{margin:1rem 0;padding:.8rem;border-radius:10px;font-size:.85rem;display:none}
-.status-msg.ok{background:rgba(232,116,59,.08);color:var(--lamp-2);border:1px solid rgba(232,116,59,.25)}
-.status-msg.err{background:rgba(199,90,38,.07);color:var(--lamp-2);border:1px solid rgba(199,90,38,.25)}
+.status-msg.ok{background:rgba(232,135,58,.10);color:var(--accent-ink);border:1px solid rgba(232,135,58,.25)}
+.status-msg.err{background:rgba(156,77,21,.08);color:var(--accent-ink);border:1px solid rgba(156,77,21,.25)}
+/* faq */
 .faq{margin:1.4rem 0;font-size:.9rem;color:var(--fumaca)}
-.faq details{padding:.5rem 0;border-bottom:1px solid rgba(0,0,0,.05)}
+.faq details{padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.55)}
 .faq summary{cursor:pointer;color:var(--tinta);font-weight:600}
-/* Rodapé fixo persistente (total) */
-.bar{
-  position:fixed;left:0;right:0;bottom:0;z-index:50;
-  background:color-mix(in srgb,var(--vidro2) 80%,transparent);
-  -webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);
-  border-top:1px solid var(--linha);box-shadow:0 -8px 30px -20px rgba(22,24,31,.25);
-  padding:.8rem 5vw;display:flex;align-items:center;gap:1rem;
-}
+/* rodapé fixo */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:color-mix(in srgb,var(--branco) 72%,transparent);-webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3);border-top:1px solid rgba(255,255,255,.6);box-shadow:0 -8px 30px -20px rgba(20,22,29,.30);padding:.8rem 5vw;display:flex;align-items:center;gap:1rem}
 .bar .b-info{flex:1;min-width:0}
 .bar .b-lbl{font-size:.72rem;color:var(--fumaca)}
-.bar .b-val{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.35rem;font-feature-settings:"tnum";color:var(--tinta)}
-.bar .b-val small{font-family:'Plus Jakarta Sans';font-weight:400;font-size:.7rem;color:var(--fumaca)}
-.bar .cta{
-  flex:0 0 auto;background:var(--lamp);color:var(--claro);font-family:'Space Grotesk',sans-serif;font-weight:500;
-  font-size:1rem;padding:.85rem 1.6rem;border-radius:999px;border:none;cursor:pointer;transition:background-color .15s,transform .1s;
-}
-.bar .cta:hover{background:var(--lamp-2)}
+.bar .b-val{font-family:var(--mono);font-weight:700;font-size:1.35rem;font-feature-settings:"tnum";color:var(--tinta)}
+.bar .b-val small{font-family:var(--sans);font-weight:400;font-size:.7rem;color:var(--fumaca)}
+.bar .cta{flex:0 0 auto;background:var(--lamp);color:#241202;font-family:var(--disp);font-weight:500;font-size:1rem;padding:.85rem 1.6rem;border-radius:999px;border:none;cursor:pointer;transition:background-color .15s,transform .1s;box-shadow:0 14px 34px -14px rgba(232,135,58,.65)}
+.bar .cta:hover{background:#F0913F;transform:translateY(-2px)}
 .bar .cta:active{transform:scale(.97)}
-.bar .cta:disabled{opacity:.5;cursor:not-allowed}
+.bar .cta:disabled{opacity:.5;cursor:not-allowed;transform:none}
 .note{font-size:.72rem;color:var(--fumaca);text-align:center;margin-top:1.2rem}
 @media(max-width:560px){.planos{grid-template-columns:1fr}.metodo-grid{grid-template-columns:1fr}.bar{flex-wrap:wrap}.bar .cta{width:100%}}
 </style>
 </head>
 <body>
+<div id="spot"></div>
 <!-- Proxy da VC (HML/Sandbox): injeta o token do tenant; checkout estático não expõe segredo. -->
 <div id="vc-api" data-api-url="https://saas-confianca-cobranca.vercel.app/api/v1/vc-checkout" style="display:none"></div>
 <div class="wrap">
   <span class="kick">Último passo</span>
   <h1>Sua vitrine <b>pronta em 48h</b>.<br>É só <em>escolher o seu plano</em>.</h1>
-
-  <div class="section-label reveal">1 · Plano mensal</div>
-  <div class="planos reveal" id="planos"></div>
-
-  <div class="section-label reveal">2 · Pacotes adicionais <span style="text-transform:none;color:var(--fumaca)">(opcional)</span></div>
-  <div class="addons reveal" id="addons"></div>
-
-  <div class="section-label reveal">3 · Como quer pagar</div>
-  <div class="metodo-grid reveal" id="metodos"></div>
-
-  <div class="section-label reveal">4 · Seu e-mail (nota + acesso)</div>
-  <input class="reveal" id="pme-email" type="email" placeholder="voce@suaempresa.com.br" required>
-
-  <div class="status-msg" id="status"></div>
-
-  <div class="faq reveal">
-    <details open><summary>Preciso de cartão de crédito?</summary><p>Não. Cobramos via <b>Pix recorrente</b> (Mercado Pago). Todo mês o link chega no seu WhatsApp.</p></details>
-    <details><summary>Tem fidelidade?</summary><p>Não. Você paga mês a mês e cancela quando quiser, sem multa.</p></details>
-    <details><summary>Os pacotes adicionais são obrigatórios?</summary><p>Não. São melhorias opcionais — adicione só o que fizer sentido para o seu negócio.</p></details>
-    <details><summary>Aparece no Google?</summary><p>Sim, todo plano já é indexado localmente. O pacote "Aparecer no Google PRO" sobe ainda mais sua posição e coloca sua ficha no mapa.</p></details>
+  <div id="root">
+    <div class="section-label reveal">1 · Plano mensal</div>
+    <div class="planos reveal" id="planos"></div>
+    <div class="section-label reveal">2 · Pacotes adicionais <span style="text-transform:none;color:var(--fumaca)">(opcional)</span></div>
+    <div class="addons reveal" id="addons"></div>
+    <div class="section-label reveal">3 · Como quer pagar</div>
+    <div class="metodo-grid reveal" id="metodos"></div>
+    <div class="section-label reveal">4 · Seu e-mail (nota + acesso)</div>
+    <input class="reveal" id="pme-email" type="email" placeholder="voce@suaempresa.com.br" required>
+    <div class="status-msg" id="status"></div>
+    <div class="faq reveal">
+      <details open><summary>Preciso de cartão de crédito?</summary><p>Não. Cobramos via <b>Pix recorrente</b> (Mercado Pago). Todo mês o link chega no seu WhatsApp.</p></details>
+      <details><summary>Tem fidelidade?</summary><p>Não. Você paga mês a mês e cancela quando quiser, sem multa.</p></details>
+      <details><summary>Os pacotes adicionais são obrigatórios?</summary><p>Não. São melhorias opcionais — adicione só o que fizer sentido para o seu negócio.</p></details>
+      <details><summary>Aparece no Google?</summary><p>Sim, todo plano já é indexado localmente. O pacote "Aparecer no Google PRO" sobe ainda mais sua posição e coloca sua ficha no mapa.</p></details>
+    </div>
+    <p class="note">Vitrine Certa — sites que vendem para o comércio local. Valores sujeitos a confirmação em proposta.</p>
   </div>
-  <p class="note">Vitrine Certa — sites que vendem para o comércio local. Valores sujeitos a confirmação em proposta.</p>
 </div>
-
-<!-- Rodapé fixo: total recorrente persistente -->
-<div class="bar">
-  <div class="b-info">
-    <div class="b-lbl">Total recorrente / mês</div>
-    <div class="b-val" id="total">R$149<small>/mês</small></div>
-  </div>
+<div class="bar" id="bar">
+  <div class="b-info"><div class="b-lbl">Total recorrente / mês</div><div class="b-val" id="total">R$149<small>/mês</small></div></div>
   <button class="cta" id="pagar" disabled>Escolha um plano e um método →</button>
 </div>
-
 <script>
 (function(){
 'use strict';
-var API_BASE = document.getElementById('vc-api').dataset.apiUrl || '/api/v1/subscriptions';
-
-var PLANOS = [
-  { id:'basico',  nome:'Básico',  valor:49,  pop:false, itens:['Site + hospedagem + domínio','Botão de WhatsApp direto','Já aparece no Google local','Relatório de visitas'] },
-  { id:'plus',    nome:'Plus',    valor:99,  pop:false, itens:['Tudo do Básico','Acabamento premium + motion','Seção "como funciona"'] },
-  { id:'premium', nome:'Premium', valor:149, pop:true,  itens:['Tudo do Plus','Mecânica única do seu nicho','Pedido/agenda no site','Suporte prioritário'] },
+var API_BASE=document.getElementById('vc-api').dataset.apiUrl||'/api/v1/subscriptions';
+var PLANOS=[
+  {id:'basico',nome:'Básico',valor:49,pop:false},
+  {id:'plus',nome:'Plus',valor:99,pop:false},
+  {id:'premium',nome:'Premium',valor:149,pop:true}
 ];
-var ADDONS = [
-  { id:'sempre_novinho', nome:'Site Sempre Novinho', valor:99,  desc:'2 atualizações de fotos/cardápio por mês' },
-  { id:'google_pro',     nome:'Aparecer no Google PRO', valor:297, desc:'Domínio .com.br + ficha no mapa + SEO local' },
-  { id:'porta',          nome:'Cliente na Porta', valor:199, desc:'Gestão de Google/Meta Ads (verba à parte)' },
+var ADDONS=[
+  {id:'sempre_novinho',nome:'Site Sempre Novinho',valor:99,desc:'2 atualizações de fotos/cardápio por mês'},
+  {id:'google_pro',nome:'Aparecer no Google PRO',valor:297,desc:'Domínio .com.br + ficha no mapa + SEO local'},
+  {id:'porta',nome:'Cliente na Porta',valor:199,desc:'Gestão de Google/Meta Ads (verba à parte)'}
 ];
-var METODOS = [
-  { id:'pix_auto',    label:'Pix Automático',  icon:'⚡', desc:'Recorrente via Pix. Sem cartão.' },
-  { id:'credit_card', label:'Cartão de Crédito',icon:'💳', desc:'Recorrente (até 12x sem juros).' },
-  { id:'boleto',      label:'Boleto',          icon:'📄', desc:'Mensal, pagamento manual.' },
-  { id:'pix_qr',      label:'PIX QR',          icon:'📱', desc:'QR para pagamento único.' },
+var METODOS=[
+  {id:'pix_auto',label:'Pix Automático',icon:'⚡',desc:'Recorrente via Pix. Sem cartão.'},
+  {id:'credit_card',label:'Cartão de Crédito',icon:'💳',desc:'Recorrente (até 12x sem juros).'},
+  {id:'boleto',label:'Boleto',icon:'📄',desc:'Mensal, pagamento manual.'},
+  {id:'pix_qr',label:'PIX QR',icon:'📱',desc:'QR para pagamento único.'}
 ];
-
-var params = new URLSearchParams(location.search);
-var planoAtivo = params.get('plano') || 'premium';
-var addonsAtivos = new Set();
-var metodoAtivo = null;
-
-function fmt(v){ return 'R$'+v; }
+var params=new URLSearchParams(location.search);
+var planoAtivo=params.get('plano')||'premium';
+var addonsAtivos=new Set();
+var metodoAtivo=null;
+function fmt(v){return 'R$'+v;}
 
 function renderPlanos(){
-  var box = document.getElementById('planos');
-  box.innerHTML = PLANOS.map(function(p){
-    var sel = p.id===planoAtivo;
+  document.getElementById('planos').innerHTML=PLANOS.map(function(p){
+    var sel=p.id===planoAtivo;
     return '<div class="plano'+(sel?' sel':'')+'" data-id="'+p.id+'" onclick="vcSelPlano(this)">'
-      + (p.pop?'<span class="tag">MAIS PROCURADO</span>':'')
-      + '<div class="pnome">'+p.nome+'</div>'
-      + '<div class="ppreco">'+fmt(p.valor)+'<small>/mês</small></div>'
-      + '</div>';
+      +(p.pop?'<span class="tag">MAIS PROCURADO</span>':'')
+      +'<div class="pnome">'+p.nome+'</div>'
+      +'<div class="ppreco">'+fmt(p.valor)+'<small>/mês</small></div></div>';
   }).join('');
 }
-window.vcSelPlano = function(el){
-  planoAtivo = el.getAttribute('data-id');
-  document.querySelectorAll('.plano').forEach(function(o){o.classList.remove('sel');});
-  el.classList.add('sel');
-  atualiza();
-};
+window.vcSelPlano=function(el){planoAtivo=el.getAttribute('data-id');document.querySelectorAll('.plano').forEach(function(o){o.classList.remove('sel');});el.classList.add('sel');atualiza();};
 
 function renderAddons(){
-  var box = document.getElementById('addons');
-  box.innerHTML = ADDONS.map(function(a){
+  document.getElementById('addons').innerHTML=ADDONS.map(function(a){
     return '<div class="addon" data-id="'+a.id+'" onclick="vcSelAddon(this)">'
-      + '<div class="box"></div>'
-      + '<div class="info"><div class="anome">'+a.nome+'</div><div class="adesc">'+a.desc+'</div></div>'
-      + '<div class="apreco">'+fmt(a.valor)+'<small>/mês</small></div>'
-      + '</div>';
+      +'<div class="box"></div><div class="info"><div class="anome">'+a.nome+'</div><div class="adesc">'+a.desc+'</div></div>'
+      +'<div class="apreco">'+fmt(a.valor)+'<small>/mês</small></div></div>';
   }).join('');
 }
-window.vcSelAddon = function(el){
-  var id = el.getAttribute('data-id');
-  if(addonsAtivos.has(id)){ addonsAtivos.delete(id); el.classList.remove('sel'); }
-  else { addonsAtivos.add(id); el.classList.add('sel'); }
+window.vcSelAddon=function(el){
+  var id=el.getAttribute('data-id');
+  if(addonsAtivos.has(id)){addonsAtivos.delete(id);el.classList.remove('sel');}
+  else{addonsAtivos.add(id);el.classList.add('sel');}
   atualiza();
 };
 
 function renderMetodos(){
-  var box = document.getElementById('metodos');
-  box.innerHTML = METODOS.map(function(m){
+  document.getElementById('metodos').innerHTML=METODOS.map(function(m){
     return '<div class="metodo-opt" data-id="'+m.id+'" onclick="vcSelMetodo(this)">'
-      + '<div class="icon">'+m.icon+'</div>'
-      + '<div class="nome">'+m.label+'</div>'
-      + '<div class="desc">'+m.desc+'</div>'
-      + '</div>';
+      +'<div class="icon">'+m.icon+'</div><div class="nome">'+m.label+'</div><div class="desc">'+m.desc+'</div></div>';
   }).join('');
 }
-window.vcSelMetodo = function(el){
-  metodoAtivo = el.getAttribute('data-id');
+window.vcSelMetodo=function(el){
+  metodoAtivo=el.getAttribute('data-id');
   document.querySelectorAll('.metodo-opt').forEach(function(o){o.classList.remove('sel');});
-  el.classList.add('sel');
-  atualiza();
+  el.classList.add('sel');atualiza();
 };
 
 function total(){
-  var p = PLANOS.find(function(x){return x.id===planoAtivo;}) || PLANOS[2];
-  var t = p.valor;
-  addonsAtivos.forEach(function(id){
-    var a = ADDONS.find(function(x){return x.id===id;});
-    if(a) t += a.valor;
-  });
+  var p=PLANOS.find(function(x){return x.id===planoAtivo;})||PLANOS[2];
+  var t=p.valor;
+  addonsAtivos.forEach(function(id){var a=ADDONS.find(function(x){return x.id===id;});if(a)t+=a.valor;});
   return t;
 }
 function atualiza(){
-  document.getElementById('total').innerHTML = fmt(total()) + '<small>/mês</small>';
-  var btn = document.getElementById('pagar');
-  var ok = planoAtivo && metodoAtivo;
-  btn.disabled = !ok;
-  if(ok){
-    var p = PLANOS.find(function(x){return x.id===planoAtivo;});
-    var lbl = METODOS.find(function(x){return x.id===metodoAtivo;}).label;
-    btn.textContent = 'Assinar '+p.nome+' — '+fmt(total())+'/mês via '+lbl+' →';
-  } else {
-    btn.textContent = !planoAtivo ? 'Escolha um plano →' : 'Escolha um método de pagamento →';
-  }
+  document.getElementById('total').innerHTML=fmt(total())+'<small>/mês</small>';
+  var btn=document.getElementById('pagar');
+  var ok=planoAtivo&&metodoAtivo;
+  btn.disabled=!ok;
+  if(ok){var p=PLANOS.find(function(x){return x.id===planoAtivo;});var l=METODOS.find(function(x){return x.id===metodoAtivo;}).label;
+    btn.textContent='Assinar '+p.nome+' — '+fmt(total())+'/mês via '+l+' →';}
+  else{btn.textContent=!planoAtivo?'Escolha um plano →':'Escolha um método de pagamento →';}
 }
+function showStatus(m,t){var el=document.getElementById('status');el.textContent=m;el.className='status-msg '+(t||'ok');el.style.display='block';}
 
-function showStatus(msg,type){ var el=document.getElementById('status'); el.textContent=msg; el.className='status-msg '+(type||'ok'); el.style.display='block'; }
-function hideStatus(){ document.getElementById('status').style.display='none'; }
-
-document.getElementById('pagar').addEventListener('click', function(){
-  if(!planoAtivo || !metodoAtivo){ showStatus('Selecione plano e método.','err'); return; }
-  var email = document.getElementById('pme-email').value.trim();
-  if(!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ showStatus('Informe um e-mail válido.','err'); return; }
-  var btn=this; btn.disabled=true; btn.textContent='Processando...'; hideStatus();
-
-  var extras = Array.from(addonsAtivos);
-  var p = PLANOS.find(function(x){return x.id===planoAtivo;});
-  var payload = {
-    plano: planoAtivo,
-    pme_id: params.get('pme_id') || '',
-    pme_email: email,
-    pme_nome: p.nome + (extras.length ? ' + ' + extras.join(',') : ''),
-    payment_method: metodoAtivo,
-    extras: extras
-  };
-
-  fetch(API_BASE, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) })
-    .then(function(r){ return r.json().then(function(b){ return {ok:r.ok, body:b}; }); })
+document.getElementById('pagar').addEventListener('click',function(){
+  if(!planoAtivo||!metodoAtivo){showStatus('Selecione plano e método.','err');return;}
+  var email=document.getElementById('pme-email').value.trim();
+  if(!email||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){showStatus('Informe um e-mail válido.','err');return;}
+  var btn=this;btn.disabled=true;btn.textContent='Processando...';document.getElementById('status').style.display='none';
+  var extras=Array.from(addonsAtivos);
+  var p=PLANOS.find(function(x){return x.id===planoAtivo;});
+  var payload={plano:planoAtivo,pme_id:params.get('pme_id')||'',pme_email:email,pme_nome:p.nome+(extras.length?' + '+extras.join(','):''),payment_method:metodoAtivo,extras:extras};
+  fetch(API_BASE,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+    .then(function(r){return r.json().then(function(b){return{ok:r.ok,body:b};});})
     .then(function(res){
-      if(res.ok){
-        showStatus('Assinatura criada! Redirecionando para o pagamento...','ok');
-        if(res.body.redirect_url){ window.location.href = res.body.redirect_url; }
-        else { btn.textContent='Pronto! Verifique seu WhatsApp.'; }
-      } else {
-        showStatus('Erro: '+(res.body.erro||res.body.message||'Falha ao criar assinatura.'),'err');
-        btn.disabled=false; atualiza();
-      }
+      if(res.ok){showStatus('Assinatura criada! Redirecionando para o pagamento...','ok');
+        if(res.body.redirect_url){window.location.href=res.body.redirect_url;}else{btn.textContent='Pronto! Verifique seu WhatsApp.';}}
+      else{showStatus('Erro: '+(res.body.erro||res.body.message||'Falha ao criar assinatura.'),'err');btn.disabled=false;atualiza();}
     })
-    .catch(function(e){ showStatus('Erro de conexão: '+e.message,'err'); btn.disabled=false; atualiza(); });
+    .catch(function(e){showStatus('Erro de conexão: '+e.message,'err');btn.disabled=false;atualiza();});
 });
 
-document.getElementById('wa') && (document.getElementById('wa').href = 'https://wa.me/5511970776856?text=' + encodeURIComponent('Quero montar minha vitrine (a partir de R$49/mes)'));
+/* spotlight que segue o cursor (padrão landing) */
+(function(){
+  var s=document.getElementById('spot'),raf=false,mx=80,my=10;
+  window.addEventListener('mousemove',function(e){
+    mx=(e.clientX/window.innerWidth*100);my=(e.clientY/window.innerHeight*100);
+    if(!raf){raf=true;requestAnimationFrame(function(){s.style.setProperty('--mx',mx+'%');s.style.setProperty('--my',my+'%');raf=false;});}
+  },{passive:true});
+})();
+/* reveal por IntersectionObserver (padrão landing) */
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14,rootMargin:'0px 0px -30px 0px'});
+    els.forEach(function(el){io.observe(el);});
+    setTimeout(function(){els.forEach(function(el){el.classList.add('in');});},1400);
+  }else els.forEach(function(el){el.classList.add('in');});
+})();
 
-// Reveal por scroll
-if('IntersectionObserver' in window){
-  var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('in'); }); },{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
-} else {
-  document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
-}
-
-renderPlanos(); renderAddons(); renderMetodos(); atualiza();
+renderPlanos();renderAddons();renderMetodos();atualiza();
 })();
 </script>
 </body>
