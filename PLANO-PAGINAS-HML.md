@@ -12,7 +12,7 @@
 
 | # | Página | Arquivo | Design premium | Backend | Estado |
 |---|--------|---------|:---:|:---:|---|
-| 1 | Checkout | `hml/checkout.html` | ✅ | vc-checkout (estável) | ENTREGUE (`e16100c`) |
+| 1 | Checkout | `hml/checkout.html` | ✅ | vc-checkout (estável) | ENTREGUE · refeito 09/ago (sem campo e-mail; lê conta do localStorage) |
 | 2 | Dashboard (assinaturas) | `hml/dashboard.html` | ✅ | subscriptions?demo=1 | ENTREGUE (`d0ca026`) |
 | 3 | Login | `hml/login.html` | ✅ | demo e-mail | ENTREGUE (`e1de825`) |
 | 4 | Cadastro do cliente | `hml/cadastro.html` | ✅ | demo (localStorage) | ENTREGUE (09/ago) |
@@ -35,3 +35,21 @@
 - Cada página: `node -e` parse do `<script>` + presença das 3 camadas + E2E contra URL estável.
 - Commits no `main` do `Receitazero/receita-zero`.
 - Aprovação visual do dono no navegador (GitHub Pages) antes de marcar "fechado".
+
+## Páginas que FALTAM no ecossistema (gap real — fora do portal de login)
+
+O portal do cliente (HML) está **completo** (checkout/login/cadastro/dashboard/site/sucesso/
+recuperação/webhook/insights/lgpd). O que falta é o ecossistema em volta (público + operacional):
+
+| # | Página | Arquivo sugerido | Por quê falta | Prioridade |
+|---|--------|------------------|---------------|:---:|
+| 11 | Termos de Uso | `hml/termos.html` | `lgpd.html` cobre só privacidade; contrato de assinatura precisa de termos | Alta (legal) |
+| 12 | Cancelamento (self-service) | `hml/cancelamento.html` | SaaS exige cancelamento fácil; hoje só botão no dashboard sem destino | Alta |
+| 13 | Suporte / Contato | `hml/suporte.html` | Não há página de ajuda; follow-up é só WhatsApp | Média |
+| 14 | Portal do Parceiro (revenda WL) | `hml/parceiro.html` | Plano Mês 3 cita "revenda white-label p/ parceiros" — sem tela | Média |
+| 15 | Status do serviço | `hml/status.html` | SaaS profissional: página de status (opcional) | Baixa |
+| 16 | Comparar planos (pública) | `hml/planos.html` | Landing já mostra, mas página dedicada ajuda SEO/conversão | Baixa |
+
+**GAP de BACKEND (não de página):** `site.html` (detalhe/edição) e `dashboard.html` ainda
+usam `?demo=1`. Auth real (Supabase) NÃO existe — cadastro/login são modo demonstração.
+Até o auth real, as telas 4/5 operam só em HML. Próximo passo de engenharia = ligar Supabase auth.

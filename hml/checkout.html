@@ -114,8 +114,8 @@ input#pme-email:focus{outline:none;border-color:var(--lamp);box-shadow:0 0 0 3px
     <div class="addons reveal" id="addons"></div>
     <div class="section-label reveal">3 · Como quer pagar</div>
     <div class="metodo-grid reveal" id="metodos"></div>
-    <div class="section-label reveal">4 · Seu e-mail (nota + acesso)</div>
-    <input class="reveal" id="pme-email" type="email" placeholder="voce@suaempresa.com.br" required>
+    <div class="section-label reveal">4 · Conta</div>
+    <div class="reveal" id="conta-info" style="font-size:.9rem;color:var(--fumaca)">Identificando sua conta…</div>
     <div class="status-msg" id="status"></div>
     <div class="faq reveal">
       <details open><summary>Preciso de cartão de crédito?</summary><p>Não. Cobramos via <b>Pix recorrente</b> (Mercado Pago). Todo mês o link chega no seu WhatsApp.</p></details>
@@ -212,8 +212,8 @@ function showStatus(m,t){var el=document.getElementById('status');el.textContent
 
 document.getElementById('pagar').addEventListener('click',function(){
   if(!planoAtivo||!metodoAtivo){showStatus('Selecione plano e método.','err');return;}
-  var email=document.getElementById('pme-email').value.trim();
-  if(!email||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){showStatus('Informe um e-mail válido.','err');return;}
+  var email=localStorage.getItem('vc_email');
+  if(!email){window.location.href='cadastro.html?next=checkout';return;}
   var btn=this;btn.disabled=true;btn.textContent='Processando...';document.getElementById('status').style.display='none';
   var extras=Array.from(addonsAtivos);
   var p=PLANOS.find(function(x){return x.id===planoAtivo;});
@@ -246,7 +246,16 @@ document.getElementById('pagar').addEventListener('click',function(){
   }else els.forEach(function(el){el.classList.add('in');});
 })();
 
-renderPlanos();renderAddons();renderMetodos();atualiza();
+function mostraConta(){
+  var ci=document.getElementById('conta-info');
+  if(!ci)return;
+  var email=localStorage.getItem('vc_email');
+  var emp=localStorage.getItem('vc_empresa');
+  if(email){ci.innerHTML='Logado como <b style="color:var(--tinta)">'+(emp||email)+'</b> · '+email+' &nbsp;<a class="ghost" href="cadastro.html?next=checkout" style="color:var(--accent-ink);font-weight:600;text-decoration:none">trocar</a>';}
+  else{ci.innerHTML='Você ainda não tem conta. <a class="ghost" href="cadastro.html?next=checkout" style="color:var(--accent-ink);font-weight:600;text-decoration:none">Criar conta →</a>';}
+}
+
+renderPlanos();renderAddons();renderMetodos();mostraConta();atualiza();
 })();
 </script>
 </body>
