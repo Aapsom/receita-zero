@@ -922,6 +922,8 @@ document.querySelectorAll('.price-filter button').forEach(function(btn){
     if(localStorage.getItem('vc_email')){
       a.textContent='Entrar no perfil';
       a.setAttribute('href','dashboard.html');
+    }else{
+      a.setAttribute('href','conta.html');
     }
   }catch(e){}
 })();

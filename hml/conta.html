@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vitrine Certa — Entrar ou criar conta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --vidro:#EDEFF4; --vidro2:#E3E7EF; --branco:#FBFCFE;
+  --linha:#CBD4E0; --linha2:#778799;
+  --tinta:#14161D; --fumaca:#525A6A; --fraco:#5A6373;
+  --lamp:#E8873A; --lamp-2:#9C4D15;
+  --accent:#E8873A; --accent-ink:#9C4D15;
+  --r:16px;
+  --disp:'Space Grotesk',Georgia,serif;
+  --sans:'Plus Jakarta Sans','Segoe UI',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --sombra:0 26px 64px -32px rgba(20,22,29,.34), 0 8px 22px -14px rgba(20,22,29,.16);
+  --sombra-sm:0 3px 14px -6px rgba(20,22,29,.22);
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--vidro);color:var(--tinta);font-family:var(--sans);min-height:100vh;display:grid;place-items:center;padding:6vh 5vw;line-height:1.55;position:relative;overflow-x:clip}
+body::before{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;transition:background .8s ease;background:
+  radial-gradient(52% 40% at 84% -8%, color-mix(in srgb,var(--accent) 34%,transparent), transparent 62%),
+  radial-gradient(48% 36% at 10% 4%, color-mix(in srgb,var(--accent) 12%,transparent), transparent 60%)}
+#spot{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.9;mix-blend-mode:multiply;transition:opacity .4s;
+  background:radial-gradient(360px circle at var(--mx,80%) var(--my,50%), color-mix(in srgb,var(--accent) 22%,transparent), transparent 66%)}
+body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;mix-blend-mode:soft-light;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.wrap{max-width:460px;width:100%}
+.card{background:color-mix(in srgb,var(--branco) 52%,transparent);border:1px solid rgba(255,255,255,.6);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:var(--sombra),inset 0 1px 0 rgba(255,255,255,.7);border-radius:var(--r);padding:2.2rem;position:relative}
+.kick{display:inline-block;font-family:var(--mono);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--accent-ink);margin-bottom:.6rem}
+h1{font-family:var(--disp);font-weight:300;font-size:1.8rem;line-height:1.1;margin-bottom:.4rem;letter-spacing:-.02em}
+h1 b{font-weight:700}
+p.sub{color:var(--fumaca);font-size:.92rem;margin-bottom:1.6rem}
+.opt{display:block;width:100%;text-align:left;background:color-mix(in srgb,var(--branco) 60%,transparent);border:1.5px solid var(--linha2);border-radius:14px;padding:1.1rem 1.2rem;margin-bottom:.9rem;cursor:pointer;text-decoration:none;color:var(--tinta);transition:border-color .15s,transform .1s,background-color .15s}
+.opt:hover{border-color:var(--lamp);transform:translateY(-2px);background:var(--branco)}
+.opt b{font-family:var(--disp);font-weight:500;font-size:1.05rem;display:block;margin-bottom:.15rem}
+.opt span{font-size:.84rem;color:var(--fumaca)}
+.opt .arr{float:right;color:var(--lamp);font-family:var(--disp);font-weight:700;font-size:1.2rem}
+.back{display:inline-block;margin-top:1rem;font-size:.82rem;color:var(--accent-ink);text-decoration:none;font-weight:600}
+.back:hover{text-decoration:underline}
+/* foco visivel (WCAG 2.1 AA) */
+:focus-visible{outline:2px solid var(--lamp);outline-offset:2px;border-radius:6px}
+button:focus-visible,a:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--lamp);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){#spot{display:none}body::before{transition:none}}
+.reveal{clip-path:inset(-80px -80px 100% -80px);opacity:0;transition:clip-path .6s cubic-bezier(.22,1,.36,1),opacity .6s cubic-bezier(.22,1,.36,1)}
+.reveal.in{clip-path:inset(-80px -80px -80px -80px);opacity:1}
+@media(prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;clip-path:none}}
+</style>
+</head>
+<body>
+<div id="spot"></div>
+<div class="wrap">
+  <div class="card reveal">
+    <span class="kick">Área do cliente</span>
+    <h1>Já tem <b>conta</b>?</h1>
+    <p class="sub">Escolha como quer continuar.</p>
+    <a class="opt" href="login.html">
+      <span class="arr">→</span>
+      <b>Sim, entrar</b>
+      <span>Já tenho cadastro e quero acessar meu painel.</span>
+    </a>
+    <a class="opt" href="cadastro.html">
+      <span class="arr">→</span>
+      <b>Não, criar conta</b>
+      <span>Ainda não sou cliente. Quero contratar e criar meu acesso.</span>
+    </a>
+    <a class="back" href="index.html">← Voltar ao início</a>
+  </div>
+</div>
+<script>
+(function(){
+'use strict';
+(function(){
+  var s=document.getElementById('spot'),raf=false,mx=80,my=50;
+  window.addEventListener('mousemove',function(e){mx=(e.clientX/window.innerWidth*100);my=(e.clientY/window.innerHeight*100);if(!raf){raf=true;requestAnimationFrame(function(){s.style.setProperty('--mx',mx+'%');s.style.setProperty('--my',my+'%');raf=false;});}},{passive:true});
+})();
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  function revealAll(){els.forEach(function(el){el.classList.add('in');});}
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14,rootMargin:'0px 0px -30px 0px'});els.forEach(function(el){io.observe(el);});setTimeout(revealAll,1400);}else{revealAll();}
+})();
+})();
+</script>
+</body>
+</html>
