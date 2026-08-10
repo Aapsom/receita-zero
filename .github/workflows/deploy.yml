@@ -21,7 +21,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  # v4.1.1
+        uses: actions/checkout@v4
 
       - name: Assemble site (only site folders)
         run: |
@@ -32,7 +32,7 @@ jobs:
           touch _site/.nojekyll
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@d2bda1a52322f5c6d567a7f88f0e0b9d8e8a9c0d  # v3
+        uses: actions/upload-pages-artifact@v3
         with:
           path: _site
 
@@ -48,4 +48,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c0df  # v4
+        uses: actions/deploy-pages@v4
