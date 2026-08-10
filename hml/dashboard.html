@@ -71,6 +71,7 @@ button:focus-visible,a:focus-visible,select:focus-visible,textarea:focus-visible
   <div class="topbar">
     <span class="kick">Área do cliente</span>
     <a class="ghost" href="login.html">↻ trocar conta</a>
+    <button class="ghost" id="logout" type="button" style="background:none;border:none;cursor:pointer;font:inherit">Sair</button>
   </div>
   <h1>Seus <b>sites e assinaturas</b></h1>
   <p class="sub" id="saudacao"></p>
@@ -83,11 +84,35 @@ button:focus-visible,a:focus-visible,select:focus-visible,textarea:focus-visible
 (function(){
 'use strict';
 var API='https://saas-confianca-cobranca.vercel.app/api/v1/subscriptions';
-var email=localStorage.getItem('vc_email');
-if(email){var s=document.getElementById('saudacao');if(s)s.textContent='Olá, '+email+' — estas são suas assinaturas:';}
-var lista=document.getElementById('lista');
 var statusEl=document.getElementById('status');
 function showErr(m){statusEl.textContent=m;statusEl.className='status-msg err';statusEl.style.display='block';}
+// sessao real (Supabase) + fallback localStorage
+var email=null;
+if(window.VC_AUTH){
+  window.VC_AUTH.syncProfile().then(function(){
+    return window.VC_AUTH.getSession();
+  }).then(function(session){
+    email=(session&&session.user&&session.user.email)||localStorage.getItem('vc_email');
+    renderSaudacao(email);
+    wireLogout();
+  }).catch(function(){ email=localStorage.getItem('vc_email'); renderSaudacao(email); wireLogout(); });
+} else {
+  email=localStorage.getItem('vc_email'); renderSaudacao(email); wireLogout();
+}
+function renderSaudacao(email){
+  var s=document.getElementById('saudacao');
+  if(s&&email)s.textContent='Olá, '+email+' — estas são suas assinaturas:';
+}
+
+var lista=document.getElementById('lista');
+function wireLogout(){
+  var btn=document.getElementById('logout');
+  if(!btn)return;
+  btn.addEventListener('click',function(){
+    if(window.VC_AUTH){window.VC_AUTH.logout().then(function(){location.href='login.html';});}
+    else{localStorage.removeItem('vc_email');location.href='login.html';}
+  });
+}
 function badge(st){
   var map={pending:['pending','Pendente'],paid:['paid','Pago'],cancelled:['cancelled','Cancelado']};
   var b=map[st]||['pending',st||'?'];
@@ -129,5 +154,8 @@ fetch(API+'?demo=1',{headers:{'Content-Type':'application/json'}})
 })();
 </script>
 <div class="hml-foot" style="display:flex;flex-wrap:wrap;gap:.4rem 1rem;justify-content:center;margin-top:1.6rem;padding-top:1.1rem;border-top:1px solid rgba(119,135,153,.35);font-size:.8rem"><a href="index.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Início</a><a href="dashboard.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Painel</a><a href="planos.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Planos</a><a href="suporte.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Suporte</a><a href="status.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Status</a><a href="termos.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Termos</a><a href="lgpd.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Privacidade</a><a href="parceiro.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Revenda</a></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="supabase-auth.js"></script>
 </body>
 </html>

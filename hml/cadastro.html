@@ -90,14 +90,17 @@ document.getElementById('criar').addEventListener('click',function(){
   var s1=document.getElementById('senha').value;
   var s2=document.getElementById('senha2').value;
   if(!empresa){show('Informe o nome da empresa.','err');return;}
-  if(!/^[^@\s]+@[^@\s]+\\.[^@\s]+$/.test(email)){show('Informe um e-mail válido.','err');return;}
-  if(wa.replace(/\\D/g,'').length<10){show('Informe um WhatsApp válido.','err');return;}
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){show('Informe um e-mail válido.','err');return;}
+  if(wa.replace(/\D/g,'').length<10){show('Informe um WhatsApp válido.','err');return;}
   if(s1.length<6){show('A senha precisa ter ao menos 6 caracteres.','err');return;}
   if(s1!==s2){show('As senhas não conferem.','err');return;}
-  localStorage.setItem('vc_email',email);
-  localStorage.setItem('vc_empresa',empresa);
-  show('Conta criada (demo). Redirecionando para o painel…','ok');
-  setTimeout(function(){location.href='dashboard.html';},900);
+  if(!window.VC_AUTH){show('Configuração de auth indisponível.','err');return;}
+  window.VC_AUTH.signup(email,s1,{empresa:empresa,whatsapp:wa}).then(function(){
+    return window.VC_AUTH.syncProfile();
+  }).then(function(){
+    show('Conta criada. Redirecionando para o painel…','ok');
+    setTimeout(function(){location.href='dashboard.html';},900);
+  }).catch(function(e){ show(e.message||'Falha ao criar conta.','err'); });
 });
 /* spotlight que segue o cursor (padrão landing) */
 (function(){
@@ -120,5 +123,8 @@ document.getElementById('criar').addEventListener('click',function(){
 })();
 </script>
 <div class="hml-foot" style="display:flex;flex-wrap:wrap;gap:.4rem 1rem;justify-content:center;margin-top:1.6rem;padding-top:1.1rem;border-top:1px solid rgba(119,135,153,.35);font-size:.8rem"><a href="index.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Início</a><a href="dashboard.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Painel</a><a href="planos.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Planos</a><a href="suporte.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Suporte</a><a href="status.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Status</a><a href="termos.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Termos</a><a href="lgpd.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Privacidade</a><a href="parceiro.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Revenda</a></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="supabase-auth.js"></script>
 </body>
 </html>

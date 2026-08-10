@@ -65,10 +65,16 @@ button:focus-visible,a:focus-visible,select:focus-visible,textarea:focus-visible
   <p class="sub">HML: informe o e-mail para acessar suas assinaturas (modo demonstração).</p>
   <label for="email">Seu e-mail</label>
   <input id="email" type="email" placeholder="voce@suaempresa.com.br" autocomplete="email">
+  <label for="senha">Senha</label>
+  <input id="senha" type="password" placeholder="••••••••" autocomplete="current-password">
   <button class="cta" id="entrar">Entrar →</button>
+  <button class="cta cta-ghost" id="entrar-google" type="button" style="background:transparent;color:var(--accent-ink);border:1.5px solid var(--linha2);box-shadow:none">Entrar com Google</button>
   <div class="msg" id="msg"></div>
-  <p class="note"><a href="checkout.html">← Voltar ao contrato</a></p>
+  <p class="note"><a href="cadastro.html">Criar conta</a> · <a href="recuperacao.html">Esqueci a senha</a> · <a href="checkout.html">← Voltar ao contrato</a></p>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="supabase-auth.js"></script>
 <script>
 (function(){
 'use strict';
@@ -76,9 +82,18 @@ var msg=document.getElementById('msg');
 function show(t,type){msg.textContent=t;msg.className='msg '+(type||'info');msg.style.display='block';}
 document.getElementById('entrar').addEventListener('click',function(){
   var email=document.getElementById('email').value.trim();
+  var senha=document.getElementById('senha').value;
   if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){show('Informe um e-mail válido.','err');return;}
-  localStorage.setItem('vc_email',email);
-  location.href='dashboard.html';
+  if(senha.length<6){show('A senha precisa ter ao menos 6 caracteres.','err');return;}
+  if(!window.VC_AUTH){show('Configuração de auth indisponível.','err');return;}
+  window.VC_AUTH.login(email,senha).then(function(){
+    return window.VC_AUTH.syncProfile();
+  }).then(function(){ location.href='dashboard.html'; })
+    .catch(function(e){ show(e.message||'Falha ao entrar.','err'); });
+});
+document.getElementById('entrar-google').addEventListener('click',function(){
+  if(!window.VC_AUTH){show('Configuração de auth indisponível.','err');return;}
+  window.VC_AUTH.loginWithGoogle().catch(function(e){ show(e.message||'Falha no Google.','err'); });
 });
 /* spotlight que segue o cursor (padrão landing) */
 (function(){
@@ -95,7 +110,6 @@ document.getElementById('entrar').addEventListener('click',function(){
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14,rootMargin:'0px 0px -30px 0px'});
     els.forEach(function(el){io.observe(el);});
-    // fallback de segurança: garante visibilidade mesmo se o observer nao disparar
     setTimeout(revealAll,1400);
   } else {revealAll();}
 })();
