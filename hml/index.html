@@ -856,18 +856,21 @@ document.querySelectorAll('.price-filter button').forEach(function(btn){
 <script>
 (function(){
   var shown=false;
+  var forced = /[?&]modal=1\b/.test(location.search);
   function show(){
-    if(shown||sessionStorage.getItem('vc_exit_done'))return;
-    shown=true;sessionStorage.setItem('vc_exit_done','1');
-    document.getElementById('vc-exit').classList.add('show');
+    if(shown) return;
+    if(!forced && sessionStorage.getItem('vc_exit_done')) return;
+    shown=true; sessionStorage.setItem('vc_exit_done','1');
+    var el=document.getElementById('vc-exit'); if(el) el.classList.add('show');
   }
-  function hide(){document.getElementById('vc-exit').classList.remove('show');}
-  document.addEventListener('visibilitychange',function(){if(document.hidden)show();});
-  window.addEventListener('beforeunload',function(e){if(!sessionStorage.getItem('vc_exit_done')){e.preventDefault();e.returnValue='';}});
+  function hide(){var el=document.getElementById('vc-exit'); if(el) el.classList.remove('show');}
+  document.addEventListener('visibilitychange',function(){ if(document.hidden) show(); });
+  window.addEventListener('blur',function(){ if(document.hidden) show(); });
+  window.addEventListener('beforeunload',function(e){ if(!sessionStorage.getItem('vc_exit_done')){ e.preventDefault(); e.returnValue=''; } });
   document.addEventListener('click',function(e){
-    if(e.target&&e.target.id==='vc-exit-x')hide();
-    if(e.target&&e.target.id==='vc-exit')hide();
+    if(e.target && (e.target.id==='vc-exit-x' || e.target.id==='vc-exit')) hide();
   });
+  if(forced) show();
 })();
 </script>
 </body>
