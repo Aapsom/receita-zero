@@ -28,6 +28,7 @@ jobs:
           mkdir -p _site
           cp -r site-dfy _site/ 2>/dev/null || true
           cp -r receita-zero _site/ 2>/dev/null || true
+          cp -r hml _site/ 2>/dev/null || true
           touch _site/.nojekyll
 
       - name: Upload artifact
