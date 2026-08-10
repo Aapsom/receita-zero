@@ -26,6 +26,8 @@
 | 12 | Cancelamento (self-service) | `hml/cancelamento.html` | ✅ | demo | ENTREGUE (09/ago) |
 | 13 | Suporte / Contato | `hml/suporte.html` | ✅ | WhatsApp/e-mail (demo) | ENTREGUE (09/ago) |
 | 14 | Portal do Parceiro (revenda WL) | `hml/parceiro.html` | ✅ | — | ENTREGUE (09/ago) |
+| 15 | Status do serviço | `hml/status.html` | ✅ | demo | ENTREGUE (09/ago) |
+| 16 | Comparar planos (pública) | `hml/planos.html` | ✅ | demo | ENTREGUE (09/ago) |
 
 ## Ordem de execução (definida 08/ago)
 
@@ -42,14 +44,9 @@
 
 ## Páginas que FALTAM no ecossistema (gap real — fora do portal de login)
 
-O portal do cliente (HML) está **completo**: checkout/login/cadastro/dashboard/site/sucesso/
-recuperação/webhook/insights/lgpd/termos/cancelamento/suporte/parceiro (14 telas, todas com
-design Vitrine Certa + reveal robusto). Restam só 2 telas opcionais (baixa prioridade):
-
-| # | Página | Arquivo sugerido | Prioridade |
-|---|--------|------------------|:---:|
-| 15 | Status do serviço | `hml/status.html` | Baixa (SaaS profissional) |
-| 16 | Comparar planos (pública) | `hml/planos.html` | Baixa (landing já compara; ajuda SEO) |
+O portal do cliente (HML) está **100% completo**: 16 telas, todas com design Vitrine Certa +
+reveal robusto (checkout/login/cadastro/dashboard/site/sucesso/recuperação/webhook/insights/
+lgpd/termos/cancelamento/suporte/parceiro/status/planos). Não resta nenhuma tela de página.
 
 **Plano de Experiência do Cliente (CX):** `docs/PLANO-EXPERIENCIA-CLIENTE.md` — mapa de jornada
 (aquisição→conta→suporte/legal→crescimento), princípios de UX fundamentados em skills do GitHub
