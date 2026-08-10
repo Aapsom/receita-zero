@@ -263,6 +263,7 @@ footer .logo{width:24px;height:24px}
       <a class="txt" href="#exemplos">Exemplos ao vivo</a>
       <a class="txt" href="#planos">Planos</a>
       <a class="btn btn-lamp btn-sm" href="#gerador">Montar o meu →</a>
+      <a class="btn btn-ghost btn-sm" id="vc-nav-auth" href="login.html">Entrar</a>
     </div>
   </div>
 </nav>
@@ -911,6 +912,18 @@ document.querySelectorAll('.price-filter button').forEach(function(btn){
     });
   }
   if(forced) show();
+})();
+</script>
+<script>
+(function(){
+  try{
+    var a=document.getElementById('vc-nav-auth');
+    if(!a) return;
+    if(localStorage.getItem('vc_email')){
+      a.textContent='Entrar no perfil';
+      a.setAttribute('href','dashboard.html');
+    }
+  }catch(e){}
 })();
 </script>
 </body>
