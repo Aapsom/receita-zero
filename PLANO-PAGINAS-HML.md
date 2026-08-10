@@ -22,6 +22,10 @@
 | 8 | Política LGPD / Privacidade | `hml/lgpd.html` | ✅ | — | ENTREGUE (08/ago) |
 | 9 | Sucesso pós-pagamento | `hml/sucesso.html` | ✅ | — | ENTREGUE (08/ago) |
 | 10 | Recuperação de senha / conta | `hml/recuperacao.html` | ✅ | demo (link por e-mail) | ENTREGUE (09/ago) |
+| 11 | Termos de Uso | `hml/termos.html` | ✅ | — | ENTREGUE (09/ago) |
+| 12 | Cancelamento (self-service) | `hml/cancelamento.html` | ✅ | demo | ENTREGUE (09/ago) |
+| 13 | Suporte / Contato | `hml/suporte.html` | ✅ | WhatsApp/e-mail (demo) | ENTREGUE (09/ago) |
+| 14 | Portal do Parceiro (revenda WL) | `hml/parceiro.html` | ✅ | — | ENTREGUE (09/ago) |
 
 ## Ordem de execução (definida 08/ago)
 
@@ -38,18 +42,20 @@
 
 ## Páginas que FALTAM no ecossistema (gap real — fora do portal de login)
 
-O portal do cliente (HML) está **completo** (checkout/login/cadastro/dashboard/site/sucesso/
-recuperação/webhook/insights/lgpd). O que falta é o ecossistema em volta (público + operacional):
+O portal do cliente (HML) está **completo**: checkout/login/cadastro/dashboard/site/sucesso/
+recuperação/webhook/insights/lgpd/termos/cancelamento/suporte/parceiro (14 telas, todas com
+design Vitrine Certa + reveal robusto). Restam só 2 telas opcionais (baixa prioridade):
 
-| # | Página | Arquivo sugerido | Por quê falta | Prioridade |
-|---|--------|------------------|---------------|:---:|
-| 11 | Termos de Uso | `hml/termos.html` | `lgpd.html` cobre só privacidade; contrato de assinatura precisa de termos | Alta (legal) |
-| 12 | Cancelamento (self-service) | `hml/cancelamento.html` | SaaS exige cancelamento fácil; hoje só botão no dashboard sem destino | Alta |
-| 13 | Suporte / Contato | `hml/suporte.html` | Não há página de ajuda; follow-up é só WhatsApp | Média |
-| 14 | Portal do Parceiro (revenda WL) | `hml/parceiro.html` | Plano Mês 3 cita "revenda white-label p/ parceiros" — sem tela | Média |
-| 15 | Status do serviço | `hml/status.html` | SaaS profissional: página de status (opcional) | Baixa |
-| 16 | Comparar planos (pública) | `hml/planos.html` | Landing já mostra, mas página dedicada ajuda SEO/conversão | Baixa |
+| # | Página | Arquivo sugerido | Prioridade |
+|---|--------|------------------|:---:|
+| 15 | Status do serviço | `hml/status.html` | Baixa (SaaS profissional) |
+| 16 | Comparar planos (pública) | `hml/planos.html` | Baixa (landing já compara; ajuda SEO) |
 
-**GAP de BACKEND (não de página):** `site.html` (detalhe/edição) e `dashboard.html` ainda
-usam `?demo=1`. Auth real (Supabase) NÃO existe — cadastro/login são modo demonstração.
-Até o auth real, as telas 4/5 operam só em HML. Próximo passo de engenharia = ligar Supabase auth.
+**Plano de Experiência do Cliente (CX):** `docs/PLANO-EXPERIENCIA-CLIENTE.md` — mapa de jornada
+(aquisição→conta→suporte/legal→crescimento), princípios de UX fundamentados em skills do GitHub
+(addyosmani/agent-skills `frontend-ui-engineering` + `accessibility-checklist`; open-design-agent
+`quality-gates`; jony-ux-agent), anti-padrões evitados e checklist de verificação por tela.
+
+**GAP de BACKEND (não de página):** `site.html` (detalhe/edição) e `dashboard.html` ainda usam
+`?demo=1`. Auth real (Supabase) NÃO existe — cadastro/login são modo demonstração. Até o auth
+real, as telas 4/5 operam só em HML. Próximo passo de engenharia = ligar Supabase auth.

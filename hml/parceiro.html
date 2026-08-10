@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vitrine Certa — Portal do Parceiro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --vidro:#EDEFF4; --vidro2:#E3E7EF; --branco:#FBFCFE;
+  --linha:#CBD4E0; --linha2:#778799;
+  --tinta:#14161D; --fumaca:#525A6A; --fraco:#5A6373;
+  --lamp:#E8873A; --lamp-2:#9C4D15;
+  --accent:#E8873A; --accent-ink:#9C4D15;
+  --r:16px;
+  --disp:'Space Grotesk',Georgia,serif;
+  --sans:'Plus Jakarta Sans','Segoe UI',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --sombra:0 26px 64px -32px rgba(20,22,29,.34), 0 8px 22px -14px rgba(20,22,29,.16);
+  --sombra-sm:0 3px 14px -6px rgba(20,22,29,.22);
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--vidro);color:var(--tinta);font-family:var(--sans);min-height:100vh;padding:6vh 5vw;line-height:1.55;position:relative;overflow-x:clip}
+body::before{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;transition:background .8s ease;background:
+  radial-gradient(52% 40% at 84% -8%, color-mix(in srgb,var(--accent) 34%,transparent), transparent 62%),
+  radial-gradient(48% 36% at 10% 4%, color-mix(in srgb,var(--accent) 12%,transparent), transparent 60%)}
+#spot{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.9;mix-blend-mode:multiply;transition:opacity .4s;
+  background:radial-gradient(360px circle at var(--mx,80%) var(--my,50%), color-mix(in srgb,var(--accent) 22%,transparent), transparent 66%)}
+body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;mix-blend-mode:soft-light;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.wrap{max-width:760px;margin:0 auto}
+.kick{display:inline-block;font-family:var(--mono);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--accent-ink);margin-bottom:.6rem;transition:color .5s}
+h1{font-family:var(--disp);font-weight:300;font-size:2rem;line-height:1.1;letter-spacing:-.02em;margin-bottom:.3rem}
+h1 b{font-weight:700}
+p.sub{color:var(--fumaca);font-size:.9rem;margin-bottom:1.6rem}
+.card{background:color-mix(in srgb,var(--branco) 52%,transparent);border:1px solid rgba(255,255,255,.6);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:var(--sombra-sm),inset 0 1px 0 rgba(255,255,255,.7);border-radius:var(--r);padding:1.6rem;margin-bottom:1rem}
+.card h2{font-family:var(--disp);font-weight:500;font-size:1.1rem;margin-bottom:.5rem}
+.card p{font-size:.9rem;color:var(--fumaca);margin-bottom:.5rem}
+.card p:last-child{margin-bottom:0}
+.cta{display:inline-block;background:var(--lamp);color:#241202;text-align:center;font-family:var(--disp);font-weight:500;font-size:.95rem;padding:.7rem 1.4rem;border-radius:999px;border:none;cursor:pointer;transition:background-color .15s,transform .1s;box-shadow:0 14px 34px -14px rgba(232,135,58,.65);margin-top:.4rem}
+.cta:hover{background:#F0913F;transform:translateY(-2px)}
+.cta:active{transform:scale(.97)}
+.note{font-size:.72rem;color:var(--fumaca);text-align:center;margin-top:1.4rem}
+a{color:var(--accent-ink);text-decoration:none;font-weight:600}
+@media(prefers-reduced-motion:reduce){#spot{display:none}body::before{transition:none}}
+.reveal{clip-path:inset(-80px -80px 100% -80px);opacity:0;transition:clip-path .6s cubic-bezier(.22,1,.36,1),opacity .6s cubic-bezier(.22,1,.36,1)}
+.reveal.in{clip-path:inset(-80px -80px -80px -80px);opacity:1}
+@media(prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;clip-path:none}}
+</style>
+</head>
+<body>
+<div id="spot"></div>
+<div class="wrap">
+  <span class="kick">Revenda white-label</span>
+  <h1>Portal do <b>Parceiro</b></h1>
+  <p class="sub">Revenda a Vitrine Certa com a sua marca. Você vende, a gente produz e hospeda.</p>
+  <div class="card reveal">
+    <h2>Como funciona</h2>
+    <p>1 · Você indica um comércio local e fecha o contrato com sua margem.</p>
+    <p>2 · A Vitrine Certa produz o site em até 48h e hospeda gratuitamente.</p>
+    <p>3 · Cobrança recorrente transparente; você recebe comissão mensal.</p>
+  </div>
+  <div class="card reveal">
+    <h2>Seus ganhos</h2>
+    <p>Comissão recorrente sobre cada site ativo da sua carteira. Sem investimento em tecnologia.</p>
+  </div>
+  <div class="card reveal">
+    <h2>Quero ser parceiro</h2>
+    <p>Deixe seu contato e falamos sobre a parceria white-label.</p>
+    <a class="cta" href="mailto:parcerias@vitrinecerta.com.br">Falar com parcerias →</a>
+  </div>
+  <p class="note">Vitrine Certa — HML (modo demonstração).</p>
+</div>
+<script>
+(function(){
+'use strict';
+(function(){
+  var s=document.getElementById('spot'),raf=false,mx=80,my=50;
+  window.addEventListener('mousemove',function(e){mx=(e.clientX/window.innerWidth*100);my=(e.clientY/window.innerHeight*100);if(!raf){raf=true;requestAnimationFrame(function(){s.style.setProperty('--mx',mx+'%');s.style.setProperty('--my',my+'%');raf=false;});}},{passive:true});
+})();
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  function revealAll(){els.forEach(function(el){el.classList.add('in');});}
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14,rootMargin:'0px 0px -30px 0px'});els.forEach(function(el){io.observe(el);});setTimeout(revealAll,1400);}else{revealAll();}
+})();
+})();
+</script>
+</body>
+</html>
