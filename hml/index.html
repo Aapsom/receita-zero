@@ -844,13 +844,32 @@ document.querySelectorAll('.price-filter button').forEach(function(btn){
 #vc-exit .close{display:block;margin:.9rem auto 0;background:none;border:0;color:#778799;
   font-size:.82rem;cursor:pointer;font-family:'Plus Jakarta Sans',system-ui,sans-serif}
 #vc-exit .close:hover{color:#14161D}
+
+#vc-exit label{display:block;text-align:left;font-size:.78rem;color:#525A6A;font-weight:600;margin:.8rem 0 .35rem}
+#vc-exit input[type=text],#vc-exit input[type=email],#vc-exit input[type=tel]{width:100%;padding:.7rem .9rem;border:1.5px solid var(--linha2);border-radius:12px;font-size:.95rem;font-family:inherit;background:var(--branco);color:#14161D}
+#vc-exit input:focus{outline:none;border-color:var(--lamp);box-shadow:0 0 0 3px rgba(232,135,58,.14)}
+#vc-exit .consent{display:flex;gap:.55rem;align-items:flex-start;text-align:left;margin:1rem 0 .3rem;font-size:.76rem;line-height:1.45;color:#525A6A}
+#vc-exit .consent input{margin-top:.18rem;accent-color:#E8873A;flex:none}
+#vc-exit .consent a{color:#9C4D15;font-weight:600;text-decoration:none}
+#vc-exit .consent a:hover{text-decoration:underline}
+#vc-exit .err{color:#C0392B;font-size:.76rem;text-align:left;min-height:1rem;margin-bottom:.3rem}
+#vc-exit .ok{color:#9C4D15;font-weight:600}
 </style>
 
 <div id="vc-exit" role="dialog" aria-modal="true" aria-label="Antes de sair">
   <div class="box">
     <h3>Espera aí! ;)</h3>
     <p>Antes de ir: quer receber <b>promoções e novidades</b> do <span id="vc-biz">nosso comércio</span> direto no seu WhatsApp? É rapidinho.</p>
-    <a class="cta" id="vc-exit-wa" href="suporte.html">Receber no WhatsApp</a>
+    <form id="vc-exit-form" novalidate>
+      <label for="vc-tel">WhatsApp / telefone</label>
+      <input type="tel" id="vc-tel" name="tel" placeholder="(11) 99999-9999" autocomplete="tel">
+      <label for="vc-email">E-mail</label>
+      <input type="email" id="vc-email" name="email" placeholder="voce@email.com" autocomplete="email">
+      <p class="err" id="vc-err"></p>
+      <label class="consent"><input type="checkbox" id="vc-consent">
+        <span>Autorizo a Vitrine Certa a me enviar promoções e novidades por WhatsApp e/ou e-mail. Você pode sair quando quiser. Veja a <a href="lgpd.html" target="_blank" rel="noopener">Política de Privacidade</a>.</span></label>
+      <button type="submit" class="cta" id="vc-exit-wa">Receber no WhatsApp</button>
+    </form>
     <button class="close" id="vc-exit-x">Agora não, obrigado</button>
   </div>
 </div>
@@ -871,6 +890,26 @@ document.querySelectorAll('.price-filter button').forEach(function(btn){
   document.addEventListener('click',function(e){
     if(e.target && (e.target.id==='vc-exit-x' || e.target.id==='vc-exit')) hide();
   });
+  var form=document.getElementById('vc-exit-form');
+  if(form){
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var tel=document.getElementById('vc-tel').value.trim();
+      var email=document.getElementById('vc-email').value.trim();
+      var consent=document.getElementById('vc-consent').checked;
+      var err=document.getElementById('vc-err');
+      var phoneOk=/^[0-9 ()+-]{8,}$/.test(tel);
+      var emailOk=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+      if(!phoneOk && !emailOk){ err.textContent='Informe ao menos um telefone ou e-mail.'; return; }
+      if(!consent){ err.textContent='Marque a autorização para recebermos as mensagens.'; return; }
+      err.textContent='';
+      var lead={ origem:'exit-intent', telefone:tel||null, email:email||null, consentimento:'lgpd-opt-in', ts:new Date().toISOString() };
+      try{ if(window.captureLead) captureLead(lead); }catch(_){}
+      try{ var k='vc_leads'; var arr=JSON.parse(localStorage.getItem(k)||'[]'); arr.push(lead); localStorage.setItem(k,JSON.stringify(arr)); }catch(_){}
+      form.innerHTML='<p class="ok">Pronto! Vamos te avisar sobre promoções e novidades. 💬</p>';
+      setTimeout(hide,2200);
+    });
+  }
   if(forced) show();
 })();
 </script>
