@@ -38,6 +38,10 @@ h1 b{font-weight:700}
 .ghost{color:var(--accent-ink);text-decoration:none;font-weight:600;font-size:.85rem}
 .reveal{clip-path:inset(-80px -80px 100% -80px);opacity:0;transition:clip-path .6s cubic-bezier(.22,1,.36,1),opacity .6s cubic-bezier(.22,1,.36,1)}
 .reveal.in{clip-path:inset(-80px -80px -80px -80px);opacity:1}
+
+/* foco visivel (WCAG 2.1 AA) */
+:focus-visible{outline:2px solid var(--lamp);outline-offset:2px;border-radius:6px}
+button:focus-visible,a:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--lamp);outline-offset:2px}
 @media(prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;clip-path:none}#spot{display:none}}
 /* card de detalhe — vidro profundo (padrão landing) */
 .card{background:color-mix(in srgb,var(--branco) 50%,transparent);border:1px solid rgba(255,255,255,.6);border-radius:var(--r);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--sombra-sm),inset 0 1px 0 rgba(255,255,255,.7);padding:1.3rem 1.4rem;margin:.8rem 0;transition:border-color .2s,box-shadow .2s,transform .2s}
@@ -75,7 +79,7 @@ h1 b{font-weight:700}
     <a class="ghost" href="dashboard.html">← voltar</a>
   </div>
   <h1>Seu <b>site e assinatura</b></h1>
-  <div id="detalhe"></div>
+  <div id="detalhe" role="status" aria-live="polite"></div>
   <p class="note">Vitrine Certa — HML (modo demonstração).</p>
 </div>
 <script>
@@ -86,6 +90,7 @@ var params=new URLSearchParams(location.search);
 var id=params.get('cobranca_id');
 var box=document.getElementById('detalhe');
 var statusEl=null;
+function aplicarReveal(){document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});}
 function badge(st){
   var map={pending:['pending','Pendente'],paid:['paid','Pago'],cancelled:['cancelled','Cancelado']};
   var b=map[st]||['pending',st||'?'];
@@ -98,10 +103,10 @@ function planoDe(c){if(!c)return '';var s=String(c).toLowerCase();
 fetch(API+'?demo=1',{headers:{'Content-Type':'application/json'}})
   .then(function(r){return r.json().then(function(b){return{ok:r.ok,body:b};});})
   .then(function(res){
-    if(!res.ok){box.innerHTML='<div class="status-msg err">Erro ao carregar assinatura.</div>';return;}
+    if(!res.ok){box.innerHTML='<div class="status-msg err">Erro ao carregar assinatura.</div>';aplicarReveal();return;}
     var cs=res.body.cobrancas||[];
     var c = cs.find(function(x){return x.id===id;}) || cs[0];
-    if(!c){box.innerHTML='<div class="card reveal">Nenhuma assinatura encontrada. <a class="ghost" href="checkout.html">Contrate um site →</a></div>';return;}
+    if(!c){box.innerHTML='<div class="card reveal">Nenhuma assinatura encontrada. <a class="ghost" href="checkout.html">Contrate um site →</a></div>';aplicarReveal();return;}
     box.innerHTML='<div class="card reveal">'
       +'<div class="row"><div><div class="nome">'+planoDe(c.cliente)+'</div><div class="plano">'+(c.cliente||'')+'</div>'+badge(c.status)+'</div>'
       +'<div class="valor">'+fmt(c.valor)+'<small style="font-size:.7rem;color:var(--fumaca)">/mês</small></div></div>'
@@ -111,8 +116,7 @@ fetch(API+'?demo=1',{headers:{'Content-Type':'application/json'}})
       +'<a class="btn btn-ghost" href="dashboard.html">Voltar ao painel</a>'
       +'<button class="btn btn-danger" onclick="alert(\'Cancelamento: em produção, aciona o Avança (tenant VC).\')">Cancelar assinatura</button>'
       +'</div></div>';
-    if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.14});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});}
-    else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});}
+    aplicarReveal();
   })
   .catch(function(e){box.innerHTML='<div class="status-msg err">Erro de conexão: '+e.message+'</div>';});
 

@@ -46,6 +46,10 @@ a{color:var(--accent-ink);text-decoration:none;font-weight:600}
 @media(prefers-reduced-motion:reduce){#spot{display:none}body::before{transition:none}}
 .reveal{clip-path:inset(-80px -80px 100% -80px);opacity:0;transition:clip-path .6s cubic-bezier(.22,1,.36,1),opacity .6s cubic-bezier(.22,1,.36,1)}
 .reveal.in{clip-path:inset(-80px -80px -80px -80px);opacity:1}
+
+/* foco visivel (WCAG 2.1 AA) */
+:focus-visible{outline:2px solid var(--lamp);outline-offset:2px;border-radius:6px}
+button:focus-visible,a:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--lamp);outline-offset:2px}
 @media(prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;clip-path:none}}
 </style>
 </head>
