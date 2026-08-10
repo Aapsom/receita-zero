@@ -826,20 +826,25 @@ document.querySelectorAll('.price-filter button').forEach(function(btn){
 
   <!-- Vitrine Certa Exit-Intent -->
 <style>
-#vc-exit{position:fixed;inset:0;background:rgba(11,7,20,.82);z-index:9998;display:none;
-  align-items:center;justify-content:center;padding:1.4rem;font-family:system-ui,sans-serif}
+#vc-exit{position:fixed;inset:0;background:rgba(11,7,20,.78);z-index:9998;display:none;
+  align-items:center;justify-content:center;padding:1.4rem;font-family:'Plus Jakarta Sans',system-ui,sans-serif}
 #vc-exit.show{display:flex;animation:vcFade .25s ease}
 @keyframes vcFade{from{opacity:0}to{opacity:1}}
-#vc-exit .box{background:#0B0714;color:#EFE9FF;border:1px solid rgba(45,212,191,.4);
-  border-radius:16px;max-width:420px;width:100%;padding:1.8rem;text-align:center;
-  box-shadow:0 24px 70px rgba(0,0,0,.6)}
-#vc-exit h3{margin:0 0 .5rem;color:#2DD4BF;font-size:1.35rem;line-height:1.25}
-#vc-exit p{margin:0 0 1.2rem;opacity:.85;font-size:.98rem;line-height:1.5}
-#vc-exit .cta{display:inline-block;background:#C6FF00;color:#0B0714;font-weight:800;
-  text-decoration:none;padding:.85rem 1.4rem;border-radius:99px;font-size:1rem}
-#vc-exit .close{display:block;margin:.9rem auto 0;background:none;border:0;color:rgba(239,233,255,.5);
-  font-size:.82rem;cursor:pointer}
-</style>
+#vc-exit .box{background:color-mix(in srgb,#FBFCFE 90%,transparent);color:#14161D;border:1px solid rgba(255,255,255,.6);
+  border-radius:18px;max-width:420px;width:100%;padding:2rem;text-align:center;
+  box-shadow:0 26px 64px -28px rgba(20,22,29,.55),inset 0 1px 0 rgba(255,255,255,.7);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+#vc-exit h3{margin:0 0 .5rem;color:#9C4D15;font-family:'Space Grotesk',Georgia,serif;font-weight:500;font-size:1.5rem;line-height:1.2}
+#vc-exit p{margin:0 0 1.3rem;opacity:.8;font-size:.98rem;line-height:1.5;color:#525A6A}
+#vc-exit p b{color:#14161D}
+#vc-exit .cta{display:inline-block;background:#E8873A;color:#241202;
+  text-decoration:none;padding:.85rem 1.4rem;border-radius:99px;font-size:1rem;font-family:'Space Grotesk',Georgia,serif;font-weight:500;
+  box-shadow:0 14px 34px -14px rgba(232,135,58,.65);transition:background-color .15s,transform .1s}
+#vc-exit .cta:hover{background:#F0913F;transform:translateY(-2px)}
+#vc-exit .close{display:block;margin:.9rem auto 0;background:none;border:0;color:#778799;
+  font-size:.82rem;cursor:pointer;font-family:'Plus Jakarta Sans',system-ui,sans-serif}
+#vc-exit .close:hover{color:#14161D}
+
 <div id="vc-exit" role="dialog" aria-modal="true" aria-label="Antes de sair">
   <div class="box">
     <h3>Espera aí! ;)</h3>
