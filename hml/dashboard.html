@@ -83,7 +83,7 @@ button:focus-visible,a:focus-visible,select:focus-visible,textarea:focus-visible
 <script>
 (function(){
 'use strict';
-var API='https://saas-confianca-cobranca.vercel.app/api/v1/subscriptions';
+
 var statusEl=document.getElementById('status');
 function showErr(m){statusEl.textContent=m;statusEl.className='status-msg err';statusEl.style.display='block';}
 // sessao real (Supabase) + fallback localStorage
@@ -127,21 +127,31 @@ function planoDe(cliente){
   if(c.indexOf('basico')>=0)return 'Básico';
   return cliente;
 }
-fetch(API+'?demo=1',{headers:{'Content-Type':'application/json'}})
-  .then(function(r){return r.json().then(function(b){return{ok:r.ok,body:b};});})
-  .then(function(res){
-    if(!res.ok){showErr('Erro ao carregar: '+(res.body.erro||res.body.message||'desconhecido'));return;}
-    var cs=res.body.cobrancas||[];
-    if(!cs.length){lista.innerHTML='<div class="empty reveal">Você ainda não tem assinaturas. <a class="ghost" href="checkout.html">Contrate seu primeiro site →</a></div>';return;}
+// carrega assinaturas do proprio Supabase VC (tabela 'assinaturas')
+(function(){
+  var sb=null;
+  try{ if(window.VC_SUPABASE) sb=window.supabase.createClient(window.VC_SUPABASE.url,window.VC_SUPABASE.anon); }catch(e){}
+  if(!sb){ lista.innerHTML='<div class="empty reveal">Você ainda não tem assinaturas. <a class="ghost" href="checkout.html">Contrate seu primeiro site →</a></div>'; return; }
+  sb.auth.getUser().then(function(g){
+    var uid = g && g.data && g.data.user ? g.data.user.id : null;
+    var q = sb.from('assinaturas').select('*');
+    if(uid) q = q.eq('user_id', uid);
+    return q;
+  }).then(function(res){
+    if(res.error){ throw res.error; }
+    var cs=res.data||[];
+    if(!cs.length){ lista.innerHTML='<div class="empty reveal">Você ainda não tem assinaturas. <a class="ghost" href="checkout.html">Contrate seu primeiro site →</a></div>'; return; }
     lista.innerHTML=cs.map(function(c){
       return '<div class="card reveal"><div class="linha">'
-        +'<div><div class="nome">'+planoDe(c.cliente)+'</div><div class="plano">'+(c.cliente||'')+'</div>'+badge(c.status)+'</div>'
+        +'<div><div class="nome">'+planoDe(c.plano||c.cliente)+'</div><div class="plano">'+(c.cliente||c.nome||'')+'</div>'+badge(c.status)+'</div>'
         +'<div style="text-align:right"><div class="valor">'+fmt(c.valor)+'<small style="font-size:.7rem;color:var(--fumaca)">/mês</small></div></div>'
         +'</div></div>';
     }).join('');
     document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
-  })
-  .catch(function(e){showErr('Erro de conexão: '+e.message);});
+  }).catch(function(){
+    lista.innerHTML='<div class="empty reveal">Você ainda não tem assinaturas. <a class="ghost" href="checkout.html">Contrate seu primeiro site →</a></div>';
+  });
+})();
 
 /* spotlight que segue o cursor (padrão landing) */
 (function(){

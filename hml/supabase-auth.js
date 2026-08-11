@@ -47,6 +47,14 @@
       const sb = this.init(); if (!sb) return;
       await sb.auth.signOut();
     },
+    // envia e-mail de reset de senha (redireciona de volta ao HML)
+    async resetPassword(email) {
+      const sb = this.init(); if (!sb) throw new Error('supabase nao inicializado');
+      const { error } = await sb.auth.resetPasswordForEmail(email, {
+        redirectTo: window.location.origin + '/hml/login.html'
+      });
+      if (error) throw error;
+    },
     // grava sessão no estado do portal (mantém compat com header que lê vc_email)
     async syncProfile() {
       const s = await this.getSession();
