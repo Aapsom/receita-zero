@@ -98,8 +98,13 @@ document.getElementById('criar').addEventListener('click',function(){
   window.VC_AUTH.signup(email,s1,{empresa:empresa,whatsapp:wa}).then(function(){
     return window.VC_AUTH.syncProfile();
   }).then(function(){
-    show('Conta criada. Redirecionando para o painel…','ok');
-    setTimeout(function(){location.href='dashboard.html';},900);
+    // se o e-mail confirmation estiver ON no Supabase, a sessao nao existe ainda -> tela de confirmacao
+    return window.VC_AUTH.getSession();
+  }).then(function(session){
+    show('Conta criada. Redirecionando…','ok');
+    var logado = !!(session && session.session);
+    var dest = logado ? 'dashboard.html' : 'confirmacao.html?email='+encodeURIComponent(email);
+    setTimeout(function(){location.href=dest;},900);
   }).catch(function(e){ show(e.message||'Falha ao criar conta.','err'); });
 });
 /* spotlight que segue o cursor (padrão landing) */

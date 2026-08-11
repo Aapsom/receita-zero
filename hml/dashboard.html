@@ -127,32 +127,32 @@ function planoDe(cliente){
   if(c.indexOf('basico')>=0)return 'Básico';
   return cliente;
 }
-// carrega assinaturas do proprio Supabase VC (tabela 'assinaturas')
-(function(){
-  var sb=null;
-  try{ if(window.VC_SUPABASE) sb=window.supabase.createClient(window.VC_SUPABASE.url,window.VC_SUPABASE.anon); }catch(e){}
-  if(!sb){ lista.innerHTML='<div class="empty reveal">Você ainda não tem assinaturas. <a class="ghost" href="checkout.html">Contrate seu primeiro site →</a></div>'; return; }
-  sb.auth.getUser().then(function(g){
-    var uid = g && g.data && g.data.user ? g.data.user.id : null;
-    var q = sb.from('assinaturas').select('*');
-    if(uid) q = q.eq('user_id', uid);
-    return q;
-  }).then(function(res){
-    if(res.error){ throw res.error; }
-    var cs=res.data||[];
-    if(!cs.length){ lista.innerHTML='<div class="empty reveal">Você ainda não tem assinaturas. <a class="ghost" href="checkout.html">Contrate seu primeiro site →</a></div>'; return; }
-    lista.innerHTML=cs.map(function(c){
-      return '<div class="card reveal"><div class="linha">'
-        +'<div><div class="nome">'+planoDe(c.plano||c.cliente)+'</div><div class="plano">'+(c.cliente||c.nome||'')+'</div>'+badge(c.status)+'</div>'
-        +'<div style="text-align:right"><div class="valor">'+fmt(c.valor)+'<small style="font-size:.7rem;color:var(--fumaca)">/mês</small></div></div>'
-        +'</div></div>';
-    }).join('');
-    document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
-  }).catch(function(){
-    lista.innerHTML='<div class="empty reveal">Você ainda não tem assinaturas. <a class="ghost" href="checkout.html">Contrate seu primeiro site →</a></div>';
+  // carrega assinaturas do proprio Supabase VC (tabela 'assinaturas') — roda apos os scripts supabase carregarem
+  window.addEventListener('load', function(){
+    var sb=null;
+    try{ if(window.VC_SUPABASE) sb=window.supabase.createClient(window.VC_SUPABASE.url,window.VC_SUPABASE.anon); }catch(e){}
+    if(!sb){ lista.innerHTML='<div class="empty reveal">Você ainda não tem assinaturas. <a class="ghost" href="checkout.html">Contrate seu primeiro site →</a></div>'; return; }
+    function render(cs){
+      if(!cs || !cs.length){ lista.innerHTML='<div class="empty reveal">Você ainda não tem assinaturas. <a class="ghost" href="checkout.html">Contrate seu primeiro site →</a></div>'; return; }
+      lista.innerHTML=cs.map(function(c){
+        return '<div class="card reveal"><div class="linha">'
+          +'<div><div class="nome">'+planoDe(c.plano||c.cliente)+'</div><div class="plano">'+(c.cliente||c.nome||'')+'</div>'+badge(c.status)+'</div>'
+          +'<div style="text-align:right"><div class="valor">'+fmt(c.valor)+'<small style="font-size:.7rem;color:var(--fumaca)">/mês</small></div></div>'
+          +'</div></div>';
+      }).join('');
+      document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
+    }
+    sb.from('assinaturas').select('*').then(function(res){
+      if(res.error) throw res.error;
+      var cs=res.data||[];
+      if(window.VC_AUTH){
+        window.VC_AUTH.getSession().then(function(sess){
+          var uid=sess&&sess.session&&sess.session.user?sess.session.user.id:null;
+          render(uid?cs.filter(function(c){return c.user_id===uid;}):cs);
+        }).catch(function(){ render(cs); });
+      } else { render(cs); }
+    }).catch(function(){ render([]); });
   });
-})();
-
 /* spotlight que segue o cursor (padrão landing) */
 (function(){
   var s=document.getElementById('spot'),raf=false,mx=80,my=10;
@@ -167,5 +167,3 @@ function planoDe(cliente){
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
 <script src="supabase-auth.js"></script>
-</body>
-</html>
