@@ -1,0 +1,30 @@
+# HML local do modelo de NEGÓCIO da VC — Postgres puro (R$0, sem vaga Supabase).
+#
+# O Supabase free só tem 2 vagas (Avança PRD + VC PRD). Este compose sobe um
+# Postgres local para testar a migration 0001_negocio.sql (RLS por auth.uid())
+# SEM contar pro limite e SEM criar conta.
+#
+# Em Postgres puro não existe auth.users/auth.uid(); o 0000_auth-shim.sql
+# emula: cria schema auth + tabela users + função auth.uid() que lê
+# current_setting('my.user_id'). A migration 0001 referencia auth.* e roda igual.
+
+services:
+  vc_db:
+    image: postgres:16-alpine
+    container_name: vc-hml-db
+    environment:
+      POSTGRES_USER: vc
+      POSTGRES_PASSWORD: vc_hml
+      POSTGRES_DB: vc_hml
+    ports:
+      - "5433:5432"
+    volumes:
+      - vc-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vc -d vc_hml"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  vc-db-data:
