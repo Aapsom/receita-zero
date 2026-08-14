@@ -1,56 +1,52 @@
 #!/usr/bin/env node
 /**
- * dunning-cruzado.js — Integração VC x Avança · Mês 5 (dunning cruzado).
- *
- * Quando o Avança detecta falha de pagamento (subscription.failed / inadimplente),
- * a VC deve mostrar um aviso no dashboard do PME (não derruba o site — modo
- * cortesia). Este script recebe o status de cobrança do Avança e devolve o aviso
- * a ser exibido na VC, classificando a severidade. Sem rede.
- *
- * Uso: echo '{"pme":"...","status":"failed","tentativas":1}' | node ...
- *      node references/dunning-cruzado.js evento.json
- * Exit 0 (o aviso é informativo); o campo `acao` indica o que a VC deve fazer.
+ * dunning-cruzado.js — M10 (Integração): status cruzado Avança (cobrança) × VC (site).
+ * Função PURA: dado estado de cobrança do Avança + estado do site da VC, calcula o
+ * status exibido no dashboard do PME. Sem banco, sem rede.
+ *   node references/dunning-cruzado.js --fixture
  */
 'use strict';
-const fs = require('fs');
-const path = require('path');
 
-function ler(input) {
-  if (input === '-') return JSON.parse(fs.readFileSync(0, 'utf8'));
-  return JSON.parse(fs.readFileSync(path.resolve(input), 'utf8'));
-}
-
-function mapear(ev) {
-  const status = (ev.status || '').toLowerCase();
-  switch (status) {
-    case 'ativo':
-    case 'paid':
-    case 'pago':
-      return { severidade: 'ok', acao: 'nada', aviso: 'Assinatura em dia.' };
-    case 'failed':
-    case 'falhou':
-    case 'inadimplente':
-      return ev.tentativas > 1
-        ? { severidade: 'alta', acao: 'mostrar_aviso_pagamento', aviso: 'Pagamento não identificado. Regularize para manter o site no ar.' }
-        : { severidade: 'baixa', acao: 'mostrar_aviso_pagamento', aviso: 'Tivemos uma falha na cobrança. Tente novamente para evitar interrupção.' };
-    case 'canceled':
-    case 'cancelado':
-      return { severidade: 'media', acao: 'modo_cortesia', aviso: 'Assinatura cancelada. O site segue visível em modo cortesia.' };
-    default:
-      return { severidade: 'desconhecido', acao: 'revisar', aviso: 'Status de cobrança indefinido.' };
-  }
+// Estado possível do Avança (cobrança)
+//   'pago' | 'falhando' | 'suspenso' | 'trial'
+// Estado possível da VC (site)
+//   'ativo' | 'pausado' | 'offline'
+// Regra determinística (ZERO IA):
+//   - cobrança falhando + site pausado  => 'risco'     (vai suspender em 48h) — ANTES de 'suspenso'
+//   - cobrança suspenso (+ qq site)     => 'suspenso'  (site deve pausar)
+//   - cobrança paga + site pausado      => 'inconsistente' (erro de sincronia)
+//   - cobrança falhando + site ativo    => 'atencao'   (avisar dono, site segue)
+//   - demais                             => 'saudavel'
+function calcularStatus(cobranca, site) {
+  if (cobranca === 'falhando' && site === 'pausado') return 'risco';
+  if (cobranca === 'suspenso') return 'suspenso';
+  if (cobranca === 'pago' && site === 'pausado') return 'inconsistente';
+  if (cobranca === 'falhando' && site === 'ativo') return 'atencao';
+  return 'saudavel';
 }
 
 function main() {
-  const ev = ler(process.argv[2] || '-');
-  const r = mapear(ev);
-  console.log(`PME: ${ev.pme || '(sem nome)'}`);
-  console.log(`Status Avança: ${ev.status}`);
-  console.log(`Severidade: ${r.severidade}`);
-  console.log(`Ação VC: ${r.acao}`);
-  console.log(`Aviso: ${r.aviso}`);
-  console.log('\nDUNNING_OK');
+  if (!process.argv.includes('--fixture')) {
+    console.error('uso: node references/dunning-cruzado.js --fixture');
+    process.exit(2);
+  }
+  const casos = [
+    { cobranca: 'pago', site: 'ativo', esperado: 'saudavel' },
+    { cobranca: 'falhando', site: 'ativo', esperado: 'atencao' },
+    { cobranca: 'falhando', site: 'pausado', esperado: 'risco' },
+    { cobranca: 'suspenso', site: 'ativo', esperado: 'suspenso' },
+    { cobranca: 'pago', site: 'pausado', esperado: 'inconsistente' },
+    { cobranca: 'trial', site: 'ativo', esperado: 'saudavel' },
+  ];
+  let falhas = 0;
+  for (const c of casos) {
+    const r = calcularStatus(c.cobranca, c.site);
+    if (r !== c.esperado) { console.error(`❌ ${c.cobranca}/${c.site} => ${r} (esperado ${c.esperado})`); falhas++; }
+    else console.log(`✅ ${c.cobranca}/${c.site} => ${r}`);
+  }
+  console.log(falhas ? `❌ DUNNING_CRUZADO_FAIL (${falhas})` : '✅ DUNNING_CRUZADO_OK');
+  process.exit(falhas ? 1 : 0);
 }
-
 if (require.main === module) main();
-module.exports = { mapear };
+
+module.exports = { calcularStatus };

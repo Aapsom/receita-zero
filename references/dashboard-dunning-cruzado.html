@@ -1,0 +1,12 @@
+<!doctype html><meta charset=utf8><title>Dunning Cruzado — Dashboard PME (mock)</title>
+<h1>Vitrine Certa × Avança — Status Cruzado</h1>
+<p>Exemplo de como o dashboard do PME exibe o status cruzado (M10).</p>
+<table border=1>
+<tr><th>Cobrança (Avança)</th><th>Site (VC)</th><th>Status</th></tr>
+<tr><td>pago</td><td>ativo</td><td style="color:green">saudável</td></tr>
+<tr><td>falhando</td><td>ativo</td><td style="color:orange">atenção</td></tr>
+<tr><td>falhando</td><td>pausado</td><td style="color:red">risco (suspende 48h)</td></tr>
+<tr><td>suspenso</td><td>ativo</td><td style="color:red">suspenso</td></tr>
+<tr><td>pago</td><td>pausado</td><td style="color:purple">inconsistente</td></tr>
+</table>
+<p><small>regra determinística (ZERO IA) — refs/references/dunning-cruzado.js</small></p>
