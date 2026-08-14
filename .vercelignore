@@ -1,0 +1,4 @@
+# Força a Vercel a enviar o diretório completo (site-dfy/ etc.) sem aplicar .gitignore.
+# O .gitignore da VC ignora references/ e docs/ (corretamente, fora do site), mas o
+# vercel deploy de diretório estava respeitando o gitignore e omitindo site-dfy/.
+# .vercelignore vazio desativa esse filtro para o deploy.

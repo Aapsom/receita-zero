@@ -1,0 +1,30 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "rewrites": [
+    { "source": "/(cl[i\u00ed]nica)", "destination": "/site-dfy/cl\u00ednica/index.html" },
+    { "source": "/(imobili[a\u00e1]ria)", "destination": "/site-dfy/imobili\u00e1ria/index.html" },
+    { "source": "/(sal[a\u00e3]o)", "destination": "/site-dfy/sal\u00e3o/index.html" },
+    { "source": "/lavanderia", "destination": "/site-dfy/lavanderia/index.html" },
+    { "source": "/oficina", "destination": "/site-dfy/oficina/index.html" },
+    { "source": "/padaria", "destination": "/site-dfy/padaria/index.html" },
+    { "source": "/pet", "destination": "/site-dfy/pet/index.html" },
+    { "source": "/pizzaria", "destination": "/site-dfy/pizzaria/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=()" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(js|css|svg|png|jpg|jpeg|webp|ico|woff2)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, immutable" }]
+    }
+  ]
+}
