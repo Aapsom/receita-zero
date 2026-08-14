@@ -1,0 +1,8 @@
+{
+  "event": "subscription.activated",
+  "event_id": "evt_act_001",
+  "subscription_id": "sub_abc123",
+  "pme_id": "pme_demo",
+  "plano": "premium",
+  "valor": 149
+}
