@@ -14,8 +14,6 @@ lead-engine/
 PLANO-*.md
 PLANO-MENSAL-*.md
 roteiro-dm.md
-package.json
-package-lock.json
 _checkpoint/
 yt_transcript_7FU98OJLHs.txt
 yt_analise.md
@@ -38,3 +36,6 @@ taste-library/_test_ref.js
 taste-library/_cap_ref.js
 taste-library/_cap_ref2.js
 taste-library/_cap_icon.js
+
+.vercel
+.env*
