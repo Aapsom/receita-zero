@@ -3,8 +3,11 @@
   "buildCommand": null,
   "outputDirectory": ".",
   "rewrites": [
+    { "source": "/clinica", "destination": "/site-dfy/cl\u00ednica/index.html" },
     { "source": "/(cl[i\u00ed]nica)", "destination": "/site-dfy/cl\u00ednica/index.html" },
+    { "source": "/imobiliaria", "destination": "/site-dfy/imobili\u00e1ria/index.html" },
     { "source": "/(imobili[a\u00e1]ria)", "destination": "/site-dfy/imobili\u00e1ria/index.html" },
+    { "source": "/salao", "destination": "/site-dfy/sal\u00e3o/index.html" },
     { "source": "/(sal[a\u00e3]o)", "destination": "/site-dfy/sal\u00e3o/index.html" },
     { "source": "/lavanderia", "destination": "/site-dfy/lavanderia/index.html" },
     { "source": "/oficina", "destination": "/site-dfy/oficina/index.html" },
