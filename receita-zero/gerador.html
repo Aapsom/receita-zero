@@ -72,7 +72,9 @@ footer{text-align:center;color:var(--faint);font-size:.82rem;margin-top:40px}
     <label for="key">Google Maps API key (opcional — puxa fotos/endereço reais do Maps)</label>
     <input id="key" placeholder="deixe em branco para usar fotos de exemplo" />
 
-    <label for="ig1" style="margin-top:18px">Fotos do Instagram (opcional — links diretos)</label>
+    <label for="igprofile" style="margin-top:18px">Perfil do Instagram (raspa nome + fotos reais — precisa de servidor)</label>
+    <input id="igprofile" placeholder="@seucomercio  (exige backend com instaloader + sessionid)" />
+    <label for="ig1" style="margin-top:18px">Ou fotos diretas do Instagram (opcional — links de IMAGEM .jpg)</label>
     <input id="ig1" placeholder="https://instagram.com/p/XXXXX (foto 1)" />
     <input id="ig2" placeholder="https://instagram.com/p/XXXXX (foto 2)" style="margin-top:8px" />
     <input id="ig3" placeholder="https://instagram.com/p/XXXXX (foto 3)" style="margin-top:8px" />
@@ -112,8 +114,27 @@ footer{text-align:center;color:var(--faint);font-size:.82rem;margin-top:40px}
 </div>
 
 <script>
-const base='site-dfy/';
 const IG_PROXY='https://images.weserv.io/?w=800&h=600&we=edge&url='; // proxy gratuito para imagens do Instagram
+const IG_API_URL=''; // <<SET: endpoint seu que roda references/insta-scrape.py com IG_SESSIONID. Ex: https://seu-servidor/insta
+
+// Validação de entrada (robusta)
+function isUrl(s){try{const u=new URL(s);return u.protocol==='http:'||u.protocol==='https:';}catch(e){return false;}}
+function normalizeUrl(s){
+  s=s.trim();
+  if(!s) return '';
+  if(/^https?:\/\//i.test(s)) return s;
+  // aceita domínios sem protocolo
+  if(/^[a-z0-9.-]+\.[a-z]{2,}/i.test(s)) return 'https://'+s;
+  return s;
+}
+function igHandle(s){
+  s=s.trim().replace(/\/$/,'');
+  const m=s.match(/instagram\.com\/([^/?#]+)/i);
+  if(m) return m[1].replace(/^@/,'');
+  if(s.startsWith('@')) return s.slice(1);
+  if(/^[a-z0-9._]+$/i.test(s)) return s;
+  return null;
+}
 
 function extractName(link){
   try{
@@ -239,11 +260,29 @@ function sendPhotosToIframe(photos){
   }
 }
 
+// Puxa perfil do Instagram via backend seu (roda insta-scrape.py com sessionid)
+async function fetchInstaProfile(handle){
+  if(!IG_API_URL) return null;
+  try{
+    const r=await fetch(IG_API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:handle})});
+    if(!r.ok) return null;
+    const j=await r.json();
+    return j; // {username,full_name,biography,profile_pic_url,media:[{url,caption,is_video}]}
+  }catch(e){return null;}
+}
+
 document.getElementById('gen').addEventListener('click',async()=>{
-  const link=linkEl.value.trim();
+  const rawLink=linkEl.value.trim();
+  const link=normalizeUrl(rawLink);
   const n=nic.value;
-  const name=extractName(link);
+  const igP=igHandle(document.getElementById('igprofile').value);
   const key=keyEl.value.trim();
+
+  // Validação: link obrigatório e deve ser URL válida
+  if(!rawLink){ note.textContent='⚠️ Cole o link do Google Maps ou Instagram do seu comércio.'; note.style.color='#F472B6'; return; }
+  if(rawLink && !isUrl(link) && !igP){ note.textContent='⚠️ Link inválido. Cole uma URL (maps.google.com ou instagram.com) ou @usuario.'; note.style.color='#F472B6'; return; }
+
+  const name=extractName(link)|| (igP?('@'+igP):'');
 
   // Coleta fotos
   collectedPhotos=[];
@@ -264,6 +303,18 @@ document.getElementById('gen').addEventListener('click',async()=>{
     const shortCode=extractInstagramPhotoUrl(igLink);
     if(shortCode){
       collectedPhotos.push({url:IG_PROXY+'www.instagram.com/p/'+shortCode+'/',source:'instagram'});
+    }
+  }
+
+  // 2b. Tenta puxar PERFIL via backend instaloader (se @usuario + endpoint setado)
+  if(igP && IG_API_URL){
+    const prof=await fetchInstaProfile(igP);
+    if(prof && prof.media && prof.media.length){
+      prof.media.slice(0,3).forEach(m=>collectedPhotos.push({url:m.url,source:'instagram-perfil'}));
+      if(prof.full_name && !name) name=prof.full_name;
+      note.textContent='Perfil Instagram raspado via servidor: '+collectedPhotos.length+' foto(s) de @'+igP+'.';
+    } else if(igP && !IG_API_URL){
+      note.textContent='⚠️ Para raspar o PERFIL do Instagram, configure IG_API_URL (backend com instaloader + sessionid). Sem isso, use links diretos de imagem em "Fotos diretas".';
     }
   }
 
