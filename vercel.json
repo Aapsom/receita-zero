@@ -13,7 +13,10 @@
     { "source": "/oficina", "destination": "/site-dfy/oficina/index.html" },
     { "source": "/padaria", "destination": "/site-dfy/padaria/index.html" },
     { "source": "/pet", "destination": "/site-dfy/pet/index.html" },
-    { "source": "/pizzaria", "destination": "/site-dfy/pizzaria/index.html" }
+    { "source": "/pizzaria", "destination": "/site-dfy/pizzaria/index.html" },
+    { "source": "/barbearia", "destination": "/site-dfy/barbearia/index.html" },
+    { "source": "/restaurante", "destination": "/site-dfy/restaurante/index.html" },
+    { "source": "/(barbearia|restaurante)/(standard|plus|premium)", "destination": "/site-dfy/$1/$2/index.html" }
   ],
   "headers": [
     {
