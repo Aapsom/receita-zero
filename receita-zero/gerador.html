@@ -115,7 +115,7 @@ footer{text-align:center;color:var(--faint);font-size:.82rem;margin-top:40px}
 
 <script>
 const IG_PROXY='https://images.weserv.io/?w=800&h=600&we=edge&url='; // proxy gratuito para imagens do Instagram
-const IG_API_URL=''; // <<SET: endpoint seu que roda references/insta-scrape.py com IG_SESSIONID. Ex: https://seu-servidor/insta
+const IG_API_URL='/api/insta'; // Vercel Function (api/insta.py) roda insta-scrape.py com IG_SESSIONID (env var na Vercel)
 
 // Validação de entrada (robusta)
 function isUrl(s){try{const u=new URL(s);return u.protocol==='http:'||u.protocol==='https:';}catch(e){return false;}}
@@ -313,8 +313,6 @@ document.getElementById('gen').addEventListener('click',async()=>{
       prof.media.slice(0,3).forEach(m=>collectedPhotos.push({url:m.url,source:'instagram-perfil'}));
       if(prof.full_name && !name) name=prof.full_name;
       note.textContent='Perfil Instagram raspado via servidor: '+collectedPhotos.length+' foto(s) de @'+igP+'.';
-    } else if(igP && !IG_API_URL){
-      note.textContent='⚠️ Para raspar o PERFIL do Instagram, configure IG_API_URL (backend com instaloader + sessionid). Sem isso, use links diretos de imagem em "Fotos diretas".';
     }
   }
 
