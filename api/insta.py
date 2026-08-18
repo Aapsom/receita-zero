@@ -1,46 +1,42 @@
-import os, json, re
+import os, json, time, urllib.parse
 from http.server import BaseHTTPRequestHandler
+import urllib.request, urllib.error
 
-# Vercel Python Function: POST /api/insta  {username:"@user"}
-# Rota o insta-scrape.py (instaloader) com IG_SESSIONID de env var.
-# Sem sessionid -> Instagram 429 (esperado). Com sessionid -> perfil + fotos.
+# Vercel Function: POST /api/insta  {username:"@user"}
+# Usa Apify Instagram Scraper (anti-bot do IG resolvido pelo Apify).
+# APIFY_TOKEN vem de env var (nunca hardcoded). Cache 24h em memoria p/ nao gastar run.
 
-def _run(username):
-    try:
-        from instaloader import Instaloader, Profile
-    except ImportError:
-        return None, "instaloader nao instalado no build"
+APIFY_ACTOR = "apify/instagram-scraper"
+_cache = {}  # username -> {ts, data}
+CACHE_TTL = 24 * 3600
 
-    L = Instaloader()
-    sid = os.environ.get("IG_SESSIONID")
-    if sid:
-        L.context._session.cookies.set("sessionid", sid, domain=".instagram.com")
-
-    u = username.strip().lstrip("@")
-    try:
-        prof = Profile.from_username(L.context, u)
-    except Exception as e:
-        return None, "falha perfil %s: %s" % (u, e)
-
+def _apify(token, username):
+    url = ("https://api.apify.com/v2/acts/%s/run-sync-get-dataset-items?token=%s"
+           % (urllib.parse.quote(APIFY_ACTOR), token))
+    payload = json.dumps({
+        "usernames": [username],
+        "resultsLimit": 8,
+        "addParentData": False,
+    }).encode("utf-8")
+    req = urllib.request.Request(url, data=payload, method="POST",
+                                 headers={"Content-Type": "application/json"})
+    with urllib.request.urlopen(req, timeout=55) as r:
+        rows = json.loads(r.read().decode("utf-8"))
+    if not rows:
+        return None, "perfil vazio ou privado"
+    p = rows[0]
     media = []
-    try:
-        for i, post in enumerate(prof.get_posts()):
-            if i >= 6:
-                break
-            media.append({
-                "url": (post.video_url if post.is_video else post.url),
-                "caption": (post.caption or "")[:280],
-                "is_video": bool(post.is_video),
-            })
-    except Exception as e:
-        pass
-
+    for post in (p.get("latestPosts") or [])[:6]:
+        u = post.get("url") or post.get("displayUrl") or post.get("imageUrl")
+        if u:
+            media.append({"url": u, "caption": (post.get("caption") or "")[:280],
+                          "is_video": bool(post.get("type") == "Video")})
     return {
-        "username": prof.username,
-        "full_name": prof.full_name,
-        "biography": prof.biography,
-        "profile_pic_url": prof.profile_pic_url,
-        "is_private": bool(prof.is_private),
+        "username": p.get("username"),
+        "full_name": p.get("fullName") or p.get("username"),
+        "biography": p.get("biography") or "",
+        "profile_pic_url": p.get("profilePicUrl") or "",
+        "is_private": bool(p.get("private")),
         "media": media,
     }, None
 
@@ -56,13 +52,23 @@ class handler(BaseHTTPRequestHandler):
         try:
             ln = int(self.headers.get("Content-Length", 0))
             body = json.loads(self.rfile.read(ln) or b"{}")
-            username = body.get("username", "")
+            username = (body.get("username") or "").strip().lstrip("@")
             if not username:
                 return self._send(400, {"error": "username obrigatorio"})
-            data, err = _run(username)
+            token = os.environ.get("APIFY_TOKEN")
+            if not token:
+                return self._send(502, {"error": "APIFY_TOKEN nao configurado na Vercel"})
+            # cache
+            c = _cache.get(username)
+            if c and (time.time() - c["ts"]) < CACHE_TTL:
+                return self._send(200, c["data"])
+            data, err = _apify(token, username)
             if err:
                 return self._send(502, {"error": err})
+            _cache[username] = {"ts": time.time(), "data": data}
             return self._send(200, data)
+        except urllib.error.HTTPError as e:
+            return self._send(502, {"error": "apify http %s" % e.code})
         except Exception as e:
             return self._send(500, {"error": str(e)})
 
