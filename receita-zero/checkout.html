@@ -47,7 +47,7 @@ h1 em{color:var(--p);font-style:normal}
 .note{font-size:.75rem;color:rgba(239,233,255,.4);text-align:center;margin-top:1.2rem}
 </style>
 </head>
-<body>
+<body data-api="https://saas-confianca-cobranca-aapson.vercel.app">
 <div class="wrap">
   <span class="kick">Último passo</span>
   <h1>Seu site <em>pronto em 48h</em>. É só confirmar.</h1>
@@ -132,15 +132,55 @@ upsell.innerHTML = `<h4>Quer subir no Google?</h4>` +
   `<p style="color:var(--muted);font-size:.9rem;margin-top:.3rem">Ficha no Google Maps + SEO local pra subir de posição + relatório completo de quem chegou.</p>` +
   `<div class="bonus">🎁 12 meses = 1 mês grátis (fidelidade, não urgência)</div>`;
 
-// acoes (cobranca real entra quando o Avança suportar ciclo anual — ver skill §10)
-function acoes(){
-  const txt = (ciclo === 'anual')
+// acoes: agora bate no backend real do Avança (vc-checkout) em vez de só WhatsApp.
+// O Avança cria a assinatura no Mercado Pago e devolve redirect_url (link de
+// checkout de assinatura). Se a chamada falhar (offline, backend fora do ar),
+// cai para o WhatsApp como fallback — nunca trava o fechamento.
+//
+// Endpoint configurável via data-api no <body>; default = URL estável do deploy.
+const API_BASE = (document.body.dataset.api || 'https://saas-confianca-cobranca-aapson.vercel.app').replace(/\/+$/, '');
+
+async function fechar() {
+  const btn = document.getElementById('pagar');
+  btn.textContent = 'Processando…';
+  try {
+    const res = await fetch(`${API_BASE}/api/v1/vc-checkout`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        plano: chave,
+        ciclo,
+        pme_email: '',
+        pme_nome: '',
+      }),
+    });
+    const json = await res.json();
+    if (res.ok && json.redirect_url) {
+      window.location.href = json.redirect_url; // leva ao checkout do MP
+      return;
+    }
+    // Sem redirect_url ou erro: manda pro WhatsApp com a escolha.
+    window.location.href = `https://wa.me/5511970776856?text=` +
+      encodeURIComponent((ciclo === 'anual')
+        ? `Quero o plano ${p.nome} ANUAL (R$${brl(p.anual)} por 12 meses, R$${p.equiv}/mês)`
+        : `Quero o plano ${p.nome} MENSAL (R$${p.mensal}/mês)`);
+  } catch {
+    // Falha de rede: fallback WhatsApp.
+    window.location.href = `https://wa.me/5511970776856?text=` +
+      encodeURIComponent((ciclo === 'anual')
+        ? `Quero o plano ${p.nome} ANUAL (R$${brl(p.anual)} por 12 meses, R$${p.equiv}/mês)`
+        : `Quero o plano ${p.nome} MENSAL (R$${p.mensal}/mês)`);
+  }
+}
+
+function acoes() {
+  const waTxt = (ciclo === 'anual')
     ? `Quero o plano ${p.nome} ANUAL (R$${brl(p.anual)} por 12 meses, R$${p.equiv}/mês)`
     : `Quero o plano ${p.nome} MENSAL (R$${p.mensal}/mês)`;
-  const wa = `https://wa.me/5511970776856?text=` + encodeURIComponent(txt);
-  document.getElementById('wa').href = wa;
-  document.getElementById('pagar').href = wa;
-  document.getElementById('pagar').textContent = (ciclo === 'anual')
+  document.getElementById('wa').href = `https://wa.me/5511970776856?text=` + encodeURIComponent(waTxt);
+  const btn = document.getElementById('pagar');
+  btn.onclick = (e) => { e.preventDefault(); fechar(); };
+  btn.textContent = (ciclo === 'anual')
     ? `Fechar o ano por R$${brl(p.anual)} →` : `Assinar por R$${p.mensal}/mês →`;
 }
 render();
