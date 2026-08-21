@@ -113,7 +113,8 @@ function render(){
         + `<p style="color:var(--muted);font-size:.9rem;margin-top:.2rem">R$${brl(p.anual)} pagos uma vez, cobrindo 12 meses.</p>`
       : `<div class="preco">R$${p.mensal}<small>/mês</small></div>`
         + `<p style="color:var(--muted);font-size:.9rem;margin-top:.2rem">Cobrança mensal, cancela quando quiser. No anual sai R$${p.equiv}/mês.</p>`) +
-    `<ul>${itens.map(i=>`<li>${i}</li>`).join('')}</ul>`;
+    `<ul>${itens.map(i=>`<li>${i}</li>`).join('')}</ul>` +
+    `<div class="bonus">📲 Vira app na tela de início do cliente (iPhone e Android, sem loja)</div>`;
   acoes();
 }
 document.querySelectorAll('#ciclo button').forEach(b=>{
