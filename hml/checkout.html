@@ -100,7 +100,13 @@ input#pme-email:focus{outline:none;border-color:var(--lamp);box-shadow:0 0 0 3px
 .bar .cta:hover{background:#F0913F;transform:translateY(-2px)}
 .bar .cta:active{transform:scale(.97)}
 .bar .cta:disabled{opacity:.5;cursor:not-allowed;transform:none}
-.note{font-size:.72rem;color:var(--fumaca);text-align:center;margin-top:1.2rem}
+.ciclo-toggle{display:flex;gap:.5rem;margin:.4rem 0 .2rem}
+.ciclo-toggle button{flex:1;background:transparent;border:1px solid var(--linha2);color:var(--fumaca);font-family:inherit;font-size:.9rem;font-weight:600;padding:.7rem;border-radius:10px;cursor:pointer;transition:.12s}
+.ciclo-toggle button.on{background:var(--lamp);color:#241202;border-color:var(--lamp)}
+.ciclo-toggle button small{display:block;font-weight:400;font-size:.72rem;opacity:.8}
+.bonus{background:rgba(232,135,58,.10);border:1px solid rgba(232,135,58,.28);border-radius:10px;padding:.7rem .9rem;font-size:.88rem;color:var(--accent-ink)}
+
+
 @media(max-width:560px){.planos{grid-template-columns:1fr}.metodo-grid{grid-template-columns:1fr}.bar{flex-wrap:wrap}.bar .cta{width:100%}}
 </style>
 </head>
@@ -112,8 +118,13 @@ input#pme-email:focus{outline:none;border-color:var(--lamp);box-shadow:0 0 0 3px
   <span class="kick">Último passo</span>
   <h1>Sua vitrine <b>pronta em 48h</b>.<br>É só <em>escolher o seu plano</em>.</h1>
   <div id="root">
-    <div class="section-label reveal">1 · Plano mensal</div>
+    <div class="section-label reveal">1 · Plano <span style="text-transform:none;color:var(--fumaca)">(escolha o ciclo)</span></div>
+    <div class="ciclo-toggle reveal" id="ciclo">
+      <button data-ciclo="anual" class="on">Anual — pago uma vez<small>economia de 40%</small></button>
+      <button data-ciclo="mensal">Mensal<small>sem contrato</small></button>
+    </div>
     <div class="planos reveal" id="planos"></div>
+    <div class="bonus reveal" style="margin-top:.6rem">📲 Vira app na tela de início do cliente (iPhone e Android, sem loja)</div>
     <div class="section-label reveal">2 · Pacotes adicionais <span style="text-transform:none;color:var(--fumaca)">(opcional)</span></div>
     <div class="addons reveal" id="addons"></div>
     <div class="section-label reveal">3 · Como quer pagar</div>
@@ -139,13 +150,13 @@ input#pme-email:focus{outline:none;border-color:var(--lamp);box-shadow:0 0 0 3px
 'use strict';
 var API_BASE=document.getElementById('vc-api').dataset.apiUrl||'/api/v1/subscriptions';
 var PLANOS=[
-  {id:'basico',nome:'Básico',valor:49,pop:false},
-  {id:'plus',nome:'Plus',valor:99,pop:false},
-  {id:'premium',nome:'Premium',valor:149,pop:true}
+  {id:'basico',nome:'Básico',mensal:49,anual:348,equiv:29,pop:false},
+  {id:'plus',nome:'Plus',mensal:99,anual:708,equiv:59,pop:false},
+  {id:'premium',nome:'Premium',mensal:149,anual:1068,equiv:89,pop:true}
 ];
 var ADDONS=[
   {id:'sempre_novinho',nome:'Site Sempre Novinho',valor:99,desc:'2 atualizações de fotos/cardápio por mês'},
-  {id:'google_pro',nome:'Aparecer no Google PRO',valor:297,desc:'Domínio .com.br + ficha no mapa + SEO local'},
+  {id:'google_pro',nome:'Aparecer no Google PRO',valor:249,desc:'Domínio .com.br + ficha no mapa + SEO local'},
   {id:'porta',nome:'Cliente na Porta',valor:199,desc:'Gestão de Google/Meta Ads (verba à parte)'}
 ];
 var METODOS=[
@@ -156,6 +167,7 @@ var METODOS=[
 ];
 var params=new URLSearchParams(location.search);
 var planoAtivo=params.get('plano')||'premium';
+var ciclo=(params.get('ciclo')==='mensal')?'mensal':'anual';
 var addonsAtivos=new Set();
 var metodoAtivo=null;
 function fmt(v){return 'R$'+v;}
@@ -163,10 +175,13 @@ function fmt(v){return 'R$'+v;}
 function renderPlanos(){
   document.getElementById('planos').innerHTML=PLANOS.map(function(p){
     var sel=p.id===planoAtivo;
+    var preco=ciclo==='anual'
+      ? '<div class="ppreco">'+fmt(p.equiv)+'<small>/mês</small><span style="font-size:.72rem;opacity:.7;margin-left:.3rem">R$'+p.anual+'/ano</span></div>'
+      : '<div class="ppreco">'+fmt(p.mensal)+'<small>/mês</small></div>';
     return '<div class="plano'+(sel?' sel':'')+'" data-id="'+p.id+'" onclick="vcSelPlano(this)">'
       +(p.pop?'<span class="tag">MAIS PROCURADO</span>':'')
       +'<div class="pnome">'+p.nome+'</div>'
-      +'<div class="ppreco">'+fmt(p.valor)+'<small>/mês</small></div></div>';
+      +preco+'</div>';
   }).join('');
 }
 window.vcSelPlano=function(el){planoAtivo=el.getAttribute('data-id');document.querySelectorAll('.plano').forEach(function(o){o.classList.remove('sel');});el.classList.add('sel');atualiza();};
@@ -185,6 +200,16 @@ window.vcSelAddon=function(el){
   atualiza();
 };
 
+// toggle de ciclo (anual/mensal) — espelha a PRD v4
+document.querySelectorAll('#ciclo button').forEach(function(b){
+  if(b.dataset.ciclo===ciclo) b.classList.add('on'); else b.classList.remove('on');
+  b.addEventListener('click',function(){
+    ciclo=b.dataset.ciclo;
+    document.querySelectorAll('#ciclo button').forEach(function(x){x.classList.toggle('on',x===b);});
+    renderPlanos();atualiza();
+  });
+});
+
 function renderMetodos(){
   document.getElementById('metodos').innerHTML=METODOS.map(function(m){
     return '<div class="metodo-opt" data-id="'+m.id+'" onclick="vcSelMetodo(this)">'
@@ -198,18 +223,21 @@ window.vcSelMetodo=function(el){
 };
 
 function total(){
-  var p=PLANOS.find(function(x){return x.id===planoAtivo;})||PLANOS[2];
-  var t=p.valor;
-  addonsAtivos.forEach(function(id){var a=ADDONS.find(function(x){return x.id===id;});if(a)t+=a.valor;});
-  return t;
+  var p=PLANOS.find(function(x){return x.id===planoAtivo})||PLANOS[2];
+  var t=ciclo==='anual'?p.anual:p.mensal;
+  addonsAtivos.forEach(function(id){var a=ADDONS.find(function(x){return x.id===id});if(a)t+=a.valor;});
+  return {valor:t,base:ciclo==='anual'?p.anual:p.mensal,plano:p};
 }
 function atualiza(){
-  document.getElementById('total').innerHTML=fmt(total())+'<small>/mês</small>';
+  var r=total();
+  var p=r.plano;
+  var sufixo=ciclo==='anual'?'/ano':'/mês';
+  document.getElementById('total').innerHTML=fmt(r.valor)+'<small>'+sufixo+'</small>'+(addonsAtivos.size?'<small> (c/ adicionais)</small>':'');
   var btn=document.getElementById('pagar');
   var ok=planoAtivo&&metodoAtivo;
   btn.disabled=!ok;
-  if(ok){var p=PLANOS.find(function(x){return x.id===planoAtivo;});var l=METODOS.find(function(x){return x.id===metodoAtivo;}).label;
-    btn.textContent='Assinar '+p.nome+' — '+fmt(total())+'/mês via '+l+' →';}
+  if(ok){var l=METODOS.find(function(x){return x.id===metodoAtivo}).label;
+    btn.textContent='Assinar '+p.nome+' — '+fmt(r.valor)+sufixo+' via '+l+' →';}
   else{btn.textContent=!planoAtivo?'Escolha um plano →':'Escolha um método de pagamento →';}
 }
 function showStatus(m,t){var el=document.getElementById('status');el.textContent=m;el.className='status-msg '+(t||'ok');el.style.display='block';}
@@ -220,8 +248,8 @@ document.getElementById('pagar').addEventListener('click',function(){
   if(!email){window.location.href='cadastro.html?next=checkout';return;}
   var btn=this;btn.disabled=true;btn.textContent='Processando...';document.getElementById('status').style.display='none';
   var extras=Array.from(addonsAtivos);
-  var p=PLANOS.find(function(x){return x.id===planoAtivo;});
-  var payload={plano:planoAtivo,pme_id:params.get('pme_id')||'',pme_email:email,pme_nome:p.nome+(extras.length?' + '+extras.join(','):''),payment_method:metodoAtivo,extras:extras};
+  var p=PLANOS.find(function(x){return x.id===planoAtivo});
+  var payload={plano:planoAtivo,ciclo:ciclo,pme_id:params.get('pme_id')||'',pme_email:email,pme_nome:p.nome+(extras.length?' + '+extras.join(','):''),payment_method:metodoAtivo,extras:extras};
   fetch(API_BASE,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
     .then(function(r){return r.json().then(function(b){return{ok:r.ok,body:b};});})
     .then(function(res){

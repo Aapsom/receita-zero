@@ -73,6 +73,8 @@ button:focus-visible,a:focus-visible,select:focus-visible,textarea:focus-visible
 </head>
 <body>
 <div id="spot"></div>
+<!-- Proxy da VC: URL do Avança via #vc-api (padrão do HML) -->
+<div id="vc-api" data-api-url="https://saas-confianca-cobranca.vercel.app/api/v1/subscriptions" style="display:none"></div>
 <div class="wrap">
   <div class="topbar">
     <span class="kick">Detalhe da assinatura</span>
@@ -85,7 +87,7 @@ button:focus-visible,a:focus-visible,select:focus-visible,textarea:focus-visible
 <script>
 (function(){
 'use strict';
-var API='https://saas-confianca-cobranca.vercel.app/api/v1/subscriptions';
+var API=document.getElementById('vc-api')?document.getElementById('vc-api').dataset.apiUrl:'https://saas-confianca-cobranca.vercel.app/api/v1/subscriptions';
 var params=new URLSearchParams(location.search);
 var id=params.get('cobranca_id');
 var box=document.getElementById('detalhe');
