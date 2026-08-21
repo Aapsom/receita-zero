@@ -4,16 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vitrine Certa — o site que responde pelo seu comércio, no ar em 48h</title>
-  <!-- Vitrine Certa Analytics -->
-<meta name="google-site-verification" content="rnYREYB-JR9uyXWd7UwSkGJn4kyjyVpHakO6lgSxJ-w">
-<script type="text/javascript">
-(function(c,l,a,r,i,t,y){
-  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-})(window,document,"clarity","script","xrpcs8vw2o");
-</script>
-<meta name="description" content="Vitrine Certa: sites para comércio local que RESPONDEM — cardápio que fecha pedido, agenda que marca, verificador que responde. No ar em 48h com o seu WhatsApp. R$49/mês, sem contrato.">
+  <meta name="google-site-verification" content="rnYREYB-JR9uyXWd7UwSkGJn4kyjyVpHakO6lgSxJ-w">
+  <meta name="description" content="Vitrine Certa: sites para comércio local que RESPONDEM — cardápio que fecha pedido, agenda que marca, verificador que responde. No ar em 48h com o seu WhatsApp. R$49/mês, sem contrato.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20x='4'%20y='6'%20width='24'%20height='21'%20rx='3'%20fill='none'%20stroke='%2316181F'%20stroke-width='2.2'/%3E%3Cpath%20d='M4%2012%20H28'%20stroke='%2316181F'%20stroke-width='2.2'/%3E%3Cpath%20d='M10.5%2018.5%20l3.8%203.8%20L22%2014.6'%20fill='none'%20stroke='%23E8873A'%20stroke-width='3'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E">
 <meta property="og:title" content="Vitrine Certa — o site que responde pelo seu comércio">
 <meta property="og:description" content="Sites para comércio local que funcionam de verdade. No ar em 48h com o seu WhatsApp. R$49/mês, sem contrato.">
@@ -931,5 +923,11 @@ document.querySelectorAll('.price-filter button').forEach(function(btn){
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
 <script src="supabase-auth.js"></script>
+<script src="/consent-lgpd.js" defer></script>
+<div id="vc-lgpd" style="display:none;position:fixed;left:0;right:0;bottom:0;z-index:9998;background:rgba(20,22,29,.94);color:#fff;padding:1rem 1.2rem;align-items:center;gap:1rem;flex-wrap:wrap;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:.9rem">
+  <span style="flex:1;min-width:200px">Usamos dados de navegação (analytics) para melhorar o site. Você pode aceitar ou recusar. <a href="/lgpd.html" style="color:#E8873A;text-decoration:underline">Saiba mais (LGPD)</a>.</span>
+  <button onclick="vcLgpdAceitar()" style="background:#E8873A;border:0;color:#14161D;font-weight:800;padding:.6rem 1.1rem;border-radius:999px;cursor:pointer">Aceitar</button>
+  <button onclick="vcLgpdRecusar()" style="background:transparent;border:1px solid #fff;color:#fff;padding:.6rem 1.1rem;border-radius:999px;cursor:pointer">Recusar</button>
+</div>
 </body>
 </html>
