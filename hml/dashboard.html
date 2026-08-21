@@ -83,8 +83,8 @@ button:focus-visible,a:focus-visible,select:focus-visible,textarea:focus-visible
     <a class="cta" href="parceiro.html" style="margin-top:.6rem;display:inline-block;font-size:.9rem">Quero ser parceiro →</a>
   </div>
   <div class="card" style="margin-top:.7rem">
-    <div class="linha"><span class="nome">📊 Insights de Retenção</span><span class="badge pending">em breve</span></div>
-    <p class="plano">Veja o valor vitalício (LTV) de cada cliente, risco de cancelamento e sugestão de upsell automática. Disponível quando o histórico de uso estiver consolidado.</p>
+    <div class="linha"><span class="nome">📊 Visitas do seu site</span><span class="badge paid" id="visitas-badge">—</span></div>
+    <p class="plano" id="visitas-texto">Carregando visitas dos últimos 30 dias…</p>
   </div>
   <a class="cta" href="checkout.html" style="margin-top:1.4rem">+ Contratar novo site</a>
   <p class="note">Vitrine Certa — HML (modo demonstração).</p>
@@ -162,6 +162,17 @@ function planoDe(cliente){
       } else { render(cs); }
     }).catch(function(){ render([]); });
   });
+  // Mês 37: visitas do site (analytics de visita do Avança)
+  (function(){
+    var badge = document.getElementById('visitas-badge');
+    var txt = document.getElementById('visitas-texto');
+    if(!badge||!txt) return;
+    fetch('/api/v1/events?dias=30').then(function(r){return r.ok?r.json():null;}).then(function(j){
+      if(!j||!j.total&&j.total!==0){txt.textContent='Visitas disponíveis após o primeiro mês de uso.';return;}
+      badge.textContent = j.total + ' visits';
+      txt.textContent = j.total===0 ? 'Ainda sem visitas registradas — compartilhe seu site!' : (j.total + ' visitas nos últimos 30 dias.');
+    }).catch(function(){ txt.textContent='Visitas disponíveis após o primeiro mês de uso.'; });
+  })();
 /* spotlight que segue o cursor (padrão landing) */
 (function(){
   var s=document.getElementById('spot'),raf=false,mx=80,my=10;
