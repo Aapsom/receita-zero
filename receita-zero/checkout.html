@@ -141,6 +141,10 @@ input#pme-email:focus{outline:none;border-color:var(--lamp);box-shadow:0 0 0 3px
     <p class="note">Vitrine Certa — sites que vendem para o comércio local. Valores sujeitos a confirmação em proposta.</p>
   </div>
 </div>
+<div class="termos" style="max-width:520px;margin:1.2rem auto 0;font-size:.85rem;color:var(--fumaca);display:flex;gap:.5rem;align-items:flex-start">
+  <input type="checkbox" id="aceite-termos" style="margin-top:.2rem;width:18px;height:18px;flex:0 0 auto">
+  <label for="aceite-termos">Li e aceito a <a href="https://vitrinecerta.app.br/lgpd.html" style="color:var(--accent-ink)">Política de Privacidade (LGPD)</a> e os termos de cobrança recorrente. Pode cancelar quando quiser.</label>
+</div>
 <div class="bar" id="bar">
   <div class="b-info"><div class="b-lbl">Total recorrente / mês</div><div class="b-val" id="total">R$149<small>/mês</small></div></div>
   <button class="cta" id="pagar" disabled>Escolha um plano e um método →</button>
@@ -244,6 +248,7 @@ function showStatus(m,t){var el=document.getElementById('status');el.textContent
 
 document.getElementById('pagar').addEventListener('click',function(){
   if(!planoAtivo||!metodoAtivo){showStatus('Selecione plano e método.','err');return;}
+  if(!document.getElementById('aceite-termos').checked){showStatus('Aceite a política de privacidade e os termos para continuar.','err');return;}
   var btn=this;btn.disabled=true;btn.textContent='Processando...';document.getElementById('status').style.display='none';
   var extras=Array.from(addonsAtivos);
   var p=PLANOS.find(function(x){return x.id===planoAtivo});
