@@ -127,6 +127,7 @@ input#pme-email:focus{outline:none;border-color:var(--lamp);box-shadow:0 0 0 3px
     <div class="bonus reveal" style="margin-top:.6rem">📲 Vira app na tela de início do cliente (iPhone e Android, sem loja)</div>
     <div class="section-label reveal">2 · Pacotes adicionais <span style="text-transform:none;color:var(--fumaca)">(opcional)</span></div>
     <div class="addons reveal" id="addons"></div>
+    <div id="sugestao-nicho" style="display:none;background:rgba(232,135,58,.10);border:1px solid rgba(232,135,58,.28);border-radius:12px;padding:.9rem 1.1rem;margin:1rem 0;font-size:.9rem;color:#9C4D15"></div>
     <div class="section-label reveal">3 · Como quer pagar</div>
     <div class="metodo-grid reveal" id="metodos"></div>
     <div class="section-label reveal">4 · Conta</div>
@@ -296,6 +297,31 @@ function mostraConta(){
   if(email){ci.innerHTML='Logado como <b style="color:var(--tinta)">'+(emp||email)+'</b> · '+email+' &nbsp;<a class="ghost" href="cadastro.html?next=checkout" style="color:var(--accent-ink);font-weight:600;text-decoration:none">trocar</a>';}
   else{ci.innerHTML='Você ainda não tem conta. <a class="ghost" href="cadastro.html?next=checkout" style="color:var(--accent-ink);font-weight:600;text-decoration:none">Criar conta →</a>';}
 }
+
+// M20: sugestao de add-on por nicho (contextual, leve)
+var NICHOS_SUG = {
+  pet: 'clientes adoram ver fotos dos bichinhos — o add-on Site Sempre Novinho mantém o Instagram no site.',
+  pizzaria: 'cardápio que muda todo dia? O Site Sempre Novinho atualiza fotos pelo seu Instagram.',
+  padaria: 'fotos de pães fresquinhos vendem — o Site Sempre Novinho troca imagens sozinho.',
+  salão: 'antes/depois no Instagram viram prova social no site com o Site Sempre Novinho.',
+  clínica: 'especialidades no Google ajudam a ser achado — o Aparecer no Google PRO vale a pena.',
+  imobiliária: 'imóveis no mapa fecham mais — o Aparecer no Google PRO é essencial.',
+  oficina: 'orçamento rápido no site gera lead — o Site Sempre Novinho mostra serviços novos.',
+  lavanderia: 'promoção recorrente vira cliente fixo — o Site Sempre Novinho atualiza ofertas.',
+  restaurante: 'cardápio e reserva no site = mesa cheia — o Site Sempre Novinho mantém tudo novo.',
+  barbearia: 'corte do dia no Instagram vira agendamento — o Site Sempre Novinho puxa pro site.',
+  academia: 'treino do dia no Instagram atrai aluno — o Site Sempre Novinho mostra a academia vivendo.',
+  estética: 'antes/depois no Instagram fecham cliente — o Site Sempre Novinho puxa pro site.',
+  advocacia: 'área de atuação no Google traz consulta — o Aparecer no Google PRO ajuda.',
+  autoescola: 'primeira habilitação é busca no Google — o Aparecer no Google PRO é chave.',
+  mercado: 'oferta da semana no Instagram vira venda — o Site Sempre Novinho atualiza preços.'
+};
+(function(){
+  var nicho = (params.get('nicho') || '').toLowerCase();
+  var sug = NICHOS_SUG[nicho];
+  var box = document.getElementById('sugestao-nicho');
+  if (sug && box) { box.textContent = '💡 Para o seu nicho: ' + sug; box.style.display = 'block'; }
+})();
 
 renderPlanos();renderAddons();renderMetodos();mostraConta();atualiza();
 })();

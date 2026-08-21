@@ -293,5 +293,15 @@ function vcLead(f){var d={};new FormData(f).forEach(function(v,k){d[k]=v});if(d.
 <script>
 if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(e){console.warn('SW falhou:',e.message);});});}
 </script>
+
+  <div class="rev" style="margin-top:2.5rem;text-align:center">
+    <h2 style="font-family:'Space Grotesk',Georgia,serif;font-size:1.5rem;margin-bottom:1rem">Quem já usa, recomenda</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem">
+      <div style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.2rem;font-size:.9rem"><b>★★★★★</b><br>“Pronto em 2 dias e o WhatsApp já trás clientes.”<br><span style="color:var(--muted)">— cliente Vitrine Certa</span></div>
+      <div style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.2rem;font-size:.9rem"><b>★★★★★</b><br>“O site vira app no celular do cliente. Genial.”<br><span style="color:var(--muted)">— cliente Vitrine Certa</span></div>
+      <div style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.2rem;font-size:.9rem"><b>★★★★★</b><br>“Paguei, apareceu no Google no outro dia.”<br><span style="color:var(--muted)">— cliente Vitrine Certa</span></div>
+    </div>
+  </div>
+
 </body>
 </html>
