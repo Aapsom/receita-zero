@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR" data-theme="light">
 <head>
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icon-192.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- SEO Vitrine Certa -->
@@ -348,5 +350,8 @@ function vcLead(f){var d={};new FormData(f).forEach(function(v,k){d[k]=v});if(d.
 </script>
   <script src="../../references/vc-photos.js"></script>
   <script src="../../references/leads.js"></script>
+<script>
+if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(e){console.warn('SW falhou:',e.message);});});}
+</script>
 </body>
 </html>

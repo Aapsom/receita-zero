@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icon-192.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Forno da Vila — pizza a lenha em São Vicente</title>
@@ -463,6 +465,9 @@ if(!CSS.supports('animation-timeline','scroll()')){
 
 pinta();
 setInterval(pinta, 20000);
+</script>
+<script>
+if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(e){console.warn('SW falhou:',e.message);});});}
 </script>
 </body>
 </html>
