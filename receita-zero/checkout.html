@@ -5,191 +5,297 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Vitrine Certa — Fechar contrato</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#EDEFF4;--fg:#14161D;--p:#E8873A;--ac:#9C4D15;--muted:rgba(20,22,29,.62);--card:rgba(232,135,58,.07);--line:rgba(232,135,58,.25)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font-family:'Space Grotesk',Georgia,serif;min-height:100vh;padding:6vh 6vw;line-height:1.55}
-.wrap{max-width:680px;margin:0 auto}
-.kick{color:var(--ac);text-transform:uppercase;letter-spacing:.2em;font-size:.72rem;margin-bottom:1rem}
-h1{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;line-height:1.05;margin-bottom:1.4rem}
-h1 em{color:var(--p);font-style:normal}
-.timer{background:rgba(198,255,0,.08);border:1px solid rgba(198,255,0,.3);border-radius:12px;padding:1rem 1.2rem;margin:1.4rem 0;text-align:center}
-.timer .lbl{font-size:.8rem;color:var(--ac);letter-spacing:.04em}
-.timer .clock{font-size:1.6rem;font-weight:900;color:var(--ac);font-variant-numeric:tabular-nums;margin-top:.3rem}
-.timer .off{font-size:.95rem;color:var(--fg);margin-top:.4rem}
-.plan{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.4rem;margin:1rem 0}
-.plan.destaque{border-color:var(--ac);box-shadow:0 0 0 1px rgba(198,255,0,.25)}
-.plan .badge{display:inline-block;background:var(--ac);color:var(--bg);font-size:.68rem;font-weight:900;letter-spacing:.06em;padding:.15rem .6rem;border-radius:99px;margin-bottom:.5rem}
-.plan h3{font-size:1.3rem;color:var(--p);margin-bottom:.3rem}
-.plan .preco{font-size:2rem;font-weight:900;color:var(--fg)}
-.plan .preco small{font-size:.9rem;color:var(--muted);font-weight:400}
-.plan .ancora{font-size:.85rem;color:var(--muted);text-decoration:line-through;margin-left:.4rem}
-.ciclo{display:flex;gap:.5rem;margin:1.2rem 0}
-.ciclo button{flex:1;background:transparent;border:1px solid var(--line);color:var(--muted);font-family:inherit;font-size:.9rem;font-weight:600;padding:.7rem;border-radius:10px;cursor:pointer}
-.ciclo button.on{background:var(--p);color:var(--bg);border-color:var(--p)}
-.ciclo button small{display:block;font-weight:400;font-size:.72rem;opacity:.85}
-.garantia{background:rgba(45,212,191,.08);border:1px solid var(--line);border-radius:12px;padding:.9rem 1.1rem;margin:1.2rem 0;font-size:.92rem}
-.garantia b{color:var(--p)}
-.plan ul{list-style:none;margin:.8rem 0}
-.plan li{padding:.25rem 0;color:var(--muted);font-size:.95rem}
-.plan li::before{content:"✓ ";color:var(--p)}
-.upsell{background:rgba(45,212,191,.05);border:1px dashed var(--line);border-radius:14px;padding:1.2rem;margin:1.2rem 0}
-.upsell h4{color:var(--p);font-size:1.05rem;margin-bottom:.4rem}
-.upsell .preco{font-weight:900;color:var(--fg)}
-.upsell .ancora{text-decoration:line-through;color:var(--muted);font-size:.85rem;margin-left:.4rem}
-.upsell .bonus{font-size:.85rem;color:var(--ac);margin-top:.4rem}
-.faq{margin:1.4rem 0;font-size:.9rem;color:var(--muted)}
-.faq details{padding:.5rem 0;border-bottom:1px solid rgba(239,233,255,.08)}
-.faq summary{cursor:pointer;color:var(--fg);font-weight:600}
-.cta{display:block;width:100%;background:var(--p);color:var(--bg);text-align:center;font-weight:900;font-size:1.1rem;padding:1rem;border-radius:12px;text-decoration:none;margin-top:1rem;font-family:inherit}
-.cta.ghost{background:transparent;color:var(--p);border:1px solid var(--line)}
-.note{font-size:.75rem;color:rgba(239,233,255,.4);text-align:center;margin-top:1.2rem}
+/* Tokens da landing mãe (Vitrine Certa) — vidro + lâmpada */
+:root{
+  --vidro:#EDEFF4; --vidro2:#E3E7EF; --branco:#FBFCFE;
+  --linha:#CBD4E0; --linha2:#778799;
+  --tinta:#14161D; --fumaca:#525A6A; --fraco:#5A6373; --claro2:#C3CBD6;
+  --lamp:#E8873A; --lamp-2:#9C4D15;
+  --accent:#E8873A; --accent-ink:#9C4D15;
+  --r:14px;
+  --disp:'Space Grotesk',Georgia,serif;
+  --sans:'Plus Jakarta Sans','Segoe UI',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --sombra:0 26px 64px -32px rgba(20,22,29,.34), 0 8px 22px -14px rgba(20,22,29,.16);
+  --sombra-sm:0 3px 14px -6px rgba(20,22,29,.22);
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--vidro);color:var(--tinta);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip;position:relative;padding:5vh 5vw 120px}
+/* camada 1: halo de luz da cor ativa, fixo no topo */
+body::before{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;transition:background .8s ease;background:
+  radial-gradient(52% 40% at 84% -8%, color-mix(in srgb,var(--accent) 34%,transparent), transparent 62%),
+  radial-gradient(48% 36% at 10% 4%, color-mix(in srgb,var(--accent) 12%,transparent), transparent 60%)}
+/* camada 2: spotlight que segue o cursor */
+#spot{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.9;mix-blend-mode:multiply;transition:opacity .4s;
+  background:radial-gradient(360px circle at var(--mx,80%) var(--my,10%), color-mix(in srgb,var(--accent) 22%,transparent), transparent 66%)}
+/* camada 3: grão premium */
+body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;mix-blend-mode:soft-light;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.wrap{max-width:720px;margin:0 auto}
+.kick{display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--accent-ink);margin-bottom:.8rem;transition:color .5s}
+h1{font-family:var(--disp);font-weight:300;font-size:clamp(1.9rem,4.4vw,2.8rem);line-height:1.06;letter-spacing:-.02em;margin-bottom:1.2rem}
+h1 b{font-weight:700}
+h1 em{font-style:normal;color:var(--accent-ink)}
+.section-label{font-family:var(--mono);font-weight:500;font-size:.8rem;letter-spacing:.06em;color:var(--fumaca);margin:1.8rem 0 .7rem;text-transform:uppercase}
+/* vidro profundo (padrão landing) */
+.vidro{background:color-mix(in srgb,var(--branco) 46%,transparent);border:1px solid rgba(255,255,255,.6);border-radius:var(--r);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:var(--sombra-sm),inset 0 1px 0 rgba(255,255,255,.7)}
+/* reveal por clip-path (padrão landing) */
+.reveal{clip-path:inset(-80px -80px 100% -80px);opacity:0;transition:clip-path .6s cubic-bezier(.22,1,.36,1),opacity .6s cubic-bezier(.22,1,.36,1)}
+.reveal.in{clip-path:inset(-80px -80px -80px -80px);opacity:1}
+
+/* foco visivel (WCAG 2.1 AA) */
+:focus-visible{outline:2px solid var(--lamp);outline-offset:2px;border-radius:6px}
+button:focus-visible,a:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--lamp);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;clip-path:none}}
+/* planos */
+.planos{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}
+.plano{position:relative;cursor:pointer;border:1px solid rgba(255,255,255,.6);border-radius:14px;padding:1rem .9rem;background:color-mix(in srgb,var(--branco) 52%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--sombra-sm),inset 0 1px 0 rgba(255,255,255,.7);transition:transform .18s,box-shadow .18s,border-color .18s}
+.plano:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--lamp) 50%,var(--linha))}
+.plano.sel{border-color:color-mix(in srgb,var(--lamp) 70%,var(--linha));box-shadow:0 22px 50px -28px rgba(232,135,58,.55)}
+.plano .tag{position:absolute;top:-.6rem;left:.9rem;background:var(--lamp);color:#241202;font-size:.6rem;font-weight:700;letter-spacing:.06em;padding:.15rem .5rem;border-radius:99px;font-family:var(--mono)}
+.plano .pnome{font-family:var(--disp);font-weight:500;font-size:.95rem;color:var(--fumaca)}
+.plano .ppreco{font-family:var(--disp);font-weight:700;font-size:1.5rem;font-feature-settings:"ss01","tnum";margin-top:.3rem}
+.plano .ppreco small{font-family:var(--sans);font-weight:400;font-size:.7rem;color:var(--fumaca)}
+.plano.sel .pnome{color:var(--tinta)}
+/* add-ons */
+.addons{display:grid;gap:.6rem}
+.addon{display:flex;align-items:flex-start;gap:.8rem;cursor:pointer;border:1px solid rgba(255,255,255,.6);border-radius:12px;padding:.9rem 1rem;background:color-mix(in srgb,var(--branco) 50%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:var(--sombra-sm),inset 0 1px 0 rgba(255,255,255,.7);transition:border-color .15s,box-shadow .15s}
+.addon:hover{border-color:color-mix(in srgb,var(--lamp) 45%,var(--linha));box-shadow:0 0 0 1px rgba(232,135,58,.12)}
+.addon.sel{border-color:color-mix(in srgb,var(--lamp) 70%,var(--linha));box-shadow:0 0 0 2px rgba(232,135,58,.16)}
+.addon .box{flex:0 0 auto;width:20px;height:20px;border-radius:6px;border:2px solid var(--linha2);display:grid;place-items:center;margin-top:.1rem;transition:.12s;color:#241202;font-size:.7rem}
+.addon.sel .box{background:var(--lamp);border-color:var(--lamp)}
+.addon .info{flex:1}
+.addon .anome{font-weight:600;font-size:.95rem}
+.addon .adesc{font-size:.82rem;color:var(--fumaca);margin-top:.1rem}
+.addon .apreco{font-family:var(--mono);font-weight:700;font-size:.95rem;white-space:nowrap}
+/* métodos */
+.metodo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem}
+.metodo-opt{border:1px solid rgba(255,255,255,.6);border-radius:10px;padding:.8rem;cursor:pointer;background:color-mix(in srgb,var(--branco) 52%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:var(--sombra-sm);transition:.12s}
+.metodo-opt:hover{border-color:color-mix(in srgb,var(--lamp) 45%,var(--linha));box-shadow:0 0 0 1px rgba(232,135,58,.12)}
+.metodo-opt.sel{border-color:color-mix(in srgb,var(--lamp) 70%,var(--linha));box-shadow:0 0 0 2px rgba(232,135,58,.16)}
+.metodo-opt .nome{font-weight:600;font-size:.85rem}
+.metodo-opt .desc{font-size:.72rem;color:var(--fumaca)}
+.metodo-opt .icon{font-size:1.1rem;margin-bottom:.25rem}
+/* e-mail */
+input#pme-email{width:100%;padding:.85rem 1rem;border:1.5px solid var(--linha2);border-radius:12px;font-size:.95rem;font-family:inherit;background:var(--branco)}
+input#pme-email:focus{outline:none;border-color:var(--lamp);box-shadow:0 0 0 3px rgba(232,135,58,.14)}
+/* status */
+.status-msg{margin:1rem 0;padding:.8rem;border-radius:10px;font-size:.85rem;display:none}
+.status-msg.ok{background:rgba(232,135,58,.10);color:var(--accent-ink);border:1px solid rgba(232,135,58,.25)}
+.status-msg.err{background:rgba(156,77,21,.08);color:var(--accent-ink);border:1px solid rgba(156,77,21,.25)}
+/* faq */
+.faq{margin:1.4rem 0;font-size:.9rem;color:var(--fumaca)}
+.faq details{padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.55)}
+.faq summary{cursor:pointer;color:var(--tinta);font-weight:600}
+/* rodapé fixo */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:color-mix(in srgb,var(--branco) 72%,transparent);-webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3);border-top:1px solid rgba(255,255,255,.6);box-shadow:0 -8px 30px -20px rgba(20,22,29,.30);padding:.8rem 5vw;display:flex;align-items:center;gap:1rem}
+.bar .b-info{flex:1;min-width:0}
+.bar .b-lbl{font-size:.72rem;color:var(--fumaca)}
+.bar .b-val{font-family:var(--mono);font-weight:700;font-size:1.35rem;font-feature-settings:"tnum";color:var(--tinta)}
+.bar .b-val small{font-family:var(--sans);font-weight:400;font-size:.7rem;color:var(--fumaca)}
+.bar .cta{flex:0 0 auto;background:var(--lamp);color:#241202;font-family:var(--disp);font-weight:500;font-size:1rem;padding:.85rem 1.6rem;border-radius:999px;border:none;cursor:pointer;transition:background-color .15s,transform .1s;box-shadow:0 14px 34px -14px rgba(232,135,58,.65)}
+.bar .cta:hover{background:#F0913F;transform:translateY(-2px)}
+.bar .cta:active{transform:scale(.97)}
+.bar .cta:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.ciclo-toggle{display:flex;gap:.5rem;margin:.4rem 0 .2rem}
+.ciclo-toggle button{flex:1;background:transparent;border:1px solid var(--linha2);color:var(--fumaca);font-family:inherit;font-size:.9rem;font-weight:600;padding:.7rem;border-radius:10px;cursor:pointer;transition:.12s}
+.ciclo-toggle button.on{background:var(--lamp);color:#241202;border-color:var(--lamp)}
+.ciclo-toggle button small{display:block;font-weight:400;font-size:.72rem;opacity:.8}
+.bonus{background:rgba(232,135,58,.10);border:1px solid rgba(232,135,58,.28);border-radius:10px;padding:.7rem .9rem;font-size:.88rem;color:var(--accent-ink)}
+
+
+@media(max-width:560px){.planos{grid-template-columns:1fr}.metodo-grid{grid-template-columns:1fr}.bar{flex-wrap:wrap}.bar .cta{width:100%}}
 </style>
 </head>
 <body>
-  <!-- API_BASE do Avança via <div id="vc-api"> (padrão do HML, replicado na PRD) -->
-  <div id="vc-api" data-api-url="https://saas-confianca-cobranca.vercel.app/api/v1/vc-checkout" style="display:none"></div>
+<div id="spot"></div>
+<!-- Proxy da VC (HML/Sandbox): injeta o token do tenant; checkout estático não expõe segredo. -->
+<div id="vc-api" data-api-url="https://saas-confianca-cobranca.vercel.app/api/v1/vc-checkout" style="display:none"></div>
 <div class="wrap">
   <span class="kick">Último passo</span>
-  <h1>Seu site <em>pronto em 48h</em>. É só confirmar.</h1>
-
-  <div class="ciclo" id="ciclo">
-    <button data-ciclo="anual" class="on">Anual — pago uma vez<small>economia de 40%</small></button>
-    <button data-ciclo="mensal">Mensal<small>sem contrato</small></button>
+  <h1>Sua vitrine <b>pronta em 48h</b>.<br>É só <em>escolher o seu plano</em>.</h1>
+  <div id="root">
+    <div class="section-label reveal">1 · Plano <span style="text-transform:none;color:var(--fumaca)">(escolha o ciclo)</span></div>
+    <div class="ciclo-toggle reveal" id="ciclo">
+      <button data-ciclo="anual" class="on">Anual — pago uma vez<small>economia de 40%</small></button>
+      <button data-ciclo="mensal">Mensal<small>sem contrato</small></button>
+    </div>
+    <div class="planos reveal" id="planos"></div>
+    <div class="bonus reveal" style="margin-top:.6rem">📲 Vira app na tela de início do cliente (iPhone e Android, sem loja)</div>
+    <div class="section-label reveal">2 · Pacotes adicionais <span style="text-transform:none;color:var(--fumaca)">(opcional)</span></div>
+    <div class="addons reveal" id="addons"></div>
+    <div class="section-label reveal">3 · Como quer pagar</div>
+    <div class="metodo-grid reveal" id="metodos"></div>
+    <div class="section-label reveal">4 · Conta</div>
+    <div class="reveal" id="conta-info" style="font-size:.9rem;color:var(--fumaca)">Identificando sua conta…</div>
+    <div class="status-msg" id="status" role="status" aria-live="polite"></div>
+    <div class="faq reveal">
+      <details open><summary>Preciso de cartão de crédito?</summary><p>Não. Cobramos via <b>Pix recorrente</b> (Mercado Pago). Todo mês o link chega no seu WhatsApp.</p></details>
+      <details><summary>Tem fidelidade?</summary><p>Não. Você paga mês a mês e cancela quando quiser, sem multa.</p></details>
+      <details><summary>Os pacotes adicionais são obrigatórios?</summary><p>Não. São melhorias opcionais — adicione só o que fizer sentido para o seu negócio.</p></details>
+      <details><summary>Aparece no Google?</summary><p>Sim, todo plano já é indexado localmente. O pacote "Aparecer no Google PRO" sobe ainda mais sua posição e coloca sua ficha no mapa.</p></details>
+    </div>
+    <p class="note">Vitrine Certa — sites que vendem para o comércio local. Valores sujeitos a confirmação em proposta.</p>
   </div>
-
-  <div class="plan" id="card"></div>
-
-  <div class="garantia">🛡️ <b>30 dias de garantia.</b> Se não gostar, devolvemos o valor integral e tiramos o site do ar. Sem discussão.</div>
-
-  <div class="upsell" id="upsell"></div>
-
-  <a class="cta" id="pagar" href="#">Quero esse plano →</a>
-  <a class="cta ghost" id="wa" href="#">Mais dúvidas? Falo no WhatsApp</a>
-
-  <div class="faq">
-    <details open><summary>Preciso de cartão de crédito?</summary><p>Não. No <b>anual</b> você paga uma vez via Pix (ou cartão, se preferir). No <b>mensal</b> é <b>Pix recorrente</b> — todo mês vem o link no seu WhatsApp.</p></details>
-    <details><summary>Tem fidelidade ou contrato?</summary><p>No <b>anual</b> você paga 12 meses adiantado e trava o preço — protegido pelos <b>30 dias de garantia</b>. No <b>mensal</b> não há fidelidade: cancela quando quiser, sem multa.</p></details>
-    <details><summary>O site já aparece no Google?</summary><p>Sim. Todo plano é indexado no Google logo após publicado. O pacote "Aparecer no Google PRO" sobe ainda mais sua posição e coloca sua ficha no mapa.</p></details>
-    <details><summary>Por que o anual é bem mais barato?</summary><p>Porque recebemos o ano de uma vez e não gastamos com cobrança mês a mês — repassamos essa economia. É o mesmo modelo da Hostinger (que cobra R$38,99/mês na renovação), só que aqui <b>o site já vem pronto e escrito para o seu negócio</b>.</p></details>
-    <details><summary>Posso parcelar o anual?</summary><p>Pode, no cartão. Ou fica no mensal, sem entrada. Nunca cobramos juros nossos.</p></details>
-  </div>
-
-  <p class="note">Vitrine Certa — sites que vendem para o comércio local. Valores sujeitos a confirmação em proposta.</p>
 </div>
-
+<div class="bar" id="bar">
+  <div class="b-info"><div class="b-lbl">Total recorrente / mês</div><div class="b-val" id="total">R$149<small>/mês</small></div></div>
+  <button class="cta" id="pagar" disabled>Escolha um plano e um método →</button>
+</div>
 <script>
-// Precificação v4 (skill vitrine-certa-precificacao): anual pré-pago ancorado,
-// mensal = preço de renovação. Domínio .com.br é isca do anual (Plus/Premium).
-const PLANOS = {
-  basico:  { nome:'Básico',  mensal:49,  anual:348,  equiv:29, pop:false, dominio:false,
-             atualiza:'1 atualização de conteúdo por mês',
-             itens:['Site da sua empresa, no ar em 48h','Botão de WhatsApp direto','Hospedagem, endereço e SSL inclusos','Já aparece na busca do Google local','Resumo mensal de quem visitou — grátis'] },
-  plus:    { nome:'Plus',    mensal:99,  anual:708,  equiv:59, pop:false, dominio:true,
-             atualiza:'4 atualizações de conteúdo por mês',
-             itens:['Tudo do Básico','Acabamento premium + motion suave','Seção "como funciona"'] },
-  premium: { nome:'Premium', mensal:149, anual:1068, equiv:89, pop:true,  dominio:true,
-             atualiza:'Atualizações ilimitadas',
-             itens:['Tudo do Plus','Mecânica única do seu nicho','Pedido/agenda montados no site','Suporte prioritário'] },
-};
-const params = new URLSearchParams(location.search);
-// aceita ?plano=essencial (nome da landing) como alias de basico
-const alias = { essencial:'basico' };
-const bruto = params.get('plano') || 'premium';
-const chave = alias[bruto] || bruto;
-const p = PLANOS[chave] || PLANOS.premium;
-let ciclo = (params.get('ciclo') === 'mensal') ? 'mensal' : 'anual';
+(function(){
+'use strict';
+var API_BASE=document.getElementById('vc-api').dataset.apiUrl||'/api/v1/subscriptions';
+var PLANOS=[
+  {id:'basico',nome:'Básico',mensal:49,anual:348,equiv:29,pop:false},
+  {id:'plus',nome:'Plus',mensal:99,anual:708,equiv:59,pop:false},
+  {id:'premium',nome:'Premium',mensal:149,anual:1068,equiv:89,pop:true}
+];
+var ADDONS=[
+  {id:'sempre_novinho',nome:'Site Sempre Novinho',valor:99,desc:'2 atualizações de fotos/cardápio por mês'},
+  {id:'google_pro',nome:'Aparecer no Google PRO',valor:249,desc:'Domínio .com.br + ficha no mapa + SEO local'},
+  {id:'porta',nome:'Cliente na Porta',valor:199,desc:'Gestão de Google/Meta Ads (verba à parte)'}
+];
+var METODOS=[
+  {id:'pix_auto',label:'Pix Automático',icon:'⚡',desc:'Recorrente via Pix. Sem cartão.'},
+  {id:'credit_card',label:'Cartão de Crédito',icon:'💳',desc:'Recorrente (até 12x sem juros).'},
+  {id:'boleto',label:'Boleto',icon:'📄',desc:'Mensal, pagamento manual.'},
+  {id:'pix_qr',label:'PIX QR',icon:'📱',desc:'QR para pagamento único.'}
+];
+var params=new URLSearchParams(location.search);
+var planoAtivo=params.get('plano')||'premium';
+var ciclo=(params.get('ciclo')==='mensal')?'mensal':'anual';
+var addonsAtivos=new Set();
+var metodoAtivo=null;
+function fmt(v){return 'R$'+v;}
 
-const card = document.getElementById('card');
-const brl = n => n.toLocaleString('pt-BR');
-function render(){
-  const anual = ciclo === 'anual';
-  const itens = p.itens.concat([p.atualiza]);
-  if (anual && p.dominio) itens.push('🎁 Domínio .com.br + e-mail profissional grátis no 1º ano');
-  card.className = 'plan' + (p.pop ? ' destaque' : '');
-  card.innerHTML = (p.pop ? '<span class="badge">MAIS PROCURADO</span>' : '') +
-    `<h3>${p.nome}</h3>` +
-    (anual
-      ? `<div class="preco">R$${p.equiv}<small>/mês</small><span class="ancora">R$${p.mensal}/mês</span></div>`
-        + `<p style="color:var(--muted);font-size:.9rem;margin-top:.2rem">R$${brl(p.anual)} pagos uma vez, cobrindo 12 meses.</p>`
-      : `<div class="preco">R$${p.mensal}<small>/mês</small></div>`
-        + `<p style="color:var(--muted);font-size:.9rem;margin-top:.2rem">Cobrança mensal, cancela quando quiser. No anual sai R$${p.equiv}/mês.</p>`) +
-    `<ul>${itens.map(i=>`<li>${i}</li>`).join('')}</ul>` +
-    `<div class="bonus">📲 Vira app na tela de início do cliente (iPhone e Android, sem loja)</div>`;
-  acoes();
+function renderPlanos(){
+  document.getElementById('planos').innerHTML=PLANOS.map(function(p){
+    var sel=p.id===planoAtivo;
+    var preco=ciclo==='anual'
+      ? '<div class="ppreco">'+fmt(p.equiv)+'<small>/mês</small><span style="font-size:.72rem;opacity:.7;margin-left:.3rem">R$'+p.anual+'/ano</span></div>'
+      : '<div class="ppreco">'+fmt(p.mensal)+'<small>/mês</small></div>';
+    return '<div class="plano'+(sel?' sel':'')+'" data-id="'+p.id+'" onclick="vcSelPlano(this)">'
+      +(p.pop?'<span class="tag">MAIS PROCURADO</span>':'')
+      +'<div class="pnome">'+p.nome+'</div>'
+      +preco+'</div>';
+  }).join('');
 }
-document.querySelectorAll('#ciclo button').forEach(b=>{
-  if (b.dataset.ciclo === ciclo) b.classList.add('on'); else b.classList.remove('on');
-  b.addEventListener('click', ()=>{
-    ciclo = b.dataset.ciclo;
-    document.querySelectorAll('#ciclo button').forEach(x=>x.classList.toggle('on', x===b));
-    render();
+window.vcSelPlano=function(el){planoAtivo=el.getAttribute('data-id');document.querySelectorAll('.plano').forEach(function(o){o.classList.remove('sel');});el.classList.add('sel');atualiza();};
+
+function renderAddons(){
+  document.getElementById('addons').innerHTML=ADDONS.map(function(a){
+    return '<div class="addon" data-id="'+a.id+'" onclick="vcSelAddon(this)">'
+      +'<div class="box"></div><div class="info"><div class="anome">'+a.nome+'</div><div class="adesc">'+a.desc+'</div></div>'
+      +'<div class="apreco">'+fmt(a.valor)+'<small>/mês</small></div></div>';
+  }).join('');
+}
+window.vcSelAddon=function(el){
+  var id=el.getAttribute('data-id');
+  if(addonsAtivos.has(id)){addonsAtivos.delete(id);el.classList.remove('sel');}
+  else{addonsAtivos.add(id);el.classList.add('sel');}
+  atualiza();
+};
+
+// toggle de ciclo (anual/mensal) — espelha a PRD v4
+document.querySelectorAll('#ciclo button').forEach(function(b){
+  if(b.dataset.ciclo===ciclo) b.classList.add('on'); else b.classList.remove('on');
+  b.addEventListener('click',function(){
+    ciclo=b.dataset.ciclo;
+    document.querySelectorAll('#ciclo button').forEach(function(x){x.classList.toggle('on',x===b);});
+    renderPlanos();atualiza();
   });
 });
 
-// upsell Aparecer no Google PRO (ancoragem de->por + bonus)
-const upsell = document.getElementById('upsell');
-upsell.innerHTML = `<h4>Quer subir no Google?</h4>` +
-  `<div><span class="preco">R$249/mês</span></div>` +
-  `<p style="color:var(--muted);font-size:.9rem;margin-top:.3rem">Ficha no Google Maps + SEO local pra subir de posição + relatório completo de quem chegou.</p>` +
-  `<div class="bonus">🎁 12 meses = 1 mês grátis (fidelidade, não urgência)</div>`;
+function renderMetodos(){
+  document.getElementById('metodos').innerHTML=METODOS.map(function(m){
+    return '<div class="metodo-opt" data-id="'+m.id+'" onclick="vcSelMetodo(this)">'
+      +'<div class="icon">'+m.icon+'</div><div class="nome">'+m.label+'</div><div class="desc">'+m.desc+'</div></div>';
+  }).join('');
+}
+window.vcSelMetodo=function(el){
+  metodoAtivo=el.getAttribute('data-id');
+  document.querySelectorAll('.metodo-opt').forEach(function(o){o.classList.remove('sel');});
+  el.classList.add('sel');atualiza();
+};
 
-// acoes: agora bate no backend real do Avança (vc-checkout) em vez de só WhatsApp.
-// O Avança cria a assinatura no Mercado Pago e devolve redirect_url (link de
-// checkout de assinatura). Se a chamada falhar (offline, backend fora do ar),
-// cai para o WhatsApp como fallback — nunca trava o fechamento.
-//
-// Endpoint do Avança: lido do <div id="vc-api" data-api-url> (mesmo padrão do HML).
-// Fallback = URL estável de PRD, caso o elemento não exista.
-const API_BASE = document.getElementById('vc-api')?.dataset.apiUrl
-  || 'https://saas-confianca-cobranca.vercel.app/api/v1/vc-checkout';
+function total(){
+  var p=PLANOS.find(function(x){return x.id===planoAtivo})||PLANOS[2];
+  var t=ciclo==='anual'?p.anual:p.mensal;
+  addonsAtivos.forEach(function(id){var a=ADDONS.find(function(x){return x.id===id});if(a)t+=a.valor;});
+  return {valor:t,base:ciclo==='anual'?p.anual:p.mensal,plano:p};
+}
+function atualiza(){
+  var r=total();
+  var p=r.plano;
+  var sufixo=ciclo==='anual'?'/ano':'/mês';
+  document.getElementById('total').innerHTML=fmt(r.valor)+'<small>'+sufixo+'</small>'+(addonsAtivos.size?'<small> (c/ adicionais)</small>':'');
+  var btn=document.getElementById('pagar');
+  var ok=planoAtivo&&metodoAtivo;
+  btn.disabled=!ok;
+  if(ok){var l=METODOS.find(function(x){return x.id===metodoAtivo}).label;
+    btn.textContent='Assinar '+p.nome+' — '+fmt(r.valor)+sufixo+' via '+l+' →';}
+  else{btn.textContent=!planoAtivo?'Escolha um plano →':'Escolha um método de pagamento →';}
+}
+function showStatus(m,t){var el=document.getElementById('status');el.textContent=m;el.className='status-msg '+(t||'ok');el.style.display='block';}
 
-async function fechar() {
-  const btn = document.getElementById('pagar');
-  btn.textContent = 'Processando…';
-  try {
-    const res = await fetch(`${API_BASE}/api/v1/vc-checkout`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        plano: chave,
-        ciclo,
-        pme_email: '',
-        pme_nome: '',
-      }),
+document.getElementById('pagar').addEventListener('click',function(){
+  if(!planoAtivo||!metodoAtivo){showStatus('Selecione plano e método.','err');return;}
+  var btn=this;btn.disabled=true;btn.textContent='Processando...';document.getElementById('status').style.display='none';
+  var extras=Array.from(addonsAtivos);
+  var p=PLANOS.find(function(x){return x.id===planoAtivo});
+  var email=localStorage.getItem('vc_email')||'';
+  var payload={plano:planoAtivo,ciclo:ciclo,pme_id:params.get('pme_id')||'',pme_email:email,pme_nome:p.nome+(extras.length?' + '+extras.join(','):''),payment_method:metodoAtivo,extras:extras};
+  fetch(API_BASE,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+    .then(function(r){return r.json().then(function(b){return{ok:r.ok,body:b};});})
+    .then(function(res){
+      if(res.ok){showStatus('Assinatura criada! Redirecionando para o pagamento...','ok');
+        if(res.body.redirect_url){window.location.href=res.body.redirect_url;}else{btn.textContent='Pronto! Verifique seu WhatsApp.';}}
+      else{showStatus('Erro: '+(res.body.erro||res.body.message||'Falha ao criar assinatura.'),'err');btn.disabled=false;atualiza();}
+    })
+    .catch(function(e){
+      // Falha de rede: leva pro WhatsApp com a escolha (nunca trava o fechamento)
+      var wa='https://wa.me/5511970776856?text='+encodeURIComponent((ciclo==='anual')
+        ? 'Quero o plano '+p.nome+' ANUAL (R$'+p.anual+' por 12 meses, R$'+p.equiv+'/mês)'
+        : 'Quero o plano '+p.nome+' MENSAL (R$'+p.mensal+'/mês)');
+      window.location.href=wa;
     });
-    const json = await res.json();
-    if (res.ok && json.redirect_url) {
-      window.location.href = json.redirect_url; // leva ao checkout do MP
-      return;
-    }
-    // Sem redirect_url ou erro: manda pro WhatsApp com a escolha.
-    window.location.href = `https://wa.me/5511970776856?text=` +
-      encodeURIComponent((ciclo === 'anual')
-        ? `Quero o plano ${p.nome} ANUAL (R$${brl(p.anual)} por 12 meses, R$${p.equiv}/mês)`
-        : `Quero o plano ${p.nome} MENSAL (R$${p.mensal}/mês)`);
-  } catch {
-    // Falha de rede: fallback WhatsApp.
-    window.location.href = `https://wa.me/5511970776856?text=` +
-      encodeURIComponent((ciclo === 'anual')
-        ? `Quero o plano ${p.nome} ANUAL (R$${brl(p.anual)} por 12 meses, R$${p.equiv}/mês)`
-        : `Quero o plano ${p.nome} MENSAL (R$${p.mensal}/mês)`);
-  }
+});
+
+/* spotlight que segue o cursor (padrão landing) */
+(function(){
+  var s=document.getElementById('spot'),raf=false,mx=80,my=10;
+  window.addEventListener('mousemove',function(e){
+    mx=(e.clientX/window.innerWidth*100);my=(e.clientY/window.innerHeight*100);
+    if(!raf){raf=true;requestAnimationFrame(function(){s.style.setProperty('--mx',mx+'%');s.style.setProperty('--my',my+'%');raf=false;});}
+  },{passive:true});
+})();
+/* reveal por IntersectionObserver (padrão landing) */
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14,rootMargin:'0px 0px -30px 0px'});
+    els.forEach(function(el){io.observe(el);});
+    setTimeout(function(){els.forEach(function(el){el.classList.add('in');});},1400);
+  }else els.forEach(function(el){el.classList.add('in');});
+})();
+
+function mostraConta(){
+  var ci=document.getElementById('conta-info');
+  if(!ci)return;
+  var email=localStorage.getItem('vc_email');
+  var emp=localStorage.getItem('vc_empresa');
+  if(email){ci.innerHTML='Logado como <b style="color:var(--tinta)">'+(emp||email)+'</b> · '+email+' &nbsp;<a class="ghost" href="cadastro.html?next=checkout" style="color:var(--accent-ink);font-weight:600;text-decoration:none">trocar</a>';}
+  else{ci.innerHTML='Você ainda não tem conta. <a class="ghost" href="cadastro.html?next=checkout" style="color:var(--accent-ink);font-weight:600;text-decoration:none">Criar conta →</a>';}
 }
 
-function acoes() {
-  const waTxt = (ciclo === 'anual')
-    ? `Quero o plano ${p.nome} ANUAL (R$${brl(p.anual)} por 12 meses, R$${p.equiv}/mês)`
-    : `Quero o plano ${p.nome} MENSAL (R$${p.mensal}/mês)`;
-  document.getElementById('wa').href = `https://wa.me/5511970776856?text=` + encodeURIComponent(waTxt);
-  const btn = document.getElementById('pagar');
-  btn.onclick = (e) => { e.preventDefault(); fechar(); };
-  btn.textContent = (ciclo === 'anual')
-    ? `Fechar o ano por R$${brl(p.anual)} →` : `Assinar por R$${p.mensal}/mês →`;
-}
-render();
+renderPlanos();renderAddons();renderMetodos();mostraConta();atualiza();
+})();
 </script>
+<div class="hml-foot" style="display:flex;flex-wrap:wrap;gap:.4rem 1rem;justify-content:center;margin-top:1.6rem;padding-top:1.1rem;border-top:1px solid rgba(119,135,153,.35);font-size:.8rem"><a href="index.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Início</a><a href="dashboard.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Painel</a><a href="planos.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Planos</a><a href="suporte.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Suporte</a><a href="status.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Status</a><a href="termos.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Termos</a><a href="lgpd.html" style="color:#9C4D15;text-decoration:none;font-weight:600">Privacidade</a><a href="parceiro.html" style="color:#9C4D15;text-decoration:none;font-weight:600"></a></div>
+<div style="text-align:center;font-size:.72rem;opacity:.65;margin-top:.5rem">Vitrine Certa é um produto <b>AAPSON</b> — Inteligência Aplicada ao Negócio.</div>
 </body>
 </html>
