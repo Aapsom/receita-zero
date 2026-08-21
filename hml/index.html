@@ -290,6 +290,7 @@ footer .logo{width:24px;height:24px}
     </div>
   </div>
 </header>
+<button id="vc-instalar" onclick="vcInstalarPwa()" style="display:none;margin:1rem auto;background:#E8873A;border:0;color:#14161D;font-weight:800;padding:.7rem 1.3rem;border-radius:999px;cursor:pointer;font-family:'Plus Jakarta Sans',system-ui,sans-serif">📲 Instalar na tela de início</button>
 
 <div class="prova">
   <div class="wrap">
@@ -924,6 +925,8 @@ document.querySelectorAll('.price-filter button').forEach(function(btn){
 <script src="supabase-config.js"></script>
 <script src="supabase-auth.js"></script>
 <script src="/consent-lgpd.js" defer></script>
+<script src="/install-pwa.js" defer></script>
+<script src="/analytics-visita.js" defer></script>
 <div id="vc-lgpd" style="display:none;position:fixed;left:0;right:0;bottom:0;z-index:9998;background:rgba(20,22,29,.94);color:#fff;padding:1rem 1.2rem;align-items:center;gap:1rem;flex-wrap:wrap;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:.9rem">
   <span style="flex:1;min-width:200px">Usamos dados de navegação (analytics) para melhorar o site. Você pode aceitar ou recusar. <a href="/lgpd.html" style="color:#E8873A;text-decoration:underline">Saiba mais (LGPD)</a>.</span>
   <button onclick="vcLgpdAceitar()" style="background:#E8873A;border:0;color:#14161D;font-weight:800;padding:.6rem 1.1rem;border-radius:999px;cursor:pointer">Aceitar</button>
