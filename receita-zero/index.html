@@ -284,7 +284,7 @@ footer .aap b{color:var(--lamp-ink)}
     </div>
     <div class="vitrine-wrap reveal">
       <div class="vitrine" id="vitrine">
-        <div class="toldo"><i></i><i></i><i></i><span class="url" id="v-url">forno-a-lenha.vitrinecerta.site</span></div>
+        <div class="toldo"><i></i><i></i><i></i><span class="url" id="v-url">vitrinecerta.app.br/pizzaria</span></div>
         <div class="glass">
           <span class="lamp" aria-hidden="true"></span>
           <span class="emoji" id="v-emoji">🍕</span>
@@ -401,7 +401,7 @@ footer .aap b{color:var(--lamp-ink)}
       </select>
     </div>
     <div class="frame-vitrine reveal">
-      <div class="toldo"><i></i><i></i><i></i><span class="url" id="pv-url">pizzaria.vitrinecerta.site</span></div>
+      <div class="toldo"><i></i><i></i><i></i><span class="url" id="pv-url">vitrinecerta.app.br/pizzaria</span></div>
       <iframe id="pvf" data-src="../site-dfy/pizzaria/premium/index.html" title="Exemplo de site ao vivo" loading="lazy"></iframe>
     </div>
     <p class="hint reveal">↑ um site de verdade rodando dentro desta página. Mexe nele.</p>
@@ -452,7 +452,7 @@ footer .aap b{color:var(--lamp-ink)}
     <div id="gen-result" class="gen-result" style="display:none">
       <p class="gen-result-txt">Preview de <b id="gen-nome"></b> em <b id="gen-cidade-out"></b>:</p>
       <div class="frame-vitrine reveal">
-        <div class="toldo"><i></i><i></i><i></i><span class="url">seu-negocio.vitrinecerta.site</span></div>
+        <div class="toldo"><i></i><i></i><i></i><span class="url">vitrinecerta.app.br</span></div>
         <iframe id="gen-frame" src="" title="Preview do seu site"></iframe>
       </div>
       <div style="display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:var(--sp-lg)">
@@ -689,7 +689,7 @@ var NICHOS=[
   });
   function paint(n){
     root.setProperty('--accent',n.cor); root.setProperty('--accent-ink',n.ink);
-    vUrl.textContent=n.dom+'.vitrinecerta.site'; vEm.textContent=n.em; vNome.textContent=n.nome;
+    vUrl.textContent='vitrinecerta.app.br/'+n.dom; vEm.textContent=n.em; vNome.textContent=n.nome;
     vAddr.textContent=n.tipo+' · São Vicente'; vBadge.textContent=n.badge; vSt.innerHTML=n.st; vWa.textContent=n.wa;
     [].forEach.call(orbs.children,function(o,i){o.setAttribute('aria-selected', i===cur?'true':'false');});
   }
@@ -757,7 +757,7 @@ var NICHOS=[
   pv.addEventListener('change',function(){
     pvf.src=pv.value;
     var m=pv.value.match(/site-dfy\/([^\/]+)\//);
-    if(url&&m) url.textContent=decodeURIComponent(m[1]).replace(/[áâã]/g,'a').replace(/í/g,'i').replace(/[óô]/g,'o')+'.vitrinecerta.site';
+    if(url&&m) url.textContent='vitrinecerta.app.br/'+decodeURIComponent(m[1]).replace(/[áâã]/g,'a').replace(/í/g,'i').replace(/[óô]/g,'o');
   });
 })();
 
