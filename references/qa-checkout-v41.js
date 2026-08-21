@@ -28,17 +28,17 @@ const CASOS = [
     if (errs.length) console.log('   pageerrors:', errs);
     await pg.close();
   }
-  // data-api no body + botão pagar é onclick (sem href de wa.me)
+  // #vc-api no body + botão pagar é onclick (sem href de wa.me) + aponta pro Avança
   const pg = await br.newPage();
   await pg.goto(`${B}?plano=premium&ciclo=anual`, { waitUntil: 'networkidle' });
-  const api = await pg.getAttribute('body', 'data-api');
+  const api = await pg.getAttribute('#vc-api', 'data-api-url');
   const pagarHref = await pg.getAttribute('#pagar', 'href');
   const t = await pg.innerText('#pagar');
-  const dataOk = api && api.includes('vercel.app');
+  const dataOk = api && api.includes('saas-confianca-cobranca.vercel.app/api/v1/vc-checkout');
   const hrefOk = pagarHref === null || pagarHref === '#';
   const txtOk = t.includes('Fechar o ano por R$1.068');
   if (!(dataOk && hrefOk && txtOk)) falhas++;
-  console.log(`${dataOk && hrefOk && txtOk ? '✅' : '❌'} data-api + botao pagar onclick (href=${pagarHref})`);
+  console.log(`${dataOk && hrefOk && txtOk ? '✅' : '❌'} #vc-api + botao pagar onclick (api=${api})`);
   await br.close();
   console.log(falhas ? `❌ CHECKOUT_V41_FAIL (${falhas})` : '✅ CHECKOUT_V41_ALL_PASS');
   process.exit(falhas ? 1 : 0);

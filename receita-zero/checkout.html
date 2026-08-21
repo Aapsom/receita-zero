@@ -47,7 +47,9 @@ h1 em{color:var(--p);font-style:normal}
 .note{font-size:.75rem;color:rgba(239,233,255,.4);text-align:center;margin-top:1.2rem}
 </style>
 </head>
-<body data-api="https://saas-confianca-cobranca.vercel.app">
+<body>
+  <!-- API_BASE do Avança via <div id="vc-api"> (padrão do HML, replicado na PRD) -->
+  <div id="vc-api" data-api-url="https://saas-confianca-cobranca.vercel.app/api/v1/vc-checkout" style="display:none"></div>
 <div class="wrap">
   <span class="kick">Último passo</span>
   <h1>Seu site <em>pronto em 48h</em>. É só confirmar.</h1>
@@ -138,8 +140,10 @@ upsell.innerHTML = `<h4>Quer subir no Google?</h4>` +
 // checkout de assinatura). Se a chamada falhar (offline, backend fora do ar),
 // cai para o WhatsApp como fallback — nunca trava o fechamento.
 //
-// Endpoint configurável via data-api no <body>; default = URL estável do deploy.
-const API_BASE = (document.body.dataset.api || 'https://saas-confianca-cobranca-aapson.vercel.app').replace(/\/+$/, '');
+// Endpoint do Avança: lido do <div id="vc-api" data-api-url> (mesmo padrão do HML).
+// Fallback = URL estável de PRD, caso o elemento não exista.
+const API_BASE = document.getElementById('vc-api')?.dataset.apiUrl
+  || 'https://saas-confianca-cobranca.vercel.app/api/v1/vc-checkout';
 
 async function fechar() {
   const btn = document.getElementById('pagar');
