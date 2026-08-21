@@ -25,6 +25,12 @@ h1 em{color:var(--p);font-style:normal}
 .plan .preco{font-size:2rem;font-weight:900;color:var(--fg)}
 .plan .preco small{font-size:.9rem;color:var(--muted);font-weight:400}
 .plan .ancora{font-size:.85rem;color:var(--muted);text-decoration:line-through;margin-left:.4rem}
+.ciclo{display:flex;gap:.5rem;margin:1.2rem 0}
+.ciclo button{flex:1;background:transparent;border:1px solid var(--line);color:var(--muted);font-family:inherit;font-size:.9rem;font-weight:600;padding:.7rem;border-radius:10px;cursor:pointer}
+.ciclo button.on{background:var(--p);color:var(--bg);border-color:var(--p)}
+.ciclo button small{display:block;font-weight:400;font-size:.72rem;opacity:.85}
+.garantia{background:rgba(45,212,191,.08);border:1px solid var(--line);border-radius:12px;padding:.9rem 1.1rem;margin:1.2rem 0;font-size:.92rem}
+.garantia b{color:var(--p)}
 .plan ul{list-style:none;margin:.8rem 0}
 .plan li{padding:.25rem 0;color:var(--muted);font-size:.95rem}
 .plan li::before{content:"✓ ";color:var(--p)}
@@ -46,13 +52,14 @@ h1 em{color:var(--p);font-style:normal}
   <span class="kick">Último passo</span>
   <h1>Seu site <em>pronto em 48h</em>. É só confirmar.</h1>
 
-  <div class="timer" id="timer">
-    <div class="lbl">OFERTA DE LANÇAMENTO — acaba em</div>
-    <div class="clock" id="clock">07 : 00 : 00 : 00</div>
-    <div class="off">15% de desconto na <b>primeira fatura</b> de qualquer plano</div>
+  <div class="ciclo" id="ciclo">
+    <button data-ciclo="anual" class="on">Anual — pago uma vez<small>economia de 40%</small></button>
+    <button data-ciclo="mensal">Mensal<small>sem contrato</small></button>
   </div>
 
   <div class="plan" id="card"></div>
+
+  <div class="garantia">🛡️ <b>30 dias de garantia.</b> Se não gostar, devolvemos o valor integral e tiramos o site do ar. Sem discussão.</div>
 
   <div class="upsell" id="upsell"></div>
 
@@ -60,57 +67,83 @@ h1 em{color:var(--p);font-style:normal}
   <a class="cta ghost" id="wa" href="#">Mais dúvidas? Falo no WhatsApp</a>
 
   <div class="faq">
-    <details open><summary>Preciso de cartão de crédito?</summary><p>Não. Cobramos via <b>Pix recorrente</b> (Mercado Pago). Todo mês vem o link no seu WhatsApp.</p></details>
-    <details><summary>Tem fidelidade ou contrato?</summary><p>Não. Você paga mês a mês e cancela quando quiser, sem multa.</p></details>
+    <details open><summary>Preciso de cartão de crédito?</summary><p>Não. No <b>anual</b> você paga uma vez via Pix (ou cartão, se preferir). No <b>mensal</b> é <b>Pix recorrente</b> — todo mês vem o link no seu WhatsApp.</p></details>
+    <details><summary>Tem fidelidade ou contrato?</summary><p>No <b>anual</b> você paga 12 meses adiantado e trava o preço — protegido pelos <b>30 dias de garantia</b>. No <b>mensal</b> não há fidelidade: cancela quando quiser, sem multa.</p></details>
     <details><summary>O site já aparece no Google?</summary><p>Sim. Todo plano é indexado no Google logo após publicado. O pacote "Aparecer no Google PRO" sobe ainda mais sua posição e coloca sua ficha no mapa.</p></details>
-    <details><summary>Posso parcelar?</summary><p>O plano é mensal (R$49 a R$149). Sem juros porque é Pix recorrente, não financiamento.</p></details>
+    <details><summary>Por que o anual é bem mais barato?</summary><p>Porque recebemos o ano de uma vez e não gastamos com cobrança mês a mês — repassamos essa economia. É o mesmo modelo da Hostinger (que cobra R$38,99/mês na renovação), só que aqui <b>o site já vem pronto e escrito para o seu negócio</b>.</p></details>
+    <details><summary>Posso parcelar o anual?</summary><p>Pode, no cartão. Ou fica no mensal, sem entrada. Nunca cobramos juros nossos.</p></details>
   </div>
 
   <p class="note">Vitrine Certa — sites que vendem para o comércio local. Valores sujeitos a confirmação em proposta.</p>
 </div>
 
 <script>
+// Precificação v4 (skill vitrine-certa-precificacao): anual pré-pago ancorado,
+// mensal = preço de renovação. Domínio .com.br é isca do anual (Plus/Premium).
 const PLANOS = {
-  basico:  { nome:'Básico',  valor:49,  pop:false, itens:['Site da sua empresa, no ar em 48h','Botão de WhatsApp direto','Já aparece na busca do Google local','Resumo mensal de quem visitou — grátis'] },
-  plus:    { nome:'Plus',    valor:99,  pop:false, itens:['Tudo do Básico','Acabamento premium + motion suave','Seção "como funciona"'] },
-  premium: { nome:'Premium', valor:149, pop:true,  itens:['Tudo do Plus','Mecânica única do seu nicho','Pedido/agenda montados no site','Suporte prioritário'] },
+  basico:  { nome:'Básico',  mensal:49,  anual:348,  equiv:29, pop:false, dominio:false,
+             atualiza:'1 atualização de conteúdo por mês',
+             itens:['Site da sua empresa, no ar em 48h','Botão de WhatsApp direto','Hospedagem, endereço e SSL inclusos','Já aparece na busca do Google local','Resumo mensal de quem visitou — grátis'] },
+  plus:    { nome:'Plus',    mensal:99,  anual:708,  equiv:59, pop:false, dominio:true,
+             atualiza:'4 atualizações de conteúdo por mês',
+             itens:['Tudo do Básico','Acabamento premium + motion suave','Seção "como funciona"'] },
+  premium: { nome:'Premium', mensal:149, anual:1068, equiv:89, pop:true,  dominio:true,
+             atualiza:'Atualizações ilimitadas',
+             itens:['Tudo do Plus','Mecânica única do seu nicho','Pedido/agenda montados no site','Suporte prioritário'] },
 };
 const params = new URLSearchParams(location.search);
-const chave = params.get('plano') || 'premium';
+// aceita ?plano=essencial (nome da landing) como alias de basico
+const alias = { essencial:'basico' };
+const bruto = params.get('plano') || 'premium';
+const chave = alias[bruto] || bruto;
 const p = PLANOS[chave] || PLANOS.premium;
+let ciclo = (params.get('ciclo') === 'mensal') ? 'mensal' : 'anual';
 
-// render plano
 const card = document.getElementById('card');
-card.className = 'plan' + (p.pop ? ' destaque' : '');
-card.innerHTML = (p.pop ? '<span class="badge">MAIS PROCURADO</span>' : '') +
-  `<h3>${p.nome}</h3>` +
-  `<div class="preco">R$${p.valor}<small>/mês</small></div>` +
-  `<ul>${p.itens.map(i=>`<li>${i}</li>`).join('')}</ul>`;
+const brl = n => n.toLocaleString('pt-BR');
+function render(){
+  const anual = ciclo === 'anual';
+  const itens = p.itens.concat([p.atualiza]);
+  if (anual && p.dominio) itens.push('🎁 Domínio .com.br + e-mail profissional grátis no 1º ano');
+  card.className = 'plan' + (p.pop ? ' destaque' : '');
+  card.innerHTML = (p.pop ? '<span class="badge">MAIS PROCURADO</span>' : '') +
+    `<h3>${p.nome}</h3>` +
+    (anual
+      ? `<div class="preco">R$${p.equiv}<small>/mês</small><span class="ancora">R$${p.mensal}/mês</span></div>`
+        + `<p style="color:var(--muted);font-size:.9rem;margin-top:.2rem">R$${brl(p.anual)} pagos uma vez, cobrindo 12 meses.</p>`
+      : `<div class="preco">R$${p.mensal}<small>/mês</small></div>`
+        + `<p style="color:var(--muted);font-size:.9rem;margin-top:.2rem">Cobrança mensal, cancela quando quiser. No anual sai R$${p.equiv}/mês.</p>`) +
+    `<ul>${itens.map(i=>`<li>${i}</li>`).join('')}</ul>`;
+  acoes();
+}
+document.querySelectorAll('#ciclo button').forEach(b=>{
+  if (b.dataset.ciclo === ciclo) b.classList.add('on'); else b.classList.remove('on');
+  b.addEventListener('click', ()=>{
+    ciclo = b.dataset.ciclo;
+    document.querySelectorAll('#ciclo button').forEach(x=>x.classList.toggle('on', x===b));
+    render();
+  });
+});
 
 // upsell Aparecer no Google PRO (ancoragem de->por + bonus)
 const upsell = document.getElementById('upsell');
 upsell.innerHTML = `<h4>Quer subir no Google?</h4>` +
-  `<div><span class="preco">R$297/mês</span><span class="ancora">de R$347</span></div>` +
-  `<p style="color:var(--muted);font-size:.9rem;margin-top:.3rem">Seu .com.br + ficha no mapa + SEO local + relatório completo de quem chegou.</p>` +
+  `<div><span class="preco">R$249/mês</span></div>` +
+  `<p style="color:var(--muted);font-size:.9rem;margin-top:.3rem">Ficha no Google Maps + SEO local pra subir de posição + relatório completo de quem chegou.</p>` +
   `<div class="bonus">🎁 12 meses = 1 mês grátis (fidelidade, não urgência)</div>`;
 
-// timer de lancamento (7 dias a partir do carregamento; demo)
-const FIM = Date.now() + 7*24*3600*1000;
-function tick(){
-  let s = Math.max(0, Math.floor((FIM - Date.now())/1000));
-  const d = Math.floor(s/86400); s -= d*86400;
-  const h = Math.floor(s/3600); s -= h*3600;
-  const m = Math.floor(s/60); s -= m*60;
-  document.getElementById('clock').textContent =
-    `${String(d).padStart(2,'0')} : ${String(h).padStart(2,'0')} : ${String(m).padStart(2,'0')} : ${String(s).padStart(2,'0')}`;
+// acoes (cobranca real entra quando o Avança suportar ciclo anual — ver skill §10)
+function acoes(){
+  const txt = (ciclo === 'anual')
+    ? `Quero o plano ${p.nome} ANUAL (R$${brl(p.anual)} por 12 meses, R$${p.equiv}/mês)`
+    : `Quero o plano ${p.nome} MENSAL (R$${p.mensal}/mês)`;
+  const wa = `https://wa.me/5511970776856?text=` + encodeURIComponent(txt);
+  document.getElementById('wa').href = wa;
+  document.getElementById('pagar').href = wa;
+  document.getElementById('pagar').textContent = (ciclo === 'anual')
+    ? `Fechar o ano por R$${brl(p.anual)} →` : `Assinar por R$${p.mensal}/mês →`;
 }
-tick(); setInterval(tick, 1000);
-
-// acoes
-const wa = `https://wa.me/5511970776856?text=` + encodeURIComponent(`Quero o plano ${p.nome} (R$${p.valor}/mês)`);
-document.getElementById('wa').href = wa;
-// pagar -> por enquanto leva pro WA com a escolha (cobranca MP entra quando token no cofre)
-document.getElementById('pagar').href = wa;
+render();
 </script>
 </body>
 </html>
