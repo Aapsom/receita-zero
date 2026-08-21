@@ -243,6 +243,10 @@ footer .aap b{color:var(--lamp-ink)}
 </style>
 </head>
 <body>
+<div style="position:fixed;top:10px;right:12px;z-index:9997;display:flex;gap:.4rem">
+  <button onclick="vcTrocaIdioma('pt')" style="background:rgba(20,22,29,.08);border:1px solid var(--linha);border-radius:999px;padding:.3rem .7rem;font-weight:800;cursor:pointer;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:.8rem">PT</button>
+  <button onclick="vcTrocaIdioma('en')" style="background:rgba(20,22,29,.08);border:1px solid var(--linha);border-radius:999px;padding:.3rem .7rem;font-weight:800;cursor:pointer;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:.8rem">EN</button>
+</div>
 <div id="spot"></div>
 
 <nav class="nav">
@@ -267,7 +271,7 @@ footer .aap b{color:var(--lamp-ink)}
   <div class="wrap">
     <div class="hero-text">
       <span class="kick reveal">Sites para comércio local</span>
-      <h1 class="reveal">O site que <span class="lamp-word">responde</span> pelo seu comércio.</h1>
+      <h1 class="reveal" data-en="The site that responds for your business." data-pt="O site que responde pelo seu comércio.">O site que <span class="lamp-word">responde</span> pelo seu comércio.</h1>
       <p class="lede reveal">Aqui embaixo não tem foto de site — tem site <b>funcionando</b>: cardápio que fecha pedido, agenda que marca, verificador que responde na hora. O seu fica no ar em <b>48h</b>, com o <b>seu</b> WhatsApp — e vira <b>ícone no celular do cliente</b>, como um app, sem pagar loja.</p>
       <div class="cta reveal">
         <a class="btn btn-lamp" href="#exemplos">Ver um site respondendo →</a>
@@ -882,6 +886,7 @@ if('serviceWorker' in navigator){window.addEventListener('load',function(){navig
 <script src="/consent-lgpd.js" defer></script>
 <script src="/install-pwa.js" defer></script>
 <script src="/analytics-visita.js" defer></script>
+<script src="/i18n.js" defer></script>
 <div id="vc-lgpd" style="display:none;position:fixed;left:0;right:0;bottom:0;z-index:9998;background:rgba(20,22,29,.94);color:#fff;padding:1rem 1.2rem;align-items:center;gap:1rem;flex-wrap:wrap;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:.9rem">
   <span style="flex:1;min-width:200px">Usamos dados de navegação (analytics) para melhorar o site. Você pode aceitar ou recusar. <a href="/lgpd.html" style="color:#E8873A;text-decoration:underline">Saiba mais (LGPD)</a>.</span>
   <button onclick="vcLgpdAceitar()" style="background:#E8873A;border:0;color:#14161D;font-weight:800;padding:.6rem 1.1rem;border-radius:999px;cursor:pointer">Aceitar</button>
